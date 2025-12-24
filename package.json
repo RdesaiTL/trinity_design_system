@@ -1,0 +1,124 @@
+{
+  "name": "@trinity/design-system",
+  "private": false,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Trinity Design System - A customizable MUI-based component library",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": [
+    "**/*.css",
+    "*.css"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./theme": {
+      "import": "./dist/theme.js",
+      "types": "./dist/theme.d.ts"
+    },
+    "./tokens": {
+      "import": "./dist/tokens.js",
+      "types": "./dist/tokens.d.ts"
+    },
+    "./components": {
+      "import": "./dist/components/index.js",
+      "types": "./dist/components/index.d.ts"
+    },
+    "./components/AI": {
+      "import": "./dist/components/AI/index.js",
+      "types": "./dist/components/AI/index.d.ts"
+    },
+    "./components/StatusIndicator": {
+      "import": "./dist/components/StatusIndicator/index.js",
+      "types": "./dist/components/StatusIndicator/index.d.ts"
+    },
+    "./components/Icon": {
+      "import": "./dist/components/Icon.js",
+      "types": "./dist/components/Icon.d.ts"
+    },
+    "./navigation": {
+      "import": "./dist/components/navigation/index.js",
+      "types": "./dist/components/navigation/index.d.ts"
+    },
+    "./accessibility": {
+      "import": "./dist/accessibility.js",
+      "types": "./dist/accessibility.d.ts"
+    },
+    "./form": {
+      "import": "./dist/form.js",
+      "types": "./dist/form.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "MIGRATION.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "build:lib": "tsc --project tsconfig.lib.json",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test": "vitest run --config vitest.config.ts",
+    "test:watch": "vitest --config vitest.config.ts",
+    "test:coverage": "vitest run --config vitest.config.ts --coverage",
+    "test:storybook": "vitest run --workspace vitest.workspace.ts",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@mui/material": "^6.0.0 || ^7.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@fontsource/montserrat": "^5.2.8",
+    "@mui/icons-material": "^7.3.6",
+    "@mui/x-date-pickers": "^8.22.0",
+    "@mui/x-date-pickers-pro": "^8.22.0",
+    "@tailwindcss/vite": "latest",
+    "dayjs": "^1.11.19",
+    "react-feather": "^2.0.10",
+    "tailwindcss": "latest"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^4.1.3",
+    "@storybook/addon-a11y": "^10.1.10",
+    "@storybook/addon-docs": "^10.1.10",
+    "@storybook/addon-vitest": "^10.1.10",
+    "@storybook/react": "^10.1.10",
+    "@storybook/react-vite": "^10.1.10",
+    "@testing-library/react": "^16.3.1",
+    "@types/node": "^25.0.3",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
+    "@vitest/browser-playwright": "^4.0.16",
+    "@vitest/coverage-v8": "^4.0.16",
+    "jsdom": "^27.3.0",
+    "playwright": "^1.57.0",
+    "storybook": "^10.1.10",
+    "typescript": "latest",
+    "vite": "latest",
+    "vitest": "^4.0.16"
+  },
+  "keywords": [
+    "design-system",
+    "mui",
+    "material-ui",
+    "react",
+    "theme",
+    "components"
+  ],
+  "author": "Trinity Design",
+  "license": "MIT"
+}
