@@ -32,6 +32,13 @@ const withThemeProvider = (Story: React.ComponentType, context: any) => {
 
 const preview: Preview = {
   parameters: {
+    // Chromatic configuration for visual testing
+    chromatic: {
+      // Pause animations for consistent snapshots
+      pauseAnimationAtEnd: true,
+      // Allow more time for async components to load
+      delay: 300,
+    },
     options: {
       storySort: {
         order: [
