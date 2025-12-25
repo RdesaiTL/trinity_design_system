@@ -37,8 +37,14 @@ const preview: Preview = {
       // Pause animations for consistent snapshots
       pauseAnimationAtEnd: true,
       // Allow more time for async components to load
-      delay: 300,
+      delay: 500,
+      // Disable animations entirely in Chromatic
+      disableSnapshot: false,
     },
+    // Disable animations in test environment
+    ...(typeof window !== 'undefined' && window.navigator.userAgent.includes('Chromatic') && {
+      motionDuration: 0,
+    }),
     options: {
       storySort: {
         order: [
