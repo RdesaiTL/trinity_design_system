@@ -302,7 +302,7 @@ const RatingsDemo = ({ variant = 'stars', size = 'small' }: RatingsDemoProps) =>
             <Rating
               value={heartValue}
               onChange={(_, newValue) => setHeartValue(newValue)}
-              icon={<FavoriteIcon sx={{ color: brandColors.tertiary.main }} />}
+              icon={<FavoriteIcon sx={{ color: brandColors.secondary.main }} />}
               emptyIcon={<FavoriteBorderIcon />}
               size={size}
             />
@@ -347,7 +347,7 @@ const RatingsDemo = ({ variant = 'stars', size = 'small' }: RatingsDemoProps) =>
               max={10}
               value={7}
               size="small"
-              icon={<StarIcon sx={{ color: brandColors.accent.main }} />}
+              icon={<StarIcon sx={{ color: brandColors.secondary.light }} />}
               emptyIcon={<StarBorderIcon />}
             />
           </Box>

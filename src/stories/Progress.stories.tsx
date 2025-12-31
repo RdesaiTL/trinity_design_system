@@ -294,7 +294,7 @@ const ProgressDemo = ({ variant = 'linear' }: ProgressDemoProps) => {
               {[
                 { label: 'Revenue Target', value: 85, color: brandColors.primary.main },
                 { label: 'Market Coverage', value: 72, color: brandColors.secondary.main },
-                { label: 'KOL Engagement', value: 94, color: brandColors.tertiary.main },
+                { label: 'KOL Engagement', value: 94, color: brandColors.primary.light },
               ].map((item) => (
                 <Paper key={item.label} sx={{ p: 2, flex: 1, textAlign: 'center' }}>
                   <Box sx={{ position: 'relative', display: 'inline-flex' }}>

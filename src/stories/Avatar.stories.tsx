@@ -188,8 +188,8 @@ const AvatarDemo = ({ variant = 'basic' }: AvatarDemoProps) => {
             <AvatarGroup max={5}>
               <Avatar sx={{ bgcolor: brandColors.primary.main }}>JD</Avatar>
               <Avatar sx={{ bgcolor: brandColors.secondary.main }}>SM</Avatar>
-              <Avatar sx={{ bgcolor: brandColors.tertiary.main }}>RK</Avatar>
-              <Avatar sx={{ bgcolor: brandColors.accent.main, color: 'black' }}>AL</Avatar>
+              <Avatar sx={{ bgcolor: brandColors.primary.light }}>RK</Avatar>
+              <Avatar sx={{ bgcolor: brandColors.secondary.light, color: 'black' }}>AL</Avatar>
               <Avatar sx={{ bgcolor: '#6366f1' }}>PT</Avatar>
               <Avatar sx={{ bgcolor: '#22c55e' }}>MN</Avatar>
               <Avatar sx={{ bgcolor: '#eab308' }}>OP</Avatar>
@@ -377,8 +377,8 @@ const AvatarDemo = ({ variant = 'basic' }: AvatarDemoProps) => {
             <Stack direction="row" spacing={2}>
               <Avatar sx={{ bgcolor: brandColors.primary.main }}>JD</Avatar>
               <Avatar sx={{ bgcolor: brandColors.secondary.main }}>SM</Avatar>
-              <Avatar sx={{ bgcolor: brandColors.tertiary.main }}>RK</Avatar>
-              <Avatar sx={{ bgcolor: brandColors.accent.main, color: 'black' }}>AL</Avatar>
+              <Avatar sx={{ bgcolor: brandColors.primary.light }}>RK</Avatar>
+              <Avatar sx={{ bgcolor: brandColors.secondary.light, color: 'black' }}>AL</Avatar>
             </Stack>
           </Box>
 

@@ -201,12 +201,12 @@ const SelectionGroupDemo = ({ variant = 'radioBasic', size = 'small' }: Selectio
               />
               <FormControlLabel
                 value="tertiary"
-                control={<Radio size={size} sx={{ color: brandColors.tertiary.main, '&.Mui-checked': { color: brandColors.tertiary.main } }} />}
+                control={<Radio size={size} sx={{ color: brandColors.primary.light, '&.Mui-checked': { color: brandColors.primary.light } }} />}
                 label="Coral"
               />
               <FormControlLabel
                 value="accent"
-                control={<Radio size={size} sx={{ color: brandColors.accent.main, '&.Mui-checked': { color: brandColors.accent.main } }} />}
+                control={<Radio size={size} sx={{ color: brandColors.secondary.light, '&.Mui-checked': { color: brandColors.secondary.light } }} />}
                 label="Azure"
               />
             </RadioGroup>
