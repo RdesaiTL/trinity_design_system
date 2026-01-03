@@ -925,6 +925,42 @@ export const semanticTokens = {
         border: baseTokens.colors.azure[200],
       },
     },
+
+    // Avatar color palette - Used for avatar backgrounds and badges
+    avatar: {
+      // Solid background colors (accessible with white text)
+      backgrounds: [
+        baseTokens.colors.indigo[600],   // Deep indigo
+        baseTokens.colors.purple[600],    // Purple
+        baseTokens.colors.coral[600],     // Coral/red-orange
+        baseTokens.colors.azure[600],     // Azure/teal
+        baseTokens.colors.navy[700],      // Navy
+        baseTokens.colors.indigo[500],    // Medium indigo
+        baseTokens.colors.purple[500],    // Medium purple
+        baseTokens.colors.coral[500],     // Medium coral
+      ],
+      // Online/activity indicator
+      online: '#44b700',
+      offline: baseTokens.colors.gray[400],
+      busy: baseTokens.colors.coral[600],
+      away: '#FFA726',
+    },
+
+    // Gradient definitions - Reusable across components
+    gradients: {
+      // Brand gradients
+      primary: `linear-gradient(135deg, ${baseTokens.colors.indigo[600]} 0%, ${baseTokens.colors.purple[600]} 100%)`,
+      secondary: `linear-gradient(135deg, ${baseTokens.colors.coral[500]} 0%, ${baseTokens.colors.coral[700]} 100%)`,
+      accent: `linear-gradient(135deg, ${baseTokens.colors.azure[400]} 0%, ${baseTokens.colors.azure[600]} 100%)`,
+      
+      // Avatar-specific gradients
+      avatarPrimary: `linear-gradient(135deg, ${baseTokens.colors.indigo[500]} 0%, ${baseTokens.colors.purple[600]} 100%)`,
+      avatarWarm: `linear-gradient(135deg, ${baseTokens.colors.coral[400]} 0%, ${baseTokens.colors.coral[600]} 100%)`,
+      avatarCool: `linear-gradient(135deg, ${baseTokens.colors.azure[400]} 0%, ${baseTokens.colors.indigo[500]} 100%)`,
+      
+      // Dark overlay for text readability
+      darkOverlay: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%)',
+    },
   },
 
   typography: {
@@ -1292,6 +1328,419 @@ export const componentTokens = {
 };
 
 // ============================================
+// HIERARCHY SYSTEM - Design System Architecture
+// Modern design systems (2026 standard) organize 
+// assets in layered tiers from foundations to products
+// ============================================
+
+/**
+ * DESIGN SYSTEM ARCHITECTURE HIERARCHY
+ * 
+ * 1. FOUNDATIONS (Base Layer)
+ *    └── Color palettes, typography, spacing scales, iconography
+ *    └── These are the raw, primitive values
+ * 
+ * 2. DESIGN TOKENS (Semantic Layer)
+ *    └── Smallest units mapping foundations to semantic roles
+ *    └── E.g., color-primary-600, spacing-md, font-heading
+ * 
+ * 3. CORE COMPONENTS (Component Layer)
+ *    └── Reusable UI building blocks (buttons, inputs, cards)
+ *    └── Agnostic of specific product logic
+ * 
+ * 4. PATTERNS & RECIPES (Composition Layer)
+ *    └── Composed groups solving specific user tasks
+ *    └── E.g., Contact Form, Navigation Header, Data Table
+ * 
+ * 5. PRODUCT ECOSYSTEM (Application Layer)
+ *    └── Final implementations in actual products
+ *    └── Product-specific customizations and overrides
+ */
+
+// Hierarchy Level Types
+export type HierarchyLevel = 'foundation' | 'token' | 'component' | 'pattern' | 'product';
+
+export interface HierarchyMeta {
+  level: HierarchyLevel;
+  layer: number;  // 1-5 from foundation to product
+  description: string;
+}
+
+// ============================================
+// VISUAL HIERARCHY SYSTEM
+// Governs how users perceive importance
+// ============================================
+
+/**
+ * ATTENTION HIERARCHY
+ * Controls signal-to-noise ratio across the interface
+ * Primary > Secondary > Tertiary > Muted > Disabled
+ */
+export interface AttentionLevel {
+  /** Prominence score 1-5 (5 being most prominent) */
+  prominence: number;
+  /** Typical use cases */
+  usage: string[];
+  /** Recommended contrast ratio */
+  minContrast: number;
+}
+
+export const attentionHierarchy = {
+  /** Most important actions/content - demands immediate attention */
+  primary: {
+    prominence: 5,
+    usage: ['Primary CTAs', 'Critical alerts', 'Page titles', 'Current navigation'],
+    minContrast: 7, // WCAG AAA for normal text
+  },
+  /** Important but not critical - strong visual presence */
+  secondary: {
+    prominence: 4,
+    usage: ['Secondary buttons', 'Section headings', 'Key information', 'Active states'],
+    minContrast: 4.5, // WCAG AA for normal text
+  },
+  /** Supportive content - visible but not competing */
+  tertiary: {
+    prominence: 3,
+    usage: ['Body text', 'Form labels', 'Navigation items', 'Card content'],
+    minContrast: 4.5, // WCAG AA
+  },
+  /** Background/supporting information */
+  muted: {
+    prominence: 2,
+    usage: ['Helper text', 'Timestamps', 'Metadata', 'Placeholders'],
+    minContrast: 3, // Acceptable for large text
+  },
+  /** Non-interactive or unavailable */
+  disabled: {
+    prominence: 1,
+    usage: ['Disabled controls', 'Inactive states', 'Read-only fields'],
+    minContrast: 2.5, // Minimum perceivable
+  },
+} as const;
+
+/**
+ * TYPOGRAPHIC HIERARCHY
+ * Distinct font treatments to differentiate content types
+ */
+export const typographicHierarchy = {
+  // Display - Hero content, marketing headlines
+  display: {
+    level: 1,
+    scale: {
+      large: { size: '3rem', weight: 700, lineHeight: 1.1, tracking: '-0.02em' },
+      medium: { size: '2.25rem', weight: 700, lineHeight: 1.15, tracking: '-0.01em' },
+      small: { size: '1.875rem', weight: 600, lineHeight: 1.2, tracking: '0' },
+    },
+  },
+  // Headings - Page and section structure
+  heading: {
+    level: 2,
+    scale: {
+      h1: { size: '1.875rem', weight: 700, lineHeight: 1.25 },
+      h2: { size: '1.5rem', weight: 600, lineHeight: 1.3 },
+      h3: { size: '1.25rem', weight: 600, lineHeight: 1.35 },
+      h4: { size: '1.125rem', weight: 600, lineHeight: 1.4 },
+      h5: { size: '1rem', weight: 600, lineHeight: 1.45 },
+      h6: { size: '0.875rem', weight: 600, lineHeight: 1.5 },
+    },
+  },
+  // Body - Main content
+  body: {
+    level: 3,
+    scale: {
+      large: { size: '1.125rem', weight: 400, lineHeight: 1.6 },
+      medium: { size: '1rem', weight: 400, lineHeight: 1.5 },
+      small: { size: '0.875rem', weight: 400, lineHeight: 1.5 },
+    },
+  },
+  // Labels - Form and UI labels
+  label: {
+    level: 4,
+    scale: {
+      large: { size: '1rem', weight: 500, lineHeight: 1.25 },
+      medium: { size: '0.875rem', weight: 500, lineHeight: 1.25 },
+      small: { size: '0.75rem', weight: 500, lineHeight: 1.25 },
+    },
+  },
+  // Caption - Supporting/metadata
+  caption: {
+    level: 5,
+    scale: {
+      default: { size: '0.75rem', weight: 400, lineHeight: 1.4 },
+      emphasis: { size: '0.75rem', weight: 500, lineHeight: 1.4 },
+    },
+  },
+  // Overline - Category/type indicators
+  overline: {
+    level: 6,
+    scale: {
+      default: { size: '0.625rem', weight: 600, lineHeight: 1.5, tracking: '0.1em', transform: 'uppercase' },
+    },
+  },
+} as const;
+
+/**
+ * ELEVATION HIERARCHY (Z-Axis)
+ * Creates depth through shadows and layering
+ * Higher elevation = more prominent, closer to user
+ */
+export const elevationHierarchy = {
+  /** Ground level - page background, sunken areas */
+  ground: {
+    level: 0,
+    zIndex: 0,
+    shadow: 'none',
+    description: 'Page backgrounds, wells, sunken inputs',
+  },
+  /** Resting - default content surfaces */
+  resting: {
+    level: 1,
+    zIndex: 1,
+    shadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+    description: 'Cards, panels at rest',
+  },
+  /** Raised - interactive/hover states */
+  raised: {
+    level: 2,
+    zIndex: 10,
+    shadow: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+    description: 'Hovered cards, active buttons',
+  },
+  /** Floating - dropdowns, menus */
+  floating: {
+    level: 3,
+    zIndex: 1000,
+    shadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+    description: 'Dropdown menus, popovers',
+  },
+  /** Sticky - headers, navigation */
+  sticky: {
+    level: 4,
+    zIndex: 1020,
+    shadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+    description: 'Sticky headers, fixed navigation',
+  },
+  /** Overlay - backdrop for modals */
+  overlay: {
+    level: 5,
+    zIndex: 1040,
+    shadow: 'none',
+    description: 'Modal/dialog backdrops',
+  },
+  /** Dialog - modals, alerts */
+  dialog: {
+    level: 6,
+    zIndex: 1050,
+    shadow: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
+    description: 'Modal dialogs, alerts',
+  },
+  /** Popover - tooltips, notifications */
+  popover: {
+    level: 7,
+    zIndex: 1060,
+    shadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+    description: 'Popovers, floating panels',
+  },
+  /** Tooltip - highest priority overlays */
+  tooltip: {
+    level: 8,
+    zIndex: 1070,
+    shadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+    description: 'Tooltips, critical notifications',
+  },
+} as const;
+
+/**
+ * SCALE HIERARCHY
+ * Size-based importance through consistent ratios
+ */
+export const scaleHierarchy = {
+  /** Scale ratio for size progression */
+  ratio: 1.25, // Major third
+  
+  /** Size scale multipliers */
+  sizes: {
+    '3xs': 0.512,  // ratio^-3
+    '2xs': 0.64,   // ratio^-2
+    xs: 0.8,       // ratio^-1
+    sm: 1,         // base
+    md: 1.25,      // ratio^1
+    lg: 1.563,     // ratio^2
+    xl: 1.953,     // ratio^3
+    '2xl': 2.441,  // ratio^4
+    '3xl': 3.052,  // ratio^5
+  },
+  
+  /** Icon sizes following the scale */
+  icons: {
+    xs: 12,
+    sm: 16,
+    md: 20,
+    lg: 24,
+    xl: 32,
+    '2xl': 40,
+  },
+  
+  /** Touch target minimums (accessibility) */
+  touchTargets: {
+    minimum: 44, // WCAG 2.5.5 minimum
+    comfortable: 48,
+    spacious: 56,
+  },
+} as const;
+
+/**
+ * CONTRAST HIERARCHY
+ * Color contrast for attention management
+ */
+export const contrastHierarchy = {
+  /** High contrast - primary actions, critical info */
+  high: {
+    foreground: baseTokens.colors.navy[900],
+    background: baseTokens.colors.gray[0],
+    ratio: 12.5, // Well above AAA
+  },
+  /** Medium contrast - body content */
+  medium: {
+    foreground: baseTokens.colors.gray[700],
+    background: baseTokens.colors.gray[0],
+    ratio: 7.5, // Above AAA
+  },
+  /** Low contrast - secondary/muted content */
+  low: {
+    foreground: baseTokens.colors.gray[500],
+    background: baseTokens.colors.gray[0],
+    ratio: 4.5, // AA compliant
+  },
+  /** Subtle - disabled/decorative */
+  subtle: {
+    foreground: baseTokens.colors.gray[400],
+    background: baseTokens.colors.gray[0],
+    ratio: 3, // Minimum perceivable
+  },
+} as const;
+
+/**
+ * INTERACTIVE HIERARCHY
+ * Visual states for user feedback
+ */
+export const interactiveHierarchy = {
+  /** Default resting state */
+  default: {
+    opacity: 1,
+    transform: 'none',
+    transition: 'all 150ms ease-out',
+  },
+  /** Mouse hovering over element */
+  hover: {
+    opacity: 1,
+    transform: 'translateY(-1px)',
+    transition: 'all 150ms ease-out',
+  },
+  /** Element being pressed */
+  active: {
+    opacity: 0.9,
+    transform: 'translateY(0) scale(0.98)',
+    transition: 'all 50ms ease-out',
+  },
+  /** Keyboard focused */
+  focus: {
+    outline: `2px solid ${baseTokens.colors.navy[900]}`,
+    outlineOffset: '2px',
+    transition: 'outline-offset 100ms ease-out',
+  },
+  /** Element is disabled */
+  disabled: {
+    opacity: 0.5,
+    cursor: 'not-allowed',
+    pointerEvents: 'none',
+  },
+} as const;
+
+/**
+ * SPACING HIERARCHY
+ * Consistent spacing scale for layout rhythm
+ */
+export const spacingHierarchy = {
+  /** Micro spacing - between related elements */
+  micro: {
+    1: 4,   // Tightest
+    2: 8,   // Very tight
+  },
+  /** Component spacing - within components */
+  component: {
+    3: 12,  // Compact
+    4: 16,  // Default
+    5: 20,  // Comfortable
+  },
+  /** Section spacing - between sections */
+  section: {
+    6: 24,  // Tight sections
+    8: 32,  // Default sections
+    10: 40, // Spacious sections
+  },
+  /** Layout spacing - page-level */
+  layout: {
+    12: 48,  // Section gaps
+    16: 64,  // Major sections
+    24: 96,  // Page sections
+    32: 128, // Hero/major breaks
+  },
+} as const;
+
+/**
+ * HIERARCHY UTILITIES
+ * Helper functions for applying hierarchy
+ */
+
+/** Get elevation styles for a given level */
+export function getElevation(level: keyof typeof elevationHierarchy) {
+  const elevation = elevationHierarchy[level];
+  return {
+    zIndex: elevation.zIndex,
+    boxShadow: elevation.shadow,
+  };
+}
+
+/** Get typography styles for a given hierarchy */
+export function getTypography(
+  category: keyof typeof typographicHierarchy,
+  variant: string
+) {
+  const cat = typographicHierarchy[category];
+  const scale = (cat.scale as Record<string, unknown>)[variant];
+  if (!scale) return null;
+  return scale;
+}
+
+/** Get attention-based color treatment */
+export function getAttentionColor(level: keyof typeof attentionHierarchy, mode: 'light' | 'dark' = 'light') {
+  const colors = mode === 'light' ? {
+    primary: baseTokens.colors.navy[900],
+    secondary: baseTokens.colors.gray[700],
+    tertiary: baseTokens.colors.gray[600],
+    muted: baseTokens.colors.gray[500],
+    disabled: baseTokens.colors.gray[400],
+  } : {
+    primary: baseTokens.colors.gray[50],
+    secondary: baseTokens.colors.gray[200],
+    tertiary: baseTokens.colors.gray[300],
+    muted: baseTokens.colors.gray[400],
+    disabled: baseTokens.colors.gray[500],
+  };
+  return colors[level];
+}
+
+/** Calculate spacing from hierarchy */
+export function getHierarchySpacing(
+  category: 'micro' | 'component' | 'section' | 'layout',
+  size: number
+) {
+  const cat = spacingHierarchy[category] as Record<number, number>;
+  return cat[size] ?? null;
+}
+
+// ============================================
 // DARK MODE TOKENS - Overrides for dark theme
 // ============================================
 
@@ -1348,6 +1797,33 @@ export const darkModeTokens: TrinityDarkModeTokens = {
 };
 
 // ============================================
+// HIERARCHY COMBINED EXPORT
+// ============================================
+
+/**
+ * Complete hierarchy system combining all hierarchy aspects
+ * Use this as the single source of truth for design hierarchy
+ */
+export const hierarchy = {
+  /** Attention/importance levels */
+  attention: attentionHierarchy,
+  /** Typography scale and weights */
+  typography: typographicHierarchy,
+  /** Z-axis elevation system */
+  elevation: elevationHierarchy,
+  /** Size scaling system */
+  scale: scaleHierarchy,
+  /** Contrast levels */
+  contrast: contrastHierarchy,
+  /** Interactive states */
+  interactive: interactiveHierarchy,
+  /** Spacing rhythm */
+  spacing: spacingHierarchy,
+} as const;
+
+export type TrinityHierarchy = typeof hierarchy;
+
+// ============================================
 // UTILITY EXPORTS
 // ============================================
 
@@ -1357,6 +1833,7 @@ export const tokens = {
   semantic: semanticTokens,
   component: componentTokens,
   darkMode: darkModeTokens,
+  hierarchy: hierarchy,
 };
 
 export default tokens;

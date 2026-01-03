@@ -1,6 +1,17 @@
 
 import { createTheme, ThemeOptions } from '@mui/material/styles';
-import { TrinityTokens, baseTokens, semanticTokens, componentTokens, darkModeTokens, tokens } from './tokens';
+import { 
+  TrinityTokens, 
+  baseTokens, 
+  semanticTokens, 
+  componentTokens, 
+  darkModeTokens, 
+  tokens,
+  elevationHierarchy,
+  typographicHierarchy,
+  attentionHierarchy,
+  hierarchy,
+} from './tokens';
 
 // ============================================
 // CSS VARIABLE GENERATION
@@ -1091,15 +1102,122 @@ export function createTrinityTheme(mode: 'light' | 'dark', overrides?: Partial<T
           disabledBackground: mergedTokens.base.colors.gray[200],
         },
       };
+
+  // Build typography using hierarchy system
+  const typographyConfig = {
+    fontFamily: '"Montserrat", sans-serif',
+    // Button text style
+    button: {
+      textTransform: 'none' as const,
+      fontWeight: mergedTokens.base.fontWeight.semibold,
+    },
+    // Hierarchy-based typography variants
+    // Display variants (Level 1 - Hero/Marketing)
+    h1: {
+      fontSize: typographicHierarchy.heading.scale.h1.size,
+      fontWeight: typographicHierarchy.heading.scale.h1.weight,
+      lineHeight: typographicHierarchy.heading.scale.h1.lineHeight,
+      color: mode === 'dark' 
+        ? mergedTokens.darkMode.colors.text.primary 
+        : mergedTokens.semantic.colors.text.primary,
+    },
+    h2: {
+      fontSize: typographicHierarchy.heading.scale.h2.size,
+      fontWeight: typographicHierarchy.heading.scale.h2.weight,
+      lineHeight: typographicHierarchy.heading.scale.h2.lineHeight,
+      color: mode === 'dark' 
+        ? mergedTokens.darkMode.colors.text.primary 
+        : mergedTokens.semantic.colors.text.primary,
+    },
+    h3: {
+      fontSize: typographicHierarchy.heading.scale.h3.size,
+      fontWeight: typographicHierarchy.heading.scale.h3.weight,
+      lineHeight: typographicHierarchy.heading.scale.h3.lineHeight,
+      color: mode === 'dark' 
+        ? mergedTokens.darkMode.colors.text.primary 
+        : mergedTokens.semantic.colors.text.primary,
+    },
+    h4: {
+      fontSize: typographicHierarchy.heading.scale.h4.size,
+      fontWeight: typographicHierarchy.heading.scale.h4.weight,
+      lineHeight: typographicHierarchy.heading.scale.h4.lineHeight,
+      color: mode === 'dark' 
+        ? mergedTokens.darkMode.colors.text.primary 
+        : mergedTokens.semantic.colors.text.secondary,
+    },
+    h5: {
+      fontSize: typographicHierarchy.heading.scale.h5.size,
+      fontWeight: typographicHierarchy.heading.scale.h5.weight,
+      lineHeight: typographicHierarchy.heading.scale.h5.lineHeight,
+      color: mode === 'dark' 
+        ? mergedTokens.darkMode.colors.text.secondary 
+        : mergedTokens.semantic.colors.text.secondary,
+    },
+    h6: {
+      fontSize: typographicHierarchy.heading.scale.h6.size,
+      fontWeight: typographicHierarchy.heading.scale.h6.weight,
+      lineHeight: typographicHierarchy.heading.scale.h6.lineHeight,
+      color: mode === 'dark' 
+        ? mergedTokens.darkMode.colors.text.secondary 
+        : mergedTokens.semantic.colors.text.secondary,
+    },
+    // Body variants (Level 3 - Content)
+    body1: {
+      fontSize: typographicHierarchy.body.scale.medium.size,
+      fontWeight: typographicHierarchy.body.scale.medium.weight,
+      lineHeight: typographicHierarchy.body.scale.medium.lineHeight,
+      color: mode === 'dark' 
+        ? mergedTokens.darkMode.colors.text.primary 
+        : mergedTokens.semantic.colors.text.primary,
+    },
+    body2: {
+      fontSize: typographicHierarchy.body.scale.small.size,
+      fontWeight: typographicHierarchy.body.scale.small.weight,
+      lineHeight: typographicHierarchy.body.scale.small.lineHeight,
+      color: mode === 'dark' 
+        ? mergedTokens.darkMode.colors.text.secondary 
+        : mergedTokens.semantic.colors.text.secondary,
+    },
+    // Supporting text variants
+    subtitle1: {
+      fontSize: typographicHierarchy.label.scale.large.size,
+      fontWeight: typographicHierarchy.label.scale.large.weight,
+      lineHeight: typographicHierarchy.label.scale.large.lineHeight,
+      color: mode === 'dark' 
+        ? mergedTokens.darkMode.colors.text.primary 
+        : mergedTokens.semantic.colors.text.primary,
+    },
+    subtitle2: {
+      fontSize: typographicHierarchy.label.scale.medium.size,
+      fontWeight: typographicHierarchy.label.scale.medium.weight,
+      lineHeight: typographicHierarchy.label.scale.medium.lineHeight,
+      color: mode === 'dark' 
+        ? mergedTokens.darkMode.colors.text.secondary 
+        : mergedTokens.semantic.colors.text.secondary,
+    },
+    caption: {
+      fontSize: typographicHierarchy.caption.scale.default.size,
+      fontWeight: typographicHierarchy.caption.scale.default.weight,
+      lineHeight: typographicHierarchy.caption.scale.default.lineHeight,
+      color: mode === 'dark' 
+        ? mergedTokens.darkMode.colors.text.tertiary 
+        : mergedTokens.semantic.colors.text.tertiary,
+    },
+    overline: {
+      fontSize: typographicHierarchy.overline.scale.default.size,
+      fontWeight: typographicHierarchy.overline.scale.default.weight,
+      lineHeight: typographicHierarchy.overline.scale.default.lineHeight,
+      letterSpacing: typographicHierarchy.overline.scale.default.tracking,
+      textTransform: 'uppercase' as const,
+      color: mode === 'dark' 
+        ? mergedTokens.darkMode.colors.text.tertiary 
+        : mergedTokens.semantic.colors.text.tertiary,
+    },
+  };
+
   return createTheme({
     palette,
-    typography: {
-      fontFamily: '"Montserrat", sans-serif',
-      button: {
-        textTransform: 'none',
-        fontWeight: mergedTokens.base.fontWeight.semibold,
-      },
-    },
+    typography: typographyConfig,
     shape: {
       borderRadius: mode === 'dark' ? mergedTokens.base.borderRadius.md : mergedTokens.base.borderRadius['2xl'],
     },
@@ -1109,6 +1227,22 @@ export function createTrinityTheme(mode: 'light' | 'dark', overrides?: Partial<T
 
 // Re-export tokens for convenience
 export { baseTokens, semanticTokens, componentTokens, darkModeTokens, tokens } from './tokens';
+
+// Re-export hierarchy system
+export {
+  hierarchy,
+  elevationHierarchy,
+  typographicHierarchy,
+  attentionHierarchy,
+  scaleHierarchy,
+  contrastHierarchy,
+  interactiveHierarchy,
+  spacingHierarchy,
+  getElevation,
+  getTypography,
+  getAttentionColor,
+  getHierarchySpacing,
+} from './tokens';
 
 // ============================================
 // BRAND COLORS - Edit these to match your brand

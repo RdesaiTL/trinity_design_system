@@ -123,7 +123,8 @@ describe('Trinity Tokens', () => {
 
     it('should have input tokens', () => {
       expect(componentTokens.input.height.medium).toBe(44);
-      expect(componentTokens.input.borderRadius).toBe(baseTokens.borderRadius.md);
+      // Design intent: sm (6px) for inputs per token documentation - "small interactive elements"
+      expect(componentTokens.input.borderRadius).toBe(baseTokens.borderRadius.sm);
     });
 
     it('should have card tokens', () => {
