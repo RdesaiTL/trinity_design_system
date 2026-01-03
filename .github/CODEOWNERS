@@ -1,0 +1,112 @@
+# Trinity Design System - Code Owners
+# 
+# These owners will be automatically requested for review when someone opens
+# a pull request that modifies code they own.
+#
+# Order matters: later patterns take precedence over earlier ones.
+# @see https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# DEFAULT OWNERS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Default: Core maintainers own everything not explicitly assigned
+* @trinity/design-system-core
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CORE SYSTEMS (High-impact, requires senior review)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Theme and design tokens - changes affect entire system
+/src/theme.ts @trinity/design-system-leads
+/src/tokens.ts @trinity/design-system-leads
+/src/foundations/ @trinity/design-system-leads
+
+# Package configuration - affects consumers
+/package.json @trinity/design-system-leads
+/tsconfig*.json @trinity/design-system-leads
+/vite.config.ts @trinity/design-system-leads
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# COMPONENT OWNERSHIP
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# AI Components - Specialized domain
+/src/components/AI/ @trinity/ai-team @trinity/design-system-core
+
+# Data Visualization - Specialized domain
+/src/components/Charts/ @trinity/data-viz-team @trinity/design-system-core
+
+# Data Table - Complex component
+/src/components/DataTable/ @trinity/data-team @trinity/design-system-core
+
+# Navigation Components
+/src/components/navigation/ @trinity/design-system-core
+/src/components/TopNavHeader.tsx @trinity/design-system-core
+/src/components/TopNavWithSidebar.tsx @trinity/design-system-core
+
+# Layout Components
+/src/components/Layout.tsx @trinity/design-system-core
+/src/components/AppLayout/ @trinity/design-system-core
+
+# Status & Feedback Components
+/src/components/StatusIndicator/ @trinity/design-system-core
+/src/components/Toast/ @trinity/design-system-core
+/src/components/Modal/ @trinity/design-system-core
+
+# File Upload - Specialized
+/src/components/FileUpload/ @trinity/design-system-core
+
+# Accessibility Utilities
+/src/accessibility.tsx @trinity/a11y-champions @trinity/design-system-core
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# DOCUMENTATION
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# All documentation
+/docs/ @trinity/design-system-docs @trinity/design-system-core
+
+# Storybook stories
+/src/stories/ @trinity/design-system-docs @trinity/design-system-core
+/.storybook/ @trinity/design-system-core
+
+# README and contribution guides
+/README.md @trinity/design-system-leads
+/CONTRIBUTING.md @trinity/design-system-leads
+/CHANGELOG.md @trinity/design-system-leads
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TESTING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Test infrastructure
+/src/__tests__/ @trinity/design-system-core
+/vitest.config.ts @trinity/design-system-core
+/src/test-setup.ts @trinity/design-system-core
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CI/CD & RELEASE (Requires lead approval)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# GitHub workflows and actions
+/.github/ @trinity/design-system-leads
+
+# Release configuration
+/.versionrc.js @trinity/design-system-leads
+/commitlint.config.js @trinity/design-system-leads
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# NOTES
+# ═══════════════════════════════════════════════════════════════════════════════
+#
+# Team aliases (create these in GitHub org settings):
+#   @trinity/design-system-leads  - Design System Lead + Senior Maintainers
+#   @trinity/design-system-core   - Core maintainers (2-3 people)
+#   @trinity/design-system-docs   - Documentation team
+#   @trinity/ai-team              - AI feature specialists
+#   @trinity/data-viz-team        - Data visualization specialists
+#   @trinity/data-team            - Data/table specialists
+#   @trinity/a11y-champions       - Accessibility advocates
+#
+# To request review from a team, the team must have read access to the repo.
