@@ -27,8 +27,9 @@ function toVarName(...parts: (string | number)[]): string {
 /**
  * Recursively flatten tokens into CSS variable entries
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function flattenTokens(
-  obj: Record<string, unknown>,
+  obj: Record<string, any>,
   prefix: string[] = []
 ): Array<{ name: string; value: string }> {
   const entries: Array<{ name: string; value: string }> = [];
@@ -580,7 +581,7 @@ function getSharedComponentOverrides(tokenSet: TrinityTokens = tokens, mode: 'li
     MuiTable: {
       styleOverrides: {
         root: {
-          borderCollapse: 'separate',
+          borderCollapse: 'separate' as const,
           borderSpacing: 0,
         },
       },
@@ -1379,7 +1380,7 @@ export function useTrinityTokens(): UseTrinityTokensResult {
       
       if (isDarkMode) {
         // Check if dark mode has an override
-        const darkColors = darkModeTokens.colors as Record<string, Record<string, string>>;
+        const darkColors = darkModeTokens.colors as unknown as Record<string, Record<string, string>>;
         const darkValue = darkColors[category]?.[name];
         if (darkValue) return darkValue;
       }

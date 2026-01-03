@@ -412,11 +412,16 @@ export interface TrinityChipSize {
   medium: number;
 }
 
+export interface TrinityChipFontSize {
+  small: string;
+  medium: string;
+}
+
 export interface TrinityChipTokens {
   height: TrinityChipSize;
   padding: { small: TrinityPadding; medium: TrinityPadding };
   borderRadius: number;
-  fontSize: TrinityChipSize;
+  fontSize: TrinityChipFontSize;
 }
 
 export interface TrinityTooltipTokens {
