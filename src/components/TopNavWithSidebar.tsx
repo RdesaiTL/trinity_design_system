@@ -281,7 +281,7 @@ export default function TopNavWithSidebar({
         component="header"
         sx={{
           backgroundColor: brandColors.primary.main,
-          borderBottom: `1px solid ${alpha('#fff', 0.1)}`,
+          borderBottom: `1px solid ${alpha(brandColors.neutral.white, 0.1)}`,
           borderRadius: 0,
           zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
@@ -297,7 +297,7 @@ export default function TopNavWithSidebar({
               color: 'white',
               mr: 1,
               '&:hover': {
-                backgroundColor: alpha('#fff', 0.1),
+                backgroundColor: alpha(brandColors.neutral.white, 0.1),
               },
             }}
           >
@@ -311,7 +311,7 @@ export default function TopNavWithSidebar({
               orientation="vertical"
               flexItem
               sx={{
-                backgroundColor: alpha('#fff', 0.3),
+                backgroundColor: alpha(brandColors.neutral.white, 0.3),
                 height: 24,
                 alignSelf: 'center',
               }}
@@ -399,8 +399,8 @@ export default function TopNavWithSidebar({
               aria-haspopup="menu"
               aria-expanded={Boolean(appsAnchorEl)}
               sx={{
-                color: alpha('#fff', 0.7),
-                '&:hover': { backgroundColor: alpha('#fff', 0.1), color: '#fff' },
+                color: alpha(brandColors.neutral.white, 0.7),
+                '&:hover': { backgroundColor: alpha(brandColors.neutral.white, 0.1), color: brandColors.neutral.white },
               }}
             >
               <AppsIcon />
@@ -442,7 +442,7 @@ export default function TopNavWithSidebar({
                 alignItems: 'center',
                 borderRadius: '12px',
                 padding: '4px 8px',
-                '&:hover': { backgroundColor: alpha('#fff', 0.1) },
+                '&:hover': { backgroundColor: alpha(brandColors.neutral.white, 0.1) },
               }}
             >
               <Avatar
@@ -457,7 +457,7 @@ export default function TopNavWithSidebar({
               >
                 {userInitials}
               </Avatar>
-              <KeyboardArrowDownIcon sx={{ color: alpha('#fff', 0.7), fontSize: 20, ml: 0.5 }} />
+              <KeyboardArrowDownIcon sx={{ color: alpha(brandColors.neutral.white, 0.7), fontSize: 20, ml: 0.5 }} />
             </IconButton>
             <Menu
               anchorEl={userAnchorEl}

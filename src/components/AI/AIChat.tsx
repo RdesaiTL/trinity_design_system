@@ -123,7 +123,7 @@ export const AIChatMessage: React.FC<AIChatMessageProps> = ({
             backgroundColor: isUser
               ? brandColors.primary.main
               : aiTokens.colors.aiBackground,
-            color: isUser ? '#FFFFFF' : 'text.primary',
+            color: isUser ? 'brandColors.neutral.white' : 'text.primary',
             border: isUser ? 'none' : `1px solid ${aiTokens.colors.aiBorder}`,
             ...(isLoading && {
               background: `linear-gradient(90deg, ${aiTokens.colors.aiBackground} 0%, rgba(120, 65, 201, 0.08) 50%, ${aiTokens.colors.aiBackground} 100%)`,
@@ -275,7 +275,7 @@ export const AIChatInput: React.FC<AIChatInputProps> = ({
         pl: 2,
         borderRadius: aiRadiusPx.full,
         border: `1px solid ${brandColors.neutral.gray100}`,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'brandColors.neutral.white',
         transition: 'border-color 0.2s, box-shadow 0.2s',
         '&:focus-within': {
           borderColor: aiTokens.colors.aiPrimary,
@@ -332,7 +332,7 @@ export const AIChatInput: React.FC<AIChatInputProps> = ({
           onClick={onStopGeneration}
           sx={{
             backgroundColor: brandColors.secondary.main,
-            color: '#FFFFFF',
+            color: 'brandColors.neutral.white',
             '&:hover': {
               backgroundColor: brandColors.secondary.dark,
             },
@@ -346,7 +346,7 @@ export const AIChatInput: React.FC<AIChatInputProps> = ({
           disabled={disabled || !value.trim()}
           sx={{
             backgroundColor: value.trim() ? aiTokens.colors.aiPrimary : brandColors.neutral.gray100,
-            color: value.trim() ? '#FFFFFF' : brandColors.neutral.gray400,
+            color: value.trim() ? 'brandColors.neutral.white' : brandColors.neutral.gray400,
             '&:hover': {
               backgroundColor: value.trim() ? brandColors.primary.dark : brandColors.neutral.gray100,
             },

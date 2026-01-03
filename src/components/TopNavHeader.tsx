@@ -245,7 +245,7 @@ export default function TopNavHeader({
       component="header"
       sx={{
         backgroundColor: brandColors.primary.main,
-        borderBottom: `1px solid ${alpha('#fff', 0.1)}`,
+        borderBottom: `1px solid ${alpha(brandColors.neutral.white, 0.1)}`,
         borderRadius: 0,
       }}
     >
@@ -261,7 +261,7 @@ export default function TopNavHeader({
             orientation="vertical"
             flexItem
             sx={{
-              backgroundColor: alpha('#fff', 0.3),
+              backgroundColor: alpha(brandColors.neutral.white, 0.3),
               height: 24,
               alignSelf: 'center',
             }}
@@ -371,10 +371,10 @@ export default function TopNavHeader({
             aria-haspopup="menu"
             aria-expanded={Boolean(appsAnchorEl)}
             sx={{
-              color: alpha('#fff', 0.7),
+              color: alpha(brandColors.neutral.white, 0.7),
               '&:hover': {
-                backgroundColor: alpha('#fff', 0.1),
-                color: '#fff',
+                backgroundColor: alpha(brandColors.neutral.white, 0.1),
+                color: brandColors.neutral.white,
               },
             }}
           >
@@ -441,7 +441,7 @@ export default function TopNavHeader({
               borderRadius: '12px',
               padding: '4px 8px',
               '&:hover': {
-                backgroundColor: alpha('#fff', 0.1),
+                backgroundColor: alpha(brandColors.neutral.white, 0.1),
               },
             }}
           >
@@ -459,7 +459,7 @@ export default function TopNavHeader({
             </Avatar>
             <KeyboardArrowDownIcon
               sx={{
-                color: alpha('#fff', 0.7),
+                color: alpha(brandColors.neutral.white, 0.7),
                 fontSize: 20,
                 ml: 0.5,
               }}

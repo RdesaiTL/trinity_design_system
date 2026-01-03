@@ -269,7 +269,7 @@ export const AIPersonaCard: React.FC<AIPersonaCardProps> = ({
         p: aiSpacing.base,
         borderRadius: aiRadiusPx.lg,
         border: `2px solid ${selected ? aiTokens.colors.aiPrimary : brandColors.neutral.gray100}`,
-        backgroundColor: selected ? aiTokens.colors.aiHover : '#FFFFFF',
+        backgroundColor: selected ? aiTokens.colors.aiHover : 'brandColors.neutral.white',
         cursor: onClick ? 'pointer' : 'default',
         transition: 'all 0.2s ease',
         '&:hover': onClick
@@ -346,7 +346,7 @@ export const AIPersonaCard: React.FC<AIPersonaCardProps> = ({
               flexShrink: 0,
             }}
           >
-            <Icon name="check" size="small" color="#FFFFFF" />
+            <Icon name="check" size="small" color="brandColors.neutral.white" />
           </Box>
         )}
       </Stack>

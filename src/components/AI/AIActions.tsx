@@ -56,7 +56,7 @@ export const AISuggestedAction: React.FC<AISuggestedActionProps> = ({
       case 'primary':
         return {
           backgroundColor: aiTokens.colors.aiPrimary,
-          color: '#FFFFFF',
+          color: 'brandColors.neutral.white',
           border: 'none',
           '&:hover': {
             backgroundColor: brandColors.primary.dark,
@@ -73,7 +73,7 @@ export const AISuggestedAction: React.FC<AISuggestedActionProps> = ({
         };
       default:
         return {
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'brandColors.neutral.white',
           color: 'text.primary',
           border: `1px solid ${brandColors.neutral.gray100}`,
           '&:hover': {
@@ -117,7 +117,7 @@ export const AISuggestedAction: React.FC<AISuggestedActionProps> = ({
           <Icon
             name={icon}
             size="small"
-            color={variant === 'primary' ? '#FFFFFF' : aiTokens.colors.aiPrimary}
+            color={variant === 'primary' ? 'brandColors.neutral.white' : aiTokens.colors.aiPrimary}
           />
         </Box>
         <Box sx={{ flex: 1, minWidth: 0 }}>
@@ -125,7 +125,7 @@ export const AISuggestedAction: React.FC<AISuggestedActionProps> = ({
             variant="body2"
             sx={{
               fontWeight: 500,
-              color: variant === 'primary' ? '#FFFFFF' : 'inherit',
+              color: variant === 'primary' ? 'brandColors.neutral.white' : 'inherit',
             }}
           >
             {label}
@@ -148,7 +148,7 @@ export const AISuggestedAction: React.FC<AISuggestedActionProps> = ({
           name="chevron-right"
           size="small"
           color={
-            variant === 'primary' ? '#FFFFFF' : brandColors.neutral.gray400
+            variant === 'primary' ? 'brandColors.neutral.white' : brandColors.neutral.gray400
           }
         />
       </Stack>
@@ -212,7 +212,7 @@ export const AICircularAction: React.FC<AICircularActionProps> = ({
       case 'primary':
         return {
           backgroundColor: aiTokens.colors.aiPrimary,
-          color: '#FFFFFF',
+          color: 'brandColors.neutral.white',
           '&:hover': {
             backgroundColor: brandColors.primary.dark,
           },
@@ -220,14 +220,14 @@ export const AICircularAction: React.FC<AICircularActionProps> = ({
       case 'gradient':
         return {
           background: `linear-gradient(135deg, ${aiTokens.colors.aiPrimary} 0%, ${aiTokens.colors.aiSecondary} 100%)`,
-          color: '#FFFFFF',
+          color: 'brandColors.neutral.white',
           '&:hover': {
             background: `linear-gradient(135deg, ${brandColors.primary.dark} 0%, ${aiTokens.colors.aiSecondary} 100%)`,
           },
         };
       default:
         return {
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'brandColors.neutral.white',
           color: aiTokens.colors.aiPrimary,
           border: `1px solid ${brandColors.neutral.gray100}`,
           '&:hover': {
@@ -263,7 +263,7 @@ export const AICircularAction: React.FC<AICircularActionProps> = ({
             height: 18,
             borderRadius: aiRadiusPx.circle,
             backgroundColor: brandColors.secondary.main,
-            color: '#FFFFFF',
+            color: 'brandColors.neutral.white',
             fontSize: '0.625rem',
             fontWeight: 600,
             display: 'flex',

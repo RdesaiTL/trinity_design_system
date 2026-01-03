@@ -3,6 +3,42 @@ import { Box, Typography, Button, Link, Stack, SxProps, Theme } from '@mui/mater
 import { brandColors } from '../tokens';
 
 // ============================================
+// ILLUSTRATION STATUS COLORS
+// ============================================
+
+/**
+ * Status colors for SVG illustrations.
+ * 
+ * These colors are intentionally different from semantic UI tokens
+ * to provide optimal visual clarity in illustration contexts.
+ * They follow industry-standard status color conventions.
+ * 
+ * Do not normalize to semanticTokens.colors.status unless
+ * approved as a visual redesign.
+ */
+const illustrationStatusColors = {
+  // Error/danger - Tailwind red-500
+  error: {
+    main: '#EF4444',
+    light: '#FEE2E2',  // red-100
+  },
+  // Warning/caution - Tailwind amber-500
+  warning: {
+    main: '#F59E0B',
+    light: '#FEF3C7',  // amber-100
+  },
+  // Success/positive - Tailwind emerald-500
+  success: {
+    main: '#10B981',
+    light: '#D1FAE5',  // emerald-100
+  },
+  // Accent/highlight - Yellow for flames/sparks
+  accent: {
+    flame: '#FFD93D',
+  },
+} as const;
+
+// ============================================
 // ILLUSTRATED MESSAGE TYPES
 // ============================================
 
@@ -158,7 +194,7 @@ const GettingStartedIllustration: React.FC<IllustrationProps> = ({
     <path d="M130 120 L150 150 L130 140 Z" fill={accentColor} />
     {/* Flame */}
     <ellipse cx="100" cy="160" rx="15" ry="25" fill={accentColor} opacity="0.8" />
-    <ellipse cx="100" cy="155" rx="10" ry="18" fill="#FFD93D" />
+    <ellipse cx="100" cy="155" rx="10" ry="18" fill={illustrationStatusColors.accent.flame} />
     <ellipse cx="100" cy="150" rx="5" ry="10" fill="white" />
     {/* Stars */}
     <circle cx="40" cy="50" r="3" fill={primaryColor} opacity="0.5" />
@@ -242,10 +278,10 @@ const ErrorGenericIllustration: React.FC<IllustrationProps> = ({
 }) => (
   <svg width={size} height={size} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Warning triangle */}
-    <path d="M100 30 L170 150 L30 150 Z" fill="#FEF3C7" stroke="#F59E0B" strokeWidth="3" />
+    <path d="M100 30 L170 150 L30 150 Z" fill={illustrationStatusColors.warning.light} stroke={illustrationStatusColors.warning.main} strokeWidth="3" />
     {/* Exclamation mark */}
-    <rect x="94" y="70" width="12" height="45" rx="6" fill="#F59E0B" />
-    <circle cx="100" cy="130" r="7" fill="#F59E0B" />
+    <rect x="94" y="70" width="12" height="45" rx="6" fill={illustrationStatusColors.warning.main} />
+    <circle cx="100" cy="130" r="7" fill={illustrationStatusColors.warning.main} />
     {/* Decorative elements */}
     <circle cx="30" cy="60" r="8" fill={secondaryColor} opacity="0.5" />
     <circle cx="170" cy="80" r="6" fill={secondaryColor} opacity="0.5" />
@@ -291,9 +327,9 @@ const Error500Illustration: React.FC<IllustrationProps> = ({
     <rect x="70" y="85" width="60" height="25" rx="4" fill="white" />
     <rect x="70" y="120" width="60" height="25" rx="4" fill="white" />
     {/* LEDs */}
-    <circle cx="80" cy="62" r="4" fill="#EF4444" />
-    <circle cx="92" cy="62" r="4" fill="#EF4444" />
-    <circle cx="80" cy="97" r="4" fill="#EF4444" />
+    <circle cx="80" cy="62" r="4" fill={illustrationStatusColors.error.main} />
+    <circle cx="92" cy="62" r="4" fill={illustrationStatusColors.error.main} />
+    <circle cx="80" cy="97" r="4" fill={illustrationStatusColors.error.main} />
     <circle cx="92" cy="97" r="4" fill={accentColor} opacity="0.5" />
     <circle cx="80" cy="132" r="4" fill={accentColor} opacity="0.5" />
     <circle cx="92" cy="132" r="4" fill={accentColor} opacity="0.5" />
@@ -301,8 +337,8 @@ const Error500Illustration: React.FC<IllustrationProps> = ({
     <path d="M150 50 L135 90 L150 90 L130 130 L155 80 L140 80 Z" fill={accentColor} />
     {/* X marks */}
     <g transform="translate(40, 70)">
-      <line x1="0" y1="0" x2="15" y2="15" stroke="#EF4444" strokeWidth="3" strokeLinecap="round" />
-      <line x1="15" y1="0" x2="0" y2="15" stroke="#EF4444" strokeWidth="3" strokeLinecap="round" />
+      <line x1="0" y1="0" x2="15" y2="15" stroke={illustrationStatusColors.error.main} strokeWidth="3" strokeLinecap="round" />
+      <line x1="15" y1="0" x2="0" y2="15" stroke={illustrationStatusColors.error.main} strokeWidth="3" strokeLinecap="round" />
     </g>
   </svg>
 );
@@ -325,8 +361,8 @@ const ErrorPermissionIllustration: React.FC<IllustrationProps> = ({
     {/* Shield behind */}
     <path d="M100 25 L140 45 L140 85 Q140 115 100 135 Q60 115 60 85 L60 45 Z" fill={accentColor} opacity="0.15" />
     {/* Stop hand */}
-    <circle cx="155" cy="65" r="20" fill="#FEE2E2" stroke="#EF4444" strokeWidth="2" />
-    <rect x="147" y="55" width="16" height="20" rx="4" fill="#EF4444" />
+    <circle cx="155" cy="65" r="20" fill={illustrationStatusColors.error.light} stroke={illustrationStatusColors.error.main} strokeWidth="2" />
+    <rect x="147" y="55" width="16" height="20" rx="4" fill={illustrationStatusColors.error.main} />
   </svg>
 );
 
@@ -363,8 +399,8 @@ const SuccessIllustration: React.FC<IllustrationProps> = ({
 }) => (
   <svg width={size} height={size} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Circle background */}
-    <circle cx="100" cy="100" r="70" fill="#D1FAE5" />
-    <circle cx="100" cy="100" r="55" fill="#10B981" />
+    <circle cx="100" cy="100" r="70" fill={illustrationStatusColors.success.light} />
+    <circle cx="100" cy="100" r="55" fill={illustrationStatusColors.success.main} />
     {/* Checkmark */}
     <path d="M65 100 L90 125 L135 75" stroke="white" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" fill="none" />
     {/* Sparkles */}
@@ -432,8 +468,8 @@ const OfflineIllustration: React.FC<IllustrationProps> = ({
     <ellipse cx="140" cy="95" rx="30" ry="22" fill={secondaryColor} />
     <ellipse cx="100" cy="100" rx="45" ry="25" fill={secondaryColor} />
     {/* X mark */}
-    <line x1="75" y1="70" x2="125" y2="110" stroke="#EF4444" strokeWidth="8" strokeLinecap="round" />
-    <line x1="125" y1="70" x2="75" y2="110" stroke="#EF4444" strokeWidth="8" strokeLinecap="round" />
+    <line x1="75" y1="70" x2="125" y2="110" stroke={illustrationStatusColors.error.main} strokeWidth="8" strokeLinecap="round" />
+    <line x1="125" y1="70" x2="75" y2="110" stroke={illustrationStatusColors.error.main} strokeWidth="8" strokeLinecap="round" />
     {/* Signal waves */}
     <path d="M45 140 Q45 160 65 160" stroke={secondaryColor} strokeWidth="3" fill="none" strokeLinecap="round" />
     <path d="M35 145 Q35 170 65 170" stroke={secondaryColor} strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.6" />

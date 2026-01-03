@@ -77,7 +77,7 @@ export const AISource: React.FC<AISourceProps> = ({
         p: aiSpacing.sm,
         borderRadius: aiRadiusPx.sm,
         border: `1px solid ${brandColors.neutral.gray100}`,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'brandColors.neutral.white',
         cursor: onClick ? 'pointer' : 'default',
         transition: 'all 0.2s ease',
         '&:hover': onClick

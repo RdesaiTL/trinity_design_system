@@ -119,7 +119,7 @@ export const StatCard: React.FC<StatCardProps> = ({
       case 'gradient':
         return {
           background: `linear-gradient(135deg, ${aiTokens.colors.aiPrimary} 0%, ${aiTokens.colors.aiSecondary} 100%)`,
-          color: '#FFFFFF',
+          color: 'brandColors.neutral.white',
           border: 'none',
         };
       case 'outlined':
@@ -129,7 +129,7 @@ export const StatCard: React.FC<StatCardProps> = ({
         };
       default:
         return {
-          backgroundColor: '#FFFFFF',
+          backgroundColor: 'brandColors.neutral.white',
           border: `1px solid ${brandColors.neutral.gray100}`,
         };
     }
@@ -175,7 +175,7 @@ export const StatCard: React.FC<StatCardProps> = ({
               <Icon
                 name={icon}
                 size="small"
-                color={variant === 'gradient' ? '#FFFFFF' : aiTokens.colors.aiPrimary}
+                color={variant === 'gradient' ? 'brandColors.neutral.white' : aiTokens.colors.aiPrimary}
               />
             </Box>
           )}
@@ -186,7 +186,7 @@ export const StatCard: React.FC<StatCardProps> = ({
           variant={styles.valueSize as 'h4' | 'h5' | 'h6'}
           sx={{
             fontWeight: 700,
-            color: variant === 'gradient' ? '#FFFFFF' : 'text.primary',
+            color: variant === 'gradient' ? 'brandColors.neutral.white' : 'text.primary',
           }}
         >
           {value}
@@ -200,7 +200,7 @@ export const StatCard: React.FC<StatCardProps> = ({
               size="small"
               color={
                 variant === 'gradient'
-                  ? '#FFFFFF'
+                  ? 'brandColors.neutral.white'
                   : trend >= 0
                   ? statusColors.success
                   : statusColors.error
@@ -290,7 +290,7 @@ export const GradientIconBadge: React.FC<GradientIconBadgeProps> = ({
           boxShadow: `0 4px 12px ${startColor}33`,
         }}
       >
-        <Icon name={icon} size={styles.icon} color="#FFFFFF" />
+        <Icon name={icon} size={styles.icon} color="brandColors.neutral.white" />
       </Box>
       {label && (
         <Typography variant="body2" sx={{ fontWeight: 500 }}>
