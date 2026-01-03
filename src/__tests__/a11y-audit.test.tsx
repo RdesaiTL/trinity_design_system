@@ -20,7 +20,7 @@ import { lightTheme, darkTheme } from '../theme';
 // Import components that MUST pass a11y
 import { Modal } from '../components/Modal';
 import { Toast, ToastProvider } from '../components/Toast';
-import { StatusChip, InlineStatus, IconIndicator } from '../components/StatusIndicator';
+import { StatusIndicator, StatusChip, InlineStatus, IconIndicator } from '../components/StatusIndicator';
 // DataTable skipped - MUI X DataGrid v8 requires ResizeObserver not available in jsdom
 import type { GridColDef } from '@mui/x-data-grid';
 import TopNavHeader from '../components/TopNavHeader';
@@ -218,7 +218,61 @@ describe('Toast Accessibility', () => {
 // =============================================================================
 
 describe('StatusIndicator Accessibility', () => {
-  describe('axe audits', () => {
+  describe('unified component axe audits', () => {
+    it('passes axe audit for icon variant', async () => {
+      const statuses = ['success', 'warning', 'error', 'info', 'pending'] as const;
+      
+      for (const status of statuses) {
+        const { container } = renderWithTheme(
+          <StatusIndicator variant="icon" status={status} />
+        );
+        const results = await axe(container);
+        expect(results).toHaveNoViolations();
+      }
+    });
+
+    it('passes axe audit for chip variant', async () => {
+      const statuses = ['success', 'warning', 'error', 'info', 'pending'] as const;
+      
+      for (const status of statuses) {
+        const { container } = renderWithTheme(
+          <StatusIndicator variant="chip" status={status} label={`${status} status`} />
+        );
+        const results = await axe(container);
+        expect(results).toHaveNoViolations();
+      }
+    });
+
+    it('passes axe audit for inline variant', async () => {
+      const statuses = ['success', 'warning', 'error', 'info', 'pending'] as const;
+      
+      for (const status of statuses) {
+        const { container } = renderWithTheme(
+          <StatusIndicator variant="inline" status={status} label={`${status} status`} />
+        );
+        const results = await axe(container);
+        expect(results).toHaveNoViolations();
+      }
+    });
+
+    it('passes axe audit for dot variant', async () => {
+      const { container } = renderWithTheme(
+        <StatusIndicator variant="dot" status="success" />
+      );
+      const results = await axe(container);
+      expect(results).toHaveNoViolations();
+    });
+
+    it('passes axe audit for shape variant', async () => {
+      const { container } = renderWithTheme(
+        <StatusIndicator variant="shape" status="warning" />
+      );
+      const results = await axe(container);
+      expect(results).toHaveNoViolations();
+    });
+  });
+
+  describe('legacy components axe audits', () => {
     it('passes axe audit for StatusChip', async () => {
       const statuses = ['success', 'warning', 'error', 'info', 'pending'] as const;
       
@@ -266,6 +320,16 @@ describe('StatusIndicator Accessibility', () => {
     it('InlineStatus includes text label', () => {
       renderWithTheme(<InlineStatus status="success" label="Complete" />);
       // Should have visible text
+      expect(screen.getByText('Complete')).toBeInTheDocument();
+    });
+
+    it('StatusIndicator chip variant includes text label', () => {
+      renderWithTheme(<StatusIndicator variant="chip" status="error" label="Failed" />);
+      expect(screen.getByText('Failed')).toBeInTheDocument();
+    });
+
+    it('StatusIndicator inline variant includes text label', () => {
+      renderWithTheme(<StatusIndicator variant="inline" status="success" label="Complete" />);
       expect(screen.getByText('Complete')).toBeInTheDocument();
     });
   });
