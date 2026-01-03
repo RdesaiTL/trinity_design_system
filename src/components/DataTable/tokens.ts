@@ -69,6 +69,16 @@ export const densityTokens: Record<TableDensity, {
 // COLOR TOKENS - Light and Dark mode
 // ============================================================================
 
+/**
+ * NOTE:
+ * Header background and border grays intentionally differ
+ * from baseTokens.gray scale.
+ *
+ * These values are tuned for dense tabular readability and
+ * preserve historical visual parity.
+ *
+ * Do not normalize unless approved as a visual change.
+ */
 export const tableColors = {
   light: {
     headerBg: '#F3F4F6',

@@ -48,19 +48,20 @@ export const chartColorsCategorical = [
 
 /**
  * Sequential palette - for continuous data
- * Purple gradient from light to dark
+ * Purple gradient from light to dark (uses baseTokens.colors.indigo scale)
  */
+const indigo = baseTokens.colors.indigo;
 export const chartColorsSequential = [
-  '#EDE7FD',  // indigo.50
-  '#D2C3FA',  // indigo.100
-  '#B49CF6',  // indigo.200
-  '#9574F2',  // indigo.300
-  '#7E57F0',  // indigo.400
-  '#6739ED',  // indigo.500
-  '#5F33EB',  // indigo.600
-  '#542CE8',  // indigo.700
-  '#4A24E5',  // indigo.800
-  '#3816A0',  // indigo.900
+  indigo[50],   // #EDE7FD
+  indigo[100],  // #D2C3FA
+  indigo[200],  // #B49CF6
+  indigo[300],  // #9574F2
+  indigo[400],  // #7E57F0
+  indigo[500],  // #6739ED
+  indigo[600],  // #5F33EB
+  indigo[700],  // #542CE8
+  indigo[800],  // #4A24E5
+  indigo[900],  // #3816A0
 ];
 
 /**

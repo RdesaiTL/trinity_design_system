@@ -3,7 +3,7 @@
  * Consistent spacing, border radius, and color tokens for AI components
  */
 
-import { brandColors } from '../../tokens';
+import { brandColors, baseTokens } from '../../tokens';
 
 // ============================================================================
 // AI DESIGN TOKENS - Consistent spacing and border radius
@@ -93,8 +93,8 @@ export const aiTokens = {
     aiBackgroundDark: 'rgba(120, 65, 201, 0.15)',
     aiBorder: 'rgba(120, 65, 201, 0.2)',
     aiBorderDark: 'rgba(120, 65, 201, 0.3)',
-    aiHover: '#EDE7FD', // indigo.50
-    aiHoverDark: '#D2C3FA', // indigo.100
+    aiHover: baseTokens.colors.indigo[50], // #EDE7FD
+    aiHoverDark: baseTokens.colors.indigo[100], // #D2C3FA
     aiGradientStart: brandColors.secondary.main, // Coral
     aiGradientEnd: brandColors.primary.light, // Purple
     // Source badge colors
