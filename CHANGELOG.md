@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed (Phase 3.3 & 3.4 - Color Token Normalization)
+
+- **Token Architecture Normalization** - Improved internal consistency without breaking changes
+  - AI component tokens (`aiHover`, `aiHoverDark`) now reference `baseTokens.colors.indigo` scale
+  - Charts sequential palette normalized to `baseTokens.colors.indigo[50-900]`
+  - Navigation components (`TopNavHeader`, `TopNavWithSidebar`) inline `#fff` → `brandColors.neutral.white`
+  - AI components (6 files) inline `#FFFFFF` → `brandColors.neutral.white`
+  - `IllustratedMessage` SVG colors centralized to `illustrationStatusColors` constant
+
+- **Intentional Color Decisions Documented**
+  - Charts categorical palette: Intentionally uses full brand spectrum for data visualization distinction
+  - DataTable header grays: Tuned for dense tabular readability (NOT from gray scale)
+  - Status illustration colors: Tailwind-standard (red-500, amber-500, emerald-500) for universal recognition
+
 ### Added
 - **Accessibility Utilities** (`@trinity/design-system/accessibility`)
   - `useFocusTrap` - Hook for trapping focus within modal dialogs

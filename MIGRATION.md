@@ -2,6 +2,82 @@
 
 This document outlines breaking changes and migration paths for the Trinity Design System.
 
+---
+
+## Phase 3.3 & 3.4 - Color Token Normalization
+
+### Overview
+
+Phase 3.3 and 3.4 normalized internal color references to improve token consistency. **No breaking API changes** were introduced, and visual output is unchanged.
+
+### Consumer Impact: **No Action Required**
+
+All changes are internal refactors. If you're consuming Trinity components normally:
+- ✅ No import changes needed
+- ✅ No prop changes needed
+- ✅ No theme override adjustments needed
+- ✅ Visual appearance is identical
+
+### What Changed Internally
+
+#### 1. Normalized Token References
+
+These inline hex values were replaced with canonical token references:
+
+| Location | Before | After |
+|----------|--------|-------|
+| `aiTokens.aiHover` | `'#E8E0F4'` | `baseTokens.colors.indigo[100]` |
+| `aiTokens.aiHoverDark` | `'#3D2E5C'` | `baseTokens.colors.indigo[900]` |
+| Charts sequential palette | `'#EDE9FE'` through `'#3730A3'` | `baseTokens.colors.indigo[50-900]` |
+| Navigation `alpha('#fff', x)` | `'#fff'` literal | `brandColors.neutral.white` |
+| AI components `'#FFFFFF'` | Hex literal | `brandColors.neutral.white` |
+
+#### 2. Intentional Palette Extensions (NOT Normalized)
+
+These colors intentionally differ from base tokens for functional reasons:
+
+**Charts Categorical Palette** - Uses full brand spectrum for maximum data distinction:
+```typescript
+// Intentionally uses multiple brand color families
+categorical: [
+  brandColors.primary.navy,    // Navy for primary series
+  brandColors.accent.coral,    // Coral for contrast
+  brandColors.accent.teal,     // Teal for tertiary
+  brandColors.secondary.purple, // Purple for additional series
+  // ... additional distinct colors
+]
+```
+
+**Status Illustration Colors** - Tailwind-standard colors for universal recognition:
+```typescript
+// In IllustratedMessage.tsx - NOT from brand palette
+const illustrationStatusColors = {
+  error: { main: '#EF4444', light: '#FEE2E2' },   // red-500
+  warning: { main: '#F59E0B', light: '#FEF3C7' }, // amber-500
+  success: { main: '#10B981', light: '#D1FAE5' }, // emerald-500
+};
+```
+
+#### 3. Intentional Structural Overrides (NOT Normalized)
+
+**DataTable Header Grays** - Tuned for dense tabular readability:
+```typescript
+// In DataTable/tokens.ts - intentionally differs from baseTokens.gray
+header: {
+  background: '#F3F4F6',  // NOT gray[100] = '#F4F4F5'
+  borderColor: '#D1D5DB', // NOT gray[300] = '#D4D4D8'
+}
+```
+
+These values were specifically chosen for optimal contrast in data-dense table contexts and are documented inline.
+
+### Commits
+
+- `4544c91` - refactor(tokens): normalize AI and Charts color references (phase 3.3)
+- `d58e2ec` - refactor(ui): centralize non-tokenized semantic colors (phase 3.4)
+
+---
+
 ## Version 1.1.0
 
 ### New Features
