@@ -243,6 +243,7 @@ export const Modal: React.FC<ModalProps> = ({
             <IconButton
               onClick={onClose}
               disabled={showLoader}
+              aria-label="Close dialog"
               sx={{
                 position: 'absolute',
                 right: 8,

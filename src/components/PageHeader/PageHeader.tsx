@@ -329,6 +329,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
             {!isCompact && (
               <IconButton
                 size="small"
+                aria-label="More actions"
                 sx={{
                   color: isHero ? 'rgba(255,255,255,0.7)' : 'text.secondary',
                 }}
