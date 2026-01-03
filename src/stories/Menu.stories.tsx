@@ -28,7 +28,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import CheckIcon from '@mui/icons-material/Check';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useState, MouseEvent } from 'react';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 /**
  * # Menu

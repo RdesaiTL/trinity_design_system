@@ -25,7 +25,7 @@ import {
   NoDataIllustration,
   OfflineIllustration,
 } from '../components/IllustratedMessage';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 /**
  * # Icons & Illustrations

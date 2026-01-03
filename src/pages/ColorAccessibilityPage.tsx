@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Box, Typography, Paper, Grid } from '@mui/material';
-import { brandColors, accessibleCombinations } from '../theme';
+import { accessibleCombinations } from '../theme';
+import { brandColors } from '../tokens';
 
 // Color combination card component
 interface ColorCardProps {

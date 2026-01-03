@@ -23,7 +23,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 /**
  * # TextField

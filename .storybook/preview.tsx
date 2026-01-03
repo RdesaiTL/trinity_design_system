@@ -13,19 +13,34 @@ import '@fontsource/montserrat/700.css';
 const withThemeProvider = (Story: React.ComponentType, context: any) => {
   const isDark = context.globals.theme === 'dark';
   const theme = isDark ? darkTheme : lightTheme;
+  const isFullscreen = context.parameters?.layout === 'fullscreen';
   
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box
-        sx={{
-          backgroundColor: isDark ? '#18181B' : '#FAFAFA',
-          color: isDark ? '#FAFAFA' : '#18181B',
-          padding: 2,
-        }}
-      >
-        <Story />
-      </Box>
+      {isFullscreen ? (
+        <Box
+          sx={{
+            backgroundColor: isDark ? '#18181B' : '#FAFAFA',
+            color: isDark ? '#FAFAFA' : '#18181B',
+            height: '100vh',
+            width: '100vw',
+            overflow: 'hidden',
+          }}
+        >
+          <Story />
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            backgroundColor: isDark ? '#18181B' : '#FAFAFA',
+            color: isDark ? '#FAFAFA' : '#18181B',
+            padding: 2,
+          }}
+        >
+          <Story />
+        </Box>
+      )}
     </ThemeProvider>
   );
 };

@@ -13,7 +13,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import FolderIcon from '@mui/icons-material/Folder';
 import DescriptionIcon from '@mui/icons-material/Description';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 /**
  * # Breadcrumbs

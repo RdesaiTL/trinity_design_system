@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, Button, Link, Stack, SxProps, Theme } from '@mui/material';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 // ============================================
 // ILLUSTRATED MESSAGE TYPES

@@ -19,7 +19,7 @@ import ErrorIcon from '@mui/icons-material/Error';
 import WarningIcon from '@mui/icons-material/Warning';
 import InfoIcon from '@mui/icons-material/Info';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import { brandColors } from '../../theme';
+import { brandColors } from '../../tokens';
 
 export type ModalVariant = 'default' | 'info' | 'success' | 'warning' | 'danger' | 'confirm';
 

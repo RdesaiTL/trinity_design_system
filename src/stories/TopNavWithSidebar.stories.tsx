@@ -12,6 +12,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import PeopleIcon from '@mui/icons-material/People';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import { SamplePageContent, sampleUser } from './utils';
 
 /**
  * # TopNavWithSidebar
@@ -132,23 +133,6 @@ const defaultNavItems = [
   { id: 'insight-engine', label: 'Insight Engine', icon: <AutoAwesomeIcon />, isSpecial: true },
 ];
 
-// Sample page content
-const SampleContent = () => (
-  <Box sx={{ p: 3 }}>
-    <Typography variant="h4" gutterBottom>Dashboard</Typography>
-    <Grid container spacing={3}>
-      {[1, 2, 3, 4].map((item) => (
-        <Grid size={{ xs: 12, sm: 6, md: 3 }} key={item}>
-          <Paper sx={{ p: 3, textAlign: 'center' }}>
-            <Typography variant="h6">Card {item}</Typography>
-            <Typography color="text.secondary">Sample content</Typography>
-          </Paper>
-        </Grid>
-      ))}
-    </Grid>
-  </Box>
-);
-
 /**
  * Default layout with the sidebar expanded and Home selected.
  * Click the hamburger icon to toggle the sidebar.
@@ -157,16 +141,16 @@ export const Default: Story = {
   args: {
     appName: 'Launch Accelerator',
     clientName: 'Pharma Corp',
-    userName: 'John Smith',
-    userEmail: 'jsmith@trinitylifesciences.com',
-    userInitials: 'JS',
+    userName: sampleUser.name,
+    userEmail: sampleUser.email,
+    userInitials: sampleUser.initials,
     navItems: defaultNavItems,
     selectedNavItem: 'home',
     defaultSidebarExpanded: true,
   },
   render: (args) => (
     <TopNavWithSidebar {...args}>
-      <SampleContent />
+      <SamplePageContent />
     </TopNavWithSidebar>
   ),
 };
@@ -179,16 +163,16 @@ export const CollapsedSidebar: Story = {
   args: {
     appName: 'Launch Accelerator',
     clientName: 'Pharma Corp',
-    userName: 'John Smith',
-    userEmail: 'jsmith@trinitylifesciences.com',
-    userInitials: 'JS',
+    userName: sampleUser.name,
+    userEmail: sampleUser.email,
+    userInitials: sampleUser.initials,
     navItems: defaultNavItems,
     selectedNavItem: 'trends',
     defaultSidebarExpanded: false,
   },
   render: (args) => (
     <TopNavWithSidebar {...args}>
-      <SampleContent />
+      <SamplePageContent />
     </TopNavWithSidebar>
   ),
 };
@@ -244,7 +228,7 @@ export const TerraApplication: Story = {
   },
   render: (args) => (
     <TopNavWithSidebar {...args}>
-      <SampleContent />
+      <SamplePageContent />
     </TopNavWithSidebar>
   ),
 };
@@ -276,7 +260,7 @@ export const ManyNavItems: Story = {
   },
   render: (args) => (
     <TopNavWithSidebar {...args}>
-      <SampleContent />
+      <SamplePageContent />
     </TopNavWithSidebar>
   ),
 };

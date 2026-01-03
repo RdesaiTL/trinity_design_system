@@ -34,7 +34,7 @@ import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 import trinityLogoWhite from '../assets/trinity-logo-white.svg';
 
 const drawerWidthExpanded = 200;
@@ -616,10 +616,16 @@ export default function TopNavWithSidebar({
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
           mt: '56px', // Height of AppBar
           backgroundColor: 'background.default',
-          minHeight: 'calc(100vh - 56px)',
+          height: 'calc(100vh - 56px)',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          '& > *': {
+            flex: 1,
+            minHeight: 0,
+          },
           transition: (theme) =>
             theme.transitions.create('margin', {
               easing: theme.transitions.easing.sharp,

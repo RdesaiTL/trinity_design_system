@@ -14,9 +14,9 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import { brandColors } from '../../theme';
+import { brandColors } from '../../tokens';
 import { Icon } from '../Icon';
-import { aiTokens, aiSpacing, aiRadius } from './tokens';
+import { aiTokens, aiSpacing, aiRadiusPx } from './tokens';
 
 // ============================================================================
 // AI SUGGESTED ACTION
@@ -90,7 +90,7 @@ export const AISuggestedAction: React.FC<AISuggestedActionProps> = ({
       onClick={disabled ? undefined : onClick}
       sx={{
         p: aiSpacing.base,
-        borderRadius: aiRadius.md,
+        borderRadius: aiRadiusPx.md,
         cursor: disabled ? 'not-allowed' : 'pointer',
         opacity: disabled ? 0.5 : 1,
         transition: 'all 0.2s ease',
@@ -103,7 +103,7 @@ export const AISuggestedAction: React.FC<AISuggestedActionProps> = ({
           sx={{
             width: 36,
             height: 36,
-            borderRadius: aiRadius.sm,
+            borderRadius: aiRadiusPx.sm,
             backgroundColor:
               variant === 'primary'
                 ? 'rgba(255, 255, 255, 0.2)'
@@ -261,7 +261,7 @@ export const AICircularAction: React.FC<AICircularActionProps> = ({
             right: -4,
             minWidth: 18,
             height: 18,
-            borderRadius: aiRadius.circle,
+            borderRadius: aiRadiusPx.circle,
             backgroundColor: brandColors.secondary.main,
             color: '#FFFFFF',
             fontSize: '0.625rem',

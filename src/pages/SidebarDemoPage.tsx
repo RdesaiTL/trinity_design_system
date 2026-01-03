@@ -7,7 +7,7 @@ import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 const navItems = [
   { id: 'home', label: 'Home', icon: <HomeOutlinedIcon /> },

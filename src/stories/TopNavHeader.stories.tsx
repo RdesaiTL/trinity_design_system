@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 import TopNavHeader from '../components/TopNavHeader';
 import { Box } from '@mui/material';
+import { baseTokens } from '../tokens';
 
 /**
  * # TopNavHeader
@@ -258,7 +259,7 @@ export const WithPageContent: Story = {
   render: (args) => (
     <Box>
       <TopNavHeader {...args} />
-      <Box sx={{ p: 3, bgcolor: '#FAFAFA', minHeight: '50vh' }}>
+      <Box sx={{ p: 3, bgcolor: baseTokens.colors.gray[50], minHeight: '50vh' }}>
         <h1>Page Content</h1>
         <p>This demonstrates how the header looks with page content below it.</p>
       </Box>

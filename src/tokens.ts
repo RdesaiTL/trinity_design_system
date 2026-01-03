@@ -599,6 +599,7 @@ export const baseTokens = {
       700: '#542CE8',
       800: '#4A24E5',
       900: '#3816A0', // Deep Indigo
+      electric: '#6B12ED', // Electric Indigo - vibrant accent
     },
     // Warm Colors
     coral: {
@@ -1139,6 +1140,67 @@ export const semanticTokens = {
     },
   },
 };
+
+// ============================================
+// BRAND COLORS COMPATIBILITY LAYER
+// ============================================
+/**
+ * Canonical brand colors derived from baseTokens.
+ * 
+ * This provides API compatibility with the legacy `brandColors` export from theme.ts.
+ * Components should migrate from `import { brandColors } from '../theme'`
+ * to `import { brandColors } from '../tokens'`.
+ * 
+ * MAPPING TABLE:
+ * ┌─────────────────────────┬───────────┬──────────────────────────────┐
+ * │ brandColors path        │ Hex Value │ baseTokens path              │
+ * ├─────────────────────────┼───────────┼──────────────────────────────┤
+ * │ primary.main            │ #050742   │ colors.navy[900]             │
+ * │ primary.light           │ #7841C9   │ colors.purple[700]           │
+ * │ primary.dark            │ #3816A0   │ colors.indigo[900]           │
+ * │ secondary.main          │ #FF6150   │ colors.coral[800]            │
+ * │ secondary.light         │ #27AAE1   │ colors.azure[500]            │
+ * │ secondary.dark          │ #6B12ED   │ colors.indigo.electric       │
+ * │ neutral.white           │ #FFFFFF   │ colors.gray[0]               │
+ * │ neutral.lightGray       │ #FAFAFA   │ colors.gray[50]              │
+ * │ neutral.gray100         │ #E5E7EB   │ colors.gray[200]             │
+ * │ neutral.gray400         │ #9CA3AF   │ colors.gray[400]             │
+ * │ neutral.gray500         │ #6B7280   │ colors.gray[500]             │
+ * │ neutral.gray600         │ #374151   │ colors.gray[600]             │
+ * │ neutral.darkBg          │ #18181B   │ colors.gray[800]             │
+ * │ neutral.darkPaper       │ #27272A   │ colors.gray[700]             │
+ * └─────────────────────────┴───────────┴──────────────────────────────┘
+ * 
+ * NOTE: neutral.gray100 naming is misleading - it's actually gray[200] (#E5E7EB).
+ * This is preserved for backwards compatibility with theme.ts.
+ */
+export const brandColors = {
+  primary: {
+    main: baseTokens.colors.navy[900],      // #050742 - Deep Navy
+    light: baseTokens.colors.purple[700],   // #7841C9 - Light Violet/Purple
+    dark: baseTokens.colors.indigo[900],    // #3816A0 - Deep Indigo
+  },
+  secondary: {
+    main: baseTokens.colors.coral[800],     // #FF6150 - Coral
+    light: baseTokens.colors.azure[500],    // #27AAE1 - Azure
+    dark: baseTokens.colors.indigo.electric, // #6B12ED - Electric Indigo
+  },
+  neutral: {
+    white: baseTokens.colors.gray[0],       // #FFFFFF
+    lightGray: baseTokens.colors.gray[50],  // #FAFAFA
+    gray100: baseTokens.colors.gray[200],   // #E5E7EB - NOTE: Misnamed, actually gray200
+    gray400: baseTokens.colors.gray[400],   // #9CA3AF
+    gray500: baseTokens.colors.gray[500],   // #6B7280
+    gray600: baseTokens.colors.gray[600],   // #374151
+    darkBg: baseTokens.colors.gray[800],    // #18181B
+    darkPaper: baseTokens.colors.gray[700], // #27272A
+  },
+} as const;
+
+/**
+ * Type for brandColors structure
+ */
+export type TrinityBrandColorsLegacy = typeof brandColors;
 
 // ============================================
 // COMPONENT TOKENS - Specific to UI components

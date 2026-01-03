@@ -23,7 +23,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import LogoutIcon from '@mui/icons-material/Logout';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { brandColors } from '../../theme';
+import { brandColors } from '../../tokens';
 import trinityLogoWhite from '../../assets/trinity-logo-white.svg';
 import {
   Search,

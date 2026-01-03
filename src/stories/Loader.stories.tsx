@@ -13,7 +13,7 @@ import {
   Backdrop,
 } from '@mui/material';
 import { useState, useEffect } from 'react';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 import { keyframes } from '@mui/system';
 
 /**

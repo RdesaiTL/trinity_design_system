@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Box, Typography, Paper, Grid, Chip, useTheme, Divider } from '@mui/material';
+import { baseTokens, semanticTokens } from '../tokens';
 
 const GettingStartedPage = () => {
   const theme = useTheme();
@@ -169,8 +170,8 @@ const MyStyledComponent = styled('div')({
               p: 3,
               borderRadius: 2,
               borderLeft: 4,
-              borderColor: '#050742',
-              bgcolor: isDark ? 'background.paper' : '#f0f4ff',
+              borderColor: baseTokens.colors.navy[900],
+              bgcolor: isDark ? 'background.paper' : baseTokens.colors.navy[50],
             }}
           >
             <Typography sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
@@ -187,8 +188,8 @@ const MyStyledComponent = styled('div')({
               p: 3,
               borderRadius: 2,
               borderLeft: 4,
-              borderColor: '#7841C9',
-              bgcolor: isDark ? 'background.paper' : '#f5f0ff',
+              borderColor: baseTokens.colors.purple[700],
+              bgcolor: isDark ? 'background.paper' : baseTokens.colors.purple[50],
             }}
           >
             <Typography sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
@@ -205,8 +206,8 @@ const MyStyledComponent = styled('div')({
               p: 3,
               borderRadius: 2,
               borderLeft: 4,
-              borderColor: '#FF6150',
-              bgcolor: isDark ? 'background.paper' : '#fff5f4',
+              borderColor: baseTokens.colors.coral[800],
+              bgcolor: isDark ? 'background.paper' : baseTokens.colors.coral[50],
             }}
           >
             <Typography sx={{ fontWeight: 600, color: 'text.primary', mb: 1 }}>
@@ -283,17 +284,17 @@ tokens.borderRadius.full  // 9999px (pill)`}</CodeBlock>
       <Paper
         sx={{
           p: 3,
-          bgcolor: isDark ? 'rgba(29, 194, 134, 0.1)' : '#e8f5e9',
+          bgcolor: isDark ? 'rgba(29, 194, 134, 0.1)' : semanticTokens.colors.status.success.background,
           borderRadius: 2,
           mb: 4,
         }}
       >
         <Typography
-          sx={{ fontWeight: 600, color: '#1b5e20', mb: 1.5 }}
+          sx={{ fontWeight: 600, color: semanticTokens.colors.status.success.text, mb: 1.5 }}
         >
           ✓ Built-in Accessibility
         </Typography>
-        <Box component="ul" sx={{ m: 0, pl: 2.5, color: '#2e7d32' }}>
+        <Box component="ul" sx={{ m: 0, pl: 2.5, color: semanticTokens.colors.status.success.text }}>
           <li>Color contrast ratios of 4.5:1 or higher</li>
           <li>Focus indicators on all interactive elements</li>
           <li>ARIA labels and roles where needed</li>

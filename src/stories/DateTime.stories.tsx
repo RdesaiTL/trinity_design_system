@@ -25,7 +25,7 @@ import EventIcon from '@mui/icons-material/Event';
 import ClearIcon from '@mui/icons-material/Clear';
 import dayjs, { Dayjs } from 'dayjs';
 import { useState } from 'react';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 /**
  * # Date & Time Inputs

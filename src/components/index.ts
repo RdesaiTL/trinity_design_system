@@ -3,6 +3,22 @@ export { Layout } from './Layout';
 export { default as TopNavHeader } from './TopNavHeader';
 export { default as TopNavWithSidebar } from './TopNavWithSidebar';
 
+// App Layout Template
+export {
+  AppLayout,
+  ResizablePanel,
+  InsightEnginePanel,
+} from './AppLayout';
+export type {
+  AppLayoutProps,
+  NavItem as AppNavItem,
+  UserInfo as AppUserInfo,
+  ResizablePanelProps,
+  InsightEnginePanelProps,
+  ChatMessage,
+  SourceOption,
+} from './AppLayout';
+
 // Shared Components
 export { ComponentPage, Section, Showcase } from './shared';
 
@@ -318,3 +334,82 @@ export {
   useKeyPress,
   useInterval,
 } from '../hooks';
+
+// ============================================
+// CHARTS COMPONENT LIBRARY
+// ============================================
+
+// Chart Components
+export {
+  // Core Chart Components
+  LineChart,
+  BarChart,
+  AreaChart,
+  PieChart,
+  DonutChart,
+  ScatterChart,
+  BubbleChart,
+  RadialBarChart,
+  GaugeChart,
+  ComposedChart,
+  Sparkline,
+  // Support Components
+  ChartWrapper,
+  CustomTooltip,
+  SimpleTooltip,
+  CustomLegend,
+  InteractiveLegend,
+  PieLegend,
+  // Design Tokens
+  chartColorsPrimary,
+  chartColorsCategorical,
+  chartColorsSequential,
+  chartColorsDiverging,
+  chartColorsStatus,
+  chartTypography,
+  chartSpacing,
+  chartSizing,
+  chartGridStyles,
+  chartAxisStyles,
+  chartTooltipStyles,
+  chartLegendStyles,
+  chartAnimation,
+  chartTheme,
+  getChartColor,
+  getChartColors,
+} from './Charts';
+
+// Chart Types
+export type {
+  // Data Types
+  DataPoint,
+  NamedDataPoint,
+  TimeSeriesDataPoint,
+  MultiSeriesDataPoint,
+  PieDataPoint,
+  ScatterDataPoint,
+  // Configuration Types
+  SeriesConfig,
+  AxisConfig,
+  LegendConfig,
+  LegendPosition,
+  LegendAlign,
+  TooltipConfig,
+  ReferenceLineConfig,
+  ReferenceAreaConfig,
+  // Chart Props
+  BaseChartProps,
+  LineChartProps,
+  BarChartProps,
+  BarChartLayout,
+  BarChartVariant,
+  AreaChartProps,
+  PieChartProps,
+  ScatterChartProps,
+  ComposedChartProps,
+  ComposedSeriesConfig,
+  ComposedChartReferenceLineConfig,
+  RadialBarChartProps,
+  GaugeChartProps,
+  SparklineProps,
+} from './Charts';

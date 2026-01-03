@@ -15,7 +15,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import FolderIcon from '@mui/icons-material/Folder';
 import { useState } from 'react';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 /**
  * # Tabs

@@ -11,7 +11,8 @@ import {
 import PersonIcon from '@mui/icons-material/Person';
 import WorkIcon from '@mui/icons-material/Work';
 import FolderIcon from '@mui/icons-material/Folder';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
+import { semanticTokens } from '../tokens';
 
 /**
  * # Avatar
@@ -190,9 +191,9 @@ const AvatarDemo = ({ variant = 'basic' }: AvatarDemoProps) => {
               <Avatar sx={{ bgcolor: brandColors.secondary.main }}>SM</Avatar>
               <Avatar sx={{ bgcolor: brandColors.primary.light }}>RK</Avatar>
               <Avatar sx={{ bgcolor: brandColors.secondary.light, color: 'black' }}>AL</Avatar>
-              <Avatar sx={{ bgcolor: '#6366f1' }}>PT</Avatar>
-              <Avatar sx={{ bgcolor: '#22c55e' }}>MN</Avatar>
-              <Avatar sx={{ bgcolor: '#eab308' }}>OP</Avatar>
+              <Avatar sx={{ bgcolor: semanticTokens.colors.avatar.backgrounds[0] }}>PT</Avatar>
+              <Avatar sx={{ bgcolor: semanticTokens.colors.status.success.text }}>MN</Avatar>
+              <Avatar sx={{ bgcolor: semanticTokens.colors.status.warning.text }}>OP</Avatar>
             </AvatarGroup>
           </Box>
 
@@ -266,8 +267,8 @@ const AvatarDemo = ({ variant = 'basic' }: AvatarDemoProps) => {
                 variant="dot"
                 sx={{
                   '& .MuiBadge-badge': {
-                    bgcolor: '#44b700',
-                    color: '#44b700',
+                    bgcolor: semanticTokens.colors.avatar.online,
+                    color: semanticTokens.colors.avatar.online,
                     boxShadow: (theme) => `0 0 0 2px ${theme.palette.background.paper}`,
                     '&::after': {
                       position: 'absolute',
@@ -295,7 +296,7 @@ const AvatarDemo = ({ variant = 'basic' }: AvatarDemoProps) => {
                 variant="dot"
                 sx={{
                   '& .MuiBadge-badge': {
-                    bgcolor: '#ffc107',
+                    bgcolor: semanticTokens.colors.avatar.away,
                     boxShadow: (theme) => `0 0 0 2px ${theme.palette.background.paper}`,
                   },
                 }}
@@ -308,7 +309,7 @@ const AvatarDemo = ({ variant = 'basic' }: AvatarDemoProps) => {
                 variant="dot"
                 sx={{
                   '& .MuiBadge-badge': {
-                    bgcolor: '#f44336',
+                    bgcolor: semanticTokens.colors.avatar.busy,
                     boxShadow: (theme) => `0 0 0 2px ${theme.palette.background.paper}`,
                   },
                 }}
@@ -321,7 +322,7 @@ const AvatarDemo = ({ variant = 'basic' }: AvatarDemoProps) => {
                 variant="dot"
                 sx={{
                   '& .MuiBadge-badge': {
-                    bgcolor: '#9e9e9e',
+                    bgcolor: semanticTokens.colors.avatar.offline,
                     boxShadow: (theme) => `0 0 0 2px ${theme.palette.background.paper}`,
                   },
                 }}
@@ -394,8 +395,11 @@ const AvatarDemo = ({ variant = 'basic' }: AvatarDemoProps) => {
 
           <Box>
             <Typography variant="subtitle2" gutterBottom>Custom Palette</Typography>
+            <Typography variant="caption" display="block" color="text.secondary" sx={{ mb: 1 }}>
+              Using semantic avatar tokens from design system
+            </Typography>
             <Stack direction="row" spacing={2}>
-              {['#6366f1', '#ec4899', '#14b8a6', '#f97316', '#8b5cf6', '#06b6d4'].map((color, i) => (
+              {semanticTokens.colors.avatar.backgrounds.map((color, i) => (
                 <Avatar key={color} sx={{ bgcolor: color }}>
                   {String.fromCharCode(65 + i)}
                 </Avatar>
@@ -405,11 +409,14 @@ const AvatarDemo = ({ variant = 'basic' }: AvatarDemoProps) => {
 
           <Box>
             <Typography variant="subtitle2" gutterBottom>Gradient Avatars</Typography>
+            <Typography variant="caption" display="block" color="text.secondary" sx={{ mb: 1 }}>
+              Using gradient tokens from design system
+            </Typography>
             <Stack direction="row" spacing={2}>
-              <Avatar sx={{ background: 'linear-gradient(45deg, #667eea 0%, #764ba2 100%)' }}>G1</Avatar>
-              <Avatar sx={{ background: 'linear-gradient(45deg, #f093fb 0%, #f5576c 100%)' }}>G2</Avatar>
-              <Avatar sx={{ background: 'linear-gradient(45deg, #4facfe 0%, #00f2fe 100%)' }}>G3</Avatar>
-              <Avatar sx={{ background: 'linear-gradient(45deg, #43e97b 0%, #38f9d7 100%)' }}>G4</Avatar>
+              <Avatar sx={{ background: semanticTokens.colors.gradients.primary }}>G1</Avatar>
+              <Avatar sx={{ background: semanticTokens.colors.gradients.secondary }}>G2</Avatar>
+              <Avatar sx={{ background: semanticTokens.colors.gradients.accent }}>G3</Avatar>
+              <Avatar sx={{ background: semanticTokens.colors.gradients.avatarCool }}>G4</Avatar>
             </Stack>
           </Box>
         </Stack>

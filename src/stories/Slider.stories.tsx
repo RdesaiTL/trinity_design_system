@@ -11,7 +11,7 @@ import {
 import VolumeDownIcon from '@mui/icons-material/VolumeDown';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import { useState } from 'react';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 /**
  * # Sliders

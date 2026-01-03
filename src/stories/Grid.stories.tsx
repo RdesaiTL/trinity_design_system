@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 /**
  * # Grid (v2)

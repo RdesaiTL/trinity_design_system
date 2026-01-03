@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { Box, Popover, SxProps, Theme } from '@mui/material';
-import { aiTokens, aiRadius } from './tokens';
+import { aiTokens, aiRadiusPx } from './tokens';
 
 // ============================================================================
 // TYPES
@@ -161,7 +161,7 @@ export const AILabel: React.FC<AILabelProps> = ({
             paper: {
               sx: {
                 mt: 1,
-                borderRadius: aiRadius.md,
+                borderRadius: aiRadiusPx.md,
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
                 border: `1px solid ${aiTokens.colors.aiBorder}`,
                 background: `linear-gradient(180deg, ${aiTokens.colors.aiBackground} 0%, #FFFFFF 100%)`,

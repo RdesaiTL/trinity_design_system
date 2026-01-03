@@ -3,7 +3,7 @@ import { Card, CardContent, CardActions, CardMedia, CardHeader, Typography, Butt
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 /**
  * # Card

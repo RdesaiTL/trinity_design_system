@@ -1,6 +1,17 @@
 /**
  * AI Chat Components
  * Components for AI chat interfaces: Message, Input, Typing Indicator, Quick Reply
+ * 
+ * These components are used by InsightEnginePanel and can also be used
+ * independently for custom AI chat implementations.
+ * 
+ * @example
+ * ```tsx
+ * import { AIChatMessage, AIChatInput, AITypingIndicator } from '@trinity/design-system';
+ * 
+ * <AIChatMessage role="assistant" content="Hello!" />
+ * <AIChatInput onSubmit={(msg) => sendMessage(msg)} />
+ * ```
  */
 
 import React, { useState } from 'react';
@@ -18,9 +29,9 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import { brandColors } from '../../theme';
+import { brandColors } from '../../tokens';
 import { Icon } from '../Icon';
-import { aiTokens, aiSpacing, aiRadius } from './tokens';
+import { aiTokens, aiSpacing, aiRadiusPx } from './tokens';
 import { AIAvatar } from './AIAvatar';
 
 // ============================================================================
@@ -108,7 +119,7 @@ export const AIChatMessage: React.FC<AIChatMessageProps> = ({
           elevation={0}
           sx={{
             p: aiSpacing.base,
-            borderRadius: aiRadius.md,
+            borderRadius: aiRadiusPx.lg,
             backgroundColor: isUser
               ? brandColors.primary.main
               : aiTokens.colors.aiBackground,
@@ -262,7 +273,7 @@ export const AIChatInput: React.FC<AIChatInputProps> = ({
         gap: 1,
         p: 1,
         pl: 2,
-        borderRadius: aiRadius.full,
+        borderRadius: aiRadiusPx.full,
         border: `1px solid ${brandColors.neutral.gray100}`,
         backgroundColor: '#FFFFFF',
         transition: 'border-color 0.2s, box-shadow 0.2s',
@@ -385,7 +396,7 @@ export const AITypingIndicator: React.FC<AITypingIndicatorProps> = ({
             sx={{
               width: 6,
               height: 6,
-              borderRadius: aiRadius.circle,
+              borderRadius: aiRadiusPx.circle,
               backgroundColor: aiTokens.colors.aiPrimary,
               animation: 'bounce 1.4s infinite ease-in-out both',
               animationDelay: `${i * 0.16}s`,

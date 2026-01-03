@@ -16,9 +16,9 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import { brandColors } from '../../theme';
+import { brandColors } from '../../tokens';
 import { Icon } from '../Icon';
-import { aiTokens, aiSpacing, aiRadius } from './tokens';
+import { aiTokens, aiSpacing, aiRadiusPx } from './tokens';
 
 // ============================================================================
 // AI SOURCE
@@ -75,7 +75,7 @@ export const AISource: React.FC<AISourceProps> = ({
       onClick={onClick}
       sx={{
         p: aiSpacing.sm,
-        borderRadius: aiRadius.sm,
+        borderRadius: aiRadiusPx.sm,
         border: `1px solid ${brandColors.neutral.gray100}`,
         backgroundColor: '#FFFFFF',
         cursor: onClick ? 'pointer' : 'default',
@@ -95,7 +95,7 @@ export const AISource: React.FC<AISourceProps> = ({
           sx={{
             width: 24,
             height: 24,
-            borderRadius: aiRadius.circle,
+            borderRadius: aiRadiusPx.circle,
             backgroundColor: aiTokens.colors.aiHover,
             color: aiTokens.colors.aiPrimary,
             display: 'flex',

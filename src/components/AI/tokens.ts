@@ -3,13 +3,13 @@
  * Consistent spacing, border radius, and color tokens for AI components
  */
 
-import { brandColors } from '../../theme';
+import { brandColors } from '../../tokens';
 
 // ============================================================================
 // AI DESIGN TOKENS - Consistent spacing and border radius
 // ============================================================================
 
-/** Standardized border radius values for AI components */
+/** Standardized border radius values for AI components (MUI spacing units) */
 export const aiRadius = {
   /** Extra small radius for tags, badges - 4px */
   xs: 1,
@@ -22,6 +22,24 @@ export const aiRadius = {
   /** Extra large radius for large cards, modals - 16px */
   xl: 4,
   /** Full pill shape - 9999px */
+  full: '9999px',
+  /** Circle shape */
+  circle: '50%',
+} as const;
+
+/** Pixel-based border radius values for direct CSS usage */
+export const aiRadiusPx = {
+  /** Extra small radius - 4px */
+  xs: '4px',
+  /** Small radius - 6px */
+  sm: '6px',
+  /** Medium radius - 8px */
+  md: '8px',
+  /** Large radius - 12px */
+  lg: '12px',
+  /** Extra large radius - 16px */
+  xl: '16px',
+  /** Full pill shape */
   full: '9999px',
   /** Circle shape */
   circle: '50%',
@@ -54,12 +72,14 @@ export const aiTokens = {
     primary: `linear-gradient(180deg, ${brandColors.secondary.main} 0%, ${brandColors.primary.light} 100%)`,
     // Text gradient for large stats/numbers
     text: `linear-gradient(180deg, ${brandColors.secondary.main} 0%, ${brandColors.primary.light} 100%)`,
-    // Subtle background gradient
-    subtle: `linear-gradient(180deg, rgba(255, 97, 80, 0.08) 0%, rgba(120, 65, 201, 0.08) 100%)`,
+    // Subtle background gradient - soft indigo/purple tint
+    subtle: `linear-gradient(180deg, rgba(120, 65, 201, 0.03) 0%, rgba(120, 65, 201, 0.06) 100%)`,
     // Border gradient
     border: `linear-gradient(180deg, ${brandColors.secondary.main}, ${brandColors.primary.light})`,
     // Glow effect
     glow: `0 0 20px rgba(255, 97, 80, 0.3), 0 0 40px rgba(120, 65, 201, 0.2)`,
+    // Subtle glow for inputs
+    inputGlow: `0 0 0 3px rgba(120, 65, 201, 0.15)`,
     // Horizontal variant (left to right)
     horizontal: `linear-gradient(90deg, ${brandColors.secondary.main} 0%, ${brandColors.primary.light} 100%)`,
     // Diagonal variant (top-left to bottom-right)
@@ -70,16 +90,27 @@ export const aiTokens = {
     aiPrimary: brandColors.primary.light, // Purple
     aiSecondary: brandColors.secondary.main, // Coral
     aiBackground: 'rgba(120, 65, 201, 0.05)',
+    aiBackgroundDark: 'rgba(120, 65, 201, 0.15)',
     aiBorder: 'rgba(120, 65, 201, 0.2)',
-    aiHover: 'rgba(255, 97, 80, 0.1)',
+    aiBorderDark: 'rgba(120, 65, 201, 0.3)',
+    aiHover: '#EDE7FD', // indigo.50
+    aiHoverDark: '#D2C3FA', // indigo.100
     aiGradientStart: brandColors.secondary.main, // Coral
     aiGradientEnd: brandColors.primary.light, // Purple
+    // Source badge colors
+    sourceBadgeBg: 'rgba(120, 65, 201, 0.15)',
+    sourceBadgeBgDark: 'rgba(120, 65, 201, 0.25)',
+    // Typing indicator
+    typingDot: brandColors.primary.light,
+    typingDotDark: brandColors.secondary.main,
   },
   // Standardized spacing and radius
   radius: aiRadius,
+  radiusPx: aiRadiusPx,
   spacing: aiSpacing,
 } as const;
 
 export type AIRadius = typeof aiRadius;
+export type AIRadiusPx = typeof aiRadiusPx;
 export type AISpacing = typeof aiSpacing;
 export type AITokens = typeof aiTokens;

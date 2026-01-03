@@ -15,7 +15,7 @@ import {
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import HomeIcon from '@mui/icons-material/Home';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { brandColors } from '../../theme';
+import { brandColors } from '../../tokens';
 
 export interface BreadcrumbItem {
   /** Label to display */

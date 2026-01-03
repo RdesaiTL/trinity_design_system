@@ -25,7 +25,7 @@ import ImageIcon from '@mui/icons-material/Image';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import DescriptionIcon from '@mui/icons-material/Description';
 import CloseIcon from '@mui/icons-material/Close';
-import { brandColors } from '../../theme';
+import { brandColors } from '../../tokens';
 
 export type FileUploadVariant = 'dropzone' | 'button' | 'compact';
 

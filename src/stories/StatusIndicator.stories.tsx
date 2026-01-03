@@ -32,7 +32,7 @@ import {
   StatusShape,
 } from '../components/StatusIndicator';
 import { Icon, IconProvider } from '../components/Icon';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 /**
  * # Status Indicators

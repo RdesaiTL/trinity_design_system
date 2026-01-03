@@ -12,7 +12,8 @@ import {
   IconLibrary,
   IconSize,
 } from '../components/Icon';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
+import { semanticTokens } from '../tokens';
 
 /**
  * # Icon System
@@ -450,19 +451,19 @@ const UsageExamples = () => {
             <Typography variant="h6" gutterBottom>Status Indicators</Typography>
             <Stack spacing={2}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Icon name="check-circle" color="#16A34A" size="small" />
+                <Icon name="check-circle" color={semanticTokens.colors.status.success.text} size="small" />
                 <Typography variant="body2">Operation successful</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Icon name="error" color="#DC2626" size="small" />
+                <Icon name="error" color={semanticTokens.colors.status.error.text} size="small" />
                 <Typography variant="body2">Error occurred</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Icon name="warning" color="#D97706" size="small" />
+                <Icon name="warning" color={semanticTokens.colors.status.warning.text} size="small" />
                 <Typography variant="body2">Warning message</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Icon name="info" color="#2563EB" size="small" />
+                <Icon name="info" color={semanticTokens.colors.status.info.text} size="small" />
                 <Typography variant="body2">Information notice</Typography>
               </Box>
             </Stack>

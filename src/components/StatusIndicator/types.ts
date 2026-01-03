@@ -3,7 +3,7 @@
  * Centralized type definitions and status configs
  */
 
-import { brandColors } from '../../theme';
+import { brandColors } from '../../tokens';
 
 // ============================================================================
 // STATUS TYPES

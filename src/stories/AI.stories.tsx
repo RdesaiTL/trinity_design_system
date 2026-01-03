@@ -13,6 +13,7 @@ import {
   Card,
   CardContent,
   Button,
+  ThemeProvider,
 } from '@mui/material';
 import { useState } from 'react';
 import {
@@ -35,8 +36,10 @@ import {
   GradientIconBadge,
   aiTokens,
 } from '../components/AI';
+import { InsightEnginePanel } from '../components/AppLayout';
 import { Icon, IconProvider } from '../components/Icon';
-import { brandColors } from '../theme';
+import { lightTheme, darkTheme } from '../theme';
+import { brandColors } from '../tokens';
 
 /**
  * # AI Components
@@ -1395,4 +1398,339 @@ export const GradientIconBadges: StoryObj = {
       </Stack>
     </Box>
   ),
+};
+
+// ============================================================================
+// INSIGHT ENGINE PANEL STORIES
+// ============================================================================
+
+export const InsightEngine: StoryObj = {
+  render: () => (
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h4" gutterBottom>Insight Engine Panel</Typography>
+      <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
+        A full-featured AI chat panel with voice input, dictation, deep thinking mode,
+        and source citations. Supports both light and dark themes with Trinity branding.
+      </Typography>
+
+      <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>Light Theme</Typography>
+      <Paper elevation={2} sx={{ height: 600, overflow: 'hidden', borderRadius: 2, mb: 4 }}>
+        <ThemeProvider theme={lightTheme}>
+          <InsightEnginePanel
+            title="Insight Engine"
+            demoMode={true}
+            themeMode="light"
+            showControls={true}
+            onClose={() => console.log('Close clicked')}
+            onFullscreenToggle={() => console.log('Fullscreen clicked')}
+            onNewThread={() => console.log('New thread clicked')}
+            onSendMessage={(msg, opts) => console.log('Message sent:', msg, opts)}
+          />
+        </ThemeProvider>
+      </Paper>
+
+      <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>Dark Theme</Typography>
+      <Paper elevation={2} sx={{ height: 600, overflow: 'hidden', borderRadius: 2, mb: 4 }}>
+        <ThemeProvider theme={darkTheme}>
+          <InsightEnginePanel
+            title="Insight Engine"
+            demoMode={true}
+            themeMode="dark"
+            showControls={true}
+            onClose={() => console.log('Close clicked')}
+            onFullscreenToggle={() => console.log('Fullscreen clicked')}
+            onNewThread={() => console.log('New thread clicked')}
+            onSendMessage={(msg, opts) => console.log('Message sent:', msg, opts)}
+          />
+        </ThemeProvider>
+      </Paper>
+
+      <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>Features</Typography>
+      <Grid container spacing={3}>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>🎤 Voice Input</Typography>
+              <Typography variant="body2" color="text.secondary">
+                Two voice modes available:
+              </Typography>
+              <List dense>
+                <ListItem>
+                  <ListItemText 
+                    primary="Dictation Mode" 
+                    secondary="Click the microphone icon to transcribe speech to text"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText 
+                    primary="Voice Mode" 
+                    secondary="Click the waveform button for full voice conversation with visual feedback"
+                  />
+                </ListItem>
+              </List>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>🔍 Search Modes</Typography>
+              <Typography variant="body2" color="text.secondary">
+                Multiple search and thinking modes:
+              </Typography>
+              <List dense>
+                <ListItem>
+                  <ListItemText 
+                    primary="Search Mode" 
+                    secondary="Standard search across all sources"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText 
+                    primary="Deep Think Mode" 
+                    secondary="Enable reasoning/pro mode for complex questions"
+                  />
+                </ListItem>
+              </List>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>📎 Actions</Typography>
+              <Typography variant="body2" color="text.secondary">
+                Available toolbar actions:
+              </Typography>
+              <List dense>
+                <ListItem>
+                  <ListItemText primary="Web Search" secondary="Search the web for information" />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="Attach Files" secondary="Upload documents for context" />
+                </ListItem>
+              </List>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>💬 Response Features</Typography>
+              <Typography variant="body2" color="text.secondary">
+                AI responses include:
+              </Typography>
+              <List dense>
+                <ListItem>
+                  <ListItemText primary="Source Citations" secondary="Clickable source cards with links" />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="Related Questions" secondary="Follow-up suggestions to continue" />
+                </ListItem>
+                <ListItem>
+                  <ListItemText primary="Actions" secondary="Copy, rate, share, and regenerate responses" />
+                </ListItem>
+              </List>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+    </Box>
+  ),
+};
+
+export const InsightEngineLightOnly: StoryObj = {
+  render: () => (
+    <Box sx={{ height: 500 }}>
+      <ThemeProvider theme={lightTheme}>
+        <InsightEnginePanel
+          title="Insight Engine"
+          demoMode={true}
+          themeMode="light"
+          showControls={true}
+          placeholder="Ask me anything..."
+          onSendMessage={(msg) => console.log('Message:', msg)}
+        />
+      </ThemeProvider>
+    </Box>
+  ),
+};
+
+export const InsightEngineDarkOnly: StoryObj = {
+  render: () => (
+    <Box sx={{ height: 500 }}>
+      <ThemeProvider theme={darkTheme}>
+        <InsightEnginePanel
+          title="Insight Engine"
+          demoMode={true}
+          themeMode="dark"
+          showControls={true}
+          placeholder="Ask me anything..."
+          onSendMessage={(msg) => console.log('Message:', msg)}
+        />
+      </ThemeProvider>
+    </Box>
+  ),
+};
+
+// Interactive fullscreen story with boxed layout toggle
+const InsightEngineFullscreenWrapper = () => {
+  const [boxedLayout, setBoxedLayout] = useState(true);
+  
+  return (
+    <Box sx={{ height: '100vh', width: '100%' }}>
+      <ThemeProvider theme={lightTheme}>
+        <InsightEnginePanel
+          title="Insight Engine"
+          demoMode={true}
+          themeMode="light"
+          showControls={true}
+          isFullscreen={true}
+          boxedLayout={boxedLayout}
+          onBoxedLayoutToggle={() => setBoxedLayout(!boxedLayout)}
+          placeholder="Ask me anything..."
+          onSendMessage={(msg) => console.log('Message:', msg)}
+        />
+      </ThemeProvider>
+    </Box>
+  );
+};
+
+export const InsightEngineFullscreen: StoryObj = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  render: () => <InsightEngineFullscreenWrapper />,
+};
+
+// Dark mode fullscreen with boxed layout toggle
+const InsightEngineDarkFullscreenWrapper = () => {
+  const [boxedLayout, setBoxedLayout] = useState(true);
+  
+  return (
+    <Box sx={{ height: '100vh', width: '100%' }}>
+      <ThemeProvider theme={darkTheme}>
+        <InsightEnginePanel
+          title="Insight Engine"
+          demoMode={true}
+          themeMode="dark"
+          showControls={true}
+          isFullscreen={true}
+          boxedLayout={boxedLayout}
+          onBoxedLayoutToggle={() => setBoxedLayout(!boxedLayout)}
+          placeholder="Ask me anything..."
+          onSendMessage={(msg) => console.log('Message:', msg)}
+        />
+      </ThemeProvider>
+    </Box>
+  );
+};
+
+export const InsightEngineDarkFullscreen: StoryObj = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  render: () => <InsightEngineDarkFullscreenWrapper />,
+};
+
+// Import ChatMessage type for the controlled demo
+import type { ChatMessage } from '../components/AppLayout/InsightEnginePanel';
+
+// Interactive demo showing chat continuity between side panel and fullscreen
+const InsightEngineChatContinuityWrapper = () => {
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [boxedLayout, setBoxedLayout] = useState(true);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [isTyping, setIsTyping] = useState(false);
+
+  const handleSendMessage = (msg: string) => {
+    // Add user message
+    const userMessage: ChatMessage = {
+      id: Date.now().toString(),
+      role: 'user',
+      content: msg,
+      timestamp: new Date(),
+    };
+    setMessages(prev => [...prev, userMessage]);
+
+    // Simulate AI response
+    setIsTyping(true);
+    setTimeout(() => {
+      const aiMessage: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: `This is a response to: "${msg}". The chat continuity is maintained when switching between side panel and fullscreen views because we're using controlled state (messages prop) instead of internal state.`,
+        timestamp: new Date(),
+        sources: [
+          { id: '1', name: 'Documentation', count: 3 },
+          { id: '2', name: 'Knowledge Base', count: 5 },
+        ],
+        relatedQuestions: [
+          'How does controlled state work?',
+          'What are the benefits of this approach?',
+        ],
+      };
+      setMessages(prev => [...prev, aiMessage]);
+      setIsTyping(false);
+    }, 1500);
+  };
+
+  return (
+    <Box sx={{ height: '100vh', width: '100%', display: 'flex' }}>
+      <ThemeProvider theme={lightTheme}>
+        {/* Side panel view */}
+        {!isFullscreen && (
+          <Box sx={{ width: 400, height: '100%', borderRight: '1px solid #E5E7EB' }}>
+            <InsightEnginePanel
+              title="Insight Engine"
+              demoMode={false}
+              themeMode="light"
+              showControls={true}
+              isFullscreen={false}
+              messages={messages}
+              onMessagesChange={setMessages}
+              isTyping={isTyping}
+              onFullscreenToggle={() => setIsFullscreen(true)}
+              placeholder="Ask me anything..."
+              onSendMessage={handleSendMessage}
+              userInitials="JS"
+            />
+          </Box>
+        )}
+        {/* Fullscreen view */}
+        {isFullscreen && (
+          <Box sx={{ flex: 1, height: '100%' }}>
+            <InsightEnginePanel
+              title="Insight Engine"
+              demoMode={false}
+              themeMode="light"
+              showControls={true}
+              isFullscreen={true}
+              boxedLayout={boxedLayout}
+              onBoxedLayoutToggle={() => setBoxedLayout(!boxedLayout)}
+              messages={messages}
+              onMessagesChange={setMessages}
+              isTyping={isTyping}
+              onFullscreenToggle={() => setIsFullscreen(false)}
+              placeholder="Ask me anything..."
+              onSendMessage={handleSendMessage}
+              userInitials="JS"
+            />
+          </Box>
+        )}
+      </ThemeProvider>
+    </Box>
+  );
+};
+
+export const InsightEngineChatContinuity: StoryObj = {
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story: 'Demonstrates chat continuity when switching between side panel and fullscreen views using controlled state (messages prop). Send a message, then click the fullscreen button to see the chat history preserved.',
+      },
+    },
+  },
+  render: () => <InsightEngineChatContinuityWrapper />,
 };

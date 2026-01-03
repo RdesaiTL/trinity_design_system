@@ -24,7 +24,7 @@ import SecurityIcon from '@mui/icons-material/Security';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonIcon from '@mui/icons-material/Person';
 import { useState } from 'react';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 /**
  * # Accordion

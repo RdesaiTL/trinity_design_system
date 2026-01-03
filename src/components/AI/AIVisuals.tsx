@@ -12,9 +12,9 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import { brandColors } from '../../theme';
+import { brandColors } from '../../tokens';
 import { Icon } from '../Icon';
-import { aiTokens, aiSpacing, aiRadius } from './tokens';
+import { aiTokens, aiSpacing, aiRadiusPx } from './tokens';
 
 // Success/Error colors (matching tokens)
 const statusColors = {
@@ -142,7 +142,7 @@ export const StatCard: React.FC<StatCardProps> = ({
       elevation={0}
       sx={{
         p: styles.p,
-        borderRadius: aiRadius.lg,
+        borderRadius: aiRadiusPx.lg,
         ...getVariantStyles(),
         ...sx,
       }}
@@ -164,7 +164,7 @@ export const StatCard: React.FC<StatCardProps> = ({
               sx={{
                 width: size === 'small' ? 28 : 36,
                 height: size === 'small' ? 28 : 36,
-                borderRadius: aiRadius.sm,
+                borderRadius: aiRadiusPx.sm,
                 backgroundColor:
                   variant === 'gradient' ? 'rgba(255, 255, 255, 0.2)' : aiTokens.colors.aiHover,
                 display: 'flex',
@@ -282,7 +282,7 @@ export const GradientIconBadge: React.FC<GradientIconBadgeProps> = ({
         sx={{
           width: styles.container,
           height: styles.container,
-          borderRadius: aiRadius.md,
+          borderRadius: aiRadiusPx.md,
           background: `linear-gradient(135deg, ${startColor} 0%, ${endColor} 100%)`,
           display: 'flex',
           alignItems: 'center',
@@ -322,7 +322,7 @@ export interface AIShimmerProps {
 export const AIShimmer: React.FC<AIShimmerProps> = ({
   width = '100%',
   height = 20,
-  borderRadius = aiRadius.sm,
+  borderRadius = aiRadiusPx.sm,
   sx,
 }) => {
   return (

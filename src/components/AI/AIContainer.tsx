@@ -1,6 +1,18 @@
 /**
  * AI Container & Layout Components
  * Container, Expandable Section, and Persona Card components
+ * 
+ * These are wrapper components for AI content that provide
+ * consistent styling with the AI design tokens.
+ * 
+ * @example
+ * ```tsx
+ * import { AIContainer, AIExpandableSection, AIPersonaCard } from '@trinity/design-system';
+ * 
+ * <AIContainer title="AI Analysis" showAvatar>
+ *   <Typography>AI-generated content...</Typography>
+ * </AIContainer>
+ * ```
  */
 
 import React, { useState } from 'react';
@@ -16,9 +28,9 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import { brandColors } from '../../theme';
+import { brandColors } from '../../tokens';
 import { Icon } from '../Icon';
-import { aiTokens, aiSpacing, aiRadius } from './tokens';
+import { aiTokens, aiSpacing, aiRadiusPx } from './tokens';
 import { AIAvatar } from './AIAvatar';
 
 // ============================================================================
@@ -66,7 +78,7 @@ export const AIContainer: React.FC<AIContainerProps> = ({
     <Paper
       elevation={0}
       sx={{
-        borderRadius: aiRadius.lg,
+        borderRadius: aiRadiusPx.lg,
         border: bordered ? `1px solid ${aiTokens.colors.aiBorder}` : 'none',
         backgroundColor: filled ? aiTokens.colors.aiBackground : 'transparent',
         overflow: 'hidden',
@@ -168,11 +180,11 @@ export const AIExpandableSection: React.FC<AIExpandableSectionProps> = ({
           py: 1.5,
           px: aiSpacing.base,
           cursor: 'pointer',
-          borderRadius: expanded ? `${aiRadius.md}px ${aiRadius.md}px 0 0` : aiRadius.md,
+          borderRadius: expanded ? `${aiRadiusPx.md} ${aiRadiusPx.md} 0 0` : aiRadiusPx.md,
           backgroundColor: aiTokens.colors.aiHover,
           transition: 'all 0.2s ease',
           '&:hover': {
-            backgroundColor: `rgba(120, 65, 201, 0.12)`,
+            backgroundColor: aiTokens.colors.aiHoverDark,
           },
         }}
       >
@@ -203,8 +215,8 @@ export const AIExpandableSection: React.FC<AIExpandableSectionProps> = ({
         <Box
           sx={{
             p: aiSpacing.base,
-            borderRadius: `0 0 ${aiRadius.md}px ${aiRadius.md}px`,
-            backgroundColor: '#FFFFFF',
+            borderRadius: `0 0 ${aiRadiusPx.md} ${aiRadiusPx.md}`,
+            background: aiTokens.gradient.subtle,
             border: `1px solid ${aiTokens.colors.aiBorder}`,
             borderTop: 'none',
           }}
@@ -255,7 +267,7 @@ export const AIPersonaCard: React.FC<AIPersonaCardProps> = ({
       onClick={onClick}
       sx={{
         p: aiSpacing.base,
-        borderRadius: aiRadius.lg,
+        borderRadius: aiRadiusPx.lg,
         border: `2px solid ${selected ? aiTokens.colors.aiPrimary : brandColors.neutral.gray100}`,
         backgroundColor: selected ? aiTokens.colors.aiHover : '#FFFFFF',
         cursor: onClick ? 'pointer' : 'default',
@@ -305,8 +317,8 @@ export const AIPersonaCard: React.FC<AIPersonaCardProps> = ({
                     sx={{
                       px: 1,
                       py: 0.25,
-                      borderRadius: aiRadius.sm,
-                      backgroundColor: 'rgba(120, 65, 201, 0.1)',
+                      borderRadius: aiRadiusPx.sm,
+                      backgroundColor: aiTokens.colors.aiBackgroundDark,
                       color: aiTokens.colors.aiPrimary,
                       fontSize: '0.6875rem',
                       fontWeight: 500,
@@ -326,7 +338,7 @@ export const AIPersonaCard: React.FC<AIPersonaCardProps> = ({
             sx={{
               width: 24,
               height: 24,
-              borderRadius: aiRadius.circle,
+              borderRadius: aiRadiusPx.circle,
               backgroundColor: aiTokens.colors.aiPrimary,
               display: 'flex',
               alignItems: 'center',

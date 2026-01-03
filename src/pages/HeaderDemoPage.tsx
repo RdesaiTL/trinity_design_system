@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, Typography, Container, Paper, Grid } from '@mui/material';
 import TopNavHeader from '../components/TopNavHeader';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 export default function HeaderDemoPage() {
   const handleClientChange = (clientId: string) => {

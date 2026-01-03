@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Box, Typography, Paper, Grid, Chip, useTheme } from '@mui/material';
+import { baseTokens, semanticTokens } from '../tokens';
 
 const WelcomePage = () => {
   const theme = useTheme();
@@ -52,7 +53,7 @@ const WelcomePage = () => {
             label="Design System v1.0"
             size="small"
             sx={{
-              bgcolor: '#FF6150',
+              bgcolor: baseTokens.colors.coral[800],
               color: 'white',
               fontWeight: 600,
               mb: 3,
@@ -94,7 +95,7 @@ const WelcomePage = () => {
               label="MUI v6/7"
               sx={{
                 bgcolor: 'white',
-                color: '#050742',
+                color: baseTokens.colors.navy[900],
                 fontWeight: 600,
               }}
             />
@@ -121,10 +122,10 @@ const WelcomePage = () => {
       {/* Stats */}
       <Grid container spacing={3} sx={{ mb: 5 }}>
         {[
-          { value: '40+', label: 'Components', color: '#050742' },
-          { value: '100+', label: 'Design Tokens', color: '#7841C9' },
-          { value: 'AA', label: 'WCAG Compliant', color: '#FF6150' },
-          { value: '2', label: 'Theme Modes', color: '#1DC286' },
+          { value: '40+', label: 'Components', color: baseTokens.colors.navy[900] },
+          { value: '100+', label: 'Design Tokens', color: baseTokens.colors.purple[700] },
+          { value: 'AA', label: 'WCAG Compliant', color: baseTokens.colors.coral[800] },
+          { value: '2', label: 'Theme Modes', color: semanticTokens.colors.status.success.text },
         ].map((stat) => (
           <Grid size={{ xs: 6, md: 3 }} key={stat.label}>
             <Box sx={{ textAlign: 'center', py: 2 }}>
@@ -169,7 +170,7 @@ const WelcomePage = () => {
               sx={{
                 width: 48,
                 height: 48,
-                bgcolor: '#FF6150',
+                bgcolor: baseTokens.colors.coral[800],
                 borderRadius: 2,
                 display: 'flex',
                 alignItems: 'center',
@@ -245,7 +246,7 @@ const WelcomePage = () => {
               sx={{
                 width: 48,
                 height: 48,
-                bgcolor: '#050742',
+                bgcolor: baseTokens.colors.navy[900],
                 borderRadius: 2,
                 display: 'flex',
                 alignItems: 'center',
@@ -284,7 +285,7 @@ const WelcomePage = () => {
               sx={{
                 width: 48,
                 height: 48,
-                bgcolor: '#1DC286',
+                bgcolor: semanticTokens.colors.status.success.text,
                 borderRadius: 2,
                 display: 'flex',
                 alignItems: 'center',
@@ -318,29 +319,29 @@ const WelcomePage = () => {
       </Typography>
       <Grid container spacing={2} sx={{ mb: 5 }}>
         {[
-          { name: 'Navy', hex: '#050742', role: 'Primary' },
-          { name: 'Purple', hex: '#7841C9', role: 'Secondary' },
-          { name: 'Coral', hex: '#FF6150', role: 'Accent' },
-          { name: 'Azure', hex: '#27AAE1', role: 'Info' },
-          { name: 'Emerald', hex: '#1DC286', role: 'Success' },
-        ].map((color) => (
-          <Grid size={{ xs: 6, sm: 2.4 }} key={color.name}>
+          { name: 'Navy', color: baseTokens.colors.navy[900], hex: '#050742', role: 'Primary' },
+          { name: 'Purple', color: baseTokens.colors.purple[700], hex: '#7841C9', role: 'Secondary' },
+          { name: 'Coral', color: baseTokens.colors.coral[800], hex: '#FF6150', role: 'Accent' },
+          { name: 'Azure', color: baseTokens.colors.azure[500], hex: '#27AAE1', role: 'Info' },
+          { name: 'Emerald', color: semanticTokens.colors.status.success.text, hex: '#16A34A', role: 'Success' },
+        ].map((item) => (
+          <Grid size={{ xs: 6, sm: 2.4 }} key={item.name}>
             <Paper
               sx={{
-                bgcolor: color.hex,
+                bgcolor: item.color,
                 borderRadius: 3,
                 p: 3,
                 color: 'white',
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: '1rem' }}>
-                {color.name}
+                {item.name}
               </Typography>
               <Typography sx={{ opacity: 0.8, fontSize: '0.75rem', mt: 0.5 }}>
-                {color.hex}
+                {item.hex}
               </Typography>
               <Typography sx={{ opacity: 0.7, fontSize: '0.7rem', mt: 1 }}>
-                {color.role}
+                {item.role}
               </Typography>
             </Paper>
           </Grid>

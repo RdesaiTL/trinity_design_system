@@ -66,3 +66,4 @@ export { OverviewPage } from './OverviewPage';
 export { default as HeaderDemoPage } from './HeaderDemoPage';
 export { default as SidebarDemoPage } from './SidebarDemoPage';
 export { default as ColorAccessibilityPage } from './ColorAccessibilityPage';
+export { AppLayoutDemoPage } from './AppLayoutDemoPage';

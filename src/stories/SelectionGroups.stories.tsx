@@ -13,7 +13,7 @@ import {
   Paper,
 } from '@mui/material';
 import { useState } from 'react';
-import { brandColors } from '../theme';
+import { brandColors } from '../tokens';
 
 /**
  * # Radio & Checkbox Groups

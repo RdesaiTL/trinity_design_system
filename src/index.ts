@@ -8,6 +8,9 @@ export * from './components';
 // Export all tokens
 export * from './tokens';
 
+// Export hierarchy system and utilities
+export * from './hierarchy';
+
 // Export theme utilities
 export {
   // Theme creators

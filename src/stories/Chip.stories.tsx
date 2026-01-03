@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 import { 
   Chip, 
   Stack, 
@@ -286,6 +287,3 @@ export const Tags: Story = {
     },
   },
 };
-
-// Import React for the filter example
-import React from 'react';

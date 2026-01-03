@@ -5,7 +5,7 @@
 
 import { styled, alpha } from '@mui/material/styles';
 import { Button, IconButton, InputBase, Box } from '@mui/material';
-import { brandColors } from '../../theme';
+import { brandColors } from '../../tokens';
 
 // ============================================================================
 // SEARCH COMPONENTS
