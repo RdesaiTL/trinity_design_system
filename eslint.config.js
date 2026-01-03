@@ -5,6 +5,25 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 
+// ============================================================
+// TOKEN USAGE RULES - Phase 4.3
+// See docs/TOKEN_USAGE_RULES.md for full documentation
+// ============================================================
+
+// Patterns that indicate intentional color usage (exemption comments)
+const INTENTIONAL_COLOR_PATTERN = /@intentional-color/;
+
+// Files exempt from color linting
+const COLOR_EXEMPT_FILES = [
+  '**/tokens.ts',
+  '**/theme.ts',
+  '**/*.test.{ts,tsx}',
+  '**/*.stories.{ts,tsx}',
+  '**/*.svg',
+  '.storybook/**',
+  '**/test-setup.ts',
+];
+
 export default tseslint.config(
   { ignores: ['dist', 'storybook-static', 'node_modules'] },
   {
@@ -25,6 +44,25 @@ export default tseslint.config(
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
+      ],
+
+      // ============================================================
+      // TOKEN USAGE RULES (Phase 4.3)
+      // Enforce consistent color token usage in components
+      // ============================================================
+
+      // Warn on hardcoded hex colors (use tokens instead)
+      // Exceptions: files in COLOR_EXEMPT_FILES or with @intentional-color comment
+      'no-restricted-syntax': [
+        'warn',
+        {
+          selector: 'Literal[value=/^#[0-9A-Fa-f]{3,8}$/]',
+          message: 'Avoid hardcoded hex colors. Use brandColors, semanticTokens, or add @intentional-color comment. See docs/TOKEN_USAGE_RULES.md',
+        },
+        {
+          selector: 'TemplateLiteral[quasis.0.value.raw=/^#[0-9A-Fa-f]{3,8}$/]',
+          message: 'Avoid hardcoded hex colors in template literals. Use token references.',
+        },
       ],
 
       // ============================================================
