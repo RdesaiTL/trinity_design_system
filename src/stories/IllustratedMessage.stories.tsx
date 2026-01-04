@@ -3,7 +3,8 @@ import { Box, Typography, Paper, Grid, Stack, Divider } from '@mui/material';
 import { 
   IllustratedMessage, 
   UploadDropZone,
-  IllustrationType,\n} from '../components/IllustratedMessage';
+  IllustrationType,
+} from '../components/IllustratedMessage';
 
 /**
  * # Illustrated Message
