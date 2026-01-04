@@ -5,7 +5,7 @@
  * It MUST pass before any PR can be merged.
  */
 
-/// <reference types="vitest-axe" />
+import 'vitest-axe';
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
