@@ -88,7 +88,6 @@ export const AppLayoutDemoPage: React.FC = () => {
         initials: 'JS',
       }}
       onUserAction={handleUserAction}
-      notificationCount={5}
       enableInsightEngine
       insightEnginePanelOpen={insightPanelOpen}
       onInsightEnginePanelChange={setInsightPanelOpen}

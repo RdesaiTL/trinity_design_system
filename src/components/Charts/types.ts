@@ -13,7 +13,7 @@ import { SxProps, Theme } from '@mui/material';
  * Base data point interface
  */
 export interface DataPoint {
-  [key: string]: string | number | null | undefined;
+  [key: string]: string | number | Date | null | undefined;
 }
 
 /**
@@ -44,6 +44,7 @@ export interface MultiSeriesDataPoint {
  * Pie/Donut segment data
  */
 export interface PieDataPoint {
+  [key: string]: string | number | Date | null | undefined;
   name: string;
   value: number;
   color?: string;
@@ -110,6 +111,8 @@ export interface AxisConfig {
   angle?: number;
   /** Unit suffix for values */
   unit?: string;
+  /** Tick interval (0 = all, 'preserveStart', 'preserveEnd', 'preserveStartEnd', or number) */
+  interval?: number | 'preserveStart' | 'preserveEnd' | 'preserveStartEnd';
 }
 
 // ============================================================================

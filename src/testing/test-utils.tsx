@@ -16,6 +16,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 import { axe } from 'vitest-axe';
 import type { AxeResults } from 'axe-core';
+import { expect, vi } from 'vitest';
 import { lightTheme, darkTheme } from '../theme';
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -97,7 +98,7 @@ async function checkA11y(
   container: Element | Document = document.body,
   options: A11yOptions = {}
 ): Promise<AxeResults> {
-  const results = await axe(container, {
+  const results = await axe(container as Element, {
     rules: {
       // Ensure color contrast
       'color-contrast': { enabled: true },
@@ -258,7 +259,7 @@ function expectAriaDisabled(element: HTMLElement, disabled: boolean): void {
  * Create a mock callback that can be awaited
  */
 function createMockCallback<T = void>(): {
-  fn: jest.Mock<Promise<T>, []>;
+  fn: ReturnType<typeof vi.fn>;
   waitForCall: () => Promise<void>;
 } {
   let resolveCall: () => void;

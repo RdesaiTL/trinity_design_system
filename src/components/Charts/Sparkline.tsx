@@ -18,7 +18,7 @@ import {
 import { Box, SxProps, Theme } from '@mui/material';
 import {
   chartColorsPrimary,
-  chartColorsStatus,
+  chartColorsStatusMap,
   chartAnimation,
 } from './tokens';
 import { SparklineProps } from './types';
@@ -57,10 +57,10 @@ export const Sparkline: React.FC<SparklineProps> = ({
   height = 32,
   color = chartColorsPrimary[0],
   referenceLine,
-  referenceLineColor = chartColorsStatus.neutral,
+  referenceLineColor = chartColorsStatusMap.neutral,
   showMinMax = false,
-  minColor = chartColorsStatus.error,
-  maxColor = chartColorsStatus.success,
+  minColor = chartColorsStatusMap.error,
+  maxColor = chartColorsStatusMap.success,
   animate = true,
   sx,
 }) => {
