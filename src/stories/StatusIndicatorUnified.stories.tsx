@@ -558,15 +558,15 @@ export const SizeComparison: Story = {
           <Stack direction="row" spacing={3} alignItems="center">
             <Box>
               <Typography variant="caption" color="text.secondary">Small</Typography>
-              <StatusIndicator variant={variant as any} status="success" size="small" />
+              <StatusIndicator variant={variant as StatusVariant} status="success" size="small" />
             </Box>
             <Box>
               <Typography variant="caption" color="text.secondary">Medium</Typography>
-              <StatusIndicator variant={variant as any} status="success" size="medium" />
+              <StatusIndicator variant={variant as StatusVariant} status="success" size="medium" />
             </Box>
             <Box>
               <Typography variant="caption" color="text.secondary">Large</Typography>
-              <StatusIndicator variant={variant as any} status="success" size="large" />
+              <StatusIndicator variant={variant as StatusVariant} status="success" size="large" />
             </Box>
           </Stack>
         </Box>

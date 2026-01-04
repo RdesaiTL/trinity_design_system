@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react';
+import type { Preview, StoryContext } from '@storybook/react';
 import React from 'react';
 import { ThemeProvider, CssBaseline, Box } from '@mui/material';
 import { lightTheme, darkTheme } from '../src/theme';
@@ -10,7 +10,7 @@ import '@fontsource/montserrat/500.css';
 import '@fontsource/montserrat/600.css';
 import '@fontsource/montserrat/700.css';
 
-const withThemeProvider = (Story: React.ComponentType, context: any) => {
+const withThemeProvider = (Story: React.ComponentType, context: StoryContext) => {
   const isDark = context.globals.theme === 'dark';
   const theme = isDark ? darkTheme : lightTheme;
   const isFullscreen = context.parameters?.layout === 'fullscreen';

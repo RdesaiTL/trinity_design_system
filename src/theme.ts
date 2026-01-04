@@ -27,9 +27,8 @@ function toVarName(...parts: (string | number)[]): string {
 /**
  * Recursively flatten tokens into CSS variable entries
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function flattenTokens(
-  obj: Record<string, any>,
+  obj: Record<string, unknown>,
   prefix: string[] = []
 ): Array<{ name: string; value: string }> {
   const entries: Array<{ name: string; value: string }> = [];
