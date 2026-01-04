@@ -92,7 +92,7 @@ const PieTooltipContent: React.FC<PieTooltipContentProps> = ({
             width: 10,
             height: 10,
             borderRadius: '50%',
-            backgroundColor: item.payload.fill,
+            backgroundColor: (item.payload?.fill as string) || item.color,
           }}
         />
         <Typography
@@ -261,9 +261,11 @@ export const PieChart: React.FC<PieChartProps> = ({
                 endAngle={endAngle}
                 dataKey="value"
                 nameKey="name"
+                // @ts-expect-error - recharts label/activeShape prop types mismatch
                 label={showLabels ? renderLabel : false}
                 labelLine={showLabels ? { stroke: brandColors.neutral.gray400 } : false}
                 activeIndex={activeIndex ?? undefined}
+                // @ts-expect-error - recharts activeShape prop type mismatch
                 activeShape={renderActiveShape}
                 onMouseEnter={(_, index) => setActiveIndex(index)}
                 onMouseLeave={() => setActiveIndex(null)}
@@ -284,6 +286,7 @@ export const PieChart: React.FC<PieChartProps> = ({
                 ))}
               </Pie>
 
+              {/* @ts-expect-error - recharts Tooltip content prop type mismatch */}
               {tooltip.show !== false && <Tooltip content={renderTooltip} />}
             </RechartsPieChart>
           </ResponsiveContainer>

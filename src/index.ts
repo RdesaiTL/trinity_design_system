@@ -5,10 +5,41 @@
 // Export all components
 export * from './components';
 
-// Export all tokens
-export * from './tokens';
+// Export tokens (excluding AttentionLevel to avoid conflict with hierarchy)
+export {
+  tokens,
+  baseTokens,
+  semanticTokens,
+  componentTokens,
+  darkModeTokens,
+  typographicHierarchy,
+} from './tokens';
+export type {
+  TrinityTokens,
+  TrinityBaseColors,
+  TrinitySpacing,
+  TrinityFontSize,
+  TrinityFontWeight,
+  TrinityLineHeight,
+  TrinityLetterSpacing,
+  TrinityBorderRadius,
+  TrinityBorderWidth,
+  TrinityShadows,
+  TrinityZIndex,
+  TrinityDuration,
+  TrinityEasing,
+  TrinityOpacity,
+  TrinityBreakpoints,
+  TrinitySemanticColors,
+  TrinitySemanticSpacing,
+  TrinitySemanticBorders,
+  TrinitySemanticShadows,
+  TrinitySemanticMotion,
+  TrinityComponentTokens,
+  TrinityDarkModeTokens,
+} from './tokens';
 
-// Export hierarchy system and utilities
+// Export hierarchy system and utilities (includes AttentionLevel)
 export * from './hierarchy';
 
 // Export theme utilities

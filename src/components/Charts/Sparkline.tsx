@@ -145,6 +145,7 @@ export const Sparkline: React.FC<SparklineProps> = ({
               dataKey="value"
               stroke={color}
               strokeWidth={1.5}
+              // @ts-expect-error - recharts dot prop type mismatch with custom render function
               dot={
                 showMinMax
                   ? (props: DotRenderProps) => {
@@ -252,6 +253,7 @@ export const Sparkline: React.FC<SparklineProps> = ({
             stroke={color}
             strokeWidth={1.5}
             fill="url(#sparkline-gradient)"
+            // @ts-expect-error - recharts dot prop type mismatch with custom render function
             dot={
               showMinMax
                 ? (props: DotRenderProps) => {

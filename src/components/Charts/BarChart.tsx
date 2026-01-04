@@ -126,6 +126,7 @@ export const BarChart: React.FC<BarChartProps> = ({
       emptyMessage={emptyMessage}
       sx={sx}
     >
+      {/* @ts-expect-error - recharts ResponsiveContainer height type is overly restrictive */}
       <ResponsiveContainer width={width} height={height}>
         <RechartsBarChart
           data={data}
@@ -275,7 +276,8 @@ export const BarChart: React.FC<BarChartProps> = ({
                 animationDuration={animationDuration}
                 onClick={
                   onDataPointClick
-                    ? (data, index) => onDataPointClick(data, index)
+                    // @ts-expect-error - recharts Bar onClick types are incompatible with DataPoint
+                    ? (data: DataPoint, index: number) => onDataPointClick(data, index)
                     : undefined
                 }
                 style={onDataPointClick ? { cursor: 'pointer' } : undefined}

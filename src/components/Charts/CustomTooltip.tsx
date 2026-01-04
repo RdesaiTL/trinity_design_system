@@ -5,11 +5,16 @@
 
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { TooltipProps } from 'recharts';
 import { chartTooltipStyles, chartTypography } from './tokens';
 import { brandColors } from '../../tokens';
 
-export interface CustomTooltipProps extends TooltipProps<number, string> {
+export interface CustomTooltipProps {
+  /** Whether the tooltip is active */
+  active?: boolean;
+  /** Tooltip payload data from recharts */
+  payload?: Array<{ color?: string; name?: string; value?: number | string }>;
+  /** Label for the tooltip */
+  label?: string | number;
   /** Custom formatter for values */
   valueFormatter?: (value: number) => string;
   /** Custom formatter for labels */
@@ -44,7 +49,7 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
   };
 
   const total = showTotal
-    ? payload.reduce((sum, entry) => sum + (entry.value as number || 0), 0)
+    ? payload.reduce((sum: number, entry: { value?: number | string }) => sum + (Number(entry.value) || 0), 0)
     : null;
 
   return (
@@ -75,7 +80,7 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
 
       {/* Values */}
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-        {payload.map((entry, index) => (
+        {payload.map((entry: { color?: string; name?: string; value?: number | string }, index: number) => (
           <Box
             key={index}
             sx={{

@@ -305,15 +305,17 @@ export function ensureTouchTarget(
  */
 export function getInteractiveStyles(state: InteractiveState): Record<string, string | number> {
   const interactive = interactiveHierarchy[state];
-  const styles: Record<string, string | number> = {
-    transition: interactive.transition,
-  };
+  const styles: Record<string, string | number> = {};
   
-  if (interactive.opacity !== 1) {
+  if ('transition' in interactive) {
+    styles.transition = interactive.transition;
+  }
+  
+  if ('opacity' in interactive && interactive.opacity !== 1) {
     styles.opacity = interactive.opacity;
   }
   
-  if (interactive.transform !== 'none') {
+  if ('transform' in interactive && interactive.transform !== 'none') {
     styles.transform = interactive.transform;
   }
   

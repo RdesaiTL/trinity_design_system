@@ -62,8 +62,9 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc --project tsconfig.lib.json && vite build",
     "build:lib": "tsc --project tsconfig.lib.json",
+    "build:full": "tsc -b && vite build",
     "lint": "eslint .",
     "lint:tokens": "eslint --config eslint.tokens.config.js 'src/components/**/*.tsx' 'src/pages/**/*.tsx'",
     "lint:tokens:fix": "eslint --config eslint.tokens.config.js 'src/components/**/*.tsx' 'src/pages/**/*.tsx' --fix",

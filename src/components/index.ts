@@ -296,9 +296,8 @@ export type {
 export { DataTable } from './DataTable';
 export type {
   DataTableProps,
-  DataTableColumn,
-  DataTableSortDirection,
-  DataTableRowAction,
+  TrinityColumnDef,
+  RowAction,
 } from './DataTable';
 
 // FileUpload Component

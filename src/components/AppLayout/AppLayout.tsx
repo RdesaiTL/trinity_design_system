@@ -11,6 +11,7 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
+import { brandColors } from '../../theme';
 import HomeIcon from '@mui/icons-material/Home';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import PeopleIcon from '@mui/icons-material/People';

@@ -53,7 +53,7 @@ const ScatterTooltipContent: React.FC<ScatterTooltipContentProps> = ({
     return null;
   }
 
-  const point = payload[0].payload as ScatterDataPoint;
+  const point = (payload[0].payload as unknown) as ScatterDataPoint;
 
   return (
     <Box
@@ -245,6 +245,7 @@ export const ScatterChart: React.FC<ScatterChartProps> = ({
       emptyMessage={emptyMessage}
       sx={sx}
     >
+      {/* @ts-expect-error - recharts ResponsiveContainer height type is overly restrictive */}
       <ResponsiveContainer width={width} height={height}>
         <RechartsScatterChart
           margin={{ top: 20, right: 30, bottom: 20, left: 20 }}
@@ -327,6 +328,7 @@ export const ScatterChart: React.FC<ScatterChartProps> = ({
           )}
 
           {/* Tooltip */}
+          {/* @ts-expect-error - recharts Tooltip content prop type mismatch */}
           {tooltip.show !== false && <Tooltip content={renderTooltip} />}
 
           {/* Legend */}

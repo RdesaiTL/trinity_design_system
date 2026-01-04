@@ -164,6 +164,7 @@ export const ComposedChart: React.FC<ComposedChartProps> = ({
       empty={isEmpty}
       sx={sx}
     >
+      {/* @ts-expect-error - recharts ResponsiveContainer height type is overly restrictive */}
       <ResponsiveContainer width={width} height={height}>
         <RechartsComposedChart
           data={data}

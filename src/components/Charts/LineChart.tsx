@@ -99,6 +99,7 @@ export const LineChart: React.FC<LineChartProps> = ({
       emptyMessage={emptyMessage}
       sx={sx}
     >
+      {/* @ts-expect-error - recharts ResponsiveContainer height type is overly restrictive */}
       <ResponsiveContainer width={width} height={height}>
         <RechartsLineChart
           data={data}
@@ -276,7 +277,8 @@ export const LineChart: React.FC<LineChartProps> = ({
                   // eslint-disable-next-line no-restricted-syntax
                   stroke: '#FFFFFF', // @intentional-color: white outline for visual emphasis
                   onClick: onDataPointClick
-                    ? (_, payload) => {
+                    // @ts-expect-error - recharts event handler types are incomplete
+                    ? (_, payload: { payload?: DataPoint; index?: number }) => {
                         if (payload && payload.payload) {
                           onDataPointClick(payload.payload, payload.index || 0);
                         }

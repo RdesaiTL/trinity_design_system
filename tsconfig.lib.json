@@ -21,9 +21,11 @@
     "isolatedModules": true
   },
   "include": [
+    "src/vite-env.d.ts",
     "src/index.ts",
     "src/theme.ts",
     "src/tokens.ts",
+    "src/hierarchy.ts",
     "src/accessibility.tsx",
     "src/form.tsx",
     "src/hooks.ts",

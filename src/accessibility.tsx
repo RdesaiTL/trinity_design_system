@@ -307,7 +307,7 @@ export interface VisuallyHiddenProps {
   /** Content to hide visually but keep accessible */
   children: React.ReactNode;
   /** HTML element to render as */
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
 }
 
 /**

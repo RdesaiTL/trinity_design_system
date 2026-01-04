@@ -25,7 +25,7 @@ function toVarName(...parts: (string | number)[]): string {
  * Recursively flatten tokens into CSS variable entries
  */
 function flattenTokens(
-  obj: Record<string, unknown>,
+  obj: object,
   prefix: string[] = []
 ): Array<{ name: string; value: string }> {
   const entries: Array<{ name: string; value: string }> = [];
