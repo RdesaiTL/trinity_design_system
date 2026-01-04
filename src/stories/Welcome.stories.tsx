@@ -54,7 +54,7 @@ const WelcomePage = () => {
 
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <Chip
-            label="v1.0"
+            label="v1.1.0"
             size="small"
             sx={{
               bgcolor: baseTokens.colors.coral[800],
@@ -103,10 +103,10 @@ const WelcomePage = () => {
       {/* Stats */}
       <Grid container spacing={3} sx={{ mb: 5 }}>
         {[
-          { value: '40+', label: 'Components', color: baseTokens.colors.navy[900] },
-          { value: '100+', label: 'Design Tokens', color: baseTokens.colors.purple[700] },
+          { value: '50+', label: 'Components', color: baseTokens.colors.navy[900] },
+          { value: '120+', label: 'Design Tokens', color: baseTokens.colors.purple[700] },
           { value: 'AA', label: 'WCAG Compliant', color: baseTokens.colors.coral[800] },
-          { value: '2', label: 'Theme Modes', color: semanticTokens.colors.status.success.text },
+          { value: '74', label: 'Story Variants', color: semanticTokens.colors.status.success.text },
         ].map((stat) => (
           <Grid size={{ xs: 6, md: 3 }} key={stat.label}>
             <Box sx={{ textAlign: 'center', py: 2 }}>
@@ -129,7 +129,7 @@ const WelcomePage = () => {
         <Grid size={{ xs: 12, md: 4 }}>
           <Paper
             component="a"
-            href="?path=/story/documentation-getting-started--default"
+            href="?path=/story/getting-started--default"
             sx={{
               p: 3,
               bgcolor: 'background.paper',
@@ -147,7 +147,7 @@ const WelcomePage = () => {
               📖 Getting Started
             </Typography>
             <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary' }}>
-              Installation, setup, and usage guide
+              Installation, setup, and v1.1.0 component guide
             </Typography>
           </Paper>
         </Grid>
@@ -209,12 +209,12 @@ const WelcomePage = () => {
       </Typography>
       <Grid container spacing={2} sx={{ mb: 5 }}>
         {[
-          { title: 'Inputs', desc: 'Button, TextField, Switch, Slider, Select', icon: '📝' },
-          { title: 'Data Display', desc: 'Avatar, Chip, Table, Tooltip, Badge', icon: '📊' },
-          { title: 'Feedback', desc: 'Alert, Progress, Modal, Toast, Skeleton', icon: '💬' },
-          { title: 'Navigation', desc: 'Tabs, Menu, Breadcrumbs, TopNav', icon: '🧭' },
-          { title: 'Layout', desc: 'Grid, Container, TopNavWithSidebar', icon: '📐' },
-          { title: 'AI Components', desc: 'Chat, Suggestions, AI Indicators', icon: '🤖' },
+          { title: 'Inputs', desc: 'Button, TextField, SearchInput, FilterBar, Select', icon: '📝' },
+          { title: 'Data Display', desc: 'DataCard, Timeline, DataTable, Charts, Chip', icon: '📊' },
+          { title: 'Feedback', desc: 'Alert, Progress, Modal, Toast, StatusIndicator', icon: '💬' },
+          { title: 'Navigation', desc: 'CommandPalette, Tabs, Menu, Breadcrumbs', icon: '🧭' },
+          { title: 'Layout', desc: 'SplitPane, DockLayout, AppLayout, Grid', icon: '📐' },
+          { title: 'Utilities', desc: 'DiffViewer, FileUpload, TreeView, TransferList', icon: '🛠️' },
         ].map((item) => (
           <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.title}>
             <Paper

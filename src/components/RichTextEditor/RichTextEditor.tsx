@@ -12,7 +12,6 @@ import {
   alpha,
   useTheme,
   FormControl,
-  Typography,
 } from '@mui/material';
 import {
   FormatBold as BoldIcon,

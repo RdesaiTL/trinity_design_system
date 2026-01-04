@@ -3,7 +3,10 @@
  * Centralized type definitions and status configs
  */
 
-import { brandColors } from '../../tokens';
+import { semanticTokens } from '../../tokens';
+
+// Helper to get indicator colors from semantic tokens
+const indicator = semanticTokens.colors.indicator;
 
 // ============================================================================
 // STATUS TYPES
@@ -68,40 +71,40 @@ export interface StatusConfig {
 export const statusConfigs: Record<StatusType, StatusConfig> = {
   // High Attention - Red
   error: {
-    color: '#FFFFFF',
-    backgroundColor: brandColors.secondary.main,
+    color: indicator.error.fg,
+    backgroundColor: indicator.error.bg,
     icon: 'error',
     shape: 'circle',
     severity: 'high',
     label: 'Error',
   },
   critical: {
-    color: '#FFFFFF',
-    backgroundColor: '#da1e28',
+    color: indicator.critical.fg,
+    backgroundColor: indicator.critical.bg,
     icon: 'warning',
     shape: 'hexagon',
     severity: 'high',
     label: 'Critical',
   },
   failed: {
-    color: '#FFFFFF',
-    backgroundColor: brandColors.secondary.main,
+    color: indicator.failed.fg,
+    backgroundColor: indicator.failed.bg,
     icon: 'close',
     shape: 'circle',
     severity: 'high',
     label: 'Failed',
   },
   rejected: {
-    color: '#FFFFFF',
-    backgroundColor: brandColors.secondary.main,
+    color: indicator.rejected.fg,
+    backgroundColor: indicator.rejected.bg,
     icon: 'close',
     shape: 'circle',
     severity: 'high',
     label: 'Rejected',
   },
   cancelled: {
-    color: '#FFFFFF',
-    backgroundColor: '#6f6f6f',
+    color: indicator.cancelled.fg,
+    backgroundColor: indicator.cancelled.bg,
     icon: 'close',
     shape: 'circle',
     severity: 'neutral',
@@ -110,43 +113,43 @@ export const statusConfigs: Record<StatusType, StatusConfig> = {
 
   // Medium Attention - Orange/Yellow
   warning: {
-    color: '#000000',
-    backgroundColor: '#f1c21b',
-    outlineColor: '#8e6a00',
+    color: indicator.warning.fg,
+    backgroundColor: indicator.warning.bg,
+    outlineColor: indicator.warning.outline,
     icon: 'warning',
     shape: 'triangle',
     severity: 'medium',
     label: 'Warning',
   },
   caution: {
-    color: '#000000',
-    backgroundColor: '#ff832b',
-    outlineColor: '#ba4e00',
+    color: indicator.caution.fg,
+    backgroundColor: indicator.caution.bg,
+    outlineColor: indicator.caution.outline,
     icon: 'warning',
     shape: 'triangle',
     severity: 'medium',
     label: 'Caution',
   },
   pending: {
-    color: '#000000',
-    backgroundColor: '#f1c21b',
-    outlineColor: '#8e6a00',
+    color: indicator.pending.fg,
+    backgroundColor: indicator.pending.bg,
+    outlineColor: indicator.pending.outline,
     icon: 'clock',
     shape: 'circle',
     severity: 'medium',
     label: 'Pending',
   },
   'in-progress': {
-    color: '#FFFFFF',
-    backgroundColor: brandColors.primary.main,
+    color: indicator.inProgress.fg,
+    backgroundColor: indicator.inProgress.bg,
     icon: 'refresh',
     shape: 'circle',
     severity: 'medium',
     label: 'In Progress',
   },
   running: {
-    color: '#FFFFFF',
-    backgroundColor: brandColors.primary.main,
+    color: indicator.running.fg,
+    backgroundColor: indicator.running.bg,
     icon: 'play',
     shape: 'circle',
     severity: 'medium',
@@ -155,40 +158,40 @@ export const statusConfigs: Record<StatusType, StatusConfig> = {
 
   // Low Attention - Green
   success: {
-    color: '#FFFFFF',
-    backgroundColor: '#24a148',
+    color: indicator.success.fg,
+    backgroundColor: indicator.success.bg,
     icon: 'check-circle',
     shape: 'circle',
     severity: 'low',
     label: 'Success',
   },
   complete: {
-    color: '#FFFFFF',
-    backgroundColor: '#24a148',
+    color: indicator.complete.fg,
+    backgroundColor: indicator.complete.bg,
     icon: 'check',
     shape: 'circle',
     severity: 'low',
     label: 'Complete',
   },
   approved: {
-    color: '#FFFFFF',
-    backgroundColor: '#24a148',
+    color: indicator.approved.fg,
+    backgroundColor: indicator.approved.bg,
     icon: 'check-circle',
     shape: 'circle',
     severity: 'low',
     label: 'Approved',
   },
   active: {
-    color: '#FFFFFF',
-    backgroundColor: '#24a148',
+    color: indicator.active.fg,
+    backgroundColor: indicator.active.bg,
     icon: 'check',
     shape: 'circle',
     severity: 'low',
     label: 'Active',
   },
   enabled: {
-    color: '#FFFFFF',
-    backgroundColor: '#24a148',
+    color: indicator.enabled.fg,
+    backgroundColor: indicator.enabled.bg,
     icon: 'check',
     shape: 'circle',
     severity: 'low',
@@ -197,24 +200,24 @@ export const statusConfigs: Record<StatusType, StatusConfig> = {
 
   // Informational - Blue
   info: {
-    color: '#FFFFFF',
-    backgroundColor: '#0043ce',
+    color: indicator.info.fg,
+    backgroundColor: indicator.info.bg,
     icon: 'info',
     shape: 'circle',
     severity: 'info',
     label: 'Info',
   },
   new: {
-    color: '#FFFFFF',
-    backgroundColor: '#0043ce',
+    color: indicator.new.fg,
+    backgroundColor: indicator.new.bg,
     icon: 'star',
     shape: 'circle',
     severity: 'info',
     label: 'New',
   },
   updated: {
-    color: '#FFFFFF',
-    backgroundColor: '#0043ce',
+    color: indicator.updated.fg,
+    backgroundColor: indicator.updated.bg,
     icon: 'refresh',
     shape: 'circle',
     severity: 'info',
@@ -223,32 +226,32 @@ export const statusConfigs: Record<StatusType, StatusConfig> = {
 
   // Neutral - Gray
   draft: {
-    color: '#FFFFFF',
-    backgroundColor: '#6f6f6f',
+    color: indicator.draft.fg,
+    backgroundColor: indicator.draft.bg,
     icon: 'edit',
     shape: 'circle',
     severity: 'neutral',
     label: 'Draft',
   },
   inactive: {
-    color: '#FFFFFF',
-    backgroundColor: '#6f6f6f',
+    color: indicator.inactive.fg,
+    backgroundColor: indicator.inactive.bg,
     icon: 'remove',
     shape: 'circle',
     severity: 'neutral',
     label: 'Inactive',
   },
   disabled: {
-    color: '#FFFFFF',
-    backgroundColor: '#6f6f6f',
+    color: indicator.disabled.fg,
+    backgroundColor: indicator.disabled.bg,
     icon: 'close',
     shape: 'circle',
     severity: 'neutral',
     label: 'Disabled',
   },
   unknown: {
-    color: '#FFFFFF',
-    backgroundColor: '#6f6f6f',
+    color: indicator.unknown.fg,
+    backgroundColor: indicator.unknown.bg,
     icon: 'help',
     shape: 'circle',
     severity: 'neutral',
@@ -257,16 +260,16 @@ export const statusConfigs: Record<StatusType, StatusConfig> = {
 
   // Special - Purple
   beta: {
-    color: '#FFFFFF',
-    backgroundColor: '#8a3ffc',
+    color: indicator.beta.fg,
+    backgroundColor: indicator.beta.bg,
     icon: 'zap',
     shape: 'diamond',
     severity: 'info',
     label: 'Beta',
   },
   experimental: {
-    color: '#FFFFFF',
-    backgroundColor: '#8a3ffc',
+    color: indicator.experimental.fg,
+    backgroundColor: indicator.experimental.bg,
     icon: 'code',
     shape: 'diamond',
     severity: 'info',

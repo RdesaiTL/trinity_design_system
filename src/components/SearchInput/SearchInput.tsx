@@ -278,14 +278,14 @@ export const SearchInput: React.FC<SearchInputProps> = ({
             display: 'flex',
             alignItems: 'center',
             height: styles.height,
-            borderRadius: semanticTokens.borders.radius.input,
+            borderRadius: semanticTokens.borders.radiusPx.xs,
             border: `1px solid ${
               isOpen 
                 ? theme.palette.primary.main 
                 : theme.palette.divider
             }`,
             backgroundColor: theme.palette.background.paper,
-            transition: `all ${baseTokens.duration.fast} ${baseTokens.easing.inOut}`,
+            transition: `all ${semanticTokens.motion.duration.fast} ${semanticTokens.motion.easing.default}`,
             '&:hover': {
               borderColor: disabled 
                 ? theme.palette.divider 
@@ -316,6 +316,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
             onKeyDown={handleKeyDown}
             placeholder={placeholder}
             disabled={disabled}
+            // eslint-disable-next-line jsx-a11y/no-autofocus -- Controlled via prop, intentional for search focus UX
             autoFocus={autoFocus}
             sx={{
               flex: 1,
@@ -364,20 +365,22 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           )}
         </Paper>
 
+        {/* eslint-disable react-hooks/refs -- Valid MUI Popper pattern for anchor positioning and width calculation */}
         <Popper
           open={showDropdown}
           anchorEl={anchorRef.current}
           placement="bottom-start"
           transition
-          style={{ width: anchorRef.current?.offsetWidth, zIndex: baseTokens.zIndex.dropdown }}
+          style={{ width: anchorRef.current?.offsetWidth, zIndex: 1000 }}
         >
+          {/* eslint-enable react-hooks/refs */}
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={200}>
               <Paper
                 elevation={8}
                 sx={{
                   mt: 0.5,
-                  borderRadius: semanticTokens.borders.radius.menu,
+                  borderRadius: semanticTokens.borders.radiusPx.sm,
                   border: `1px solid ${theme.palette.divider}`,
                   maxHeight: 400,
                   overflow: 'auto',

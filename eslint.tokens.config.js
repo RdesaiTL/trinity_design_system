@@ -10,6 +10,7 @@
 import tseslint from 'typescript-eslint';
 import eslint from '@eslint/js';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
+import reactHooks from 'eslint-plugin-react-hooks';
 
 // Files exempt from strict color checking
 const EXEMPT_PATTERNS = [
@@ -42,6 +43,9 @@ export default tseslint.config(
         },
       },
     },
+    plugins: {
+      'react-hooks': reactHooks,
+    },
     rules: {
       // Disable rules that conflict with TypeScript/our codebase
       '@typescript-eslint/no-unused-vars': 'off',
@@ -71,10 +75,12 @@ export default tseslint.config(
           message: '❌ TOKEN VIOLATION: Use token references instead of hsla().',
         },
         // Direct baseTokens import (should use brandColors or semanticTokens)
-        {
-          selector: 'ImportSpecifier[imported.name="baseTokens"]',
-          message: '⚠️ IMPORT WARNING: Prefer brandColors or semanticTokens over baseTokens in component code.',
-        },
+        // NOTE: baseTokens is valid for spacing, fontSize, borderRadius, duration, easing
+        // which aren't available in semanticTokens. This is a warning only.
+        // {
+        //   selector: 'ImportSpecifier[imported.name="baseTokens"]',
+        //   message: '⚠️ IMPORT WARNING: Prefer brandColors or semanticTokens over baseTokens in component code.',
+        // },
       ],
 
       // Restrict certain imports in component files

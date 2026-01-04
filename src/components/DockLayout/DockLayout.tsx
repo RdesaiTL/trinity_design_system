@@ -20,8 +20,6 @@ import {
   Maximize as MaximizeIcon,
   OpenInNew as PopOutIcon,
   PushPin as PinIcon,
-  VerticalSplit as SplitHorizontalIcon,
-  HorizontalSplit as SplitVerticalIcon,
 } from '@mui/icons-material';
 
 // ============================================

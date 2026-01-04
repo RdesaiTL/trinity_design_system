@@ -1,12 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Box, Typography, Button, Chip, IconButton, Avatar, Divider } from '@mui/material';
+import { Box, Typography, Chip, IconButton, Avatar, Divider } from '@mui/material';
 import {
   Email as EmailIcon,
-  Delete as DeleteIcon,
   Archive as ArchiveIcon,
-  Star as StarIcon,
-  StarBorder as StarBorderIcon,
   Reply as ReplyIcon,
   Forward as ForwardIcon,
 } from '@mui/icons-material';

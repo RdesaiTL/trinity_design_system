@@ -489,8 +489,8 @@ const SideBySideView: React.FC<SideBySideViewProps> = ({ hunks, showLineNumbers 
 // ============================================
 
 export const DiffViewer: React.FC<DiffViewerProps> = ({
-  oldValue,
-  newValue,
+  oldValue = '',
+  newValue = '',
   oldTitle = 'Original',
   newTitle = 'Modified',
   viewMode: initialViewMode = 'unified',
@@ -507,8 +507,8 @@ export const DiffViewer: React.FC<DiffViewerProps> = ({
   const [viewMode, setViewMode] = React.useState<DiffViewMode>(initialViewMode);
   const [expandedHunks, setExpandedHunks] = React.useState<Set<number>>(new Set());
 
-  const oldLines = React.useMemo(() => oldValue.split('\n'), [oldValue]);
-  const newLines = React.useMemo(() => newValue.split('\n'), [newValue]);
+  const oldLines = React.useMemo(() => (oldValue ?? '').split('\n'), [oldValue]);
+  const newLines = React.useMemo(() => (newValue ?? '').split('\n'), [newValue]);
   const hunks = React.useMemo(
     () => computeDiff(oldLines, newLines, contextLines),
     [oldLines, newLines, contextLines]

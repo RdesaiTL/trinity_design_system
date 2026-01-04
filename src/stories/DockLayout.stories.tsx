@@ -1,14 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { DockLayout, DockPanel, DockZone } from '../components/DockLayout';
-import { Box, Typography, Paper, List, ListItem, ListItemIcon, ListItemText, IconButton } from '@mui/material';
+import { Box, Typography, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import {
   Folder as FolderIcon,
   Code as CodeIcon,
   Terminal as TerminalIcon,
   Search as SearchIcon,
-  BugReport as DebugIcon,
-  Extension as ExtensionIcon,
-  Settings as SettingsIcon,
   Output as OutputIcon,
   Error as ErrorIcon,
   Warning as WarningIcon,
@@ -28,11 +25,13 @@ const meta: Meta<typeof DockLayout> = {
     },
   },
   argTypes: {
-    direction: {
-      control: 'select',
-      options: ['horizontal', 'vertical'],
-    },
     showPanelActions: {
+      control: 'boolean',
+    },
+    draggable: {
+      control: 'boolean',
+    },
+    compact: {
       control: 'boolean',
     },
   },
@@ -141,158 +140,183 @@ const ProblemsPanel = () => (
   </Box>
 );
 
+// Sample panels
+const samplePanels: DockPanel[] = [
+  { id: 'explorer', title: 'Explorer', icon: <FolderIcon fontSize="small" />, content: <FileExplorer /> },
+  { id: 'search', title: 'Search', icon: <SearchIcon fontSize="small" />, content: <SearchPanel /> },
+  { id: 'editor1', title: 'App.tsx', icon: <CodeIcon fontSize="small" />, content: <EditorContent /> },
+  { id: 'editor2', title: 'index.ts', icon: <CodeIcon fontSize="small" />, content: <EditorContent filename="index.ts" /> },
+  { id: 'terminal', title: 'Terminal', icon: <TerminalIcon fontSize="small" />, content: <TerminalContent /> },
+  { id: 'output', title: 'Output', icon: <OutputIcon fontSize="small" />, content: <OutputPanel /> },
+  { id: 'problems', title: 'Problems', icon: <ErrorIcon fontSize="small" />, content: <ProblemsPanel /> },
+];
+
+// Simple layout with horizontal split
+const simpleLayout: DockZone = {
+  id: 'root',
+  type: 'split-horizontal',
+  panels: [],
+  children: [
+    {
+      id: 'sidebar',
+      type: 'tabs',
+      panels: ['explorer', 'search'],
+      activePanel: 'explorer',
+      size: 0.25,
+    },
+    {
+      id: 'main',
+      type: 'tabs',
+      panels: ['editor1', 'editor2'],
+      activePanel: 'editor1',
+      size: 0.75,
+    },
+  ],
+};
+
 export const Default: Story = {
-  args: {
-    direction: 'horizontal',
-    zones: [
-      {
-        id: 'sidebar',
-        size: 20,
-        panels: [
-          { id: 'explorer', title: 'Explorer', icon: <FolderIcon fontSize="small" />, content: <FileExplorer /> },
-          { id: 'search', title: 'Search', icon: <SearchIcon fontSize="small" />, content: <SearchPanel /> },
-        ],
-      },
-      {
-        id: 'main',
-        size: 60,
-        panels: [
-          { id: 'editor1', title: 'App.tsx', icon: <CodeIcon fontSize="small" />, content: <EditorContent /> },
-          { id: 'editor2', title: 'index.ts', icon: <CodeIcon fontSize="small" />, content: <EditorContent filename="index.ts" /> },
-        ],
-      },
-      {
-        id: 'panel',
-        size: 20,
-        panels: [
-          { id: 'terminal', title: 'Terminal', icon: <TerminalIcon fontSize="small" />, content: <TerminalContent /> },
-        ],
-      },
-    ],
-  },
-  decorators: [
-    (Story) => (
+  render: () => {
+    const [layout, setLayout] = React.useState<DockZone>(simpleLayout);
+    
+    return (
       <Box sx={{ height: 500 }}>
-        <Story />
+        <DockLayout
+          panels={samplePanels}
+          layout={layout}
+          onLayoutChange={setLayout}
+          showPanelActions
+        />
       </Box>
-    ),
+    );
+  },
+};
+
+// IDE-like layout
+const ideLayout: DockZone = {
+  id: 'root',
+  type: 'split-horizontal',
+  panels: [],
+  children: [
+    {
+      id: 'sidebar',
+      type: 'tabs',
+      panels: ['explorer', 'search'],
+      activePanel: 'explorer',
+      size: 0.2,
+    },
+    {
+      id: 'center',
+      type: 'split-vertical',
+      panels: [],
+      size: 0.8,
+      children: [
+        {
+          id: 'editors',
+          type: 'tabs',
+          panels: ['editor1', 'editor2'],
+          activePanel: 'editor1',
+          size: 0.7,
+        },
+        {
+          id: 'bottom',
+          type: 'tabs',
+          panels: ['terminal', 'output', 'problems'],
+          activePanel: 'terminal',
+          size: 0.3,
+        },
+      ],
+    },
   ],
 };
 
 export const IDELayout: Story = {
-  render: () => (
-    <Box sx={{ height: 600 }}>
-      <DockLayout
-        direction="horizontal"
-        zones={[
-          {
-            id: 'left-sidebar',
-            size: 18,
-            panels: [
-              { id: 'explorer', title: 'Explorer', icon: <FolderIcon fontSize="small" />, content: <FileExplorer /> },
-              { id: 'search', title: 'Search', icon: <SearchIcon fontSize="small" />, content: <SearchPanel /> },
-              { id: 'debug', title: 'Debug', icon: <DebugIcon fontSize="small" />, content: <Box sx={{ p: 2 }}>Debug panel</Box> },
-              { id: 'extensions', title: 'Extensions', icon: <ExtensionIcon fontSize="small" />, content: <Box sx={{ p: 2 }}>Extensions</Box> },
-            ],
-          },
-          {
-            id: 'editor-area',
-            size: 62,
-            direction: 'vertical',
-            children: [
-              {
-                id: 'editors',
-                size: 70,
-                panels: [
-                  { id: 'app', title: 'App.tsx', icon: <CodeIcon fontSize="small" />, content: <EditorContent /> },
-                  { id: 'theme', title: 'theme.ts', icon: <CodeIcon fontSize="small" />, content: <EditorContent filename="theme.ts" /> },
-                  { id: 'index', title: 'index.ts', icon: <CodeIcon fontSize="small" />, content: <EditorContent filename="index.ts" /> },
-                ],
-              },
-              {
-                id: 'bottom-panel',
-                size: 30,
-                panels: [
-                  { id: 'terminal', title: 'Terminal', icon: <TerminalIcon fontSize="small" />, content: <TerminalContent /> },
-                  { id: 'output', title: 'Output', icon: <OutputIcon fontSize="small" />, content: <OutputPanel /> },
-                  { id: 'problems', title: 'Problems', icon: <ErrorIcon fontSize="small" />, content: <ProblemsPanel /> },
-                ],
-              },
-            ],
-          },
-          {
-            id: 'right-sidebar',
-            size: 20,
-            panels: [
-              { id: 'outline', title: 'Outline', icon: <CodeIcon fontSize="small" />, content: <Box sx={{ p: 2 }}>Document outline</Box> },
-            ],
-          },
-        ]}
-        showPanelActions
-      />
-    </Box>
-  ),
+  render: () => {
+    const [layout, setLayout] = React.useState<DockZone>(ideLayout);
+    
+    return (
+      <Box sx={{ height: 600 }}>
+        <DockLayout
+          panels={samplePanels}
+          layout={layout}
+          onLayoutChange={setLayout}
+          showPanelActions
+          draggable
+        />
+      </Box>
+    );
+  },
   parameters: {
     docs: {
       description: {
-        story: 'A full IDE-like layout with sidebars, editor tabs, and bottom panel area.',
+        story: 'A full IDE-like layout with sidebar, editor tabs, and bottom panel area.',
       },
     },
   },
 };
 
-export const VerticalSplit: Story = {
-  args: {
-    direction: 'vertical',
-    zones: [
-      {
-        id: 'top',
-        size: 60,
-        panels: [
-          { id: 'editor', title: 'Editor', icon: <CodeIcon fontSize="small" />, content: <EditorContent /> },
-        ],
-      },
-      {
-        id: 'bottom',
-        size: 40,
-        panels: [
-          { id: 'terminal', title: 'Terminal', icon: <TerminalIcon fontSize="small" />, content: <TerminalContent /> },
-          { id: 'output', title: 'Output', icon: <OutputIcon fontSize="small" />, content: <OutputPanel /> },
-        ],
-      },
-    ],
-  },
-  decorators: [
-    (Story) => (
-      <Box sx={{ height: 500 }}>
-        <Story />
-      </Box>
-    ),
+// Vertical split layout
+const verticalLayout: DockZone = {
+  id: 'root',
+  type: 'split-vertical',
+  panels: [],
+  children: [
+    {
+      id: 'top',
+      type: 'tabs',
+      panels: ['editor1'],
+      activePanel: 'editor1',
+      size: 0.6,
+    },
+    {
+      id: 'bottom',
+      type: 'tabs',
+      panels: ['terminal', 'output'],
+      activePanel: 'terminal',
+      size: 0.4,
+    },
   ],
 };
 
-export const SingleZone: Story = {
-  args: {
-    zones: [
-      {
-        id: 'main',
-        size: 100,
-        panels: [
-          { id: 'file1', title: 'file1.tsx', icon: <CodeIcon fontSize="small" />, content: <EditorContent filename="file1.tsx" /> },
-          { id: 'file2', title: 'file2.tsx', icon: <CodeIcon fontSize="small" />, content: <EditorContent filename="file2.tsx" /> },
-          { id: 'file3', title: 'file3.tsx', icon: <CodeIcon fontSize="small" />, content: <EditorContent filename="file3.tsx" /> },
-        ],
-      },
-    ],
-    showPanelActions: true,
-  },
-  decorators: [
-    (Story) => (
-      <Box sx={{ height: 400 }}>
-        <Story />
+export const VerticalSplit: Story = {
+  render: () => {
+    const [layout, setLayout] = React.useState<DockZone>(verticalLayout);
+    
+    return (
+      <Box sx={{ height: 500 }}>
+        <DockLayout
+          panels={samplePanels}
+          layout={layout}
+          onLayoutChange={setLayout}
+          showPanelActions
+        />
       </Box>
-    ),
-  ],
+    );
+  },
+};
+
+// Single zone with tabs
+const singleZoneLayout: DockZone = {
+  id: 'root',
+  type: 'tabs',
+  panels: ['editor1', 'editor2', 'terminal'],
+  activePanel: 'editor1',
+};
+
+export const SingleZone: Story = {
+  render: () => {
+    const [layout, setLayout] = React.useState<DockZone>(singleZoneLayout);
+    
+    return (
+      <Box sx={{ height: 400 }}>
+        <DockLayout
+          panels={samplePanels}
+          layout={layout}
+          onLayoutChange={setLayout}
+          showPanelActions
+        />
+      </Box>
+    );
+  },
   parameters: {
     docs: {
       description: {
@@ -302,174 +326,104 @@ export const SingleZone: Story = {
   },
 };
 
-export const WithPanelActions: Story = {
-  args: {
-    direction: 'horizontal',
-    showPanelActions: true,
-    onPanelClose: (panelId) => console.log('Close panel:', panelId),
-    onPanelMaximize: (panelId) => console.log('Maximize panel:', panelId),
-    onPanelMove: (panelId, targetZoneId) => console.log('Move panel:', panelId, 'to', targetZoneId),
-    zones: [
-      {
-        id: 'left',
-        size: 30,
-        panels: [
-          { id: 'panel1', title: 'Panel 1', icon: <FolderIcon fontSize="small" />, content: <Box sx={{ p: 2 }}>Panel 1 content</Box> },
-        ],
-      },
-      {
-        id: 'right',
-        size: 70,
-        panels: [
-          { id: 'panel2', title: 'Panel 2', icon: <CodeIcon fontSize="small" />, content: <Box sx={{ p: 2 }}>Panel 2 content</Box> },
-          { id: 'panel3', title: 'Panel 3', icon: <TerminalIcon fontSize="small" />, content: <Box sx={{ p: 2 }}>Panel 3 content</Box> },
-        ],
-      },
-    ],
-  },
-  decorators: [
-    (Story) => (
+export const CompactMode: Story = {
+  render: () => {
+    const [layout, setLayout] = React.useState<DockZone>(simpleLayout);
+    
+    return (
       <Box sx={{ height: 400 }}>
-        <Story />
+        <DockLayout
+          panels={samplePanels}
+          layout={layout}
+          onLayoutChange={setLayout}
+          showPanelActions
+          compact
+        />
       </Box>
-    ),
-  ],
+    );
+  },
   parameters: {
     docs: {
       description: {
-        story: 'Panel actions menu visible on each tab for close, maximize, and move operations.',
+        story: 'Compact mode reduces spacing for denser layouts.',
       },
     },
   },
 };
 
-export const NestedZones: Story = {
-  render: () => (
-    <Box sx={{ height: 500 }}>
-      <DockLayout
-        direction="horizontal"
-        zones={[
-          {
-            id: 'sidebar',
-            size: 25,
-            panels: [
-              { id: 'explorer', title: 'Explorer', content: <FileExplorer /> },
-            ],
-          },
-          {
-            id: 'center',
-            size: 75,
-            direction: 'horizontal',
-            children: [
-              {
-                id: 'editor-left',
-                size: 50,
-                panels: [
-                  { id: 'editor1', title: 'Left Editor', content: <EditorContent filename="left.tsx" /> },
-                ],
-              },
-              {
-                id: 'editor-right',
-                size: 50,
-                panels: [
-                  { id: 'editor2', title: 'Right Editor', content: <EditorContent filename="right.tsx" /> },
-                ],
-              },
-            ],
-          },
-        ]}
-      />
-    </Box>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story: 'Split editors side-by-side using nested zones.',
-      },
-    },
-  },
-};
-
-export const DarkThemePreview: Story = {
-  render: () => (
-    <Box sx={{ height: 500, bgcolor: 'grey.900', color: 'grey.100' }}>
-      <DockLayout
-        direction="horizontal"
-        zones={[
-          {
-            id: 'sidebar',
-            size: 22,
-            panels: [
-              { id: 'explorer', title: 'Explorer', icon: <FolderIcon fontSize="small" />, content: <FileExplorer /> },
-            ],
-          },
-          {
-            id: 'main',
-            size: 78,
-            direction: 'vertical',
-            children: [
-              {
-                id: 'editor',
-                size: 65,
-                panels: [
-                  { id: 'file', title: 'App.tsx', icon: <CodeIcon fontSize="small" />, content: <EditorContent /> },
-                ],
-              },
-              {
-                id: 'terminal',
-                size: 35,
-                panels: [
-                  { id: 'term', title: 'Terminal', icon: <TerminalIcon fontSize="small" />, content: <TerminalContent /> },
-                ],
-              },
-            ],
-          },
-        ]}
-      />
-    </Box>
-  ),
-  parameters: {
-    backgrounds: { default: 'dark' },
-    docs: {
-      description: {
-        story: 'DockLayout adapts to dark theme backgrounds.',
-      },
-    },
-  },
-};
-
-export const MinimalLayout: Story = {
-  args: {
-    direction: 'horizontal',
-    zones: [
-      {
-        id: 'nav',
-        size: 15,
-        minSize: 100,
-        panels: [
-          { id: 'menu', title: 'Menu', content: <Box sx={{ p: 2 }}>Navigation</Box> },
-        ],
-      },
-      {
-        id: 'content',
-        size: 85,
-        panels: [
-          { id: 'main', title: 'Content', content: <Box sx={{ p: 2 }}>Main content area</Box> },
-        ],
-      },
-    ],
-  },
-  decorators: [
-    (Story) => (
-      <Box sx={{ height: 350 }}>
-        <Story />
+export const WithoutPanelActions: Story = {
+  render: () => {
+    const [layout, setLayout] = React.useState<DockZone>(simpleLayout);
+    
+    return (
+      <Box sx={{ height: 400 }}>
+        <DockLayout
+          panels={samplePanels}
+          layout={layout}
+          onLayoutChange={setLayout}
+          showPanelActions={false}
+        />
       </Box>
-    ),
-  ],
+    );
+  },
   parameters: {
     docs: {
       description: {
-        story: 'A minimal two-panel layout suitable for admin dashboards.',
+        story: 'Panel actions menu hidden for a cleaner appearance.',
+      },
+    },
+  },
+};
+
+// Three-column layout
+const threeColumnLayout: DockZone = {
+  id: 'root',
+  type: 'split-horizontal',
+  panels: [],
+  children: [
+    {
+      id: 'left',
+      type: 'tabs',
+      panels: ['explorer'],
+      activePanel: 'explorer',
+      size: 0.2,
+    },
+    {
+      id: 'center',
+      type: 'tabs',
+      panels: ['editor1', 'editor2'],
+      activePanel: 'editor1',
+      size: 0.6,
+    },
+    {
+      id: 'right',
+      type: 'tabs',
+      panels: ['problems', 'output'],
+      activePanel: 'problems',
+      size: 0.2,
+    },
+  ],
+};
+
+export const ThreeColumnLayout: Story = {
+  render: () => {
+    const [layout, setLayout] = React.useState<DockZone>(threeColumnLayout);
+    
+    return (
+      <Box sx={{ height: 500 }}>
+        <DockLayout
+          panels={samplePanels}
+          layout={layout}
+          onLayoutChange={setLayout}
+          showPanelActions
+        />
+      </Box>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A three-column layout with sidebar, main content, and properties panel.',
       },
     },
   },

@@ -240,11 +240,23 @@ function MyForm() {
             Import Trinity-specific components directly:
           </Typography>
           <CodeBlock isDark={isDark}>{`import { 
-  StatusIndicator, 
-  Modal, 
-  FileUpload,
-  TopNavHeader,
-  TopNavWithSidebar,
+  // Layout & Navigation
+  AppLayout,
+  CommandPalette,
+  SplitPane,
+  DockLayout,
+  
+  // Data Display
+  DataCard,
+  DataTable,
+  Timeline,
+  DiffViewer,
+  
+  // Inputs & Feedback
+  SearchInput,
+  FilterBar,
+  Modal,
+  StatusIndicator,
 } from '@trinity/design-system';`}</CodeBlock>
         </SubSection>
 
@@ -259,14 +271,22 @@ function MyForm() {
               </TableHead>
               <TableBody>
                 {[
-                  ['TopNavHeader', 'Navigation header with client selector, search, apps menu, user menu'],
-                  ['TopNavWithSidebar', 'Full page layout with collapsible sidebar navigation'],
-                  ['StatusIndicator', 'Status badges with dot, badge, and pill variants'],
-                  ['Modal', 'Accessible dialog with confirmation, danger, and custom variants'],
-                  ['FileUpload', 'Drag-and-drop file upload with progress tracking'],
-                  ['IllustratedMessage', 'Empty states and error messages with illustrations'],
+                  ['AppLayout', 'Full application shell with sidebar, header, and AI integration'],
+                  ['CommandPalette', 'Keyboard-driven command interface (⌘K) with search'],
+                  ['DataCard', 'Metric cards with trends, sparklines, and comparison indicators'],
                   ['DataTable', 'Enhanced table with sorting, pagination, and selection'],
-                  ['PageHeader', 'Consistent page headers with breadcrumbs and actions'],
+                  ['DiffViewer', 'Side-by-side and unified code/text diff viewer'],
+                  ['DockLayout', 'VS Code-style dockable panel layout system'],
+                  ['FileUpload', 'Drag-and-drop file upload with progress tracking'],
+                  ['FilterBar', 'Composable filter bar with presets and quick filters'],
+                  ['Modal', 'Accessible dialog with confirmation, danger, and custom variants'],
+                  ['SearchInput', 'Search with suggestions, recent searches, and ⌘K shortcut'],
+                  ['SplitPane', 'Resizable split layouts with collapsible panels'],
+                  ['StatusIndicator', 'Status badges with dot, badge, and pill variants'],
+                  ['Timeline', 'Activity feeds, audit logs, and historical data display'],
+                  ['TopNavHeader', 'Navigation header with client selector, search, apps menu'],
+                  ['TreeView', 'Hierarchical tree navigation with expand/collapse'],
+                  ['TransferList', 'Dual-list selection for permission assignment'],
                 ].map(([name, desc]) => (
                   <TableRow key={name}>
                     <TableCell>
@@ -600,7 +620,7 @@ interface MyModalProps extends Omit<ModalProps, 'open' | 'onClose'> {
 // ============================================================================
 
 const meta: Meta<typeof IntroductionPage> = {
-  title: 'Documentation/Getting Started',
+  title: 'Getting Started',
   component: IntroductionPage,
   parameters: {
     layout: 'padded',

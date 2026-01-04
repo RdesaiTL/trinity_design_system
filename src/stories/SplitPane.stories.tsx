@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { SplitPane } from '../components/SplitPane';
-import { Box, Typography, Paper, List, ListItem, ListItemText, IconButton } from '@mui/material';
+import { Box, Typography, Paper, List, ListItem, ListItemText } from '@mui/material';
 import {
   Folder as FolderIcon,
   Code as CodeIcon,
@@ -21,12 +21,12 @@ const meta: Meta<typeof SplitPane> = {
     },
   },
   argTypes: {
-    orientation: {
+    direction: {
       control: 'select',
       options: ['horizontal', 'vertical'],
     },
     defaultSize: {
-      control: { type: 'number', min: 0, max: 100 },
+      control: { type: 'text' },
     },
     minSize: {
       control: 'number',
@@ -37,10 +37,16 @@ const meta: Meta<typeof SplitPane> = {
     resizerSize: {
       control: { type: 'number', min: 1, max: 16 },
     },
-    collapsible: {
+    showResizerIcon: {
       control: 'boolean',
     },
-    disabled: {
+    doubleClickReset: {
+      control: 'boolean',
+    },
+    collapsedFirst: {
+      control: 'boolean',
+    },
+    collapsedSecond: {
       control: 'boolean',
     },
   },
@@ -124,80 +130,53 @@ const Panel = ({ title, children, icon }: { title: string; children?: React.Reac
 );
 
 export const Default: Story = {
-  args: {
-    orientation: 'horizontal',
-    defaultSize: 30,
-    primary: (
-      <Panel title="Left Panel" icon={<FolderIcon fontSize="small" />}>
-        <Typography variant="body2" color="text.secondary">
-          Drag the divider to resize
-        </Typography>
-      </Panel>
-    ),
-    secondary: (
-      <Panel title="Right Panel" icon={<CodeIcon fontSize="small" />}>
-        <Typography variant="body2" color="text.secondary">
-          This is the secondary panel
-        </Typography>
-      </Panel>
-    ),
-  },
-  decorators: [
-    (Story) => (
-      <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
-        <Story />
-      </Box>
-    ),
-  ],
+  render: () => (
+    <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
+      <SplitPane direction="horizontal" defaultSize="30%">
+        <Panel title="Left Panel" icon={<FolderIcon fontSize="small" />}>
+          <Typography variant="body2" color="text.secondary">
+            Drag the divider to resize
+          </Typography>
+        </Panel>
+        <Panel title="Right Panel" icon={<CodeIcon fontSize="small" />}>
+          <Typography variant="body2" color="text.secondary">
+            This is the secondary panel
+          </Typography>
+        </Panel>
+      </SplitPane>
+    </Box>
+  ),
 };
 
 export const Vertical: Story = {
-  args: {
-    orientation: 'vertical',
-    defaultSize: 60,
-    primary: (
-      <Panel title="Top Panel">
-        <Typography variant="body2" color="text.secondary">
-          This panel is above
-        </Typography>
-      </Panel>
-    ),
-    secondary: (
-      <Panel title="Bottom Panel">
-        <Typography variant="body2" color="text.secondary">
-          This panel is below
-        </Typography>
-      </Panel>
-    ),
-  },
-  decorators: [
-    (Story) => (
-      <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
-        <Story />
-      </Box>
-    ),
-  ],
+  render: () => (
+    <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
+      <SplitPane direction="vertical" defaultSize="60%">
+        <Panel title="Top Panel">
+          <Typography variant="body2" color="text.secondary">
+            This panel is above
+          </Typography>
+        </Panel>
+        <Panel title="Bottom Panel">
+          <Typography variant="body2" color="text.secondary">
+            This panel is below
+          </Typography>
+        </Panel>
+      </SplitPane>
+    </Box>
+  ),
 };
 
 export const IDELayout: Story = {
   render: () => (
     <Box sx={{ height: 500, border: 1, borderColor: 'divider' }}>
-      <SplitPane
-        orientation="horizontal"
-        defaultSize={20}
-        minSize={150}
-        maxSize={400}
-        primary={<FileTree />}
-        secondary={
-          <SplitPane
-            orientation="vertical"
-            defaultSize={70}
-            minSize={100}
-            primary={<CodeEditor />}
-            secondary={<TerminalPanel />}
-          />
-        }
-      />
+      <SplitPane direction="horizontal" defaultSize="20%" minSize={150} maxSize={400}>
+        <FileTree />
+        <SplitPane direction="vertical" defaultSize="70%">
+          <CodeEditor />
+          <TerminalPanel />
+        </SplitPane>
+      </SplitPane>
     </Box>
   ),
   parameters: {
@@ -210,140 +189,110 @@ export const IDELayout: Story = {
 };
 
 export const WithConstraints: Story = {
-  args: {
-    orientation: 'horizontal',
-    defaultSize: 30,
-    minSize: 200,
-    maxSize: 500,
-    primary: (
-      <Panel title="Constrained Panel">
-        <Typography variant="body2" color="text.secondary">
-          This panel has min: 200px, max: 500px
-        </Typography>
-      </Panel>
-    ),
-    secondary: (
-      <Panel title="Secondary Panel">
-        <Typography variant="body2" color="text.secondary">
-          The primary panel's size is constrained
-        </Typography>
-      </Panel>
-    ),
-  },
-  decorators: [
-    (Story) => (
-      <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
-        <Story />
-      </Box>
-    ),
-  ],
+  render: () => (
+    <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
+      <SplitPane direction="horizontal" defaultSize="30%" minSize={200} maxSize={500}>
+        <Panel title="Constrained Panel">
+          <Typography variant="body2" color="text.secondary">
+            This panel has min: 200px, max: 500px
+          </Typography>
+        </Panel>
+        <Panel title="Secondary Panel">
+          <Typography variant="body2" color="text.secondary">
+            The primary panel's size is constrained
+          </Typography>
+        </Panel>
+      </SplitPane>
+    </Box>
+  ),
 };
 
-export const Collapsible: Story = {
-  args: {
-    orientation: 'horizontal',
-    defaultSize: 25,
-    minSize: 150,
-    collapsible: true,
-    primary: (
-      <Panel title="Sidebar" icon={<FolderIcon fontSize="small" />}>
-        <Typography variant="body2" color="text.secondary">
-          Double-click the divider to collapse/expand
-        </Typography>
-      </Panel>
-    ),
-    secondary: (
-      <Panel title="Main Content" icon={<CodeIcon fontSize="small" />}>
-        <Typography variant="body2" color="text.secondary">
-          When the sidebar is collapsed, you can double-click to restore it
-        </Typography>
-      </Panel>
-    ),
-  },
-  decorators: [
-    (Story) => (
-      <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
-        <Story />
-      </Box>
-    ),
-  ],
+export const CollapsedFirst: Story = {
+  render: () => (
+    <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
+      <SplitPane direction="horizontal" defaultSize="25%" collapsedFirst>
+        <Panel title="Sidebar" icon={<FolderIcon fontSize="small" />}>
+          <Typography variant="body2" color="text.secondary">
+            This panel starts collapsed
+          </Typography>
+        </Panel>
+        <Panel title="Main Content" icon={<CodeIcon fontSize="small" />}>
+          <Typography variant="body2" color="text.secondary">
+            Double-click the divider to expand the sidebar
+          </Typography>
+        </Panel>
+      </SplitPane>
+    </Box>
+  ),
+};
+
+export const CollapsedSecond: Story = {
+  render: () => (
+    <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
+      <SplitPane direction="horizontal" defaultSize="75%" collapsedSecond>
+        <Panel title="Main Content" icon={<CodeIcon fontSize="small" />}>
+          <Typography variant="body2" color="text.secondary">
+            The secondary panel is collapsed
+          </Typography>
+        </Panel>
+        <Panel title="Properties" icon={<SettingsIcon fontSize="small" />}>
+          <Typography variant="body2" color="text.secondary">
+            Double-click to expand
+          </Typography>
+        </Panel>
+      </SplitPane>
+    </Box>
+  ),
 };
 
 export const CustomResizerSize: Story = {
-  args: {
-    orientation: 'horizontal',
-    defaultSize: 40,
-    resizerSize: 8,
-    primary: (
-      <Panel title="Left">
-        <Typography variant="body2" color="text.secondary">
-          Thicker resizer (8px)
-        </Typography>
-      </Panel>
-    ),
-    secondary: (
-      <Panel title="Right">
-        <Typography variant="body2" color="text.secondary">
-          Easier to grab on touch devices
-        </Typography>
-      </Panel>
-    ),
-  },
-  decorators: [
-    (Story) => (
-      <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
-        <Story />
-      </Box>
-    ),
-  ],
+  render: () => (
+    <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
+      <SplitPane direction="horizontal" defaultSize="40%" resizerSize={12}>
+        <Panel title="Left">
+          <Typography variant="body2" color="text.secondary">
+            Thicker resizer (12px)
+          </Typography>
+        </Panel>
+        <Panel title="Right">
+          <Typography variant="body2" color="text.secondary">
+            Easier to grab on touch devices
+          </Typography>
+        </Panel>
+      </SplitPane>
+    </Box>
+  ),
 };
 
-export const Disabled: Story = {
-  args: {
-    orientation: 'horizontal',
-    defaultSize: 35,
-    disabled: true,
-    primary: (
-      <Panel title="Fixed Panel">
-        <Typography variant="body2" color="text.secondary">
-          Resizing is disabled
-        </Typography>
-      </Panel>
-    ),
-    secondary: (
-      <Panel title="Fixed Panel">
-        <Typography variant="body2" color="text.secondary">
-          The divider cannot be moved
-        </Typography>
-      </Panel>
-    ),
-  },
-  decorators: [
-    (Story) => (
-      <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
-        <Story />
-      </Box>
-    ),
-  ],
+export const NoResizerIcon: Story = {
+  render: () => (
+    <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
+      <SplitPane direction="horizontal" defaultSize="35%" showResizerIcon={false}>
+        <Panel title="Left Panel">
+          <Typography variant="body2" color="text.secondary">
+            Resizer has no drag icon
+          </Typography>
+        </Panel>
+        <Panel title="Right Panel">
+          <Typography variant="body2" color="text.secondary">
+            Cleaner minimal appearance
+          </Typography>
+        </Panel>
+      </SplitPane>
+    </Box>
+  ),
 };
 
 export const ThreePanes: Story = {
   render: () => (
     <Box sx={{ height: 400, border: 1, borderColor: 'divider' }}>
-      <SplitPane
-        orientation="horizontal"
-        defaultSize={25}
-        minSize={150}
-        primary={<Panel title="Navigation" icon={<FolderIcon fontSize="small" />} />}
-        secondary={
-          <SplitPane
-            orientation="horizontal"
-            defaultSize={60}
-            primary={<Panel title="Content" icon={<CodeIcon fontSize="small" />} />}
-            secondary={<Panel title="Properties" icon={<SettingsIcon fontSize="small" />} />}
-          />
-        }
-      />
+      <SplitPane direction="horizontal" defaultSize="25%" minSize={150}>
+        <Panel title="Navigation" icon={<FolderIcon fontSize="small" />} />
+        <SplitPane direction="horizontal" defaultSize="60%">
+          <Panel title="Content" icon={<CodeIcon fontSize="small" />} />
+          <Panel title="Properties" icon={<SettingsIcon fontSize="small" />} />
+        </SplitPane>
+      </SplitPane>
     </Box>
   ),
   parameters: {
@@ -358,26 +307,16 @@ export const ThreePanes: Story = {
 export const GridLayout: Story = {
   render: () => (
     <Box sx={{ height: 500, border: 1, borderColor: 'divider' }}>
-      <SplitPane
-        orientation="vertical"
-        defaultSize={50}
-        primary={
-          <SplitPane
-            orientation="horizontal"
-            defaultSize={50}
-            primary={<Panel title="Top Left" />}
-            secondary={<Panel title="Top Right" />}
-          />
-        }
-        secondary={
-          <SplitPane
-            orientation="horizontal"
-            defaultSize={50}
-            primary={<Panel title="Bottom Left" />}
-            secondary={<Panel title="Bottom Right" />}
-          />
-        }
-      />
+      <SplitPane direction="vertical" defaultSize="50%">
+        <SplitPane direction="horizontal" defaultSize="50%">
+          <Panel title="Top Left" />
+          <Panel title="Top Right" />
+        </SplitPane>
+        <SplitPane direction="horizontal" defaultSize="50%">
+          <Panel title="Bottom Left" />
+          <Panel title="Bottom Right" />
+        </SplitPane>
+      </SplitPane>
     </Box>
   ),
   parameters: {

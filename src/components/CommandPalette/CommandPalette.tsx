@@ -100,10 +100,10 @@ const ShortcutKey: React.FC<{ shortcut: string }> = ({ shortcut }) => {
         minWidth: 22,
         height: 22,
         px: 0.75,
-        borderRadius: baseTokens.borderRadius.xs,
+        borderRadius: semanticTokens.borders.radiusPx.xs,
         backgroundColor: theme.palette.action.hover,
         border: `1px solid ${theme.palette.divider}`,
-        fontSize: baseTokens.fontSize.xs,
+        fontSize: '0.75rem',
         fontFamily: 'inherit',
         color: theme.palette.text.secondary,
       }}
@@ -280,7 +280,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       PaperProps={{
         elevation: 24,
         sx: {
-          borderRadius: semanticTokens.borders.radius.modal,
+          borderRadius: semanticTokens.borders.radiusPx.md,
           overflow: 'hidden',
           position: 'fixed',
           top: '15%',

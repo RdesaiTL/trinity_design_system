@@ -3,10 +3,8 @@ import { Box, Typography, Chip, Paper } from '@mui/material';
 import {
   Check as CheckIcon,
   Edit as EditIcon,
-  Delete as DeleteIcon,
   Comment as CommentIcon,
   Upload as UploadIcon,
-  Person as PersonIcon,
   Star as StarIcon,
 } from '@mui/icons-material';
 import { Timeline, type TimelineItem } from '../components/Timeline';

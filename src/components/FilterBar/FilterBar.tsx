@@ -19,7 +19,6 @@ import {
   TextField,
   Select,
   FormControl,
-  InputLabel,
   Checkbox,
   ListItemButton,
   List,
@@ -37,7 +36,7 @@ import {
   Check as CheckIcon,
   Refresh as ResetIcon,
 } from '@mui/icons-material';
-import { semanticTokens, baseTokens } from '../../tokens';
+import { semanticTokens } from '../../tokens';
 
 export type FilterType = 'select' | 'multiselect' | 'text' | 'date' | 'daterange' | 'number';
 
@@ -260,7 +259,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             sx: {
               mt: 0.5,
               minWidth: 240,
-              borderRadius: semanticTokens.borders.radius.menu,
+              borderRadius: semanticTokens.borders.radiusPx.sm,
             },
           },
         }}
@@ -326,6 +325,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               placeholder={activeFilter.placeholder}
               value={currentValue || ''}
               onChange={(e) => handleChange(e.target.value)}
+              // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional UX: focus filter input when opened
               autoFocus
             />
           )}
@@ -338,6 +338,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               placeholder={activeFilter.placeholder}
               value={currentValue || ''}
               onChange={(e) => handleChange(e.target.value ? Number(e.target.value) : null)}
+              // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional UX: focus filter input when opened
               autoFocus
             />
           )}
@@ -435,7 +436,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           endIcon={<ExpandIcon />}
           onClick={(e) => setMenuAnchor(e.currentTarget)}
           sx={{
-            borderRadius: semanticTokens.borders.radius.button,
+            borderRadius: semanticTokens.borders.radiusPx.sm,
             textTransform: 'none',
           }}
         >
@@ -454,7 +455,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             onClick={handleFilterClick(filter)}
             endIcon={<ExpandIcon sx={{ fontSize: 18 }} />}
             sx={{
-              borderRadius: semanticTokens.borders.radius.button,
+              borderRadius: semanticTokens.borders.radiusPx.sm,
               textTransform: 'none',
               ...(hasValue && {
                 backgroundColor: alpha(theme.palette.primary.main, 0.1),
@@ -527,7 +528,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           paper: {
             sx: {
               minWidth: 220,
-              borderRadius: semanticTokens.borders.radius.menu,
+              borderRadius: semanticTokens.borders.radiusPx.sm,
             },
           },
         }}
@@ -580,7 +581,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           paper: {
             sx: {
               minWidth: 200,
-              borderRadius: semanticTokens.borders.radius.menu,
+              borderRadius: semanticTokens.borders.radiusPx.sm,
             },
           },
         }}

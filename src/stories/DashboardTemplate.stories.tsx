@@ -7,7 +7,7 @@ import {
   AttachMoney as MoneyIcon,
   Check as CheckIcon,
   Edit as EditIcon,
-  Upload as UploadIcon,
+  Upload as Upload,
 } from '@mui/icons-material';
 import { DashboardTemplate, type KpiItem, type ActivityItem } from '../components/templates/Dashboard';
 

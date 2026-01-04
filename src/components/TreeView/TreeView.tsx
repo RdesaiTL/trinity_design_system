@@ -273,7 +273,7 @@ const TreeItem: React.FC<TreeItemProps> = ({
           py: dense ? 0.25 : 0.5,
           minHeight: dense ? 28 : 36,
           cursor: isDisabled ? 'not-allowed' : 'pointer',
-          borderRadius: 1,
+          borderRadius: 0.5,
           opacity: isDisabled ? 0.5 : 1,
           backgroundColor: isSelected
             ? alpha(theme.palette.primary.main, 0.12)

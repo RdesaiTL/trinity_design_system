@@ -202,10 +202,10 @@ export const DataCard: React.FC<DataCardProps> = ({
       elevation={variant === 'default' ? 1 : 0}
       onClick={onClick}
       sx={{
-        borderRadius: semanticTokens.borders.radius.card,
+        borderRadius: semanticTokens.borders.radiusPx.sm,
         height: fullHeight ? '100%' : 'auto',
         cursor: onClick ? 'pointer' : 'default',
-        transition: `all ${baseTokens.duration.fast} ${baseTokens.easing.inOut}`,
+        transition: `all ${semanticTokens.motion.duration.fast} ${semanticTokens.motion.easing.default}`,
         '&:hover': onClick
           ? {
               boxShadow: theme.shadows[4],

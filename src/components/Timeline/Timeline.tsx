@@ -20,7 +20,7 @@ import {
   ExpandMore as ExpandIcon,
   ExpandLess as CollapseIcon,
 } from '@mui/icons-material';
-import { semanticTokens, baseTokens } from '../../tokens';
+import { baseTokens } from '../../tokens';
 
 export type TimelineVariant = 'default' | 'compact' | 'detailed';
 export type TimelineItemType = 'default' | 'success' | 'warning' | 'error' | 'info';
@@ -217,7 +217,7 @@ export const TimelineItemComponent: React.FC<{
             elevation={0}
             sx={{
               p: 2,
-              borderRadius: semanticTokens.borders.radius.card,
+              borderRadius: `${baseTokens.borderRadius.sm}px`,
               border: `1px solid ${theme.palette.divider}`,
               transition: `all ${baseTokens.duration.fast} ${baseTokens.easing.inOut}`,
               '&:hover': (hasExpandable || onClick) ? {
@@ -368,8 +368,6 @@ export const Timeline: React.FC<TimelineProps> = ({
   emptyMessage = 'No activity to display',
   maxHeight,
 }) => {
-  const theme = useTheme();
-
   // Process items for date grouping
   const processedItems = React.useMemo(() => {
     if (!groupByDate) return items;

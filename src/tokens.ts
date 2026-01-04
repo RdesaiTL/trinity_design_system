@@ -935,7 +935,7 @@ export const semanticTokens = {
       text: baseTokens.colors.gray[900],
     },
 
-    // Status/Feedback
+    // Status/Feedback - Used for alerts, toasts, form validation
     status: {
       error: {
         text: '#DC2626',
@@ -957,6 +957,46 @@ export const semanticTokens = {
         background: baseTokens.colors.azure[50],
         border: baseTokens.colors.azure[200],
       },
+    },
+
+    /**
+     * Status Indicator Colors
+     * Semantic colors for StatusIndicator components (dots, badges, chips)
+     * These are intentionally distinct from status.* which are for alerts/toasts
+     * @intentional-color - Status indicators require specific colors for visual distinction
+     */
+    indicator: {
+      // High severity - Red/Critical
+      error: { fg: '#FFFFFF', bg: baseTokens.colors.coral[800] },
+      critical: { fg: '#FFFFFF', bg: '#DA1E28' },
+      failed: { fg: '#FFFFFF', bg: baseTokens.colors.coral[800] },
+      rejected: { fg: '#FFFFFF', bg: baseTokens.colors.coral[800] },
+      // Medium severity - Orange/Yellow  
+      warning: { fg: '#000000', bg: '#F1C21B', outline: '#8E6A00' },
+      caution: { fg: '#000000', bg: '#FF832B', outline: '#BA4E00' },
+      pending: { fg: '#000000', bg: '#F1C21B', outline: '#8E6A00' },
+      inProgress: { fg: '#FFFFFF', bg: baseTokens.colors.navy[900] },
+      running: { fg: '#FFFFFF', bg: baseTokens.colors.navy[900] },
+      // Low severity - Green/Success
+      success: { fg: '#FFFFFF', bg: '#24A148' },
+      complete: { fg: '#FFFFFF', bg: '#24A148' },
+      approved: { fg: '#FFFFFF', bg: '#24A148' },
+      active: { fg: '#FFFFFF', bg: '#24A148' },
+      enabled: { fg: '#FFFFFF', bg: '#24A148' },
+      // Informational - Blue
+      info: { fg: '#FFFFFF', bg: '#0043CE' },
+      new: { fg: '#FFFFFF', bg: '#0043CE' },
+      updated: { fg: '#FFFFFF', bg: '#0043CE' },
+      // Neutral - Gray
+      neutral: { fg: '#FFFFFF', bg: '#6F6F6F' },
+      draft: { fg: '#FFFFFF', bg: '#6F6F6F' },
+      inactive: { fg: '#FFFFFF', bg: '#6F6F6F' },
+      disabled: { fg: '#FFFFFF', bg: '#6F6F6F' },
+      cancelled: { fg: '#FFFFFF', bg: '#6F6F6F' },
+      unknown: { fg: '#FFFFFF', bg: '#6F6F6F' },
+      // Special
+      beta: { fg: '#FFFFFF', bg: '#8A3FFC' },
+      experimental: { fg: '#FFFFFF', bg: '#8A3FFC' },
     },
 
     // Avatar color palette - Used for avatar backgrounds and badges
@@ -1121,26 +1161,41 @@ export const semanticTokens = {
       button: baseTokens.borderRadius.full,
       /** Inputs use sm (6px) for 32-40px height elements */
       input: baseTokens.borderRadius.sm,
-      /** Cards use lg (12px) for typical 200-400px cards */
-      card: baseTokens.borderRadius.lg,
-      /** Modals use xl (16px) - allows nested cards with lg */
-      modal: baseTokens.borderRadius.xl,
-      /** Large modals use 2xl (20px) for complex nested content */
-      modalLarge: baseTokens.borderRadius['2xl'],
-      /** Badges use full pill shape */
-      badge: baseTokens.borderRadius.full,
+      /** Cards use md (8px) for subtle rounding */
+      card: baseTokens.borderRadius.md,
+      /** Modals use lg (12px) - allows nested cards with md */
+      modal: baseTokens.borderRadius.lg,
+      /** Large modals use xl (16px) for complex nested content */
+      modalLarge: baseTokens.borderRadius.xl,
+      /** Badges use sm (6px) for subtle pill */
+      badge: baseTokens.borderRadius.sm,
       /** Avatars use full for circular shape */
       avatar: baseTokens.borderRadius.full,
       /** Chips/tags use sm (6px) */
       chip: baseTokens.borderRadius.sm,
-      /** Menu items use md (8px) */
-      menuItem: baseTokens.borderRadius.md,
-      /** Dropdown/popover menus use lg (12px) */
-      menu: baseTokens.borderRadius.lg,
+      /** Menu items use sm (6px) */
+      menuItem: baseTokens.borderRadius.sm,
+      /** Dropdown/popover menus use md (8px) */
+      menu: baseTokens.borderRadius.md,
       /** Tooltips use md (8px) */
       tooltip: baseTokens.borderRadius.md,
       /** Small icon containers use xs (4px) */
       iconContainer: baseTokens.borderRadius.xs,
+    },
+    /**
+     * Pre-formatted px strings for MUI sx prop
+     * Use these when MUI would interpret numbers as spacing multipliers
+     */
+    radiusPx: {
+      none: '0px',
+      xs: `${baseTokens.borderRadius.xs}px`,
+      sm: `${baseTokens.borderRadius.sm}px`,
+      md: `${baseTokens.borderRadius.md}px`,
+      lg: `${baseTokens.borderRadius.lg}px`,
+      xl: `${baseTokens.borderRadius.xl}px`,
+      '2xl': `${baseTokens.borderRadius['2xl']}px`,
+      '3xl': `${baseTokens.borderRadius['3xl']}px`,
+      full: `${baseTokens.borderRadius.full}px`,
     },
     width: {
       default: baseTokens.borderWidth[1],

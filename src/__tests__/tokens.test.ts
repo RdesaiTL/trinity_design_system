@@ -144,16 +144,16 @@ describe('Trinity Tokens', () => {
 
   describe('darkModeTokens', () => {
     it('should have dark mode text colors', () => {
-      expect(darkModeTokens.colors.text.primary).toBe(baseTokens.colors.gray[50]);
-      expect(darkModeTokens.colors.text.secondary).toBe(baseTokens.colors.gray[400]);
+      expect(darkModeTokens.colors.text.primary).toBe('#F9FAFB');
+      expect(darkModeTokens.colors.text.secondary).toBe('#D1D5DB');
     });
 
     it('should have dark mode background colors', () => {
-      expect(darkModeTokens.colors.background.primary).toBe(baseTokens.colors.gray[800]);
+      expect(darkModeTokens.colors.background.primary).toBe('#121214');
     });
 
     it('should have dark mode border colors', () => {
-      expect(darkModeTokens.colors.border.default).toBe(baseTokens.colors.gray[600]);
+      expect(darkModeTokens.colors.border.default).toBe('#3F3F46');
     });
 
     it('should have dark mode interactive colors', () => {

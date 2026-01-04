@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TransferList, TransferListItem } from '../components/TransferList';
-import { Box, Typography, Avatar, Chip } from '@mui/material';
+import { Box, Typography, Avatar } from '@mui/material';
 import {
-  Person as PersonIcon,
   Work as WorkIcon,
 } from '@mui/icons-material';
 import React from 'react';

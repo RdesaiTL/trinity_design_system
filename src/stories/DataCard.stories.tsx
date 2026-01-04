@@ -7,7 +7,6 @@ import {
   ShoppingCart as CartIcon,
   AttachMoney as MoneyIcon,
   Visibility as ViewsIcon,
-  MoreVert as MoreIcon,
 } from '@mui/icons-material';
 import { DataCard } from '../components/DataCard';
 

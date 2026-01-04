@@ -2,9 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Combobox, ComboboxOption } from '../components/Combobox';
 import { Box, Typography, Avatar, Chip } from '@mui/material';
 import {
-  Person as PersonIcon,
   Label as TagIcon,
-  Star as StarIcon,
   LocalOffer as OfferIcon,
 } from '@mui/icons-material';
 import React from 'react';
