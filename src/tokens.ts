@@ -1192,13 +1192,19 @@ export const brandColors = {
   },
   neutral: {
     white: baseTokens.colors.gray[0],       // #FFFFFF
-    lightGray: baseTokens.colors.gray[50],  // #FAFAFA
+    lightGray: baseTokens.colors.gray[50],  // #FAFAFA - alias: gray50
+    gray50: baseTokens.colors.gray[50],     // #FAFAFA
     gray100: baseTokens.colors.gray[200],   // #E5E7EB - NOTE: Misnamed, actually gray200
+    gray200: baseTokens.colors.gray[200],   // #E5E7EB
+    gray300: baseTokens.colors.gray[300],   // #D1D5DB
     gray400: baseTokens.colors.gray[400],   // #9CA3AF
     gray500: baseTokens.colors.gray[500],   // #6B7280
     gray600: baseTokens.colors.gray[600],   // #374151
-    darkBg: baseTokens.colors.gray[800],    // #18181B
-    darkPaper: baseTokens.colors.gray[700], // #27272A
+    gray700: baseTokens.colors.gray[700],   // #27272A
+    gray800: baseTokens.colors.gray[800],   // #18181B
+    gray900: baseTokens.colors.gray[900],   // #0F0F12
+    darkBg: baseTokens.colors.gray[800],    // #18181B - alias
+    darkPaper: baseTokens.colors.gray[700], // #27272A - alias
   },
 } as const;
 
