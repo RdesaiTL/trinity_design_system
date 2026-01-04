@@ -3,7 +3,7 @@
  * Trinity-styled area chart with support for stacked and gradient fills
  */
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef, useId } from 'react';
 import {
   AreaChart as RechartsAreaChart,
   Area,
@@ -79,10 +79,11 @@ export const AreaChart: React.FC<AreaChartProps> = ({
   onDataPointClick,
   ariaLabel,
 }) => {
-  // Generate gradient IDs
+  // Generate stable gradient IDs using React's useId hook (deterministic)
+  const chartId = useId();
   const gradientIds = useMemo(() => 
-    series.map((_, i) => `area-gradient-${i}-${Math.random().toString(36).substr(2, 9)}`),
-    [series.length]
+    series.map((_, i) => `area-gradient-${i}-${chartId.replace(/:/g, '-')}`),
+    [series.length, chartId]
   );
 
   const isEmpty = !data || data.length === 0;

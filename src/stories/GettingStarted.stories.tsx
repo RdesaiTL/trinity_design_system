@@ -2,27 +2,40 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Box, Typography, Paper, Grid, Chip, useTheme, Divider } from '@mui/material';
 import { baseTokens, semanticTokens } from '../tokens';
 
+// ============================================================================
+// HOISTED COMPONENTS - Defined outside render to avoid React Compiler errors
+// ============================================================================
+
+interface CodeBlockProps {
+  children: string;
+  isDark: boolean;
+}
+
+const CodeBlock: React.FC<CodeBlockProps> = ({ children, isDark }) => (
+  <Paper
+    component="pre"
+    sx={{
+      bgcolor: isDark ? '#1e1e1e' : '#1e1e1e',
+      color: '#d4d4d4',
+      p: 2,
+      borderRadius: 2,
+      overflow: 'auto',
+      fontSize: '0.875rem',
+      fontFamily: 'Monaco, Consolas, monospace',
+      m: 0,
+    }}
+  >
+    <code>{children}</code>
+  </Paper>
+);
+
+// ============================================================================
+// MAIN PAGE COMPONENT
+// ============================================================================
+
 const GettingStartedPage = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
-
-  const CodeBlock = ({ children }: { children: string }) => (
-    <Paper
-      component="pre"
-      sx={{
-        bgcolor: isDark ? '#1e1e1e' : '#1e1e1e',
-        color: '#d4d4d4',
-        p: 2,
-        borderRadius: 2,
-        overflow: 'auto',
-        fontSize: '0.875rem',
-        fontFamily: 'Monaco, Consolas, monospace',
-        m: 0,
-      }}
-    >
-      <code>{children}</code>
-    </Paper>
-  );
 
   return (
     <Box sx={{ maxWidth: 800, mx: 'auto', fontFamily: 'Montserrat, sans-serif' }}>
@@ -64,13 +77,13 @@ const GettingStartedPage = () => {
         Installation
       </Typography>
       <Box sx={{ mb: 2 }}>
-        <CodeBlock>npm install @trinity/design-system</CodeBlock>
+        <CodeBlock isDark={isDark}>npm install @trinity/design-system</CodeBlock>
       </Box>
       <Typography sx={{ color: 'text.secondary', mb: 2 }}>
         Or with yarn:
       </Typography>
       <Box sx={{ mb: 4 }}>
-        <CodeBlock>yarn add @trinity/design-system</CodeBlock>
+        <CodeBlock isDark={isDark}>yarn add @trinity/design-system</CodeBlock>
       </Box>
 
       <Divider sx={{ my: 4 }} />
@@ -93,7 +106,7 @@ const GettingStartedPage = () => {
         Wrap your application with the Trinity theme provider:
       </Typography>
       <Box sx={{ mb: 4 }}>
-        <CodeBlock>{`import { ThemeProvider } from '@mui/material/styles';
+        <CodeBlock isDark={isDark}>{`import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { lightTheme, darkTheme } from '@trinity/design-system';
 
@@ -119,7 +132,7 @@ function App() {
         Use Trinity components directly from MUI - they're already styled:
       </Typography>
       <Box sx={{ mb: 4 }}>
-        <CodeBlock>{`import { Button, TextField, Card } from '@mui/material';
+        <CodeBlock isDark={isDark}>{`import { Button, TextField, Card } from '@mui/material';
 
 function MyComponent() {
   return (
@@ -141,7 +154,7 @@ function MyComponent() {
         Import tokens for custom styling:
       </Typography>
       <Box sx={{ mb: 4 }}>
-        <CodeBlock>{`import { tokens } from '@trinity/design-system';
+        <CodeBlock isDark={isDark}>{`import { tokens } from '@trinity/design-system';
 
 const MyStyledComponent = styled('div')({
   padding: tokens.spacing[4],           // 16px
@@ -235,7 +248,7 @@ const MyStyledComponent = styled('div')({
         Colors
       </Typography>
       <Box sx={{ mb: 3 }}>
-        <CodeBlock>{`tokens.colors.navy[900]    // #050742 - Primary brand
+        <CodeBlock isDark={isDark}>{`tokens.colors.navy[900]    // #050742 - Primary brand
 tokens.colors.purple[500]  // #7841C9 - Secondary
 tokens.colors.coral[500]   // #FF6150 - Accent
 tokens.colors.azure[500]   // #27AAE1 - Info
@@ -249,7 +262,7 @@ tokens.colors.emerald[500] // #1DC286 - Success`}</CodeBlock>
         Spacing
       </Typography>
       <Box sx={{ mb: 3 }}>
-        <CodeBlock>{`tokens.spacing[1]  // 4px
+        <CodeBlock isDark={isDark}>{`tokens.spacing[1]  // 4px
 tokens.spacing[2]  // 8px
 tokens.spacing[3]  // 12px
 tokens.spacing[4]  // 16px
@@ -264,7 +277,7 @@ tokens.spacing[8]  // 32px`}</CodeBlock>
         Border Radius
       </Typography>
       <Box sx={{ mb: 3 }}>
-        <CodeBlock>{`tokens.borderRadius.none  // 0px
+        <CodeBlock isDark={isDark}>{`tokens.borderRadius.none  // 0px
 tokens.borderRadius.sm    // 4px
 tokens.borderRadius.md    // 8px
 tokens.borderRadius.lg    // 12px
@@ -307,7 +320,7 @@ tokens.borderRadius.full  // 9999px (pill)`}</CodeBlock>
         Use the accessibleCombinations export for safe color pairings:
       </Typography>
       <Box sx={{ mb: 4 }}>
-        <CodeBlock>{`import { accessibleCombinations } from '@trinity/design-system';
+        <CodeBlock isDark={isDark}>{`import { accessibleCombinations } from '@trinity/design-system';
 
 <Box sx={{
   backgroundColor: accessibleCombinations.whiteOnNavy.bg,

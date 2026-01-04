@@ -1,48 +1,66 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Box, Typography, Paper, Divider, useTheme, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip, Grid } from '@mui/material';
 
+// ============================================================================
+// HOISTED COMPONENTS - Defined outside render to avoid React Compiler errors
+// ============================================================================
+
+interface CodeBlockProps {
+  children: string;
+  language?: string;
+  isDark: boolean;
+}
+
+const CodeBlock: React.FC<CodeBlockProps> = ({ children, isDark }) => (
+  <Paper
+    component="pre"
+    sx={{
+      bgcolor: isDark ? '#0d1117' : '#1e1e1e',
+      color: '#e6edf3',
+      p: 2.5,
+      borderRadius: 2,
+      overflow: 'auto',
+      fontSize: '0.875rem',
+      fontFamily: '"Fira Code", Monaco, Consolas, monospace',
+      m: 0,
+      border: isDark ? '1px solid #30363d' : 'none',
+      '& .keyword': { color: '#ff7b72' },
+      '& .string': { color: '#a5d6ff' },
+      '& .comment': { color: '#8b949e' },
+    }}
+  >
+    <code>{children}</code>
+  </Paper>
+);
+
+interface SectionTitleProps {
+  children: React.ReactNode;
+}
+
+const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => (
+  <Typography
+    variant="h5"
+    sx={{
+      fontWeight: 700,
+      color: 'text.primary',
+      mb: 2,
+      mt: 4,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 1,
+    }}
+  >
+    {children}
+  </Typography>
+);
+
+// ============================================================================
+// MAIN PAGE COMPONENT
+// ============================================================================
+
 const QuickStartPage = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
-
-  const CodeBlock = ({ children, language = 'tsx' }: { children: string; language?: string }) => (
-    <Paper
-      component="pre"
-      sx={{
-        bgcolor: isDark ? '#0d1117' : '#1e1e1e',
-        color: '#e6edf3',
-        p: 2.5,
-        borderRadius: 2,
-        overflow: 'auto',
-        fontSize: '0.875rem',
-        fontFamily: '"Fira Code", Monaco, Consolas, monospace',
-        m: 0,
-        border: isDark ? '1px solid #30363d' : 'none',
-        '& .keyword': { color: '#ff7b72' },
-        '& .string': { color: '#a5d6ff' },
-        '& .comment': { color: '#8b949e' },
-      }}
-    >
-      <code>{children}</code>
-    </Paper>
-  );
-
-  const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-    <Typography
-      variant="h5"
-      sx={{
-        fontWeight: 700,
-        color: 'text.primary',
-        mb: 2,
-        mt: 4,
-        display: 'flex',
-        alignItems: 'center',
-        gap: 1,
-      }}
-    >
-      {children}
-    </Typography>
-  );
 
   return (
     <Box sx={{ maxWidth: 900, mx: 'auto', fontFamily: 'Montserrat, sans-serif' }}>
@@ -78,14 +96,14 @@ const QuickStartPage = () => {
 
       {/* Step 1: Install */}
       <SectionTitle>1. Install</SectionTitle>
-      <CodeBlock>{`npm install @trinity/design-system @mui/material @emotion/react @emotion/styled`}</CodeBlock>
+      <CodeBlock isDark={isDark}>{`npm install @trinity/design-system @mui/material @emotion/react @emotion/styled`}</CodeBlock>
 
       {/* Step 2: Setup Theme */}
       <SectionTitle>2. Setup Theme</SectionTitle>
       <Typography sx={{ color: 'text.secondary', mb: 2 }}>
         Wrap your app with ThemeProvider:
       </Typography>
-      <CodeBlock>{`// App.tsx
+      <CodeBlock isDark={isDark}>{`// App.tsx
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { lightTheme } from '@trinity/design-system';
 
@@ -103,7 +121,7 @@ function App() {
       <Typography sx={{ color: 'text.secondary', mb: 2 }}>
         Import and use components:
       </Typography>
-      <CodeBlock>{`import { Button, Card, TextField } from '@mui/material';
+      <CodeBlock isDark={isDark}>{`import { Button, Card, TextField } from '@mui/material';
 import { StatusIndicator, Modal } from '@trinity/design-system';
 
 function MyPage() {
@@ -120,7 +138,7 @@ function MyPage() {
 
       {/* Dark Mode */}
       <SectionTitle>🌙 Dark Mode</SectionTitle>
-      <CodeBlock>{`import { lightTheme, darkTheme } from '@trinity/design-system';
+      <CodeBlock isDark={isDark}>{`import { lightTheme, darkTheme } from '@trinity/design-system';
 
 const [dark, setDark] = useState(false);
 
@@ -172,7 +190,7 @@ const [dark, setDark] = useState(false);
 
       {/* Design Tokens */}
       <SectionTitle>🎨 Design Tokens</SectionTitle>
-      <CodeBlock>{`import { baseTokens, semanticTokens } from '@trinity/design-system';
+      <CodeBlock isDark={isDark}>{`import { baseTokens, semanticTokens } from '@trinity/design-system';
 
 // Colors
 baseTokens.colors.navy      // '#1B365D'
@@ -191,7 +209,7 @@ baseTokens.borderRadius.lg  // 12px`}</CodeBlock>
       <Typography sx={{ color: 'text.secondary', mb: 2 }}>
         Use pre-validated WCAG AA compliant color combinations:
       </Typography>
-      <CodeBlock>{`import { accessibleCombinations } from '@trinity/design-system';
+      <CodeBlock isDark={isDark}>{`import { accessibleCombinations } from '@trinity/design-system';
 
 <Box sx={{
   backgroundColor: accessibleCombinations.whiteOnNavy.bg,

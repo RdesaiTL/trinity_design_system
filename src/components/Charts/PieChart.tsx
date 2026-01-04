@@ -3,7 +3,7 @@
  * Trinity-styled pie and donut charts
  */
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import {
   PieChart as RechartsPieChart,
   Pie,
@@ -57,6 +57,92 @@ const renderActiveShape = (props: PieActiveShapeProps) => {
 };
 
 /**
+ * PieTooltipContent - Hoisted tooltip component for pie charts
+ * Defined outside the render function to avoid creating components during render
+ */
+interface PieTooltipContentProps extends ChartTooltipRenderProps {
+  total: number;
+}
+
+const PieTooltipContent: React.FC<PieTooltipContentProps> = ({
+  active,
+  payload,
+  total,
+}) => {
+  if (!active || !payload || payload.length === 0) {
+    return null;
+  }
+
+  const item = payload[0];
+  const percent = total > 0 ? ((item.value / total) * 100).toFixed(1) : '0';
+
+  return (
+    <Box
+      sx={{
+        backgroundColor: chartTooltipStyles.backgroundColor,
+        border: `1px solid ${chartTooltipStyles.borderColor}`,
+        borderRadius: `${chartTooltipStyles.borderRadius}px`,
+        boxShadow: chartTooltipStyles.boxShadow,
+        padding: chartTooltipStyles.padding,
+        minWidth: 120,
+      }}
+    >
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+        <Box
+          sx={{
+            width: 10,
+            height: 10,
+            borderRadius: '50%',
+            backgroundColor: item.payload.fill,
+          }}
+        />
+        <Typography
+          sx={{
+            ...chartTypography.tooltipLabel,
+            fontFamily: chartTypography.fontFamily,
+          }}
+        >
+          {item.name}
+        </Typography>
+      </Box>
+      <Typography
+        sx={{
+          ...chartTypography.tooltip,
+          fontFamily: chartTypography.fontFamily,
+          fontWeight: 600,
+        }}
+      >
+        {item.value.toLocaleString()} ({percent}%)
+      </Typography>
+    </Box>
+  );
+};
+
+/**
+ * getLabelText - Pure function to generate pie chart labels
+ */
+const getLabelText = (
+  entry: PieLabelRenderProps,
+  total: number,
+  showLabels: boolean,
+  labelType: 'percent' | 'value' | 'name'
+): string | null => {
+  if (!showLabels) return null;
+  
+  const percent = total > 0 ? ((entry.value / total) * 100).toFixed(0) : '0';
+  
+  switch (labelType) {
+    case 'value':
+      return entry.value.toLocaleString();
+    case 'name':
+      return entry.name;
+    case 'percent':
+    default:
+      return `${percent}%`;
+  }
+};
+
+/**
  * PieChart - Trinity-styled pie chart
  * 
  * @example
@@ -107,73 +193,19 @@ export const PieChart: React.FC<PieChartProps> = ({
     [data]
   );
 
-  // Custom tooltip component
-  const CustomPieTooltip = ({ active, payload }: ChartTooltipRenderProps) => {
-    if (!active || !payload || payload.length === 0) {
-      return null;
-    }
+  // Memoized tooltip render function (avoids creating component during render)
+  const renderTooltip = useCallback(
+    (props: ChartTooltipRenderProps) => (
+      <PieTooltipContent {...props} total={total} />
+    ),
+    [total]
+  );
 
-    const item = payload[0];
-    const percent = total > 0 ? ((item.value / total) * 100).toFixed(1) : '0';
-
-    return (
-      <Box
-        sx={{
-          backgroundColor: chartTooltipStyles.backgroundColor,
-          border: `1px solid ${chartTooltipStyles.borderColor}`,
-          borderRadius: `${chartTooltipStyles.borderRadius}px`,
-          boxShadow: chartTooltipStyles.boxShadow,
-          padding: chartTooltipStyles.padding,
-          minWidth: 120,
-        }}
-      >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
-          <Box
-            sx={{
-              width: 10,
-              height: 10,
-              borderRadius: '50%',
-              backgroundColor: item.payload.fill,
-            }}
-          />
-          <Typography
-            sx={{
-              ...chartTypography.tooltipLabel,
-              fontFamily: chartTypography.fontFamily,
-            }}
-          >
-            {item.name}
-          </Typography>
-        </Box>
-        <Typography
-          sx={{
-            ...chartTypography.tooltip,
-            fontFamily: chartTypography.fontFamily,
-            fontWeight: 600,
-          }}
-        >
-          {item.value.toLocaleString()} ({percent}%)
-        </Typography>
-      </Box>
-    );
-  };
-
-  // Custom label renderer
-  const renderLabel = (entry: PieLabelRenderProps) => {
-    if (!showLabels) return null;
-    
-    const percent = total > 0 ? ((entry.value / total) * 100).toFixed(0) : '0';
-    
-    switch (labelType) {
-      case 'value':
-        return entry.value.toLocaleString();
-      case 'name':
-        return entry.name;
-      case 'percent':
-      default:
-        return `${percent}%`;
-    }
-  };
+  // Memoized label renderer (avoids creating function during render)
+  const renderLabel = useCallback(
+    (entry: PieLabelRenderProps) => getLabelText(entry, total, showLabels, labelType),
+    [total, showLabels, labelType]
+  );
 
   // Calculate pie dimensions
   const isDonut = innerRadius > 0;
@@ -253,7 +285,7 @@ export const PieChart: React.FC<PieChartProps> = ({
                 ))}
               </Pie>
 
-              {tooltip.show !== false && <Tooltip content={<CustomPieTooltip />} />}
+              {tooltip.show !== false && <Tooltip content={renderTooltip} />}
             </RechartsPieChart>
           </ResponsiveContainer>
 

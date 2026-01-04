@@ -3,7 +3,7 @@
  * Trinity-styled scatter and bubble charts
  */
 
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import {
   ScatterChart as RechartsScatterChart,
   Scatter,
@@ -31,6 +31,119 @@ import {
 } from './tokens';
 import { ScatterChartProps, ScatterDataPoint, ChartTooltipRenderProps } from './types';
 import { brandColors } from '../../tokens';
+
+/**
+ * ScatterTooltip - Hoisted tooltip component for scatter charts
+ * Defined outside the render function to avoid creating components during render
+ */
+interface ScatterTooltipContentProps extends ChartTooltipRenderProps {
+  xAxisLabel?: string;
+  yAxisLabel?: string;
+  hasBubble: boolean;
+}
+
+const ScatterTooltipContent: React.FC<ScatterTooltipContentProps> = ({
+  active,
+  payload,
+  xAxisLabel = 'X',
+  yAxisLabel = 'Y',
+  hasBubble,
+}) => {
+  if (!active || !payload || payload.length === 0) {
+    return null;
+  }
+
+  const point = payload[0].payload as ScatterDataPoint;
+
+  return (
+    <Box
+      sx={{
+        backgroundColor: chartTooltipStyles.backgroundColor,
+        border: `1px solid ${chartTooltipStyles.borderColor}`,
+        borderRadius: `${chartTooltipStyles.borderRadius}px`,
+        boxShadow: chartTooltipStyles.boxShadow,
+        padding: chartTooltipStyles.padding,
+        minWidth: 140,
+      }}
+    >
+      {point.name && (
+        <Typography
+          sx={{
+            ...chartTypography.tooltipLabel,
+            fontFamily: chartTypography.fontFamily,
+            mb: 1,
+          }}
+        >
+          {point.name}
+        </Typography>
+      )}
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}>
+          <Typography
+            sx={{
+              ...chartTypography.tooltip,
+              fontFamily: chartTypography.fontFamily,
+              color: brandColors.neutral.gray600,
+            }}
+          >
+            {xAxisLabel}
+          </Typography>
+          <Typography
+            sx={{
+              ...chartTypography.tooltip,
+              fontFamily: chartTypography.fontFamily,
+              fontWeight: 600,
+            }}
+          >
+            {point.x?.toLocaleString()}
+          </Typography>
+        </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}>
+          <Typography
+            sx={{
+              ...chartTypography.tooltip,
+              fontFamily: chartTypography.fontFamily,
+              color: brandColors.neutral.gray600,
+            }}
+          >
+            {yAxisLabel}
+          </Typography>
+          <Typography
+            sx={{
+              ...chartTypography.tooltip,
+              fontFamily: chartTypography.fontFamily,
+              fontWeight: 600,
+            }}
+          >
+            {point.y?.toLocaleString()}
+          </Typography>
+        </Box>
+        {hasBubble && point.z !== undefined && (
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}>
+            <Typography
+              sx={{
+                ...chartTypography.tooltip,
+                fontFamily: chartTypography.fontFamily,
+                color: brandColors.neutral.gray600,
+              }}
+            >
+              Size
+            </Typography>
+            <Typography
+              sx={{
+                ...chartTypography.tooltip,
+                fontFamily: chartTypography.fontFamily,
+                fontWeight: 600,
+              }}
+            >
+              {point.z?.toLocaleString()}
+            </Typography>
+          </Box>
+        )}
+      </Box>
+    </Box>
+  );
+};
 
 /**
  * ScatterChart - Trinity-styled scatter and bubble chart
@@ -108,104 +221,18 @@ export const ScatterChart: React.FC<ScatterChartProps> = ({
   const isEmpty = !data || data.length === 0;
   const hasBubble = series.some(s => s.data.some(d => d.z !== undefined));
 
-  // Custom tooltip
-  const CustomScatterTooltip = ({ active, payload }: ChartTooltipRenderProps) => {
-    if (!active || !payload || payload.length === 0) {
-      return null;
-    }
-
-    const point = payload[0].payload as ScatterDataPoint;
-    const seriesName = payload[0].name;
-
-    return (
-      <Box
-        sx={{
-          backgroundColor: chartTooltipStyles.backgroundColor,
-          border: `1px solid ${chartTooltipStyles.borderColor}`,
-          borderRadius: `${chartTooltipStyles.borderRadius}px`,
-          boxShadow: chartTooltipStyles.boxShadow,
-          padding: chartTooltipStyles.padding,
-          minWidth: 140,
-        }}
-      >
-        {point.name && (
-          <Typography
-            sx={{
-              ...chartTypography.tooltipLabel,
-              fontFamily: chartTypography.fontFamily,
-              mb: 1,
-            }}
-          >
-            {point.name}
-          </Typography>
-        )}
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}>
-            <Typography
-              sx={{
-                ...chartTypography.tooltip,
-                fontFamily: chartTypography.fontFamily,
-                color: brandColors.neutral.gray600,
-              }}
-            >
-              {xAxis.label || 'X'}
-            </Typography>
-            <Typography
-              sx={{
-                ...chartTypography.tooltip,
-                fontFamily: chartTypography.fontFamily,
-                fontWeight: 600,
-              }}
-            >
-              {point.x?.toLocaleString()}
-            </Typography>
-          </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}>
-            <Typography
-              sx={{
-                ...chartTypography.tooltip,
-                fontFamily: chartTypography.fontFamily,
-                color: brandColors.neutral.gray600,
-              }}
-            >
-              {yAxis.label || 'Y'}
-            </Typography>
-            <Typography
-              sx={{
-                ...chartTypography.tooltip,
-                fontFamily: chartTypography.fontFamily,
-                fontWeight: 600,
-              }}
-            >
-              {point.y?.toLocaleString()}
-            </Typography>
-          </Box>
-          {hasBubble && point.z !== undefined && (
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}>
-              <Typography
-                sx={{
-                  ...chartTypography.tooltip,
-                  fontFamily: chartTypography.fontFamily,
-                  color: brandColors.neutral.gray600,
-                }}
-              >
-                Size
-              </Typography>
-              <Typography
-                sx={{
-                  ...chartTypography.tooltip,
-                  fontFamily: chartTypography.fontFamily,
-                  fontWeight: 600,
-                }}
-              >
-                {point.z?.toLocaleString()}
-              </Typography>
-            </Box>
-          )}
-        </Box>
-      </Box>
-    );
-  };
+  // Memoized tooltip render function (avoids creating component during render)
+  const renderTooltip = useCallback(
+    (props: ChartTooltipRenderProps) => (
+      <ScatterTooltipContent
+        {...props}
+        xAxisLabel={xAxis.label || 'X'}
+        yAxisLabel={yAxis.label || 'Y'}
+        hasBubble={hasBubble}
+      />
+    ),
+    [xAxis.label, yAxis.label, hasBubble]
+  );
 
   return (
     <ChartWrapper
@@ -300,7 +327,7 @@ export const ScatterChart: React.FC<ScatterChartProps> = ({
           )}
 
           {/* Tooltip */}
-          {tooltip.show !== false && <Tooltip content={<CustomScatterTooltip />} />}
+          {tooltip.show !== false && <Tooltip content={renderTooltip} />}
 
           {/* Legend */}
           {legend.show !== false && series.length > 1 && (

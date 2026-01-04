@@ -2,59 +2,82 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Box, Typography, Paper, Divider, useTheme, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+// ============================================================================
+// HOISTED COMPONENTS - Defined outside render to avoid React Compiler errors
+// ============================================================================
+
+interface CodeBlockProps {
+  children: string;
+  isDark: boolean;
+}
+
+const CodeBlock: React.FC<CodeBlockProps> = ({ children, isDark }) => (
+  <Paper
+    component="pre"
+    sx={{
+      bgcolor: isDark ? '#0d1117' : '#1e1e1e',
+      color: '#e6edf3',
+      p: 2.5,
+      borderRadius: 2,
+      overflow: 'auto',
+      fontSize: '0.8rem',
+      fontFamily: '"Fira Code", Monaco, Consolas, monospace',
+      m: 0,
+      border: isDark ? '1px solid #30363d' : 'none',
+    }}
+  >
+    <code>{children}</code>
+  </Paper>
+);
+
+interface SectionTitleProps {
+  children: React.ReactNode;
+  id?: string;
+  isDark: boolean;
+}
+
+const SectionTitle: React.FC<SectionTitleProps> = ({ children, id, isDark }) => (
+  <Typography
+    id={id}
+    variant="h4"
+    sx={{
+      fontWeight: 700,
+      color: 'text.primary',
+      mb: 3,
+      mt: 6,
+      pb: 1,
+      borderBottom: `2px solid ${isDark ? '#30363d' : '#e0e0e0'}`,
+    }}
+  >
+    {children}
+  </Typography>
+);
+
+interface SubSectionProps {
+  children: React.ReactNode;
+}
+
+const SubSection: React.FC<SubSectionProps> = ({ children }) => (
+  <Typography
+    variant="h6"
+    sx={{
+      fontWeight: 600,
+      color: 'text.primary',
+      mb: 2,
+      mt: 4,
+    }}
+  >
+    {children}
+  </Typography>
+);
+
+// ============================================================================
+// MAIN PAGE COMPONENT
+// ============================================================================
+
 const DeveloperGuidePage = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
-
-  const CodeBlock = ({ children }: { children: string }) => (
-    <Paper
-      component="pre"
-      sx={{
-        bgcolor: isDark ? '#0d1117' : '#1e1e1e',
-        color: '#e6edf3',
-        p: 2.5,
-        borderRadius: 2,
-        overflow: 'auto',
-        fontSize: '0.8rem',
-        fontFamily: '"Fira Code", Monaco, Consolas, monospace',
-        m: 0,
-        border: isDark ? '1px solid #30363d' : 'none',
-      }}
-    >
-      <code>{children}</code>
-    </Paper>
-  );
-
-  const SectionTitle = ({ children, id }: { children: React.ReactNode; id?: string }) => (
-    <Typography
-      id={id}
-      variant="h4"
-      sx={{
-        fontWeight: 700,
-        color: 'text.primary',
-        mb: 3,
-        mt: 6,
-        pb: 1,
-        borderBottom: `2px solid ${isDark ? '#30363d' : '#e0e0e0'}`,
-      }}
-    >
-      {children}
-    </Typography>
-  );
-
-  const SubSection = ({ children }: { children: React.ReactNode }) => (
-    <Typography
-      variant="h6"
-      sx={{
-        fontWeight: 600,
-        color: 'text.primary',
-        mb: 2,
-        mt: 4,
-      }}
-    >
-      {children}
-    </Typography>
-  );
 
   return (
     <Box sx={{ maxWidth: 900, mx: 'auto', fontFamily: 'Montserrat, sans-serif' }}>
@@ -107,7 +130,7 @@ const DeveloperGuidePage = () => {
       <Divider />
 
       {/* Installation */}
-      <SectionTitle id="installation">📦 Installation</SectionTitle>
+      <SectionTitle isDark={isDark} id="installation">📦 Installation</SectionTitle>
       
       <SubSection>Prerequisites</SubSection>
       <Box component="ul" sx={{ color: 'text.secondary', mb: 3, pl: 3 }}>
@@ -117,7 +140,7 @@ const DeveloperGuidePage = () => {
       </Box>
 
       <SubSection>Install the Package</SubSection>
-      <CodeBlock>{`# npm
+      <CodeBlock isDark={isDark}>{`# npm
 npm install @trinity/design-system
 
 # yarn
@@ -127,16 +150,16 @@ yarn add @trinity/design-system
 pnpm add @trinity/design-system`}</CodeBlock>
 
       <SubSection>Install Peer Dependencies</SubSection>
-      <CodeBlock>{`npm install @mui/material @emotion/react @emotion/styled react react-dom`}</CodeBlock>
+      <CodeBlock isDark={isDark}>{`npm install @mui/material @emotion/react @emotion/styled react react-dom`}</CodeBlock>
 
       {/* Theme Setup */}
-      <SectionTitle id="theme-setup">🎨 Theme Setup</SectionTitle>
+      <SectionTitle isDark={isDark} id="theme-setup">🎨 Theme Setup</SectionTitle>
 
       <SubSection>Available Themes</SubSection>
-      <CodeBlock>{`import { lightTheme, darkTheme } from '@trinity/design-system';`}</CodeBlock>
+      <CodeBlock isDark={isDark}>{`import { lightTheme, darkTheme } from '@trinity/design-system';`}</CodeBlock>
 
       <SubSection>Basic Setup</SubSection>
-      <CodeBlock>{`// App.tsx
+      <CodeBlock isDark={isDark}>{`// App.tsx
 import React from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { lightTheme } from '@trinity/design-system';
@@ -153,7 +176,7 @@ function App() {
 export default App;`}</CodeBlock>
 
       <SubSection>Creating a Custom Theme</SubSection>
-      <CodeBlock>{`import { createTrinityTheme } from '@trinity/design-system';
+      <CodeBlock isDark={isDark}>{`import { createTrinityTheme } from '@trinity/design-system';
 
 const customTheme = createTrinityTheme({
   mode: 'light',
@@ -168,10 +191,10 @@ const customTheme = createTrinityTheme({
 });`}</CodeBlock>
 
       {/* Components */}
-      <SectionTitle id="components">🧩 Components</SectionTitle>
+      <SectionTitle isDark={isDark} id="components">🧩 Components</SectionTitle>
 
       <SubSection>Import Paths</SubSection>
-      <CodeBlock>{`// Main entry - all exports
+      <CodeBlock isDark={isDark}>{`// Main entry - all exports
 import { 
   lightTheme, 
   darkTheme,
@@ -201,7 +224,7 @@ import { AIChat, AIPromptInput } from '@trinity/design-system/components/AI';`}<
             <Typography sx={{ color: 'text.secondary', mb: 2 }}>
               Enterprise navigation header with client selector, search, apps menu, and user profile.
             </Typography>
-            <CodeBlock>{`import { TopNavHeader } from '@trinity/design-system';
+            <CodeBlock isDark={isDark}>{`import { TopNavHeader } from '@trinity/design-system';
 
 <TopNavHeader
   clients={[
@@ -230,7 +253,7 @@ import { AIChat, AIPromptInput } from '@trinity/design-system/components/AI';`}<
             <Typography sx={{ color: 'text.secondary', mb: 2 }}>
               Visual status badges for displaying state.
             </Typography>
-            <CodeBlock>{`import { StatusIndicator } from '@trinity/design-system';
+            <CodeBlock isDark={isDark}>{`import { StatusIndicator } from '@trinity/design-system';
 
 <StatusIndicator status="success" label="Active" />
 <StatusIndicator status="warning" label="Pending" />
@@ -252,7 +275,7 @@ import { AIChat, AIPromptInput } from '@trinity/design-system/components/AI';`}<
             <Typography sx={{ color: 'text.secondary', mb: 2 }}>
               Accessible dialog with multiple variants.
             </Typography>
-            <CodeBlock>{`import { Modal } from '@trinity/design-system';
+            <CodeBlock isDark={isDark}>{`import { Modal } from '@trinity/design-system';
 
 // Basic modal
 <Modal
@@ -287,7 +310,7 @@ import { AIChat, AIPromptInput } from '@trinity/design-system/components/AI';`}<
             <Typography sx={{ color: 'text.secondary', mb: 2 }}>
               Drag-and-drop file upload with progress indicators.
             </Typography>
-            <CodeBlock>{`import { FileUpload } from '@trinity/design-system';
+            <CodeBlock isDark={isDark}>{`import { FileUpload } from '@trinity/design-system';
 
 <FileUpload
   accept="image/*,.pdf"
@@ -311,7 +334,7 @@ import { AIChat, AIPromptInput } from '@trinity/design-system/components/AI';`}<
             <Typography sx={{ color: 'text.secondary', mb: 2 }}>
               AI chat interface and prompt input components.
             </Typography>
-            <CodeBlock>{`import { AIChat, AIPromptInput } from '@trinity/design-system';
+            <CodeBlock isDark={isDark}>{`import { AIChat, AIPromptInput } from '@trinity/design-system';
 
 // Full chat interface
 <AIChat
@@ -333,10 +356,10 @@ import { AIChat, AIPromptInput } from '@trinity/design-system/components/AI';`}<
       </Box>
 
       {/* Design Tokens */}
-      <SectionTitle id="design-tokens">🎯 Design Tokens</SectionTitle>
+      <SectionTitle isDark={isDark} id="design-tokens">🎯 Design Tokens</SectionTitle>
 
       <SubSection>Base Tokens</SubSection>
-      <CodeBlock>{`import { baseTokens } from '@trinity/design-system';
+      <CodeBlock isDark={isDark}>{`import { baseTokens } from '@trinity/design-system';
 
 // Colors
 baseTokens.colors.navy        // '#1B365D'
@@ -362,7 +385,7 @@ baseTokens.borderRadius.full  // 9999
 baseTokens.typography.fontFamily  // 'Montserrat, sans-serif'`}</CodeBlock>
 
       <SubSection>Semantic Tokens</SubSection>
-      <CodeBlock>{`import { semanticTokens } from '@trinity/design-system';
+      <CodeBlock isDark={isDark}>{`import { semanticTokens } from '@trinity/design-system';
 
 // Backgrounds
 semanticTokens.background.primary    // Navy
@@ -381,10 +404,10 @@ semanticTokens.status.error
 semanticTokens.status.info`}</CodeBlock>
 
       {/* Customization */}
-      <SectionTitle id="customization">⚙️ Customization</SectionTitle>
+      <SectionTitle isDark={isDark} id="customization">⚙️ Customization</SectionTitle>
 
       <SubSection>Overriding Component Styles</SubSection>
-      <CodeBlock>{`// Using sx prop
+      <CodeBlock isDark={isDark}>{`// Using sx prop
 <Button
   variant="contained"
   sx={{
@@ -408,7 +431,7 @@ const CustomButton = styled(Button)(({ theme }) => ({
 }));`}</CodeBlock>
 
       <SubSection>Theme Component Overrides</SubSection>
-      <CodeBlock>{`import { createTrinityTheme } from '@trinity/design-system';
+      <CodeBlock isDark={isDark}>{`import { createTrinityTheme } from '@trinity/design-system';
 
 const theme = createTrinityTheme({
   mode: 'light',
@@ -427,10 +450,10 @@ const theme = createTrinityTheme({
 });`}</CodeBlock>
 
       {/* Dark Mode */}
-      <SectionTitle id="dark-mode">🌙 Dark Mode</SectionTitle>
+      <SectionTitle isDark={isDark} id="dark-mode">🌙 Dark Mode</SectionTitle>
 
       <SubSection>Basic Implementation</SubSection>
-      <CodeBlock>{`import React, { useState, useMemo } from 'react';
+      <CodeBlock isDark={isDark}>{`import React, { useState, useMemo } from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { lightTheme, darkTheme } from '@trinity/design-system';
 
@@ -454,7 +477,7 @@ function App() {
 }`}</CodeBlock>
 
       <SubSection>System Preference Detection</SubSection>
-      <CodeBlock>{`import { useMediaQuery } from '@mui/material';
+      <CodeBlock isDark={isDark}>{`import { useMediaQuery } from '@mui/material';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -469,10 +492,10 @@ function App() {
 }`}</CodeBlock>
 
       {/* Accessibility */}
-      <SectionTitle id="accessibility">♿ Accessibility</SectionTitle>
+      <SectionTitle isDark={isDark} id="accessibility">♿ Accessibility</SectionTitle>
 
       <SubSection>Pre-validated Color Combinations</SubSection>
-      <CodeBlock>{`import { accessibleCombinations } from '@trinity/design-system';
+      <CodeBlock isDark={isDark}>{`import { accessibleCombinations } from '@trinity/design-system';
 
 // Pre-validated WCAG AA compliant text/background pairs
 accessibleCombinations.whiteOnNavy    // { bg: '#1B365D', text: '#FFFFFF' }
@@ -488,7 +511,7 @@ accessibleCombinations.coralOnWhite   // { bg: '#FFFFFF', text: '#FF6B47' }
 </Box>`}</CodeBlock>
 
       <SubSection>Validate Custom Colors</SubSection>
-      <CodeBlock>{`import { getContrastRatio, validateAccessibility } from '@trinity/design-system';
+      <CodeBlock isDark={isDark}>{`import { getContrastRatio, validateAccessibility } from '@trinity/design-system';
 
 // Check contrast ratio
 const ratio = getContrastRatio('#1B365D', '#FFFFFF'); // Returns ~12.5
@@ -498,10 +521,10 @@ const result = validateAccessibility('#1B365D', '#FFFFFF');
 // Returns: { aa: true, aaa: true, ratio: 12.5 }`}</CodeBlock>
 
       {/* TypeScript */}
-      <SectionTitle id="typescript">📘 TypeScript</SectionTitle>
+      <SectionTitle isDark={isDark} id="typescript">📘 TypeScript</SectionTitle>
 
       <SubSection>Component Props</SubSection>
-      <CodeBlock>{`import type {
+      <CodeBlock isDark={isDark}>{`import type {
   ModalProps,
   StatusIndicatorProps,
   FileUploadProps,
@@ -514,7 +537,7 @@ interface MyModalProps extends Omit<ModalProps, 'open' | 'onClose'> {
 }`}</CodeBlock>
 
       <SubSection>Extending Theme Types</SubSection>
-      <CodeBlock>{`// types/theme.d.ts
+      <CodeBlock isDark={isDark}>{`// types/theme.d.ts
 import '@mui/material/styles';
 
 declare module '@mui/material/styles' {

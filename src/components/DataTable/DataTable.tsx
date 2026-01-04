@@ -85,6 +85,30 @@ const densityMap: Record<TableDensity, GridDensity> = {
 };
 
 // ============================================================================
+// DETERMINISTIC WIDTH PATTERNS FOR SKELETON
+// ============================================================================
+
+// Pre-computed pseudo-random widths to avoid Math.random() during render
+// These provide visual variety without impurity
+const HEADER_WIDTHS = [75, 68, 82, 71, 88, 65, 79, 85, 72, 78];
+const CELL_WIDTHS = [
+  [62, 78, 55, 85, 70, 48, 92, 65, 73, 58],
+  [71, 45, 88, 63, 52, 79, 67, 90, 54, 82],
+  [58, 82, 68, 75, 45, 87, 60, 72, 93, 55],
+  [85, 55, 73, 42, 88, 65, 78, 50, 82, 68],
+  [68, 75, 52, 90, 58, 82, 47, 73, 88, 62],
+  [45, 88, 65, 72, 82, 55, 78, 68, 50, 85],
+  [78, 62, 88, 55, 70, 45, 82, 72, 65, 90],
+  [52, 78, 70, 88, 62, 75, 55, 85, 48, 72],
+];
+
+const getHeaderWidth = (colIndex: number): string => 
+  `${HEADER_WIDTHS[colIndex % HEADER_WIDTHS.length]}%`;
+
+const getCellWidth = (rowIndex: number, colIndex: number): string => 
+  `${CELL_WIDTHS[rowIndex % CELL_WIDTHS.length][colIndex % CELL_WIDTHS[0].length]}%`;
+
+// ============================================================================
 // LOADING SKELETON COMPONENT
 // ============================================================================
 
@@ -129,7 +153,7 @@ const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({
         )}
         {Array.from({ length: columns }).map((_, i) => (
           <Box key={i} sx={{ flex: 1, px: 1 }}>
-            <Skeleton width={`${60 + Math.random() * 30}%`} height={14} />
+            <Skeleton width={getHeaderWidth(i)} height={14} />
           </Box>
         ))}
       </Box>
@@ -159,7 +183,7 @@ const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({
           {Array.from({ length: columns }).map((_, colIndex) => (
             <Box key={colIndex} sx={{ flex: 1, px: 1 }}>
               <Skeleton 
-                width={`${40 + Math.random() * 50}%`} 
+                width={getCellWidth(rowIndex, colIndex)} 
                 height={12} 
                 sx={{ my: 0.5 }}
               />

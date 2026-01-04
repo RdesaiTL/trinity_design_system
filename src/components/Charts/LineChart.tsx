@@ -3,7 +3,7 @@
  * Trinity-styled line chart with support for multiple series
  */
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef, useId } from 'react';
 import {
   LineChart as RechartsLineChart,
   Line,
@@ -77,10 +77,11 @@ export const LineChart: React.FC<LineChartProps> = ({
   onDataPointClick,
   ariaLabel,
 }) => {
-  // Generate gradient IDs for area fills
+  // Generate stable gradient IDs using React's useId hook (deterministic)
+  const chartId = useId();
   const gradientIds = useMemo(() => 
-    series.map((_, i) => `line-gradient-${i}-${Math.random().toString(36).substr(2, 9)}`),
-    [series.length]
+    series.map((_, i) => `line-gradient-${i}-${chartId.replace(/:/g, '-')}`),
+    [series.length, chartId]
   );
 
   const isEmpty = !data || data.length === 0;
