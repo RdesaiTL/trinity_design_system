@@ -175,7 +175,7 @@ const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({
 // CUSTOM TOOLBAR COMPONENT
 // ============================================================================
 
-interface ToolbarProps<R> {
+interface ToolbarProps<R extends GridValidRowModel> {
   title?: string;
   subtitle?: string;
   searchValue: string;
@@ -197,7 +197,7 @@ interface ToolbarProps<R> {
   colors: typeof tableColors.light;
 }
 
-function DataTableToolbar<R>({
+function DataTableToolbar<R extends GridValidRowModel>({
   title,
   subtitle,
   searchValue,
@@ -374,10 +374,11 @@ function DataTableToolbar<R>({
             slotProps={{
               button: {
                 size: 'small',
-                sx: { 
+                style: { 
                   borderRadius: '8px',
                   minWidth: 'auto',
-                  px: 1,
+                  paddingLeft: 8,
+                  paddingRight: 8,
                 },
               },
             }}
@@ -390,10 +391,11 @@ function DataTableToolbar<R>({
             slotProps={{
               button: {
                 size: 'small',
-                sx: { 
+                style: { 
                   borderRadius: '8px',
                   minWidth: 'auto',
-                  px: 1,
+                  paddingLeft: 8,
+                  paddingRight: 8,
                 },
               },
             }}
@@ -406,10 +408,11 @@ function DataTableToolbar<R>({
             slotProps={{
               button: {
                 size: 'small',
-                sx: { 
+                style: { 
                   borderRadius: '8px',
                   minWidth: 'auto',
-                  px: 1,
+                  paddingLeft: 8,
+                  paddingRight: 8,
                 },
               },
             }}
@@ -958,8 +961,8 @@ export const DataTable = <R extends GridValidRowModel>({
           processRowUpdate={handleProcessRowUpdate}
           // Tree Data
           {...treeDataProps}
-          // Column Pinning
-          pinnedColumns={pinnedColumns}
+          // Column Pinning - Note: pinnedColumns requires DataGridPro
+          // pinnedColumns={pinnedColumns}
           // Appearance
           disableColumnMenu={false}
           columnHeaderHeight={densityTokensValue.headerHeight}
@@ -984,12 +987,14 @@ export const DataTable = <R extends GridValidRowModel>({
                 const rowId = event.currentTarget.getAttribute('data-id');
                 if (rowId) setHoveredRowId(rowId);
                 // Call user's handler if provided
-                (slotProps?.row as Record<string, unknown>)?.onMouseEnter?.(event);
+                const rowProps = slotProps?.row as { onMouseEnter?: (e: React.MouseEvent) => void } | undefined;
+                rowProps?.onMouseEnter?.(event);
               },
               onMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => {
                 setHoveredRowId(null);
                 // Call user's handler if provided
-                (slotProps?.row as Record<string, unknown>)?.onMouseLeave?.(event);
+                const rowProps = slotProps?.row as { onMouseLeave?: (e: React.MouseEvent) => void } | undefined;
+                rowProps?.onMouseLeave?.(event);
               },
             },
           }}
