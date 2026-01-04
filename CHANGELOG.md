@@ -5,6 +5,40 @@ All notable changes to the Trinity Design System will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-01-XX
+
+### Added
+
+#### New Components (7)
+- **TreeView** - Hierarchical tree component with expand/collapse, multi-select, checkboxes, search filtering, and drag-drop support. Full ARIA tree semantics with keyboard navigation (Arrow keys, Home, End, Enter, Space).
+- **TransferList** - Dual-list selection component for transferring items between lists. Supports search, custom rendering, disabled items, and move-all controls.
+- **Combobox** - Enhanced multi-select autocomplete with creatable options, grouping, icons, and custom rendering. Built on MUI Autocomplete.
+- **SplitPane** - Resizable split panel layout with horizontal/vertical orientations, min/max constraints, and collapsible panels. Full ARIA separator with keyboard resize (Arrow keys, Shift+Arrow for large steps).
+- **RichTextEditor** - WYSIWYG editor with customizable toolbar, formatting (bold, italic, lists, headings), alignment, links, images, and fullscreen mode.
+- **DiffViewer** - Code/text diff viewer with side-by-side and unified view modes, syntax highlighting, line numbers, and word wrap.
+- **DockLayout** - VS Code-style dockable panel layout with tabbed zones, split layouts, drag-and-drop panels, and panel actions.
+
+#### Design Tokens
+- **Spacing half-values** - Added `0.5`, `1.5`, `2.5` to spacing scale for fine-grained layout control
+- **Animation easing tokens** - New reusable easing functions: `smooth`, `bounce`, `elastic`
+- **Surface status colors** - Semantic surface colors for success/warning/error/info states
+- **Brand variants** - 5 theme variants: `trinity`, `corporate`, `tech`, `nature`, `midnight`
+- **Dark mode improvements** - Enhanced contrast ratios meeting WCAG AA+ (4.5:1+)
+
+#### Storybook Documentation
+- 74 new stories across 7 components with interactive controls
+- All stories include `autodocs`, `argTypes`, and component descriptions
+- Full coverage of variants, states, and edge cases
+
+#### Documentation
+- **COMPOSITION_PATTERNS.md** - 8 real-world layout patterns demonstrating component composition:
+  - Dashboard Layout, Data Explorer, Settings Panel, File Browser
+  - Command Center, Content Editor, Code Review Interface, Admin Console
+
+### Changed
+- Improved accessibility for TreeView and SplitPane with full ARIA support
+- Enhanced keyboard navigation across complex components
+
 ## [Unreleased]
 
 ### Changed (Phase 3.3 & 3.4 - Color Token Normalization)

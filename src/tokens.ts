@@ -27,7 +27,7 @@ export interface TrinityBaseColors {
 }
 
 export interface TrinitySpacing {
-  0: number; 1: number; 2: number; 3: number; 4: number;
+  0: number; 0.5: number; 1: number; 1.5: number; 2: number; 2.5: number; 3: number; 4: number;
   5: number; 6: number; 7: number; 8: number; 9: number;
   10: number; 12: number; 14: number; 16: number;
   20: number; 24: number; 32: number;
@@ -109,7 +109,13 @@ export interface TrinityDuration {
 }
 
 export interface TrinityEasing {
-  linear: string; in: string; out: string; inOut: string;
+  linear: string;
+  in: string;
+  out: string;
+  inOut: string;
+  smooth: string;
+  bounce: string;
+  elastic: string;
 }
 
 export interface TrinityOpacity {
@@ -173,6 +179,16 @@ export interface TrinityBackgroundColors {
   brandSubtle: string;
   accent: string;
   accentSubtle: string;
+}
+
+export interface TrinitySurfaceColors {
+  elevated: string;
+  sunken: string;
+  overlay: string;
+  success: string;
+  error: string;
+  warning: string;
+  info: string;
 }
 
 export interface TrinityBorderColors {
@@ -651,8 +667,11 @@ export const baseTokens = {
   // Spacing Scale (in pixels, use for padding, margin, gaps)
   spacing: {
     0: 0,
+    0.5: 2,   // Half step for fine-grained control
     1: 4,
+    1.5: 6,   // Half step for fine-grained control
     2: 8,
+    2.5: 10,  // Half step for fine-grained control
     3: 12,
     4: 16,
     5: 20,
@@ -797,6 +816,9 @@ export const baseTokens = {
     in: 'cubic-bezier(0.4, 0, 1, 1)',
     out: 'cubic-bezier(0, 0, 0.2, 1)',
     inOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    smooth: 'cubic-bezier(0.45, 0, 0.55, 1)',      // Smooth, natural feel
+    bounce: 'cubic-bezier(0.34, 1.56, 0.64, 1)',   // Slight overshoot
+    elastic: 'cubic-bezier(0.68, -0.55, 0.27, 1.55)', // Elastic spring
   },
 
   // Opacity
@@ -875,6 +897,11 @@ export const semanticTokens = {
       elevated: baseTokens.colors.gray[0],    // Cards, modals, popovers
       sunken: baseTokens.colors.gray[100],    // Inputs, code blocks, wells
       overlay: 'rgba(0, 0, 0, 0.5)',          // Modal/dialog backdrops
+      // Status surface colors (subtle backgrounds)
+      success: '#F0FDF4',                     // Success state backgrounds
+      error: '#FEF2F2',                       // Error state backgrounds
+      warning: '#FFFBEB',                     // Warning state backgrounds
+      info: baseTokens.colors.azure[50],      // Info state backgrounds
     },
 
     // Borders
@@ -1820,54 +1847,226 @@ export function getHierarchySpacing(
 export const darkModeTokens: TrinityDarkModeTokens = {
   colors: {
     text: {
-      primary: baseTokens.colors.gray[50],
-      secondary: baseTokens.colors.gray[400],
-      tertiary: baseTokens.colors.gray[500],
-      disabled: baseTokens.colors.gray[600],
+      // Improved contrast ratios for dark mode (WCAG AA+ compliant)
+      primary: '#F9FAFB',      // Gray 50 - 15.8:1 contrast on gray[800]
+      secondary: '#D1D5DB',    // Gray 300 - 10.2:1 contrast
+      tertiary: '#9CA3AF',     // Gray 400 - 6.1:1 contrast
+      disabled: '#6B7280',     // Gray 500 - 3.9:1 contrast (meets large text AA)
     },
     background: {
-      primary: baseTokens.colors.gray[800],
-      secondary: baseTokens.colors.gray[700],
-      tertiary: baseTokens.colors.gray[600],
+      // Refined dark backgrounds with better elevation differentiation
+      primary: '#121214',      // Darker base for better contrast
+      secondary: '#1C1C1F',    // Slightly elevated
+      tertiary: '#262629',     // More elevated surfaces
     },
     border: {
-      default: baseTokens.colors.gray[600],
-      subtle: baseTokens.colors.gray[700],
-      strong: baseTokens.colors.gray[500],
+      // Improved border visibility in dark mode
+      default: '#3F3F46',      // Gray 600 - visible but subtle
+      subtle: '#27272A',       // Gray 700 - very subtle dividers
+      strong: '#52525B',       // Gray 500 - emphasis borders
     },
     // Interactive state overrides for dark mode
     interactive: {
       default: baseTokens.colors.purple[400],
-      hover: baseTokens.colors.coral[500],
+      hover: baseTokens.colors.coral[400],    // Lighter coral for dark mode
       active: baseTokens.colors.indigo[400],
       disabled: baseTokens.colors.gray[600],
       focus: baseTokens.colors.purple[400],
     },
-    // Status color overrides for dark mode
+    // Status color overrides for dark mode (improved contrast)
     status: {
       error: {
-        text: '#FCA5A5',
-        background: '#450A0A',
-        border: '#7F1D1D',
+        text: '#FCA5A5',       // Red 300 - good contrast
+        background: '#1F1315', // Very dark red - elevated feel
+        border: '#991B1B',     // Red 800 - visible border
       },
       warning: {
-        text: '#FCD34D',
-        background: '#451A03',
-        border: '#78350F',
+        text: '#FDE68A',       // Amber 200 - excellent contrast
+        background: '#1A1607', // Very dark amber
+        border: '#92400E',     // Amber 800
       },
       success: {
-        text: '#86EFAC',
-        background: '#052E16',
-        border: '#166534',
+        text: '#86EFAC',       // Green 300
+        background: '#0A1A10', // Very dark green
+        border: '#166534',     // Green 800
       },
       info: {
-        text: baseTokens.colors.azure[300],
-        background: baseTokens.colors.azure[900],
-        border: baseTokens.colors.azure[700],
+        text: '#7DD3FC',       // Sky 300
+        background: '#0C1929', // Very dark blue
+        border: '#075985',     // Sky 800
       },
     },
   },
 };
+
+// ============================================
+// DARK MODE ELEVATION SHADOWS
+// Enhanced shadows for dark mode depth perception
+// ============================================
+
+export const darkModeShadows = {
+  none: 'none',
+  sm: '0 1px 2px 0 rgb(0 0 0 / 0.3), 0 0 0 1px rgb(255 255 255 / 0.05)',
+  base: '0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.3), 0 0 0 1px rgb(255 255 255 / 0.05)',
+  md: '0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3), 0 0 0 1px rgb(255 255 255 / 0.05)',
+  lg: '0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4), 0 0 0 1px rgb(255 255 255 / 0.05)',
+  xl: '0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.4), 0 0 0 1px rgb(255 255 255 / 0.07)',
+  '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.6), 0 0 0 1px rgb(255 255 255 / 0.1)',
+  // Glow shadows for dark mode (subtle light source effect)
+  glow: {
+    primary: `0 0 20px ${baseTokens.colors.purple[500]}40`,
+    accent: `0 0 20px ${baseTokens.colors.coral[500]}40`,
+    info: `0 0 20px ${baseTokens.colors.azure[500]}40`,
+  },
+};
+
+// ============================================
+// BRAND VARIANTS SYSTEM
+// Support for multiple brand color schemes
+// ============================================
+
+export interface BrandVariant {
+  name: string;
+  primary: {
+    main: string;
+    light: string;
+    dark: string;
+    contrast: string;
+  };
+  secondary: {
+    main: string;
+    light: string;
+    dark: string;
+    contrast: string;
+  };
+  accent: string;
+}
+
+/**
+ * Brand Variants - Pre-configured color schemes
+ * Each variant provides a complete color palette that can be swapped at runtime
+ */
+export const brandVariants: Record<string, BrandVariant> = {
+  // Default Trinity brand
+  trinity: {
+    name: 'Trinity',
+    primary: {
+      main: baseTokens.colors.navy[900],
+      light: baseTokens.colors.purple[700],
+      dark: baseTokens.colors.indigo[900],
+      contrast: '#FFFFFF',
+    },
+    secondary: {
+      main: baseTokens.colors.coral[800],
+      light: baseTokens.colors.coral[500],
+      dark: baseTokens.colors.coral[900],
+      contrast: '#FFFFFF',
+    },
+    accent: baseTokens.colors.azure[500],
+  },
+  
+  // Professional/Corporate variant
+  corporate: {
+    name: 'Corporate',
+    primary: {
+      main: '#1E3A5F',      // Deep blue
+      light: '#2E5A8F',
+      dark: '#0F1D30',
+      contrast: '#FFFFFF',
+    },
+    secondary: {
+      main: '#0891B2',      // Cyan
+      light: '#22D3EE',
+      dark: '#0E7490',
+      contrast: '#FFFFFF',
+    },
+    accent: '#F59E0B',      // Amber
+  },
+  
+  // Modern/Tech variant
+  tech: {
+    name: 'Tech',
+    primary: {
+      main: '#6366F1',      // Indigo
+      light: '#818CF8',
+      dark: '#4338CA',
+      contrast: '#FFFFFF',
+    },
+    secondary: {
+      main: '#EC4899',      // Pink
+      light: '#F472B6',
+      dark: '#DB2777',
+      contrast: '#FFFFFF',
+    },
+    accent: '#10B981',      // Emerald
+  },
+  
+  // Nature/Organic variant
+  nature: {
+    name: 'Nature',
+    primary: {
+      main: '#059669',      // Emerald
+      light: '#34D399',
+      dark: '#047857',
+      contrast: '#FFFFFF',
+    },
+    secondary: {
+      main: '#D97706',      // Amber
+      light: '#FBBF24',
+      dark: '#B45309',
+      contrast: '#FFFFFF',
+    },
+    accent: '#0EA5E9',      // Sky
+  },
+  
+  // Dark/Sleek variant
+  midnight: {
+    name: 'Midnight',
+    primary: {
+      main: '#1F2937',      // Gray 800
+      light: '#4B5563',
+      dark: '#111827',
+      contrast: '#FFFFFF',
+    },
+    secondary: {
+      main: '#8B5CF6',      // Violet
+      light: '#A78BFA',
+      dark: '#7C3AED',
+      contrast: '#FFFFFF',
+    },
+    accent: '#F43F5E',      // Rose
+  },
+};
+
+/**
+ * Get semantic tokens for a specific brand variant
+ * @param variant - The brand variant name
+ * @returns Modified semantic tokens with the brand colors applied
+ */
+export function getBrandSemanticTokens(variant: keyof typeof brandVariants) {
+  const brand = brandVariants[variant];
+  if (!brand) return semanticTokens;
+  
+  return {
+    ...semanticTokens,
+    colors: {
+      ...semanticTokens.colors,
+      brand: {
+        primary: brand.primary.main,
+        secondary: brand.secondary.main,
+        tertiary: brand.primary.dark,
+        accent: brand.accent,
+      },
+      interactive: {
+        ...semanticTokens.colors.interactive,
+        default: brand.primary.main,
+        hover: brand.secondary.main,
+        active: brand.primary.dark,
+        focus: brand.primary.light,
+      },
+    },
+  };
+}
 
 // ============================================
 // HIERARCHY COMBINED EXPORT

@@ -412,3 +412,75 @@ export type {
   GaugeChartProps,
   SparklineProps,
 } from './Charts';
+
+// ============================================================================
+// SPRINT 1 & 2 COMPONENTS
+// ============================================================================
+
+// SearchInput
+export { SearchInput } from './SearchInput';
+export type { SearchInputProps, SearchSuggestion } from './SearchInput';
+
+// FilterBar
+export { FilterBar } from './FilterBar';
+export type { FilterBarProps, FilterConfig, FilterValue, FilterPreset } from './FilterBar';
+
+// DataCard
+export { DataCard } from './DataCard';
+export type { DataCardProps, TrendDirection } from './DataCard';
+
+// CommandPalette
+export { CommandPalette } from './CommandPalette';
+export type { CommandPaletteProps, CommandItem, CommandGroup } from './CommandPalette';
+
+// Timeline
+export { Timeline, TimelineItemComponent } from './Timeline';
+export type { TimelineProps, TimelineItem } from './Timeline';
+
+// ============================================================================
+// TEMPLATES
+// ============================================================================
+
+// Dashboard Template
+export { DashboardTemplate } from './templates/Dashboard';
+export type { DashboardTemplateProps, KpiItem, ActivityItem } from './templates/Dashboard/DashboardTemplate';
+
+// Settings Template
+export { SettingsTemplate } from './templates/Settings';
+export type { SettingsTemplateProps, SettingsSection, SettingsNavItem } from './templates/Settings';
+
+// ListDetail Template
+export { ListDetailTemplate } from './templates/ListDetail';
+export type { ListDetailTemplateProps, ListDetailItem } from './templates/ListDetail';
+
+// ============================================================================
+// ADDITIONAL COMPONENTS
+// ============================================================================
+
+// TreeView
+export { TreeView } from './TreeView';
+export type { TreeViewProps, TreeNode, TreeNodeRenderProps } from './TreeView';
+
+// TransferList
+export { TransferList } from './TransferList';
+export type { TransferListProps, TransferListItem } from './TransferList';
+
+// Combobox
+export { Combobox } from './Combobox';
+export type { ComboboxProps, ComboboxOption } from './Combobox';
+
+// SplitPane
+export { SplitPane } from './SplitPane';
+export type { SplitPaneProps } from './SplitPane';
+
+// RichTextEditor
+export { RichTextEditor } from './RichTextEditor';
+export type { RichTextEditorProps, ToolbarItem, HeadingLevel, TextAlign } from './RichTextEditor';
+
+// DiffViewer
+export { DiffViewer } from './DiffViewer';
+export type { DiffViewerProps, DiffViewMode, DiffLine, DiffHunk } from './DiffViewer';
+
+// DockLayout
+export { DockLayout } from './DockLayout';
+export type { DockLayoutProps, DockPanel, DockZone } from './DockLayout';
