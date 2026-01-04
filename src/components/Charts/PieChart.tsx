@@ -23,13 +23,13 @@ import {
   chartAnimation,
   getChartColor,
 } from './tokens';
-import { PieChartProps, PieDataPoint } from './types';
+import { PieChartProps, PieDataPoint, PieActiveShapeProps, ChartTooltipRenderProps, PieLabelRenderProps } from './types';
 import { brandColors } from '../../tokens';
 
 /**
  * Custom active shape for pie hover state
  */
-const renderActiveShape = (props: any) => {
+const renderActiveShape = (props: PieActiveShapeProps) => {
   const {
     cx,
     cy,
@@ -38,9 +38,6 @@ const renderActiveShape = (props: any) => {
     startAngle,
     endAngle,
     fill,
-    payload,
-    percent,
-    value,
   } = props;
 
   return (
@@ -111,7 +108,7 @@ export const PieChart: React.FC<PieChartProps> = ({
   );
 
   // Custom tooltip component
-  const CustomPieTooltip = ({ active, payload }: any) => {
+  const CustomPieTooltip = ({ active, payload }: ChartTooltipRenderProps) => {
     if (!active || !payload || payload.length === 0) {
       return null;
     }
@@ -162,7 +159,7 @@ export const PieChart: React.FC<PieChartProps> = ({
   };
 
   // Custom label renderer
-  const renderLabel = (entry: any) => {
+  const renderLabel = (entry: PieLabelRenderProps) => {
     if (!showLabels) return null;
     
     const percent = total > 0 ? ((entry.value / total) * 100).toFixed(0) : '0';

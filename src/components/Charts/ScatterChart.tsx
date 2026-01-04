@@ -29,7 +29,7 @@ import {
   chartAnimation,
   getChartColor,
 } from './tokens';
-import { ScatterChartProps, ScatterDataPoint } from './types';
+import { ScatterChartProps, ScatterDataPoint, ChartTooltipRenderProps } from './types';
 import { brandColors } from '../../tokens';
 
 /**
@@ -109,12 +109,12 @@ export const ScatterChart: React.FC<ScatterChartProps> = ({
   const hasBubble = series.some(s => s.data.some(d => d.z !== undefined));
 
   // Custom tooltip
-  const CustomScatterTooltip = ({ active, payload }: any) => {
+  const CustomScatterTooltip = ({ active, payload }: ChartTooltipRenderProps) => {
     if (!active || !payload || payload.length === 0) {
       return null;
     }
 
-    const point = payload[0].payload;
+    const point = payload[0].payload as ScatterDataPoint;
     const seriesName = payload[0].name;
 
     return (

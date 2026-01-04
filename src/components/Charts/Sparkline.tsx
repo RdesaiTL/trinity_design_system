@@ -21,7 +21,7 @@ import {
   chartColorsStatusMap,
   chartAnimation,
 } from './tokens';
-import { SparklineProps } from './types';
+import { SparklineProps, DotRenderProps } from './types';
 
 /**
  * Sparkline - Compact inline chart
@@ -145,7 +145,7 @@ export const Sparkline: React.FC<SparklineProps> = ({
               strokeWidth={1.5}
               dot={
                 showMinMax
-                  ? (props: any) => {
+                  ? (props: DotRenderProps) => {
                       const { cx, cy, index } = props;
                       if (index === minIndex) {
                         return (
@@ -252,7 +252,7 @@ export const Sparkline: React.FC<SparklineProps> = ({
             fill="url(#sparkline-gradient)"
             dot={
               showMinMax
-                ? (props: any) => {
+                ? (props: DotRenderProps) => {
                     const { cx, cy, index } = props;
                     if (index === minIndex) {
                       return (

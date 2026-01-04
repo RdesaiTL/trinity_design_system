@@ -4,6 +4,86 @@
  */
 
 import { SxProps, Theme } from '@mui/material';
+import { SVGProps } from 'react';
+
+// ============================================================================
+// RECHARTS TYPE HELPERS
+// These types align with Recharts library behavior
+// ============================================================================
+
+/**
+ * Dot render function props from Recharts Line/Area components
+ * Used when customizing dot rendering with showMinMax, etc.
+ */
+export interface DotRenderProps {
+  cx: number;
+  cy: number;
+  index: number;
+  dataKey?: string;
+  value?: number;
+  payload?: Record<string, unknown>;
+  stroke?: string;
+  fill?: string;
+  r?: number;
+}
+
+/**
+ * Active shape props for Pie chart hover state
+ * Matches Recharts PieSectorDataItem structure
+ */
+export interface PieActiveShapeProps {
+  cx: number;
+  cy: number;
+  innerRadius: number;
+  outerRadius: number;
+  startAngle: number;
+  endAngle: number;
+  fill: string;
+  stroke?: string;
+  payload?: Record<string, unknown>;
+  percent?: number;
+  value?: number;
+  name?: string;
+  midAngle?: number;
+  middleRadius?: number;
+}
+
+/**
+ * Tooltip payload item from Recharts
+ */
+export interface TooltipPayloadItem {
+  name: string;
+  value: number;
+  color: string;
+  dataKey?: string;
+  payload?: Record<string, unknown>;
+  fill?: string;
+}
+
+/**
+ * Custom tooltip render props
+ */
+export interface ChartTooltipRenderProps {
+  active?: boolean;
+  payload?: TooltipPayloadItem[];
+  label?: string | number;
+}
+
+/**
+ * Label render props for Pie charts
+ */
+export interface PieLabelRenderProps {
+  cx: number;
+  cy: number;
+  midAngle: number;
+  innerRadius: number;
+  outerRadius: number;
+  percent: number;
+  value: number;
+  name: string;
+  index: number;
+  fill: string;
+}
 
 // ============================================================================
 // DATA TYPES
