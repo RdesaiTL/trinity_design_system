@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { ImageList, ImageListItem, ImageListItemBar, IconButton, Box, Typography } from '@mui/material';
+import { ImageList, ImageListItem, ImageListItemBar, IconButton } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { ComponentPage, Section } from '../../components/shared';
 
 const itemData = [
   { img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e', title: 'Breakfast', author: '@bkristastucchio' },

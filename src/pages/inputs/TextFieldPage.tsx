@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextField, InputAdornment, IconButton, Box } from '@mui/material';
+import { TextField, InputAdornment, IconButton } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import AccountCircle from '@mui/icons-material/AccountCircle';

@@ -3,7 +3,7 @@
  * Trinity-styled area chart with support for stacked and gradient fills
  */
 
-import React, { useMemo, useRef, useId } from 'react';
+import React, { useMemo, useId } from 'react';
 import {
   AreaChart as RechartsAreaChart,
   Area,

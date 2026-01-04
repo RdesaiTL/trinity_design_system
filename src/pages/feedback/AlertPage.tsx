@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Alert, AlertTitle, Button, Stack, Collapse, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { ComponentPage, Section } from '../../components/shared';
 
 export const AlertPage: React.FC = () => {
   const [open, setOpen] = React.useState(true);

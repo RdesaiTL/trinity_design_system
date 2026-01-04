@@ -12,9 +12,9 @@
  * @module components/StatusIndicator/__tests__/StatusIndicator.test
  */
 
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { axe } from 'vitest-axe';
 import { ThemeProvider } from '@mui/material/styles';
 import { lightTheme } from '../../../theme';
@@ -35,8 +35,8 @@ import { StatusType } from '../types';
 
 // toHaveNoViolations is extended globally in test-setup.ts
 
-// Wrapper for themed rendering
-const renderWithTheme = (ui: React.ReactElement) => {
+// Wrapper for themed rendering (unused, kept for future tests)
+const _renderWithTheme = (ui: React.ReactElement) => {
   return render(
     <ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>
   );
@@ -623,7 +623,7 @@ describe('StatusIndicator Integration', () => {
     const config = getStatusConfig(status);
     
     // All indicators should show the same label by default
-    const { rerender, container } = render(<IconIndicator status={status} />);
+    const { rerender, container: _container } = render(<IconIndicator status={status} />);
     expect(screen.getByText(config.label)).toBeInTheDocument();
     
     rerender(<ShapeIndicator status={status} />);

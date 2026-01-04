@@ -22,7 +22,6 @@ import { brandColors } from '../tokens';
 import { semanticTokens } from '../tokens';
 import {
   CodeBlock,
-  SampleDashboard,
   sampleUser,
   sampleClients,
   getAIResponse,
@@ -336,7 +335,7 @@ export const WithoutInsightEngine: Story = {
 const FABSidebarDemo: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   
-  const handleSendMessage = useCallback((message: string) => {
+  const handleSendMessage = useCallback((_message: string) => {
     setTimeout(() => {
       setMessages(prev => [...prev, {
         id: `ai-${Date.now()}`,
@@ -374,7 +373,7 @@ const FABSidebarDemo: React.FC = () => {
 const FABTopNavDemo: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   
-  const handleSendMessage = useCallback((message: string) => {
+  const handleSendMessage = useCallback((_message: string) => {
     setTimeout(() => {
       setMessages(prev => [...prev, {
         id: `ai-${Date.now()}`,

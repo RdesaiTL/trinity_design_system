@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Breadcrumbs, Link, Typography, Stack, Chip } from '@mui/material';
+import { Breadcrumbs, Link, Typography, Stack } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import HomeIcon from '@mui/icons-material/Home';
 import GrainIcon from '@mui/icons-material/Grain';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { ComponentPage, Section } from '../../components/shared';
 
 export const BreadcrumbsPage: React.FC = () => (
   <ComponentPage

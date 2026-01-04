@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {
-  Stepper, Step, StepLabel, StepContent, StepButton, Button, Typography, Box, Paper,
+  Stepper, Step, StepLabel, StepContent, StepButton, Button, Typography, Box,
 } from '@mui/material';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { ComponentPage, Section } from '../../components/shared';
 
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 const stepContent = [
@@ -21,7 +21,7 @@ export const StepperPage: React.FC = () => {
 
   const handleStep = (step: number) => () => setActiveStep(step);
 
-  const handleComplete = () => {
+  const _handleComplete = () => {
     const newCompleted = completed;
     newCompleted[activeStep] = true;
     setCompleted(newCompleted);

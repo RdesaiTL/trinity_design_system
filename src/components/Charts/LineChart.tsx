@@ -3,7 +3,7 @@
  * Trinity-styled line chart with support for multiple series
  */
 
-import React, { useMemo, useRef, useId } from 'react';
+import React, { useMemo, useId } from 'react';
 import {
   LineChart as RechartsLineChart,
   Line,
@@ -228,7 +228,7 @@ export const LineChart: React.FC<LineChartProps> = ({
           {/* Area fills (if showArea) */}
           {showArea &&
             series.map((s, index) => {
-              const color = s.color || colors[index % colors.length] || getChartColor(index);
+              const _color = s.color || colors[index % colors.length] || getChartColor(index);
               return (
                 <Area
                   key={`area-${s.dataKey}`}

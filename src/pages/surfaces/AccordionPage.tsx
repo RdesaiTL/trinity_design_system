@@ -4,7 +4,7 @@ import {
   Typography, Button,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { ComponentPage, Section } from '../../components/shared';
 
 export const AccordionPage: React.FC = () => {
   const [expanded, setExpanded] = React.useState<string | false>('panel1');

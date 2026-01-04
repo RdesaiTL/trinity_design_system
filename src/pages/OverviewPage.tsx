@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Typography, Paper, Grid, Chip, Card, CardContent, Button } from '@mui/material';
+import { Box, Typography, Paper, Chip, Button } from '@mui/material';
 import { brandColors } from '../tokens';
 
 export const OverviewPage: React.FC = () => (

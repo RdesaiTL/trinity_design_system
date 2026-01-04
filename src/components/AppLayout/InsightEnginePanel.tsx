@@ -7,7 +7,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
   Box,
   Typography,
-  Avatar,
   TextField,
   IconButton,
   Chip,
@@ -19,7 +18,6 @@ import {
   Divider,
   Switch,
   Paper,
-  Link,
   Collapse,
   useTheme,
   alpha,
@@ -48,8 +46,6 @@ import ArticleIcon from '@mui/icons-material/Article';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import AddIcon from '@mui/icons-material/Add';
 import HistoryIcon from '@mui/icons-material/History';
-import BoltIcon from '@mui/icons-material/Bolt';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 import MicIcon from '@mui/icons-material/Mic';
 import GraphicEqIcon from '@mui/icons-material/GraphicEq';
@@ -57,7 +53,6 @@ import SmartToyIcon from '@mui/icons-material/SmartToy';
 import FitScreenIcon from '@mui/icons-material/FitScreen';
 import WidthFullIcon from '@mui/icons-material/WidthFull';
 import SourceIcon from '@mui/icons-material/Source';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -315,9 +310,9 @@ export const InsightEnginePanel: React.FC<InsightEnginePanelProps> = ({
   initialMessages = [],
   messages: controlledMessages,
   onMessagesChange,
-  placeholder = 'Ask anything...',
+  placeholder: _placeholder = 'Ask anything...',
   title = 'Insight Engine',
-  subtitle,
+  subtitle: _subtitle,
   onSendMessage,
   isTyping: externalIsTyping = false,
   aiAvatar,
@@ -353,8 +348,8 @@ export const InsightEnginePanel: React.FC<InsightEnginePanelProps> = ({
   };
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(externalIsTyping);
-  const [selectedFocus, setSelectedFocus] = useState<string>('all');
-  const [focusMenuAnchor, setFocusMenuAnchor] = useState<null | HTMLElement>(null);
+  const [selectedFocus, _setSelectedFocus] = useState<string>('all');
+  const [_focusMenuAnchor, _setFocusMenuAnchor] = useState<null | HTMLElement>(null);
   const [proSearchEnabled, setProSearchEnabled] = useState(false);
   const [isVoiceMode, setIsVoiceMode] = useState(false);
   const [isListening, setIsListening] = useState(false);
@@ -456,7 +451,7 @@ export const InsightEnginePanel: React.FC<InsightEnginePanelProps> = ({
     onNewThread?.();
   };
 
-  const currentFocus = focusOptions.find((f) => f.id === selectedFocus) || focusOptions[0];
+  const _currentFocus = focusOptions.find((f) => f.id === selectedFocus) || focusOptions[0];
 
   const defaultAIAvatar = (
     <Box
@@ -1427,7 +1422,7 @@ const SourceCategoryItem: React.FC<{
   onSelectItem: (item: SourceItem | null) => void;
   isDark: boolean;
   colors: ThemeColors;
-}> = ({ category, index, isExpanded, onToggle, selectedItem, onSelectItem, isDark, colors }) => {
+}> = ({ category, index, isExpanded, onToggle, selectedItem, onSelectItem, isDark: _isDark, colors }) => {
   const hasItems = category.items && category.items.length > 0;
   
   return (
@@ -1579,7 +1574,7 @@ const RelatedQuestionsAccordion: React.FC<{
   onQuestionClick: (question: string) => void;
   isDark: boolean;
   colors: ThemeColors;
-}> = ({ questions, onQuestionClick, isDark, colors }) => {
+}> = ({ questions, onQuestionClick, isDark: _isDark, colors }) => {
   const [expanded, setExpanded] = useState(true);
 
   return (

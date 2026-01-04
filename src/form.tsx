@@ -6,7 +6,6 @@
  */
 
 import React, { createContext, useContext, useCallback, useMemo, useState, useId } from 'react';
-import { SxProps, Theme } from '@mui/material';
 
 // ============================================================================
 // TYPES

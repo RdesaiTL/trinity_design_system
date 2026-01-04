@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Typography, Box } from '@mui/material';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { ComponentPage, Section } from '../../components/shared';
 
 export const TypographyPage: React.FC = () => (
   <ComponentPage

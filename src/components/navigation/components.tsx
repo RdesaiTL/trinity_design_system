@@ -14,7 +14,6 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import { alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import AppsIcon from '@mui/icons-material/Apps';

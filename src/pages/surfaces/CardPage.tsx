@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {
   Card, CardContent, CardActions, CardMedia, CardHeader, CardActionArea,
-  Typography, Button, Avatar, IconButton, Collapse, Box, Grid,
+  Typography, Button, Avatar, IconButton, Collapse, Grid,
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { red } from '@mui/material/colors';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { ComponentPage, Section } from '../../components/shared';
 
 export const CardPage: React.FC = () => {
   const [expanded, setExpanded] = React.useState(false);

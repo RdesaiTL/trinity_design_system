@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Box, Typography, Paper, Divider, useTheme, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip, Grid } from '@mui/material';
+import { Box, Typography, Paper, Divider, useTheme, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Chip } from '@mui/material';
 
 // ============================================================================
 // HOISTED COMPONENTS - Defined outside render to avoid React Compiler errors

@@ -4,7 +4,7 @@
  */
 
 import { useState, useCallback } from 'react';
-import { Client, App } from './types';
+import { Client } from './types';
 
 // ============================================================================
 // USE CLIENT SELECTOR

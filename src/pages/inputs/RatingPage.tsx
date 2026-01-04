@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Rating, Box, Typography, Stack } from '@mui/material';
+import { Rating, Box, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';

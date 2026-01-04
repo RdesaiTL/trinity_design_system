@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Box, Stack, Typography, Paper, Button } from '@mui/material';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { Paper } from '@mui/material';
+import { ComponentPage, Section } from '../../components/shared';
 import { IllustratedMessage } from '../../components/IllustratedMessage';
 import { IconProvider } from '../../components/Icon';
 

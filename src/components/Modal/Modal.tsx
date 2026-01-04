@@ -1,4 +1,4 @@
-import React, { useState, useCallback, createContext, useContext } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -10,8 +10,6 @@ import {
   Box,
   Typography,
   CircularProgress,
-  Divider,
-  Stack,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -383,7 +381,7 @@ interface ConfirmDialogState {
   onConfirm: () => void | Promise<void>;
 }
 
-interface ConfirmDialogContextType {
+interface _ConfirmDialogContextType {
   confirm: (options: Partial<ConfirmDialogState> & { onConfirm: () => void | Promise<void> }) => void;
   close: () => void;
   state: ConfirmDialogState;

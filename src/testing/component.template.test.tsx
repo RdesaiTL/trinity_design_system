@@ -17,19 +17,19 @@
  * @module testing/component.template.test
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, _expect, vi, beforeEach, _afterEach } from 'vitest';
 import {
-  render,
-  screen,
-  within,
-  waitFor,
-  expectNoA11yViolations,
-  createKeyboardHelpers,
-  expectFocused,
-  expectInTabOrder,
-  expectRole,
-  expectAccessibleName,
-  waitForTransition,
+  _render,
+  _screen,
+  _within,
+  _waitFor,
+  _expectNoA11yViolations,
+  _createKeyboardHelpers,
+  _expectFocused,
+  _expectInTabOrder,
+  _expectRole,
+  _expectAccessibleName,
+  _waitForTransition,
 } from './test-utils';
 // import { ComponentName } from '../components/ComponentName';
 
@@ -37,11 +37,11 @@ import {
 // TEST DATA & MOCKS
 // ═══════════════════════════════════════════════════════════════════════════════
 
-const defaultProps = {
+const _defaultProps = {
   // Add default props here
 };
 
-const mockHandlers = {
+const _mockHandlers = {
   onClick: vi.fn(),
   onClose: vi.fn(),
   onChange: vi.fn(),
@@ -102,7 +102,7 @@ describe('ComponentName', () => {
       ['success', 'expected-class-or-style'],
       ['warning', 'expected-class-or-style'],
       ['error', 'expected-class-or-style'],
-    ])('renders %s variant correctly', (variant, expectedClass) => {
+    ])('renders %s variant correctly', (_variant, _expectedClass) => {
       // render(<ComponentName {...defaultProps} variant={variant} />);
       // const element = screen.getByRole('...');
       // expect(element).toHaveClass(expectedClass);
@@ -114,7 +114,7 @@ describe('ComponentName', () => {
       ['small', 'expected-size'],
       ['medium', 'expected-size'],
       ['large', 'expected-size'],
-    ])('renders %s size correctly', (size, expectedSize) => {
+    ])('renders %s size correctly', (_size, _expectedSize) => {
       // render(<ComponentName {...defaultProps} size={size} />);
       // const element = screen.getByRole('...');
       // Verify size styling

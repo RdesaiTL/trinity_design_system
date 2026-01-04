@@ -9,7 +9,6 @@ import {
   Pie,
   Cell,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   Sector,
 } from 'recharts';
@@ -160,7 +159,7 @@ const getLabelText = (
 export const PieChart: React.FC<PieChartProps> = ({
   data,
   height = 300,
-  width = '100%',
+  width: _width = '100%',
   title,
   subtitle,
   innerRadius = 0,

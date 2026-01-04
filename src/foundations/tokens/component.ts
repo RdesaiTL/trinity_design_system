@@ -15,7 +15,7 @@
  */
 
 import { colors, spacing, fontSize, fontWeight, borderRadius, opacity } from './base';
-import { brand, text, background, border, interactive, radius, shadow, space } from './semantic';
+import { brand, text, background, border, radius, shadow } from './semantic';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // BUTTON TOKENS

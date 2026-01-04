@@ -125,7 +125,7 @@ const EasingDemo = () => {
 };
 
 const SemanticMotionDemo = () => {
-  const [show, setShow] = useState(true);
+  const [_show, setShow] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => setShow(s => !s), 2000);

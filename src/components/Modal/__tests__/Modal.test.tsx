@@ -13,30 +13,26 @@
  * @module components/Modal/__tests__/Modal.test
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import React from 'react';
 import {
   render,
   screen,
   within,
   waitFor,
-  waitForElementToBeRemoved,
-  fireEvent,
 } from '@testing-library/react';
 import { axe } from 'vitest-axe';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from '@mui/material/styles';
-import { lightTheme } from '../../../theme';
 import { Modal, ConfirmDialog, ModalProps } from '../Modal';
 
 // toHaveNoViolations is extended globally in test-setup.ts
 
-// Wrapper for themed rendering
-const renderWithTheme = (ui: React.ReactElement) => {
-  return render(
-    <ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>
-  );
-};
+// Wrapper for themed rendering - unused, but kept for reference
+// const renderWithTheme = (ui: React.ReactElement) => {
+//   return render(
+//     <ThemeProvider theme={lightTheme}>{ui}</ThemeProvider>
+//   );
+// };
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // TEST DATA & MOCKS

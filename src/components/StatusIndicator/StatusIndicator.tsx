@@ -536,7 +536,7 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = (props) => {
     label,
     showLabel = true,
     sx,
-    'aria-label': ariaLabel,
+    'aria-label': _ariaLabel,
   } = props;
 
   const config = statusConfigs[status];

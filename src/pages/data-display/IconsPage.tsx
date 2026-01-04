@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, Stack, Typography, Paper, Grid, Card, CardContent } from '@mui/material';
 import { ComponentPage, Section, Showcase } from '../../components/shared';
-import { Icon, IconProvider, IconLibrarySwitcher, getAvailableIcons } from '../../components/Icon';
+import { Icon, IconProvider } from '../../components/Icon';
 import { brandColors } from '../../tokens';
 
 export const IconsPage: React.FC = () => {

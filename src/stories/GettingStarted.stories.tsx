@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Box, Typography, Paper, Grid, Chip, useTheme, Divider } from '@mui/material';
+import { Box, Typography, Paper, Grid, useTheme, Divider } from '@mui/material';
 import { baseTokens, semanticTokens } from '../tokens';
 
 // ============================================================================

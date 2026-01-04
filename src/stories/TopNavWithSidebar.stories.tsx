@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 import TopNavWithSidebar from '../components/TopNavWithSidebar';
-import { Box, Typography, Paper, Grid } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrackChangesIcon from '@mui/icons-material/TrackChanges';

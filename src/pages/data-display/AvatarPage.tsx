@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Avatar, AvatarGroup, Stack, Badge } from '@mui/material';
+import { Avatar, AvatarGroup, Badge } from '@mui/material';
 import FolderIcon from '@mui/icons-material/Folder';
 import PersonIcon from '@mui/icons-material/Person';
 import { deepOrange, deepPurple, green, pink } from '@mui/material/colors';

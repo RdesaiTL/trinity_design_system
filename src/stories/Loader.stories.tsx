@@ -12,7 +12,7 @@ import {
   CardContent,
   Backdrop,
 } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { brandColors } from '../tokens';
 import { keyframes } from '@mui/system';
 
@@ -62,7 +62,7 @@ const trinityPulse3 = keyframes`
   }
 `;
 
-const pulseAnimation = keyframes`
+const _pulseAnimation = keyframes`
   0%, 100% {
     opacity: 1;
   }
@@ -160,8 +160,8 @@ const TrinityLoader = ({ size = 'medium', animate = true }: { size?: 'small' | '
 };
 
 // Alias for backward compatibility
-const TrinitySpinner = TrinityLoader;
-const TrinityLogoSpinner = TrinityLoader;
+const _TrinitySpinner = TrinityLoader;
+const _TrinityLogoSpinner = TrinityLoader;
 
 // Dot Loader
 const DotLoader = ({ size = 'medium' }: { size?: 'small' | 'medium' | 'large' }) => {

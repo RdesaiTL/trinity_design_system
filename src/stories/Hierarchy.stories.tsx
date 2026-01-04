@@ -12,7 +12,6 @@ import {
   Stack,
   Divider,
   IconButton,
-  Tooltip,
   Alert,
 } from '@mui/material';
 import { 
@@ -26,13 +25,10 @@ import {
   Architecture,
 } from '@mui/icons-material';
 import {
-  hierarchy,
   elevationHierarchy,
-  typographicHierarchy,
   attentionHierarchy,
   scaleHierarchy,
   spacingHierarchy,
-  getElevation,
   getAttentionColor,
   uiElevation,
   uiPatterns,
@@ -42,7 +38,7 @@ import {
   hoverEffect,
   architectureLayers,
 } from '../hierarchy';
-import { baseTokens, semanticTokens } from '../tokens';
+import { baseTokens } from '../tokens';
 
 /**
  * # Design System Hierarchy

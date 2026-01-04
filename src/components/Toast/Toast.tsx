@@ -4,13 +4,11 @@ import React, {
   useCallback,
   useState,
   useRef,
-  useEffect,
 } from 'react';
 import {
   Snackbar,
   Alert,
   AlertTitle,
-  IconButton,
   Button,
   Box,
   Slide,
@@ -19,7 +17,6 @@ import {
   Portal,
 } from '@mui/material';
 import type { SlideProps, GrowProps, FadeProps } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 
 export type ToastSeverity = 'success' | 'info' | 'warning' | 'error';
 export type ToastPosition =
@@ -139,7 +136,7 @@ const getTransitionComponent = (transition: TransitionType) => {
  * Single Toast component
  */
 export const Toast: React.FC<ToastProps> = ({
-  id,
+  id: _id,
   message,
   title,
   severity = 'info',

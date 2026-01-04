@@ -15,7 +15,7 @@ import { baseTokens, semanticTokens } from '../../tokens';
  * - **Semantic Styles**: Pre-defined combinations for display, heading, body, and label text
  */
 
-const TokenDisplay = ({ label, value, tokenPath }: { label: string; value: string | number; tokenPath: string }) => (
+const _TokenDisplay = ({ label, value, tokenPath }: { label: string; value: string | number; tokenPath: string }) => (
   <Paper sx={{ p: 2, height: '100%' }}>
     <Typography variant="subtitle2" fontWeight={600}>{label}</Typography>
     <Typography 

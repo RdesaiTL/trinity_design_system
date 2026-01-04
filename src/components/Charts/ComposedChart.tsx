@@ -179,7 +179,7 @@ export const ComposedChart: React.FC<ComposedChartProps> = ({
           <defs>
             {series
               .filter((s) => s.type === 'area')
-              .map((config, i) => {
+              .map((config, _i) => {
                 const seriesIndex = series.findIndex((s) => s.key === config.key);
                 const seriesColor =
                   config.color || colors[seriesIndex % colors.length] || getChartColor(seriesIndex);

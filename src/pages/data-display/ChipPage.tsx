@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Chip, Stack, Avatar } from '@mui/material';
+import { Chip, Avatar } from '@mui/material';
 import FaceIcon from '@mui/icons-material/Face';
 import DoneIcon from '@mui/icons-material/Done';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { ComponentPage, Section, Showcase } from '../../components/shared';
 
 export const ChipPage: React.FC = () => {

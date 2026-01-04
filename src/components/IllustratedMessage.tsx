@@ -133,7 +133,7 @@ const EmptyTableIllustration: React.FC<IllustrationProps> = ({
   size = 180, 
   primaryColor = brandColors.primary.main,
   secondaryColor = brandColors.neutral.gray100,
-  accentColor = brandColors.secondary.main,
+  accentColor: _accentColor = brandColors.secondary.main,
 }) => (
   <svg width={size} height={size} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Table base */}
@@ -181,7 +181,7 @@ const EmptyDraftsIllustration: React.FC<IllustrationProps> = ({
 const GettingStartedIllustration: React.FC<IllustrationProps> = ({ 
   size = 180, 
   primaryColor = brandColors.primary.main,
-  secondaryColor = brandColors.neutral.gray100,
+  secondaryColor: _secondaryColor = brandColors.neutral.gray100,
   accentColor = brandColors.secondary.main,
 }) => (
   <svg width={size} height={size} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -274,7 +274,7 @@ const NoResultsIllustration: React.FC<IllustrationProps> = ({
 // Error Generic Illustration
 const ErrorGenericIllustration: React.FC<IllustrationProps> = ({ 
   size = 180, 
-  primaryColor = brandColors.primary.main,
+  primaryColor: _primaryColor = brandColors.primary.main,
   secondaryColor = brandColors.neutral.gray100,
 }) => (
   <svg width={size} height={size} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -317,7 +317,7 @@ const Error404Illustration: React.FC<IllustrationProps> = ({
 // Error 500 Illustration
 const Error500Illustration: React.FC<IllustrationProps> = ({ 
   size = 180, 
-  primaryColor = brandColors.primary.main,
+  primaryColor: _primaryColor = brandColors.primary.main,
   secondaryColor = brandColors.neutral.gray100,
   accentColor = brandColors.secondary.main,
 }) => (
@@ -348,7 +348,7 @@ const Error500Illustration: React.FC<IllustrationProps> = ({
 const ErrorPermissionIllustration: React.FC<IllustrationProps> = ({ 
   size = 180, 
   primaryColor = brandColors.primary.main,
-  secondaryColor = brandColors.neutral.gray100,
+  secondaryColor: _secondaryColor = brandColors.neutral.gray100,
   accentColor = brandColors.secondary.main,
 }) => (
   <svg width={size} height={size} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -395,7 +395,7 @@ const UploadIllustration: React.FC<IllustrationProps> = ({
 const SuccessIllustration: React.FC<IllustrationProps> = ({ 
   size = 180, 
   primaryColor = brandColors.primary.main,
-  secondaryColor = brandColors.neutral.gray100,
+  secondaryColor: _secondaryColor = brandColors.neutral.gray100,
   accentColor = brandColors.secondary.main,
 }) => (
   <svg width={size} height={size} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -459,7 +459,7 @@ const NoDataIllustration: React.FC<IllustrationProps> = ({
 // Offline Illustration
 const OfflineIllustration: React.FC<IllustrationProps> = ({ 
   size = 180, 
-  primaryColor = brandColors.primary.main,
+  primaryColor: _primaryColor = brandColors.primary.main,
   secondaryColor = brandColors.neutral.gray100,
 }) => (
   <svg width={size} height={size} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">

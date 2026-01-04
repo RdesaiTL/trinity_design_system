@@ -4,7 +4,6 @@
  */
 
 import { SxProps, Theme } from '@mui/material';
-import { SVGProps } from 'react';
 
 // ============================================================================
 // RECHARTS TYPE HELPERS

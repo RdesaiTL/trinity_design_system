@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
-  TablePagination, TableSortLabel, Paper, Checkbox, Box,
+  TablePagination, Paper, Checkbox,
 } from '@mui/material';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { ComponentPage, Section } from '../../components/shared';
 
 interface Data {
   id: number;

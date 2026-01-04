@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Switch, FormControlLabel, FormGroup, Stack } from '@mui/material';
+import { Switch, FormControlLabel, FormGroup } from '@mui/material';
 import { ComponentPage, Section, Showcase } from '../../components/shared';
 
 export const SwitchPage: React.FC = () => (

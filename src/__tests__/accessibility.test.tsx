@@ -12,7 +12,7 @@ import {
   SkipLink,
   VisuallyHidden,
 } from '../accessibility';
-import React, { useRef } from 'react';
+import React from 'react';
 
 // ============================================================================
 // useReducedMotion Tests

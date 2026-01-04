@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {
   Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions,
-  Button, TextField, Slide, Box, List, ListItem, ListItemButton, ListItemText,
-  ListItemAvatar, Avatar, Typography,
+  Button, TextField, Slide, List, ListItem, ListItemButton, ListItemText,
+  ListItemAvatar, Avatar,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import PersonIcon from '@mui/icons-material/Person';

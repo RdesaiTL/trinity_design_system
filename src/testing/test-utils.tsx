@@ -23,7 +23,7 @@ import { lightTheme, darkTheme } from '../theme';
 // THEME PROVIDER WRAPPER
 // ═══════════════════════════════════════════════════════════════════════════════
 
-interface WrapperProps {
+interface _WrapperProps {
   children: ReactNode;
   theme?: 'light' | 'dark';
 }

@@ -6,7 +6,6 @@ import {
   Stack,
   Input,
   TextField,
-  Paper,
 } from '@mui/material';
 import VolumeDownIcon from '@mui/icons-material/VolumeDown';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';

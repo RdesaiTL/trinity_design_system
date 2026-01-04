@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, ButtonGroup, Box } from '@mui/material';
+import { Button, ButtonGroup } from '@mui/material';
 import { ComponentPage, Section, Showcase } from '../../components/shared';
 
 export const ButtonGroupPage: React.FC = () => (

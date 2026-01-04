@@ -39,7 +39,7 @@ export interface AIFabProps {
  * to open the InsightEnginePanel from anywhere in the application.
  */
 export const AIFab: React.FC<AIFabProps> = ({
-  open = false,
+  open: _open = false,
   onClick,
   position = 'bottom-right',
   offset = { x: 24, y: 24 },

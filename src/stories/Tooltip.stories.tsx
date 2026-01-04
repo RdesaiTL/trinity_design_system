@@ -10,7 +10,6 @@ import {
   Zoom,
   Fade,
   ClickAwayListener,
-  Popper,
 } from '@mui/material';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -47,7 +46,7 @@ interface TooltipDemoProps {
 const TooltipDemo = ({ variant = 'basic' }: TooltipDemoProps) => {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const anchorRef = useRef<HTMLButtonElement>(null);
+  const _anchorRef = useRef<HTMLButtonElement>(null);
 
   const handleCopy = () => {
     setCopied(true);

@@ -14,8 +14,6 @@ import {
   CardContent,
   Stack,
   Chip,
-  Divider,
-  Alert,
 } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import AssessmentIcon from '@mui/icons-material/Assessment';
@@ -120,7 +118,7 @@ interface CodeBlockProps {
  */
 export const CodeBlock: React.FC<CodeBlockProps> = ({
   children,
-  language = 'tsx',
+  _language = 'tsx',
   title,
 }) => (
   <Box sx={{ mb: 2 }}>

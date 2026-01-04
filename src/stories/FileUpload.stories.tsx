@@ -169,7 +169,7 @@ export const Controlled: Story = {
 const SimulatedUploadDemo = () => {
   const [files, setFiles] = useState<UploadFile[]>([]);
 
-  const simulateUpload = async (file: File): Promise<void> => {
+  const simulateUpload = async (_file: File): Promise<void> => {
     // Simulate network delay
     await new Promise((resolve) => setTimeout(resolve, 2000));
     // Simulate random failure

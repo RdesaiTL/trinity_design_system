@@ -14,7 +14,6 @@ import {
   Legend,
   ResponsiveContainer,
   ReferenceLine,
-  Cell,
 } from 'recharts';
 import { ChartWrapper } from './ChartWrapper';
 import { CustomTooltip } from './CustomTooltip';
@@ -95,7 +94,7 @@ export const BarChart: React.FC<BarChartProps> = ({
   const isHorizontal = layout === 'horizontal';
 
   // Generate stack IDs for stacked variants
-  const getStackId = (s: typeof series[0], index: number) => {
+  const getStackId = (s: typeof series[0], _index: number) => {
     if (variant === 'stacked' || variant === 'stacked-percent') {
       return s.stackId || 'stack';
     }

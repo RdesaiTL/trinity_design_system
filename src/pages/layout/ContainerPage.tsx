@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Container, Box, Typography, Paper } from '@mui/material';
+import { Container, Typography, Paper } from '@mui/material';
 import { ComponentPage, Section, Showcase } from '../../components/shared';
 
 export const ContainerPage: React.FC = () => (

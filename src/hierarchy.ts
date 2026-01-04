@@ -189,7 +189,7 @@ export function getAttentionStyles(
   mode: 'light' | 'dark' = 'light'
 ): { color: string; opacity?: number } {
   const color = getAttentionColor(level, mode);
-  const attention = attentionHierarchy[level];
+  const _attention = attentionHierarchy[level];
   
   if (level === 'disabled') {
     return { color, opacity: 0.6 };

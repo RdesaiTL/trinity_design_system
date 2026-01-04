@@ -3,23 +3,7 @@ import { Box, Typography, Paper, Grid, Stack, Divider } from '@mui/material';
 import { 
   IllustratedMessage, 
   UploadDropZone,
-  EmptyTableIllustration,
-  EmptyDraftsIllustration,
-  GettingStartedIllustration,
-  EmptyDocumentsIllustration,
-  EmptyInsightsIllustration,
-  NoResultsIllustration,
-  ErrorGenericIllustration,
-  Error404Illustration,
-  Error500Illustration,
-  ErrorPermissionIllustration,
-  UploadIllustration,
-  SuccessIllustration,
-  NoNotificationsIllustration,
-  NoDataIllustration,
-  OfflineIllustration,
-  IllustrationType,
-} from '../components/IllustratedMessage';
+  IllustrationType,\n} from '../components/IllustratedMessage';
 
 /**
  * # Illustrated Message

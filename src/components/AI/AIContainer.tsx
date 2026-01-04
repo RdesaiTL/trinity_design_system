@@ -23,7 +23,6 @@ import {
   IconButton,
   Stack,
   Collapse,
-  Avatar,
   Divider,
   SxProps,
   Theme,

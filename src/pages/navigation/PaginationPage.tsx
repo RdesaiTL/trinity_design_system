@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Pagination, PaginationItem, Stack, TablePagination, Box } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { ComponentPage, Section } from '../../components/shared';
 
 export const PaginationPage: React.FC = () => {
   const [page, setPage] = React.useState(1);

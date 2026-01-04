@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Stack, Typography, Paper, Grid, Card, CardContent } from '@mui/material';
+import { Box, Stack, Paper } from '@mui/material';
 import { ComponentPage, Section, Showcase } from '../../components/shared';
 import {
   IconIndicator,

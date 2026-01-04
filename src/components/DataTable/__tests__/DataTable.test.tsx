@@ -26,15 +26,15 @@
  * @module components/DataTable/__tests__/DataTable.test
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import React from 'react';
-import { render, screen, within, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, within, waitFor } from '@testing-library/react';
 import { axe } from 'vitest-axe';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from '@mui/material/styles';
 import { lightTheme } from '../../../theme';
 import { DataTable, DataTableProps } from '../DataTable';
-import { GridColDef, GridRowId, GridValidRowModel } from '@mui/x-data-grid';
+import { GridColDef, GridValidRowModel } from '@mui/x-data-grid';
 
 // toHaveNoViolations is extended globally in test-setup.ts
 

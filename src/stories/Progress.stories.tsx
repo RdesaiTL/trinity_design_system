@@ -39,7 +39,7 @@ interface ProgressDemoProps {
 }
 
 const ProgressDemo = ({ variant = 'linear' }: ProgressDemoProps) => {
-  const [progress, setProgress] = useState(67);
+  const [progress, _setProgress] = useState(67);
   const [activeStep, setActiveStep] = useState(1);
 
   const steps = [

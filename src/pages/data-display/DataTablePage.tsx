@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import { 
   Box, 
-  Stack, 
   Typography, 
   Paper,
   Table,
@@ -22,7 +21,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { ComponentPage, Section } from '../../components/shared';
 
 interface RowData {
   id: number;

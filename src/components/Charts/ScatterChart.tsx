@@ -3,7 +3,7 @@
  * Trinity-styled scatter and bubble charts
  */
 
-import React, { useMemo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import {
   ScatterChart as RechartsScatterChart,
   Scatter,

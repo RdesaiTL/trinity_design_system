@@ -10,7 +10,7 @@
  */
 
 import { colors, spacing, borderRadius, opacity } from '../base';
-import { brand, background, border, radius } from '../semantic';
+import { brand } from '../semantic';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // AI COLOR PALETTE

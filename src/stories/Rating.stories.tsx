@@ -5,7 +5,6 @@ import {
   Rating,
   Stack,
   IconButton,
-  FormControlLabel,
   Paper,
 } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';

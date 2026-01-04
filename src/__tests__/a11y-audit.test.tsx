@@ -19,12 +19,10 @@ import { lightTheme, darkTheme } from '../theme';
 
 // Import components that MUST pass a11y
 import { Modal } from '../components/Modal';
-import { Toast, ToastProvider } from '../components/Toast';
+import { Toast } from '../components/Toast';
 import { StatusIndicator, StatusChip, InlineStatus, IconIndicator } from '../components/StatusIndicator';
 // DataTable skipped - MUI X DataGrid v8 requires ResizeObserver not available in jsdom
 import type { GridColDef } from '@mui/x-data-grid';
-import TopNavHeader from '../components/TopNavHeader';
-import TopNavWithSidebar from '../components/TopNavWithSidebar';
 import { PageHeader } from '../components/PageHeader';
 import { FileUpload } from '../components/FileUpload';
 import { IllustratedMessage } from '../components/IllustratedMessage';

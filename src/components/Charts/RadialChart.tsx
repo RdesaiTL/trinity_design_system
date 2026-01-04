@@ -7,7 +7,6 @@ import React, { useMemo } from 'react';
 import {
   RadialBarChart as RechartsRadialBarChart,
   RadialBar,
-  Legend,
   ResponsiveContainer,
   PolarAngleAxis,
 } from 'recharts';
@@ -15,9 +14,7 @@ import { Box, Typography } from '@mui/material';
 import { ChartWrapper } from './ChartWrapper';
 import {
   chartColorsPrimary,
-  chartColorsStatus,
   chartTypography,
-  chartSizing,
   chartAnimation,
   getChartColor,
 } from './tokens';
@@ -42,7 +39,7 @@ import { brandColors } from '../../tokens';
 export const RadialBarChart: React.FC<RadialBarChartProps> = ({
   data,
   height = 300,
-  width = '100%',
+  width: _width = '100%',
   title,
   subtitle,
   innerRadius = '30%',
@@ -207,7 +204,7 @@ export const GaugeChart: React.FC<GaugeChartProps> = ({
   min = 0,
   max = 100,
   height = 200,
-  width = '100%',
+  width: _width = '100%',
   title,
   valueLabel,
   unit = '',

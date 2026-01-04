@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { brandColors } from '../../tokens';
 import { Icon } from '../Icon';
-import { aiTokens, aiSpacing, aiRadiusPx } from './tokens';
+import { aiTokens, aiRadiusPx } from './tokens';
 
 // Success/Error colors (matching tokens)
 // @intentional-color: these match semanticTokens.colors.status.success/error.text

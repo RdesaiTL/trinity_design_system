@@ -4,10 +4,7 @@ import {
   Typography,
   TextField,
   Stack,
-  FormControl,
-  FormLabel,
   InputAdornment,
-  IconButton,
   Paper,
   Button,
   Grid,
@@ -20,12 +17,8 @@ import { SingleInputDateRangeField } from '@mui/x-date-pickers-pro/SingleInputDa
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import EventIcon from '@mui/icons-material/Event';
-import ClearIcon from '@mui/icons-material/Clear';
 import dayjs, { Dayjs } from 'dayjs';
 import { useState } from 'react';
-import { brandColors } from '../tokens';
 
 /**
  * # Date & Time Inputs

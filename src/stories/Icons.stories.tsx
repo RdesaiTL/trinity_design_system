@@ -1,15 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Box, Typography, Paper, Grid, Stack, TextField, InputAdornment, Chip, Divider, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Box, Typography, Paper, Grid, Stack, TextField, InputAdornment, Chip, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { useState, useMemo } from 'react';
 import { 
   Icon, 
   IconProvider, 
-  IconLibrarySwitcher, 
   useIconLibrary,
-  iconNameMap, 
   iconSizeMap, 
   getAvailableIcons,
-  IconLibrary,
   IconSize,
 } from '../components/Icon';
 import { brandColors } from '../tokens';
@@ -42,7 +39,7 @@ import { semanticTokens } from '../tokens';
  */
 
 // Demo wrapper with IconProvider
-const IconDemo = ({ children }: { children: React.ReactNode }) => (
+const _IconDemo = ({ children }: { children: React.ReactNode }) => (
   <IconProvider defaultLibrary="material">
     {children}
   </IconProvider>

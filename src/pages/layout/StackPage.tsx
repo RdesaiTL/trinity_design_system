@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Stack, Box, Paper, Divider, Typography } from '@mui/material';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { ComponentPage, Section } from '../../components/shared';
 
 const Item = ({ children }: { children: React.ReactNode }) => (
   <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'primary.light' }}>{children}</Paper>

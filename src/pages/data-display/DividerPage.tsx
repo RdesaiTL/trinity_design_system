@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Divider, Box, Typography, List, ListItem, ListItemText, Chip, Stack } from '@mui/material';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { ComponentPage, Section } from '../../components/shared';
 
 export const DividerPage: React.FC = () => (
   <ComponentPage

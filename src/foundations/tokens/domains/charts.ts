@@ -9,8 +9,8 @@
  * @module foundations/tokens/domains/charts
  */
 
-import { colors, spacing, fontSize, fontWeight, borderRadius, duration, easing } from '../base';
-import { brand, text, background, border } from '../semantic';
+import { colors, spacing, fontWeight, borderRadius, easing } from '../base';
+import { brand, background, border } from '../semantic';
 import { darkMode } from '../contextual';
 
 // ═══════════════════════════════════════════════════════════════════════════════

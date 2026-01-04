@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CircularProgress, LinearProgress, Box, Stack, Typography } from '@mui/material';
+import { CircularProgress, LinearProgress, Box, Typography } from '@mui/material';
 import { ComponentPage, Section, Showcase } from '../../components/shared';
 
 export const ProgressPage: React.FC = () => {

@@ -66,7 +66,7 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
-import { DataTableProps, TableDensity, BulkAction, TreeDataRow, RowAction } from './types';
+import { DataTableProps, TableDensity, BulkAction, TreeDataRow } from './types';
 import { InlineAddRow } from './InlineAddRow';
 import { ActionsCell, HoverActionsCell } from './CellRenderers';
 import {
@@ -228,7 +228,7 @@ function DataTableToolbar<R extends GridValidRowModel>({
   onSearchChange,
   showSearch = true,
   selectedCount,
-  totalCount,
+  totalCount: _totalCount,
   bulkActions,
   onBulkAction,
   onClearSelection,
@@ -536,7 +536,7 @@ export const DataTable = <R extends GridValidRowModel>({
   treeData,
 
   // Row Grouping
-  rowGrouping,
+  rowGrouping: _rowGrouping,
 
   // Inline Add
   inlineAdd,
@@ -545,7 +545,7 @@ export const DataTable = <R extends GridValidRowModel>({
   columnPinning,
 
   // Row Reordering
-  rowReorder,
+  rowReorder: _rowReorder,
 
   // Actions
   rowActions,
@@ -569,7 +569,7 @@ export const DataTable = <R extends GridValidRowModel>({
   height = 500,
   maxHeight,
   minHeight = 300,
-  stickyHeader = true,
+  stickyHeader: _stickyHeader = true,
   stripedRows = false,
   showBorders = true,
   elevation = 0,
@@ -585,7 +585,7 @@ export const DataTable = <R extends GridValidRowModel>({
   onPageChange,
   onRowUpdate,
   onRowAdd,
-  onRowDelete,
+  onRowDelete: _onRowDelete,
   onRefresh,
   onExport,
 
@@ -605,7 +605,7 @@ export const DataTable = <R extends GridValidRowModel>({
   const apiRef = useGridApiRef();
 
   // State
-  const [density, setDensity] = useState<TableDensity>(initialDensity);
+  const [density, _setDensity] = useState<TableDensity>(initialDensity);
   const [selectionModel, setSelectionModel] = useState<GridRowSelectionModel>({ 
     type: 'include', 
     ids: new Set() 
@@ -678,7 +678,7 @@ export const DataTable = <R extends GridValidRowModel>({
   }, [columns, effectiveRowActions, rowActionsMode, rowActionsConfig, hoveredRowId, getRowId]);
 
   // Column pinning model
-  const pinnedColumns = useMemo(() => {
+  const _pinnedColumns = useMemo(() => {
     if (!columnPinning?.enabled) return undefined;
     return {
       left: columnPinning.left || [],

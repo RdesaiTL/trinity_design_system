@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Badge, Box, IconButton, Avatar, Stack } from '@mui/material';
+import { Badge, Avatar } from '@mui/material';
 import MailIcon from '@mui/icons-material/Mail';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import NotificationsIcon from '@mui/icons-material/Notifications';

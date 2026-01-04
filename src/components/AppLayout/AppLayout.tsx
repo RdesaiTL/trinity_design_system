@@ -111,7 +111,7 @@ const defaultClients: Client[] = [
 // Constants
 // ============================================================================
 
-const APPBAR_HEIGHT = 56;
+const _APPBAR_HEIGHT = 56;
 
 /**
  * AppLayout - A complete application layout template for Trinity-based applications.

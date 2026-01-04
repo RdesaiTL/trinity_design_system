@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Box, Skeleton, Paper, Stack, Avatar, Typography, Card, CardContent } from '@mui/material';
+import { Box, Skeleton, Paper, Stack, Typography } from '@mui/material';
 
 /**
  * # Skeleton

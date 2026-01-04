@@ -5,7 +5,6 @@
 
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { LegendProps } from 'recharts';
 import { chartTypography, chartLegendStyles } from './tokens';
 import { brandColors } from '../../tokens';
 

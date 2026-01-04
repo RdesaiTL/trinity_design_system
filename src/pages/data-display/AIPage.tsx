@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Box, Stack, Typography, Paper, Button } from '@mui/material';
+import { Box, Stack, Typography, Paper } from '@mui/material';
 import { ComponentPage, Section, Showcase } from '../../components/shared';
 import {
   AILabel,

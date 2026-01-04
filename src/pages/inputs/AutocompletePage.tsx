@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextField, Autocomplete, Chip, Box } from '@mui/material';
+import { TextField, Autocomplete, Chip } from '@mui/material';
 import { ComponentPage, Section, Showcase } from '../../components/shared';
 
 const movies = [

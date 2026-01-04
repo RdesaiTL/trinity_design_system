@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListItemAvatar,
-  Avatar, Divider, Checkbox, IconButton, Switch, Collapse, Box,
+  Avatar, Checkbox, IconButton, Switch, Collapse, Box,
 } from '@mui/material';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
@@ -13,7 +13,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import WorkIcon from '@mui/icons-material/Work';
 import ImageIcon from '@mui/icons-material/Image';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import { ComponentPage, Section, Showcase } from '../../components/shared';
+import { ComponentPage, Section } from '../../components/shared';
 
 export const ListPage: React.FC = () => {
   const [open, setOpen] = React.useState(true);

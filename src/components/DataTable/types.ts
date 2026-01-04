@@ -7,11 +7,7 @@ import { SxProps, Theme } from '@mui/material';
 import {
   GridColDef,
   GridRowId,
-  GridRowModel,
   GridFilterModel,
-  GridSortModel,
-  GridPaginationModel,
-  GridRowSelectionModel,
   GridDensity,
   GridValidRowModel,
   GridCellParams,

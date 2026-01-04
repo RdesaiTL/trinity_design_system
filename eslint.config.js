@@ -39,6 +39,16 @@ export default tseslint.config(
       'jsx-a11y': jsxA11y,
     },
     rules: {
+      // Allow underscore-prefixed variables to be unused
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
+
       // React Hooks
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': [

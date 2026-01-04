@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Box, Typography, Paper, Grid, Stack, Button, Tabs, Tab, TextField, InputAdornment, Chip, IconButton, Tooltip } from '@mui/material';
+import { Box, Typography, Paper, Grid, Stack, Button, Tabs, Tab, TextField, InputAdornment, Chip } from '@mui/material';
 import { useState, useRef } from 'react';
 import { 
   Icon, 
   IconProvider, 
   useIconLibrary,
   getAvailableIcons,
-  IconSize,
 } from '../components/Icon';
 import {
   EmptyTableIllustration,
@@ -25,7 +24,6 @@ import {
   NoDataIllustration,
   OfflineIllustration,
 } from '../components/IllustratedMessage';
-import { brandColors } from '../tokens';
 
 /**
  * # Icons & Illustrations
@@ -95,7 +93,7 @@ const downloadSvg = (svgElement: SVGSVGElement | null, filename: string) => {
 };
 
 // Download icon as SVG
-const downloadIconSvg = (iconName: string, library: 'material' | 'feather') => {
+const _downloadIconSvg = (iconName: string, library: 'material' | 'feather') => {
   const container = document.createElement('div');
   container.style.position = 'absolute';
   container.style.left = '-9999px';
@@ -278,7 +276,7 @@ const IconsIllustrationsDemo = ({ tab = 'all' }: IconsIllustrationsProps) => {
   });
 
   // Download all icons
-  const downloadAllIcons = async () => {
+  const _downloadAllIcons = async () => {
     for (const iconName of filteredIcons) {
       // Create a temporary container
       const container = document.createElement('div');
@@ -427,7 +425,7 @@ const IconsIllustrationsDemo = ({ tab = 'all' }: IconsIllustrationsProps) => {
           )}
 
           <Grid container spacing={3}>
-            {filteredIllustrations.map(({ id, name, Component, category }) => (
+            {filteredIllustrations.map(({ id, name, Component, category: _category }) => (
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={id}>
                 <IllustrationDownloadCard 
                   id={id} 

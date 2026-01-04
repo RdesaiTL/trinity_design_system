@@ -1,5 +1,5 @@
 
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 import { 
   TrinityTokens, 
   baseTokens, 
@@ -7,10 +7,7 @@ import {
   componentTokens, 
   darkModeTokens, 
   tokens,
-  elevationHierarchy,
   typographicHierarchy,
-  attentionHierarchy,
-  hierarchy,
 } from './tokens';
 
 // ============================================
@@ -114,7 +111,7 @@ export function generateDarkModeCssVariables(tokenSet: TrinityTokens = tokens): 
  */
 export function injectTrinityCssVariables(tokenSet: TrinityTokens = tokens) {
   if (typeof window === 'undefined') return;
-  const root = document.documentElement;
+  const _root = document.documentElement;
   
   // Generate and inject all CSS variables
   const cssVars = generateCssVariables(tokenSet);
@@ -193,7 +190,7 @@ export function getContrastRatio(fg: string, bg: string): number {
 export function validateAccessibility(fg: string, bg: string, minRatio = 4.5): boolean {
   const ratio = getContrastRatio(fg, bg);
   if (ratio < minRatio && typeof window !== 'undefined') {
-    // eslint-disable-next-line no-console
+     
     console.warn(`[Trinity] Low contrast ratio ${ratio.toFixed(2)} for ${fg} on ${bg}`);
   }
   return ratio >= minRatio;

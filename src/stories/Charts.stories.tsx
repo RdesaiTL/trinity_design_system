@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Box, Typography, Stack, Paper, useTheme, Grid } from '@mui/material';
+import { Box, Typography, Stack, Paper, Grid } from '@mui/material';
 import {
   LineChart,
   BarChart,

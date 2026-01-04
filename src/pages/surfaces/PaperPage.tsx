@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Paper, Box, Typography, Grid } from '@mui/material';
+import { Paper, Typography, Grid } from '@mui/material';
 import { ComponentPage, Section, Showcase } from '../../components/shared';
 
 export const PaperPage: React.FC = () => (
