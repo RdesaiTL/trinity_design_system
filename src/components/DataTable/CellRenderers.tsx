@@ -237,7 +237,8 @@ export const RatingCell: React.FC<RatingCellProps> = ({
         size={size}
         sx={{
           '& .MuiRating-iconFilled': {
-            color: '#F59E0B',
+            // eslint-disable-next-line no-restricted-syntax
+            color: '#F59E0B', // @intentional-color: standard amber/gold for star ratings
           },
         }}
       />

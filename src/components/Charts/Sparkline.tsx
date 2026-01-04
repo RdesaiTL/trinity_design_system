@@ -154,7 +154,8 @@ export const Sparkline: React.FC<SparklineProps> = ({
                             cy={cy}
                             r={3}
                             fill={minColor}
-                            stroke="#FFFFFF"
+                            // eslint-disable-next-line no-restricted-syntax
+                            stroke="#FFFFFF" // @intentional-color: white outline for visual emphasis
                             strokeWidth={1}
                           />
                         );
@@ -166,7 +167,8 @@ export const Sparkline: React.FC<SparklineProps> = ({
                             cy={cy}
                             r={3}
                             fill={maxColor}
-                            stroke="#FFFFFF"
+                            // eslint-disable-next-line no-restricted-syntax
+                            stroke="#FFFFFF" // @intentional-color: white outline for visual emphasis
                             strokeWidth={1}
                           />
                         );
@@ -259,7 +261,8 @@ export const Sparkline: React.FC<SparklineProps> = ({
                           cy={cy}
                           r={3}
                           fill={minColor}
-                          stroke="#FFFFFF"
+                          // eslint-disable-next-line no-restricted-syntax
+                          stroke="#FFFFFF" // @intentional-color: white outline for visual emphasis
                           strokeWidth={1}
                         />
                       );
@@ -271,7 +274,8 @@ export const Sparkline: React.FC<SparklineProps> = ({
                           cy={cy}
                           r={3}
                           fill={maxColor}
-                          stroke="#FFFFFF"
+                          // eslint-disable-next-line no-restricted-syntax
+                          stroke="#FFFFFF" // @intentional-color: white outline for visual emphasis
                           strokeWidth={1}
                         />
                       );

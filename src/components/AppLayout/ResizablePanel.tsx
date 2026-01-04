@@ -106,7 +106,7 @@ export const ResizablePanel: React.FC<ResizablePanelProps> = ({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: brandColors.neutral.white,
         borderLeft: side === 'right' ? `1px solid ${brandColors.neutral.gray100}` : 'none',
         borderRight: side === 'left' ? `1px solid ${brandColors.neutral.gray100}` : 'none',
         transition: isResizing ? 'none' : 'width 0.1s ease-out',

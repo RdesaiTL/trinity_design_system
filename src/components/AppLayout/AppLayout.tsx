@@ -230,7 +230,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
               flex: 1,
               display: 'flex',
               flexDirection: 'column',
-              backgroundColor: '#FFFFFF',
+              backgroundColor: brandColors.neutral.white,
               overflow: 'hidden',
               height: '100%',
               minHeight: 0,

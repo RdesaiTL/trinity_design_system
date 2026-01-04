@@ -8,35 +8,36 @@ import { brandColors } from '../tokens';
 
 /**
  * Status colors for SVG illustrations.
- * 
- * These colors are intentionally different from semantic UI tokens
+ * @intentional-color: These colors are intentionally different from semantic UI tokens
  * to provide optimal visual clarity in illustration contexts.
- * They follow industry-standard status color conventions.
+ * They follow industry-standard status color conventions (Tailwind palette).
  * 
  * Do not normalize to semanticTokens.colors.status unless
  * approved as a visual redesign.
  */
+/* eslint-disable no-restricted-syntax */
 const illustrationStatusColors = {
   // Error/danger - Tailwind red-500
   error: {
     main: '#EF4444',
-    light: '#FEE2E2',  // red-100
+    light: '#FEE2E2',
   },
   // Warning/caution - Tailwind amber-500
   warning: {
     main: '#F59E0B',
-    light: '#FEF3C7',  // amber-100
+    light: '#FEF3C7',
   },
   // Success/positive - Tailwind emerald-500
   success: {
     main: '#10B981',
-    light: '#D1FAE5',  // emerald-100
+    light: '#D1FAE5',
   },
   // Accent/highlight - Yellow for flames/sparks
   accent: {
     flame: '#FFD93D',
   },
 } as const;
+/* eslint-enable no-restricted-syntax */
 
 // ============================================
 // ILLUSTRATED MESSAGE TYPES

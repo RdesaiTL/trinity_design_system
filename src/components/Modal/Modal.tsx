@@ -19,7 +19,7 @@ import ErrorIcon from '@mui/icons-material/Error';
 import WarningIcon from '@mui/icons-material/Warning';
 import InfoIcon from '@mui/icons-material/Info';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import { brandColors } from '../../tokens';
+import { brandColors, semanticTokens } from '../../tokens';
 
 export type ModalVariant = 'default' | 'info' | 'success' | 'warning' | 'danger' | 'confirm';
 
@@ -79,22 +79,22 @@ const variantConfig: Record<ModalVariant, {
   },
   info: {
     icon: <InfoIcon />,
-    color: '#0288d1',
+    color: semanticTokens.colors.status.info.text,
     primaryColor: 'info',
   },
   success: {
     icon: <CheckCircleIcon />,
-    color: '#2e7d32',
+    color: semanticTokens.colors.status.success.text,
     primaryColor: 'success',
   },
   warning: {
     icon: <WarningIcon />,
-    color: '#ed6c02',
+    color: semanticTokens.colors.status.warning.text,
     primaryColor: 'warning',
   },
   danger: {
     icon: <ErrorIcon />,
-    color: '#d32f2f',
+    color: semanticTokens.colors.status.error.text,
     primaryColor: 'error',
   },
   confirm: {

@@ -108,7 +108,8 @@ export const ComposedChart: React.FC<ComposedChartProps> = ({
             dot={
               config.showDots !== false
                 ? {
-                    fill: isDarkMode ? brandColors.neutral.gray800 : '#FFFFFF',
+                    // eslint-disable-next-line no-restricted-syntax
+                    fill: isDarkMode ? brandColors.neutral.gray800 : '#FFFFFF', // @intentional-color: white/dark fill for mode contrast
                     stroke: seriesColor,
                     strokeWidth: 2,
                     r: 4,
@@ -118,7 +119,8 @@ export const ComposedChart: React.FC<ComposedChartProps> = ({
             activeDot={{
               r: 6,
               fill: seriesColor,
-              stroke: isDarkMode ? brandColors.neutral.gray800 : '#FFFFFF',
+              // eslint-disable-next-line no-restricted-syntax
+              stroke: isDarkMode ? brandColors.neutral.gray800 : '#FFFFFF', // @intentional-color: white/dark stroke for mode contrast
               strokeWidth: 2,
             }}
             strokeDasharray={config.strokeDasharray}

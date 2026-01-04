@@ -76,7 +76,11 @@ export const RatingPage: React.FC = () => {
           />
           <Rating
             defaultValue={4}
-            icon={<StarIcon sx={{ color: '#faaf00' }} />}
+            // @intentional-color: standard gold for star ratings
+            icon={
+              // eslint-disable-next-line no-restricted-syntax
+              <StarIcon sx={{ color: '#faaf00' }} />
+            }
             emptyIcon={<StarIcon sx={{ opacity: 0.3 }} />}
           />
         </Showcase>

@@ -161,7 +161,8 @@ export const RadialBarChart: React.FC<RadialBarChartProps> = ({
                   showLabels
                     ? {
                         position: 'insideStart',
-                        fill: '#FFFFFF',
+                        // eslint-disable-next-line no-restricted-syntax
+                        fill: '#FFFFFF', // @intentional-color: white text for contrast on colored bars
                         fontFamily: chartTypography.fontFamily,
                         fontSize: 11,
                         fontWeight: 600,

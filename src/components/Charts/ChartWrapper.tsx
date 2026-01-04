@@ -12,7 +12,7 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import { brandColors } from '../../tokens';
+import { brandColors, semanticTokens } from '../../tokens';
 import { chartTypography, chartSpacing } from './tokens';
 
 export interface ChartWrapperProps {
@@ -64,7 +64,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
       borderRadius: 2,
       p: 2,
-      backgroundColor: '#FFFFFF',
+      backgroundColor: brandColors.neutral.white,
     }),
     ...sx,
   };
@@ -129,7 +129,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
           <Box sx={{ textAlign: 'center', p: 3 }}>
             <Typography
               sx={{
-                color: '#DA1E28',
+                color: semanticTokens.colors.status.error.text,
                 fontWeight: 500,
                 mb: 0.5,
               }}

@@ -24,7 +24,7 @@ function ColorCard({ text, bg, label, textColorName, bgColorName }: ColorCardPro
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          border: bg === '#FFFFFF' ? '1px solid #E5E7EB' : 'none',
+          border: bg === brandColors.neutral.white ? `1px solid ${brandColors.neutral.gray100}` : 'none',
           boxShadow: 1,
         }}
       >

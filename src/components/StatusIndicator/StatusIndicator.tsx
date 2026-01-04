@@ -441,8 +441,10 @@ const renderDifferential = (
 ) => {
   const sizeConfig = sizeConfigs[size];
   const isPositive = value >= 0;
-  const effectivePositiveColor = positiveColor || '#24a148';
-  const effectiveNegativeColor = negativeColor || '#da1e28';
+  // eslint-disable-next-line no-restricted-syntax
+  const effectivePositiveColor = positiveColor || '#24a148'; // @intentional-color: default green
+  // eslint-disable-next-line no-restricted-syntax
+  const effectiveNegativeColor = negativeColor || '#da1e28'; // @intentional-color: default red
   const color = showColor !== false ? (isPositive ? effectivePositiveColor : effectiveNegativeColor) : 'inherit';
   
   const formatValue = () => {

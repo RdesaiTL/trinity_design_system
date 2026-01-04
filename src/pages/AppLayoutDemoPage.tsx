@@ -24,7 +24,7 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import FolderIcon from '@mui/icons-material/Folder';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import { brandColors } from '../tokens';
+import { brandColors, semanticTokens } from '../tokens';
 
 // Custom nav items for demo
 const demoNavItems: NavItem[] = [
@@ -114,11 +114,11 @@ export const AppLayoutDemoPage: React.FC = () => {
               background: insightPanelOpen 
                 ? `linear-gradient(135deg, ${brandColors.secondary.main} 0%, ${brandColors.primary.light} 100%)`
                 : 'transparent',
-              color: insightPanelOpen ? '#FFFFFF' : brandColors.primary.light,
+              color: insightPanelOpen ? brandColors.neutral.white : brandColors.primary.light,
               borderColor: brandColors.primary.light,
               '&:hover': {
                 background: `linear-gradient(135deg, ${brandColors.secondary.main} 0%, ${brandColors.primary.light} 100%)`,
-                color: '#FFFFFF',
+                color: brandColors.neutral.white,
                 borderColor: 'transparent',
               },
             }}
@@ -150,8 +150,8 @@ export const AppLayoutDemoPage: React.FC = () => {
                       size="small" 
                       sx={{ 
                         mt: 1, 
-                        backgroundColor: '#E8F5E9', 
-                        color: '#2E7D32',
+                        backgroundColor: semanticTokens.colors.status.success.background,
+                        color: semanticTokens.colors.status.success.text,
                         fontWeight: 500,
                       }} 
                     />
@@ -186,8 +186,8 @@ export const AppLayoutDemoPage: React.FC = () => {
                       size="small" 
                       sx={{ 
                         mt: 1, 
-                        backgroundColor: '#E8F5E9', 
-                        color: '#2E7D32',
+                        backgroundColor: semanticTokens.colors.status.success.background,
+                        color: semanticTokens.colors.status.success.text,
                         fontWeight: 500,
                       }} 
                     />
@@ -222,8 +222,8 @@ export const AppLayoutDemoPage: React.FC = () => {
                       size="small" 
                       sx={{ 
                         mt: 1, 
-                        backgroundColor: '#E8F5E9', 
-                        color: '#2E7D32',
+                        backgroundColor: semanticTokens.colors.status.success.background,
+                        color: semanticTokens.colors.status.success.text,
                         fontWeight: 500,
                       }} 
                     />

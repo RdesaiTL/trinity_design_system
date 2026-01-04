@@ -250,7 +250,8 @@ export const AreaChart: React.FC<AreaChartProps> = ({
                   r: chartSizing.dotSize.default,
                   fill: color,
                   strokeWidth: 2,
-                  stroke: '#FFFFFF',
+                  // eslint-disable-next-line no-restricted-syntax
+                  stroke: '#FFFFFF', // @intentional-color: white outline for visual emphasis
                   onClick: onDataPointClick
                     ? (_, payload) => {
                         if (payload && payload.payload) {

@@ -7,6 +7,8 @@
 import * as React from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 
+// @baseTokens-usage: spacing and borderRadius are primitive tokens (not semantic colors)
+// eslint-disable-next-line no-restricted-syntax
 import { baseTokens } from '../tokens';
 
 // Use spacing/radius from tokens

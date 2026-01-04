@@ -103,8 +103,10 @@ export const DifferentialIndicator: React.FC<DifferentialIndicatorProps> = ({
   showIcon = true,
   size = 'medium',
   showColor = true,
-  positiveColor = '#24a148',
-  negativeColor = '#da1e28',
+  // eslint-disable-next-line no-restricted-syntax
+  positiveColor = '#24a148', // @intentional-color: default green for positive indicators
+  // eslint-disable-next-line no-restricted-syntax
+  negativeColor = '#da1e28', // @intentional-color: default red for negative indicators
   sx,
 }) => {
   const sizeConfig = sizeConfigs[size];

@@ -17,10 +17,13 @@ import { Icon } from '../Icon';
 import { aiTokens, aiSpacing, aiRadiusPx } from './tokens';
 
 // Success/Error colors (matching tokens)
+// @intentional-color: these match semanticTokens.colors.status.success/error.text
+/* eslint-disable no-restricted-syntax */
 const statusColors = {
   success: '#24a148',
   error: '#da1e28',
 };
+/* eslint-enable no-restricted-syntax */
 
 // ============================================================================
 // GRADIENT TEXT
