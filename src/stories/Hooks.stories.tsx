@@ -76,16 +76,28 @@ const UseDebounceDemo = () => {
   const [searchResults, setSearchResults] = useState<string[]>([]);
 
   useEffect(() => {
-    if (debouncedValue) {
-      // Simulate API call
-      setSearchResults([
-        `Result for "${debouncedValue}" - Item 1`,
-        `Result for "${debouncedValue}" - Item 2`,
-        `Result for "${debouncedValue}" - Item 3`,
-      ]);
-    } else {
-      setSearchResults([]);
-    }
+    // Use a flag to prevent state updates after unmount
+    let isMounted = true;
+    
+    // Simulate async API call to avoid synchronous setState
+    const timer = setTimeout(() => {
+      if (isMounted) {
+        if (debouncedValue) {
+          setSearchResults([
+            `Result for "${debouncedValue}" - Item 1`,
+            `Result for "${debouncedValue}" - Item 2`,
+            `Result for "${debouncedValue}" - Item 3`,
+          ]);
+        } else {
+          setSearchResults([]);
+        }
+      }
+    }, 0);
+    
+    return () => {
+      isMounted = false;
+      clearTimeout(timer);
+    };
   }, [debouncedValue]);
 
   return (

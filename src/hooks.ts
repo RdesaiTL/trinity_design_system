@@ -400,12 +400,14 @@ export function useToggle(
  */
 export function usePrevious<T>(value: T): T | undefined {
   const ref = useRef<T | undefined>(undefined);
+  const [previous, setPrevious] = useState<T | undefined>(undefined);
 
   useEffect(() => {
+    setPrevious(ref.current);
     ref.current = value;
   }, [value]);
 
-  return ref.current;
+  return previous;
 }
 
 // ============================================

@@ -445,6 +445,7 @@ export const EditableCell: React.FC<EditableCellProps> = ({
         onChange={(e) => setEditValue(type === 'number' ? Number(e.target.value) : e.target.value)}
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}
+        // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: focus input when entering edit mode
         autoFocus
         style={{
           width: '100%',

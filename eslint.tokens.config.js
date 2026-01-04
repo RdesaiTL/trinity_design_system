@@ -9,6 +9,7 @@
 
 import tseslint from 'typescript-eslint';
 import eslint from '@eslint/js';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 // Files exempt from strict color checking
 const EXEMPT_PATTERNS = [
@@ -22,6 +23,7 @@ const EXEMPT_PATTERNS = [
 export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
+  jsxA11y.flatConfigs.recommended,
   {
     ignores: [
       'dist',

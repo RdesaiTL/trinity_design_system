@@ -64,6 +64,7 @@ export const DialogPage: React.FC = () => {
             </DialogContent>
             <DialogActions>
               <Button onClick={() => setOpen(false)}>Cancel</Button>
+              {/* eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: focus primary action in dialog */}
               <Button onClick={() => setOpen(false)} autoFocus>Agree</Button>
             </DialogActions>
           </Dialog>
@@ -84,6 +85,7 @@ export const DialogPage: React.FC = () => {
             </DialogContent>
             <DialogActions>
               <Button onClick={() => setAlertOpen(false)}>Cancel</Button>
+              {/* eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: focus destructive action for confirmation */}
               <Button onClick={() => setAlertOpen(false)} color="error" autoFocus>Delete</Button>
             </DialogActions>
           </Dialog>
@@ -102,6 +104,7 @@ export const DialogPage: React.FC = () => {
                 Enter your email address to subscribe to our newsletter.
               </DialogContentText>
               <TextField
+                // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: focus first form field in dialog
                 autoFocus
                 margin="dense"
                 label="Email Address"

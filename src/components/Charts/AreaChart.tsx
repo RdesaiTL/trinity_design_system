@@ -85,7 +85,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
   const chartId = useId();
   const gradientIds = useMemo(() => 
     series.map((_, i) => `area-gradient-${i}-${chartId.replace(/:/g, '-')}`),
-    [series.length, chartId]
+    [series, chartId]
   );
 
   const isEmpty = !data || data.length === 0;

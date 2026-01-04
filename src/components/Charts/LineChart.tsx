@@ -83,7 +83,7 @@ export const LineChart: React.FC<LineChartProps> = ({
   const chartId = useId();
   const gradientIds = useMemo(() => 
     series.map((_, i) => `line-gradient-${i}-${chartId.replace(/:/g, '-')}`),
-    [series.length, chartId]
+    [series, chartId]
   );
 
   const isEmpty = !data || data.length === 0;

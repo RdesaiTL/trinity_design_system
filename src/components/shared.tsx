@@ -7,16 +7,13 @@
 import * as React from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 
-// @baseTokens-usage: spacing and borderRadius are primitive tokens (not semantic colors)
- 
-import { baseTokens } from '../tokens';
+import { semanticTokens } from '../tokens';
 
-// Use spacing/radius from tokens
-const sectionSpacing = baseTokens.spacing[8]; // 32px
-const contentSpacing = baseTokens.spacing[6]; // 24px
-const elementSpacing = baseTokens.spacing[4]; // 16px
-const _cardRadius = baseTokens.borderRadius.lg; // 12px - reserved for future use
-const paperRadius = baseTokens.borderRadius.md; // 8px
+// Use semantic spacing/radius tokens
+const sectionSpacing = semanticTokens.spacing.layout.sectionGap; // 48px
+const contentSpacing = semanticTokens.spacing.component.paddingLg; // 24px
+const elementSpacing = semanticTokens.spacing.component.paddingMd; // 16px
+const paperRadius = semanticTokens.borders.radius.menuItem; // 8px
 
 /**
  * Props for the ComponentPage component.

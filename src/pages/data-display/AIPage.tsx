@@ -49,6 +49,7 @@ export const AIPage: React.FC = () => {
         <Section title="Chat Messages">
           <Paper sx={{ p: 2, maxWidth: 600 }}>
             <Stack spacing={2}>
+              {/* eslint-disable jsx-a11y/aria-role -- role prop is message sender type, not ARIA role */}
               <AIChatMessage
                 role="user"
                 content="What can you help me with today?"
@@ -57,6 +58,7 @@ export const AIPage: React.FC = () => {
                 role="assistant"
                 content="I can help you with a variety of tasks including answering questions, providing information, and assisting with analysis. What would you like to explore?"
               />
+              {/* eslint-enable jsx-a11y/aria-role */}
               <AITypingIndicator />
             </Stack>
           </Paper>
