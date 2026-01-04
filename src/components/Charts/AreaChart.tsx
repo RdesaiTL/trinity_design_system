@@ -3,6 +3,8 @@
  * Trinity-styled area chart with support for stacked and gradient fills
  */
 
+/* eslint-disable jsx-a11y/alt-text -- Recharts Area component is SVG-based, not HTML image map */
+
 import React, { useMemo, useId } from 'react';
 import {
   AreaChart as RechartsAreaChart,

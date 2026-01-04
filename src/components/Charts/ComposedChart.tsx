@@ -3,6 +3,8 @@
  * Trinity-styled combined line, bar, and area chart
  */
 
+/* eslint-disable jsx-a11y/alt-text -- Recharts Area component is SVG-based, not HTML image map */
+
 import React, { useMemo } from 'react';
 import {
   ComposedChart as RechartsComposedChart,
