@@ -12,8 +12,8 @@ export const BreadcrumbsPage: React.FC = () => (
   >
     <Section title="Basic">
       <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="#">Home</Link>
-        <Link underline="hover" color="inherit" href="#">Catalog</Link>
+        <Link component="button" underline="hover" color="inherit">Home</Link>
+        <Link component="button" underline="hover" color="inherit">Catalog</Link>
         <Typography sx={{ color: 'text.primary' }}>Accessories</Typography>
       </Breadcrumbs>
     </Section>
@@ -21,18 +21,18 @@ export const BreadcrumbsPage: React.FC = () => (
     <Section title="Custom Separator">
       <Stack spacing={2}>
         <Breadcrumbs separator="›">
-          <Link underline="hover" color="inherit" href="#">Home</Link>
-          <Link underline="hover" color="inherit" href="#">Catalog</Link>
+          <Link component="button" underline="hover" color="inherit">Home</Link>
+          <Link component="button" underline="hover" color="inherit">Catalog</Link>
           <Typography color="text.primary">Accessories</Typography>
         </Breadcrumbs>
         <Breadcrumbs separator="-">
-          <Link underline="hover" color="inherit" href="#">Home</Link>
-          <Link underline="hover" color="inherit" href="#">Catalog</Link>
+          <Link component="button" underline="hover" color="inherit">Home</Link>
+          <Link component="button" underline="hover" color="inherit">Catalog</Link>
           <Typography color="text.primary">Accessories</Typography>
         </Breadcrumbs>
         <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />}>
-          <Link underline="hover" color="inherit" href="#">Home</Link>
-          <Link underline="hover" color="inherit" href="#">Catalog</Link>
+          <Link component="button" underline="hover" color="inherit">Home</Link>
+          <Link component="button" underline="hover" color="inherit">Catalog</Link>
           <Typography color="text.primary">Accessories</Typography>
         </Breadcrumbs>
       </Stack>
@@ -40,11 +40,11 @@ export const BreadcrumbsPage: React.FC = () => (
 
     <Section title="With Icons">
       <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" sx={{ display: 'flex', alignItems: 'center' }} color="inherit" href="#">
+        <Link component="button" underline="hover" sx={{ display: 'flex', alignItems: 'center' }} color="inherit">
           <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
           Home
         </Link>
-        <Link underline="hover" sx={{ display: 'flex', alignItems: 'center' }} color="inherit" href="#">
+        <Link component="button" underline="hover" sx={{ display: 'flex', alignItems: 'center' }} color="inherit">
           <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
           Catalog
         </Link>
@@ -56,20 +56,20 @@ export const BreadcrumbsPage: React.FC = () => (
 
     <Section title="Collapsed">
       <Breadcrumbs maxItems={2} aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="#">Home</Link>
-        <Link underline="hover" color="inherit" href="#">Catalog</Link>
-        <Link underline="hover" color="inherit" href="#">Accessories</Link>
-        <Link underline="hover" color="inherit" href="#">New Collection</Link>
+        <Link component="button" underline="hover" color="inherit">Home</Link>
+        <Link component="button" underline="hover" color="inherit">Catalog</Link>
+        <Link component="button" underline="hover" color="inherit">Accessories</Link>
+        <Link component="button" underline="hover" color="inherit">New Collection</Link>
         <Typography color="text.primary">Belts</Typography>
       </Breadcrumbs>
     </Section>
 
     <Section title="Custom Collapsed">
       <Breadcrumbs maxItems={3} itemsBeforeCollapse={1} itemsAfterCollapse={2}>
-        <Link underline="hover" color="inherit" href="#">Home</Link>
-        <Link underline="hover" color="inherit" href="#">Catalog</Link>
-        <Link underline="hover" color="inherit" href="#">Accessories</Link>
-        <Link underline="hover" color="inherit" href="#">New Collection</Link>
+        <Link component="button" underline="hover" color="inherit">Home</Link>
+        <Link component="button" underline="hover" color="inherit">Catalog</Link>
+        <Link component="button" underline="hover" color="inherit">Accessories</Link>
+        <Link component="button" underline="hover" color="inherit">New Collection</Link>
         <Typography color="text.primary">Belts</Typography>
       </Breadcrumbs>
     </Section>

@@ -9,33 +9,33 @@ export const LinkPage: React.FC = () => (
   >
     <Section title="Basic">
       <Showcase>
-        <Link href="#">Link</Link>
-        <Link href="#" color="inherit">color="inherit"</Link>
-        <Link href="#" variant="body2">variant="body2"</Link>
+        <Link component="button" type="button">Link</Link>
+        <Link component="button" type="button" color="inherit">color="inherit"</Link>
+        <Link component="button" type="button" variant="body2">variant="body2"</Link>
       </Showcase>
     </Section>
 
     <Section title="Underline">
       <Showcase>
-        <Link href="#" underline="none">underline="none"</Link>
-        <Link href="#" underline="hover">underline="hover"</Link>
-        <Link href="#" underline="always">underline="always"</Link>
+        <Link component="button" type="button" underline="none">underline="none"</Link>
+        <Link component="button" type="button" underline="hover">underline="hover"</Link>
+        <Link component="button" type="button" underline="always">underline="always"</Link>
       </Showcase>
     </Section>
 
     <Section title="Colors">
       <Showcase>
-        <Link href="#" color="primary">Primary</Link>
-        <Link href="#" color="secondary">Secondary</Link>
-        <Link href="#" color="error">Error</Link>
-        <Link href="#" color="text.primary">Text Primary</Link>
-        <Link href="#" color="text.secondary">Text Secondary</Link>
+        <Link component="button" type="button" color="primary">Primary</Link>
+        <Link component="button" type="button" color="secondary">Secondary</Link>
+        <Link component="button" type="button" color="error">Error</Link>
+        <Link component="button" type="button" color="text.primary">Text Primary</Link>
+        <Link component="button" type="button" color="text.secondary">Text Secondary</Link>
       </Showcase>
     </Section>
 
     <Section title="Button Link">
       <Box>
-        <Link component="button" variant="body2" onClick={() => console.log('Button clicked')}>
+        <Link component="button" type="button" variant="body2" onClick={() => console.log('Button clicked')}>
           Button Link
         </Link>
       </Box>
@@ -43,19 +43,19 @@ export const LinkPage: React.FC = () => (
 
     <Section title="In Text">
       <Typography>
-        This is a paragraph with a <Link href="#">link</Link> inside it. Links can be 
+        This is a paragraph with a <Link component="button" type="button">link</Link> inside it. Links can be 
         embedded naturally within text content and will inherit the appropriate styling.
-        You can also have <Link href="#" color="secondary">colored links</Link> for emphasis.
+        You can also have <Link component="button" type="button" color="secondary">colored links</Link> for emphasis.
       </Typography>
     </Section>
 
     <Section title="Variants">
       <Stack spacing={1}>
-        <Link href="#" variant="h6">Heading 6 Link</Link>
-        <Link href="#" variant="body1">Body 1 Link</Link>
-        <Link href="#" variant="body2">Body 2 Link</Link>
-        <Link href="#" variant="caption">Caption Link</Link>
-        <Link href="#" variant="button">Button Variant Link</Link>
+        <Link component="button" type="button" variant="h6">Heading 6 Link</Link>
+        <Link component="button" type="button" variant="body1">Body 1 Link</Link>
+        <Link component="button" type="button" variant="body2">Body 2 Link</Link>
+        <Link component="button" type="button" variant="caption">Caption Link</Link>
+        <Link component="button" type="button" variant="button">Button Variant Link</Link>
       </Stack>
     </Section>
 

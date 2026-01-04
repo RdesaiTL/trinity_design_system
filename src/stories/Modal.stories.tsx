@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Modal, ConfirmDialog, useConfirmDialog } from '../components/Modal';
 import { useState } from 'react';
-import { Box, Button, Stack, TextField, Typography } from '@mui/material';
+import { Button, Stack, TextField, Typography } from '@mui/material';
 
 /**
  * # Modal
@@ -287,28 +287,30 @@ export const AllVariants: Story = {
   render: () => <AllVariantsDemo />,
 };
 
+const NoFooterDemo = () => {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button variant="contained" onClick={() => setOpen(true)}>
+        Open Modal
+      </Button>
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Information"
+        hideFooter
+      >
+        <Typography>
+          This modal has no footer actions. Close it using the X button or clicking outside.
+        </Typography>
+      </Modal>
+    </>
+  );
+};
+
 /**
  * Modal without footer.
  */
 export const NoFooter: Story = {
-  render: () => {
-    const [open, setOpen] = useState(false);
-    return (
-      <>
-        <Button variant="contained" onClick={() => setOpen(true)}>
-          Open Modal
-        </Button>
-        <Modal
-          open={open}
-          onClose={() => setOpen(false)}
-          title="Information"
-          hideFooter
-        >
-          <Typography>
-            This modal has no footer actions. Close it using the X button or clicking outside.
-          </Typography>
-        </Modal>
-      </>
-    );
-  },
+  render: () => <NoFooterDemo />,
 };

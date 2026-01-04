@@ -514,93 +514,90 @@ export const ComposedChartExample: StoryObj = {
 // SPARKLINE STORIES
 // ============================================================================
 
-export const SparklineExamples: StoryObj = {
-  name: 'Sparklines',
-  render: () => {
-    const theme = useTheme();
-    return (
-      <Stack spacing={3}>
-        <Typography variant="h6" gutterBottom>
-          Sparkline Charts
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Compact inline charts for data-dense UIs like tables and dashboards.
-        </Typography>
+const SparklineExamplesDemo = () => {
+  return (
+    <Stack spacing={3}>
+      <Typography variant="h6" gutterBottom>
+        Sparkline Charts
+      </Typography>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+        Compact inline charts for data-dense UIs like tables and dashboards.
+      </Typography>
 
-        <Grid container spacing={3}>
-          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-            <Paper sx={{ p: 2 }}>
-              <Typography variant="subtitle2" gutterBottom>
-                Revenue
-              </Typography>
-              <Stack direction="row" alignItems="center" spacing={2}>
-                <Sparkline
-                  data={sparklineData}
-                  type="line"
-                  width={100}
-                  height={32}
-                  color={chartColorsPrimary[0]}
-                />
-                <Typography variant="h6" color="success.main">
-                  +12%
-                </Typography>
-              </Stack>
-            </Paper>
-          </Grid>
-
-          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-            <Paper sx={{ p: 2 }}>
-              <Typography variant="subtitle2" gutterBottom>
-                Orders
-              </Typography>
-              <Sparkline
-                data={sparklineData}
-                type="bar"
-                width={100}
-                height={32}
-                color={chartColorsPrimary[1]}
-              />
-            </Paper>
-          </Grid>
-
-          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-            <Paper sx={{ p: 2 }}>
-              <Typography variant="subtitle2" gutterBottom>
-                Traffic
-              </Typography>
-              <Sparkline
-                data={sparklineData}
-                type="area"
-                width={100}
-                height={32}
-                color={chartColorsPrimary[2]}
-                referenceLine="average"
-                referenceLineColor={theme.palette.divider}
-              />
-            </Paper>
-          </Grid>
-
-          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-            <Paper sx={{ p: 2 }}>
-              <Typography variant="subtitle2" gutterBottom>
-                Performance
-              </Typography>
+      <Grid container spacing={3}>
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <Paper sx={{ p: 2 }}>
+            <Typography variant="subtitle2" gutterBottom>
+              Revenue
+            </Typography>
+            <Stack direction="row" alignItems="center" spacing={2}>
               <Sparkline
                 data={sparklineData}
                 type="line"
                 width={100}
                 height={32}
-                color={chartColorsStatus[0]}
-                showMinMax
-                minColor={chartColorsStatus[2]}
-                maxColor={chartColorsStatus[0]}
+                color={chartColorsPrimary[0]}
               />
-            </Paper>
-          </Grid>
+              <Typography variant="h6" color="success.main">
+                +12%
+              </Typography>
+            </Stack>
+          </Paper>
         </Grid>
-      </Stack>
-    );
-  },
+
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <Paper sx={{ p: 2 }}>
+            <Typography variant="subtitle2" gutterBottom>
+              Orders
+            </Typography>
+            <Sparkline
+              data={sparklineData}
+              type="bar"
+              width={100}
+              height={32}
+              color={chartColorsPrimary[1]}
+            />
+          </Paper>
+        </Grid>
+
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <Paper sx={{ p: 2 }}>
+            <Typography variant="subtitle2" gutterBottom>
+              Trend
+            </Typography>
+            <Sparkline
+              data={sparklineData}
+              type="area"
+              width={100}
+              height={32}
+              color={chartColorsPrimary[2]}
+            />
+          </Paper>
+        </Grid>
+
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <Paper sx={{ p: 2 }}>
+            <Typography variant="subtitle2" gutterBottom>
+              Status
+            </Typography>
+            <Sparkline
+              data={sparklineData}
+              type="line"
+              width={100}
+              height={32}
+              color={chartColorsStatus.error}
+              showDots
+            />
+          </Paper>
+        </Grid>
+      </Grid>
+    </Stack>
+  );
+};
+
+export const SparklineExamples: StoryObj = {
+  name: 'Sparklines',
+  render: () => <SparklineExamplesDemo />,
 };
 
 // ============================================================================

@@ -357,6 +357,36 @@ const meta: Meta<typeof TabsDemo> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const PlaygroundDemo = (args: { centered?: boolean; textColor?: 'primary' | 'secondary' | 'inherit'; indicatorColor?: 'primary' | 'secondary' }) => {
+  const [value, setValue] = useState(0);
+  return (
+    <Box sx={{ width: '100%' }}>
+      <Paper elevation={0} sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs
+          value={value}
+          onChange={(_, newValue) => setValue(newValue)}
+          centered={args.centered}
+          textColor={args.textColor}
+          indicatorColor={args.indicatorColor}
+        >
+          <Tab label="Tab One" />
+          <Tab label="Tab Two" />
+          <Tab label="Tab Three" />
+        </Tabs>
+      </Paper>
+      <TabPanel value={value} index={0}>
+        <Typography>Content for Tab One</Typography>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <Typography>Content for Tab Two</Typography>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <Typography>Content for Tab Three</Typography>
+      </TabPanel>
+    </Box>
+  );
+};
+
 /**
  * Interactive Tabs playground - use Controls to customize.
  */
@@ -377,35 +407,7 @@ export const Playground: Story = {
       description: 'Indicator color',
     },
   },
-  render: (args: { centered?: boolean; textColor?: 'primary' | 'secondary' | 'inherit'; indicatorColor?: 'primary' | 'secondary' }) => {
-    const [value, setValue] = useState(0);
-    return (
-      <Box sx={{ width: '100%' }}>
-        <Paper elevation={0} sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs
-            value={value}
-            onChange={(_, newValue) => setValue(newValue)}
-            centered={args.centered}
-            textColor={args.textColor}
-            indicatorColor={args.indicatorColor}
-          >
-            <Tab label="Tab One" />
-            <Tab label="Tab Two" />
-            <Tab label="Tab Three" />
-          </Tabs>
-        </Paper>
-        <TabPanel value={value} index={0}>
-          <Typography>Content for Tab One</Typography>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <Typography>Content for Tab Two</Typography>
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <Typography>Content for Tab Three</Typography>
-        </TabPanel>
-      </Box>
-    );
-  },
+  render: (args) => <PlaygroundDemo {...args} />,
   args: {
     centered: false,
     textColor: 'primary',

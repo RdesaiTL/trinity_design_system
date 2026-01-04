@@ -34,8 +34,7 @@ interface BreadcrumbsDemoProps {
 }
 
 const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
+  const handleClick = () => {
     console.log('Breadcrumb clicked');
   };
 
@@ -48,20 +47,20 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
             <Typography variant="subtitle2" gutterBottom>Home Icon</Typography>
             <Breadcrumbs aria-label="breadcrumb">
               <Link
+                component="button"
                 underline="hover"
                 sx={{ display: 'flex', alignItems: 'center' }}
                 color="inherit"
-                href="#"
                 onClick={handleClick}
               >
                 <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
                 Home
               </Link>
               <Link
+                component="button"
                 underline="hover"
                 sx={{ display: 'flex', alignItems: 'center' }}
                 color="inherit"
-                href="#"
                 onClick={handleClick}
               >
                 Analytics
@@ -74,20 +73,20 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
             <Typography variant="subtitle2" gutterBottom>All Icons</Typography>
             <Breadcrumbs aria-label="breadcrumb">
               <Link
+                component="button"
                 underline="hover"
                 sx={{ display: 'flex', alignItems: 'center' }}
                 color="inherit"
-                href="#"
                 onClick={handleClick}
               >
                 <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
                 Home
               </Link>
               <Link
+                component="button"
                 underline="hover"
                 sx={{ display: 'flex', alignItems: 'center' }}
                 color="inherit"
-                href="#"
                 onClick={handleClick}
               >
                 <FolderIcon sx={{ mr: 0.5 }} fontSize="inherit" />
@@ -107,25 +106,25 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
             <Typography variant="subtitle2" gutterBottom>Icon Only Home</Typography>
             <Breadcrumbs aria-label="breadcrumb">
               <Link
+                component="button"
                 underline="hover"
                 color="inherit"
-                href="#"
                 onClick={handleClick}
               >
                 <HomeIcon fontSize="small" />
               </Link>
               <Link
+                component="button"
                 underline="hover"
                 color="inherit"
-                href="#"
                 onClick={handleClick}
               >
                 Analytics
               </Link>
               <Link
+                component="button"
                 underline="hover"
                 color="inherit"
-                href="#"
                 onClick={handleClick}
               >
                 Reports
@@ -146,16 +145,16 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
           <Box>
             <Typography variant="subtitle2" gutterBottom>Max Items = 3</Typography>
             <Breadcrumbs maxItems={3} aria-label="breadcrumb">
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Home
               </Link>
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Analytics
               </Link>
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Market Data
               </Link>
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Reports
               </Link>
               <Typography color="text.primary">Q4 Analysis</Typography>
@@ -170,19 +169,19 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
               itemsAfterCollapse={2}
               aria-label="breadcrumb"
             >
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Home
               </Link>
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Analytics
               </Link>
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Market Intelligence
               </Link>
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Competitive Analysis
               </Link>
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Reports
               </Link>
               <Typography color="text.primary">Summary</Typography>
@@ -204,10 +203,10 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
               separator={<NavigateNextIcon fontSize="small" />}
               aria-label="breadcrumb"
             >
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Home
               </Link>
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Analytics
               </Link>
               <Typography color="text.primary">Reports</Typography>
@@ -221,16 +220,16 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
               aria-label="breadcrumb"
             >
               <Link 
+                component="button"
                 underline="hover" 
-                href="#" 
                 onClick={handleClick}
                 sx={{ color: brandColors.primary.main }}
               >
                 Home
               </Link>
               <Link 
+                component="button"
                 underline="hover" 
-                href="#" 
                 onClick={handleClick}
                 sx={{ color: brandColors.primary.main }}
               >
@@ -245,10 +244,10 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
           <Box>
             <Typography variant="subtitle2" gutterBottom>Slash Separator</Typography>
             <Breadcrumbs separator="/" aria-label="breadcrumb">
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Home
               </Link>
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Analytics
               </Link>
               <Typography color="text.primary">Reports</Typography>
@@ -258,10 +257,10 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
           <Box>
             <Typography variant="subtitle2" gutterBottom>Pipe Separator</Typography>
             <Breadcrumbs separator="|" aria-label="breadcrumb">
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Home
               </Link>
-              <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+              <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                 Analytics
               </Link>
               <Typography color="text.primary">Reports</Typography>
@@ -272,10 +271,10 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
             <Typography variant="subtitle2" gutterBottom>Contained Style</Typography>
             <Paper sx={{ py: 1, px: 2, display: 'inline-block', bgcolor: 'grey.100' }}>
               <Breadcrumbs separator="›" aria-label="breadcrumb">
-                <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+                <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                   Home
                 </Link>
-                <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+                <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                   Analytics
                 </Link>
                 <Typography color="text.primary" fontWeight={500}>Reports</Typography>
@@ -296,11 +295,11 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
             <Typography variant="subtitle2" gutterBottom>Page Header with Breadcrumbs</Typography>
             <Paper sx={{ p: 3 }}>
               <Breadcrumbs sx={{ mb: 1 }}>
-                <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+                <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                   <HomeIcon fontSize="small" sx={{ mr: 0.5, verticalAlign: 'middle' }} />
                   Home
                 </Link>
-                <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+                <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
                   Analytics
                 </Link>
                 <Typography color="text.primary">Market Reports</Typography>
@@ -379,10 +378,10 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
         <Box>
           <Typography variant="subtitle2" gutterBottom>Simple</Typography>
           <Breadcrumbs aria-label="breadcrumb">
-            <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+            <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
               Home
             </Link>
-            <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+            <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
               Analytics
             </Link>
             <Typography color="text.primary">Reports</Typography>
@@ -392,16 +391,16 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
         <Box>
           <Typography variant="subtitle2" gutterBottom>Longer Path</Typography>
           <Breadcrumbs aria-label="breadcrumb">
-            <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+            <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
               Home
             </Link>
-            <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+            <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
               Market Intelligence
             </Link>
-            <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+            <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
               Competitive Analysis
             </Link>
-            <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+            <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
               Reports
             </Link>
             <Typography color="text.primary">Q4 2024 Summary</Typography>
@@ -411,7 +410,7 @@ const BreadcrumbsDemo = ({ variant = 'basic' }: BreadcrumbsDemoProps) => {
         <Box>
           <Typography variant="subtitle2" gutterBottom>Two Levels</Typography>
           <Breadcrumbs aria-label="breadcrumb">
-            <Link underline="hover" color="inherit" href="#" onClick={handleClick}>
+            <Link component="button" underline="hover" color="inherit" onClick={handleClick}>
               Dashboard
             </Link>
             <Typography color="text.primary">Settings</Typography>

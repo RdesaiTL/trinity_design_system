@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Snackbar, Alert, Button, IconButton, Slide, Grow, Fade, Box, SlideProps } from '@mui/material';
+import { Snackbar, Alert, Button, IconButton, Slide, SlideProps } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { ComponentPage, Section, Showcase } from '../../components/shared';
 
@@ -7,10 +7,43 @@ function SlideTransition(props: SlideProps) {
   return <Slide {...props} direction="up" />;
 }
 
+// Component for alert severity demo buttons
+const AlertSeverityDemo = ({ severity }: { severity: 'success' | 'info' | 'warning' | 'error' }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <React.Fragment>
+      <Button variant="outlined" color={severity === 'success' ? 'success' : severity === 'error' ? 'error' : severity === 'warning' ? 'warning' : 'info'} onClick={() => setIsOpen(true)}>
+        {severity}
+      </Button>
+      <Snackbar open={isOpen} autoHideDuration={3000} onClose={() => setIsOpen(false)}>
+        <Alert onClose={() => setIsOpen(false)} severity={severity}>{severity} alert snackbar</Alert>
+      </Snackbar>
+    </React.Fragment>
+  );
+};
+
+// Component for positioned snackbar demo buttons
+const PositionedDemo = ({ pos }: { pos: { v: string; h: string } }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <React.Fragment>
+      <Button size="small" variant="outlined" onClick={() => setIsOpen(true)}>
+        {pos.v} {pos.h}
+      </Button>
+      <Snackbar
+        open={isOpen}
+        autoHideDuration={2000}
+        onClose={() => setIsOpen(false)}
+        message={`${pos.v} ${pos.h}`}
+        anchorOrigin={{ vertical: pos.v as 'top' | 'bottom', horizontal: pos.h as 'left' | 'center' | 'right' }}
+      />
+    </React.Fragment>
+  );
+};
+
 export const SnackbarPage: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   const [alertOpen, setAlertOpen] = React.useState(false);
-  const [posOpen, setPosOpen] = React.useState(false);
   const [transOpen, setTransOpen] = React.useState(false);
 
   const handleClose = (_?: React.SyntheticEvent | Event, reason?: string) => {
@@ -53,19 +86,9 @@ export const SnackbarPage: React.FC = () => {
 
       <Section title="Alert Severities">
         <Showcase>
-          {(['success', 'info', 'warning', 'error'] as const).map((severity) => {
-            const [isOpen, setIsOpen] = React.useState(false);
-            return (
-              <React.Fragment key={severity}>
-                <Button variant="outlined" color={severity === 'success' ? 'success' : severity === 'error' ? 'error' : severity === 'warning' ? 'warning' : 'info'} onClick={() => setIsOpen(true)}>
-                  {severity}
-                </Button>
-                <Snackbar open={isOpen} autoHideDuration={3000} onClose={() => setIsOpen(false)}>
-                  <Alert onClose={() => setIsOpen(false)} severity={severity}>{severity} alert snackbar</Alert>
-                </Snackbar>
-              </React.Fragment>
-            );
-          })}
+          {(['success', 'info', 'warning', 'error'] as const).map((severity) => (
+            <AlertSeverityDemo key={severity} severity={severity} />
+          ))}
         </Showcase>
       </Section>
 
@@ -78,23 +101,9 @@ export const SnackbarPage: React.FC = () => {
             { v: 'bottom', h: 'left' },
             { v: 'bottom', h: 'center' },
             { v: 'bottom', h: 'right' },
-          ].map((pos, i) => {
-            const [isOpen, setIsOpen] = React.useState(false);
-            return (
-              <React.Fragment key={i}>
-                <Button size="small" variant="outlined" onClick={() => setIsOpen(true)}>
-                  {pos.v} {pos.h}
-                </Button>
-                <Snackbar
-                  open={isOpen}
-                  autoHideDuration={2000}
-                  onClose={() => setIsOpen(false)}
-                  message={`${pos.v} ${pos.h}`}
-                  anchorOrigin={{ vertical: pos.v as 'top' | 'bottom', horizontal: pos.h as 'left' | 'center' | 'right' }}
-                />
-              </React.Fragment>
-            );
-          })}
+          ].map((pos, i) => (
+            <PositionedDemo key={i} pos={pos} />
+          ))}
         </Showcase>
       </Section>
 

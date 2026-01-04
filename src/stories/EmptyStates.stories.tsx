@@ -503,7 +503,7 @@ export const InlineEmptyStates: Story = {
           <Typography color="text.secondary">
             No items in queue
           </Typography>
-          <Link href="#" variant="body2" sx={{ mt: 1, display: 'inline-block' }}>
+          <Link component="button" type="button" variant="body2" sx={{ mt: 1, display: 'inline-block' }}>
             Add items
           </Link>
         </Box>

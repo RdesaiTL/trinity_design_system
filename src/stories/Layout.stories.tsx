@@ -9,7 +9,6 @@ import {
   CardContent,
   CardActions,
   Grid,
-  useTheme,
 } from '@mui/material';
 import { Layout } from '../components/Layout';
 
@@ -59,8 +58,6 @@ import { Layout } from '../components/Layout';
 
 // Sample page content component
 const SamplePageContent = ({ page }: { page: string }) => {
-  const theme = useTheme();
-  
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h4" sx={{ mb: 3, fontWeight: 600 }}>
@@ -185,46 +182,50 @@ export const Default: Story = {
   render: () => <LayoutDemo />,
 };
 
+const DarkModeDemo = () => {
+  const [currentPage, setCurrentPage] = useState('overview');
+  
+  return (
+    <Box sx={{ height: '100vh', width: '100%', overflow: 'hidden' }}>
+      <Layout
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+        darkMode={true}
+        onToggleDarkMode={() => {}}
+      >
+        <SamplePageContent page={currentPage} />
+      </Layout>
+    </Box>
+  );
+};
+
 /**
  * Layout in dark mode. Toggle the theme using the moon/sun icon in the header.
  */
 export const DarkMode: Story = {
-  render: () => {
-    const [currentPage, setCurrentPage] = useState('overview');
-    
-    return (
-      <Box sx={{ height: '100vh', width: '100%', overflow: 'hidden' }}>
-        <Layout
-          currentPage={currentPage}
-          onPageChange={setCurrentPage}
-          darkMode={true}
-          onToggleDarkMode={() => {}}
-        >
-          <SamplePageContent page={currentPage} />
-        </Layout>
-      </Box>
-    );
-  },
+  render: () => <DarkModeDemo />,
+};
+
+const WithSelectedPageDemo = () => {
+  const [darkMode, setDarkMode] = useState(false);
+  
+  return (
+    <Box sx={{ height: '100vh', width: '100%', overflow: 'hidden' }}>
+      <Layout
+        currentPage="button"
+        onPageChange={() => {}}
+        darkMode={darkMode}
+        onToggleDarkMode={() => setDarkMode(!darkMode)}
+      >
+        <SamplePageContent page="button" />
+      </Layout>
+    </Box>
+  );
 };
 
 /**
  * Example showing the Layout with a specific page selected.
  */
 export const WithSelectedPage: Story = {
-  render: () => {
-    const [darkMode, setDarkMode] = useState(false);
-    
-    return (
-      <Box sx={{ height: '100vh', width: '100%', overflow: 'hidden' }}>
-        <Layout
-          currentPage="button"
-          onPageChange={() => {}}
-          darkMode={darkMode}
-          onToggleDarkMode={() => setDarkMode(!darkMode)}
-        >
-          <SamplePageContent page="button" />
-        </Layout>
-      </Box>
-    );
-  },
+  render: () => <WithSelectedPageDemo />,
 };

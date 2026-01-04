@@ -253,8 +253,8 @@ const SelectionGroupDemo = ({ variant = 'radioBasic', size = 'small' }: Selectio
               control={<Checkbox size={size} />}
               label={
                 <Typography variant="body2">
-                  I agree to the <a href="#" style={{ color: brandColors.primary.main }}>Terms of Service</a> and{' '}
-                  <a href="#" style={{ color: brandColors.primary.main }}>Privacy Policy</a>
+                  I agree to the <button type="button" style={{ color: brandColors.primary.main, background: 'none', border: 'none', padding: 0, font: 'inherit', cursor: 'pointer', textDecoration: 'underline' }}>Terms of Service</button> and{' '}
+                  <button type="button" style={{ color: brandColors.primary.main, background: 'none', border: 'none', padding: 0, font: 'inherit', cursor: 'pointer', textDecoration: 'underline' }}>Privacy Policy</button>
                 </Typography>
               }
             />

@@ -709,323 +709,327 @@ export const Avatars: StoryObj = {
 // COMPLETE CHAT DEMO
 // ============================================================================
 
-export const CompleteChatDemo: StoryObj = {
-  render: () => {
-    const [inputValue, setInputValue] = useState('');
+const CompleteChatDemoContent = () => {
+  const [inputValue, setInputValue] = useState('');
 
-    return (
-      <Box sx={{ p: 3 }}>
-        <Typography variant="h4" gutterBottom>Complete Chat Interface</Typography>
-        <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
-          A complete AI chat interface with all features.
-        </Typography>
+  return (
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h4" gutterBottom>Complete Chat Interface</Typography>
+      <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
+        A complete AI chat interface with all features.
+      </Typography>
 
-        <Paper
+      <Paper
+        sx={{
+          maxWidth: 800,
+          mx: 'auto',
+          height: 600,
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Header */}
+        <Box
           sx={{
-            maxWidth: 800,
-            mx: 'auto',
-            height: 600,
+            p: 2,
+            background: aiTokens.gradient.subtle,
+            borderBottom: `1px solid ${brandColors.neutral.gray100}`,
             display: 'flex',
-            flexDirection: 'column',
-            overflow: 'hidden',
+            alignItems: 'center',
+            gap: 2,
           }}
         >
-          {/* Header */}
-          <Box
-            sx={{
-              p: 2,
-              background: aiTokens.gradient.subtle,
-              borderBottom: `1px solid ${brandColors.neutral.gray100}`,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 2,
-            }}
-          >
-            <AIAvatar size="small" />
-            <Box sx={{ flex: 1 }}>
-              <Typography variant="subtitle1" fontWeight={600}>Trinity AI Assistant</Typography>
-              <Typography variant="caption" color="text.secondary">
-                Powered by advanced language models
-              </Typography>
-            </Box>
-            <AILabel
-              size="sm"
-              popoverContent={
-                <AIExplainability
-                  title="Trinity AI Assistant"
-                  description="An AI-powered assistant for data analysis and insights."
-                  modelName="Trinity LLM v2.0"
-                  confidence={98}
-                  lastUpdated="Dec 22, 2025"
-                />
-              }
-            />
+          <AIAvatar size="small" />
+          <Box sx={{ flex: 1 }}>
+            <Typography variant="subtitle1" fontWeight={600}>Trinity AI Assistant</Typography>
+            <Typography variant="caption" color="text.secondary">
+              Powered by advanced language models
+            </Typography>
           </Box>
+          <AILabel
+            size="sm"
+            popoverContent={
+              <AIExplainability
+                title="Trinity AI Assistant"
+                description="An AI-powered assistant for data analysis and insights."
+                modelName="Trinity LLM v2.0"
+                confidence={98}
+                lastUpdated="Dec 22, 2025"
+              />
+            }
+          />
+        </Box>
 
-          {/* Messages */}
-          <Box sx={{ flex: 1, p: 2, overflow: 'auto' }}>
-            <AIChatMessage
-              role="assistant"
-              content="Hello! I'm your Trinity AI Assistant. I can help you analyze data, generate insights, and answer questions about your healthcare professional database. What would you like to know?"
-              showCopy
-              showFeedback
-            />
+        {/* Messages */}
+        <Box sx={{ flex: 1, p: 2, overflow: 'auto' }}>
+          <AIChatMessage
+            role="assistant"
+            content="Hello! I'm your Trinity AI Assistant. I can help you analyze data, generate insights, and answer questions about your healthcare professional database. What would you like to know?"
+            showCopy
+            showFeedback
+          />
 
-            <AIChatMessage
-              role="user"
-              content="Show me the summary of Dr. Joe Charlett"
-              userAvatar="RD"
-            />
+          <AIChatMessage
+            role="user"
+            content="Show me the summary of Dr. Joe Charlett"
+            userAvatar="RD"
+          />
 
-            <AIChatMessage
-              role="assistant"
-              content={
-                <Box>
-                  <Typography variant="body2" sx={{ mb: 2 }}>
-                    Sure, here is the HCP profile for "Dr. Joe Charlett"
-                  </Typography>
-                  
-                  <AIContainer showLabel={false} sx={{ mb: 2 }}>
-                    <Grid container spacing={2}>
-                      <Grid size={{ xs: 6 }}>
-                        <Typography variant="caption" color="text.secondary">Name:</Typography>
-                        <Typography variant="body2">Joe Charlett</Typography>
-                      </Grid>
-                      <Grid size={{ xs: 6 }}>
-                        <Typography variant="caption" color="text.secondary">Specialty:</Typography>
-                        <Typography variant="body2">Gastroenterologist</Typography>
-                      </Grid>
-                      <Grid size={{ xs: 6 }}>
-                        <Typography variant="caption" color="text.secondary">Primary Affiliation:</Typography>
-                        <Typography variant="body2">St. Mouvbourne Hospital</Typography>
-                      </Grid>
-                      <Grid size={{ xs: 6 }}>
-                        <Typography variant="caption" color="text.secondary">HCP Segment:</Typography>
-                        <Typography variant="body2">Must Win</Typography>
-                      </Grid>
+          <AIChatMessage
+            role="assistant"
+            content={
+              <Box>
+                <Typography variant="body2" sx={{ mb: 2 }}>
+                  Sure, here is the HCP profile for "Dr. Joe Charlett"
+                </Typography>
+                
+                <AIContainer showLabel={false} sx={{ mb: 2 }}>
+                  <Grid container spacing={2}>
+                    <Grid size={{ xs: 6 }}>
+                      <Typography variant="caption" color="text.secondary">Name:</Typography>
+                      <Typography variant="body2">Joe Charlett</Typography>
                     </Grid>
-                  </AIContainer>
+                    <Grid size={{ xs: 6 }}>
+                      <Typography variant="caption" color="text.secondary">Specialty:</Typography>
+                      <Typography variant="body2">Gastroenterologist</Typography>
+                    </Grid>
+                    <Grid size={{ xs: 6 }}>
+                      <Typography variant="caption" color="text.secondary">Primary Affiliation:</Typography>
+                      <Typography variant="body2">St. Mouvbourne Hospital</Typography>
+                    </Grid>
+                    <Grid size={{ xs: 6 }}>
+                      <Typography variant="caption" color="text.secondary">HCP Segment:</Typography>
+                      <Typography variant="body2">Must Win</Typography>
+                    </Grid>
+                  </Grid>
+                </AIContainer>
 
-                  <AIExpandableSection title="Contact Information" icon="user" defaultExpanded>
-                    <List dense disablePadding>
-                      <ListItem disableGutters>
-                        <ListItemText
-                          primary="Address"
-                          secondary="980, Oak Street, San Francisco, CA"
-                          primaryTypographyProps={{ variant: 'caption', color: 'text.secondary' }}
-                          secondaryTypographyProps={{ variant: 'body2' }}
-                        />
-                      </ListItem>
-                      <ListItem disableGutters>
-                        <ListItemText
-                          primary="Phone"
-                          secondary="+1 765 123 7878"
-                          primaryTypographyProps={{ variant: 'caption', color: 'text.secondary' }}
-                          secondaryTypographyProps={{ variant: 'body2' }}
-                        />
-                      </ListItem>
-                    </List>
-                  </AIExpandableSection>
-                </Box>
-              }
-              showCopy
-              showFeedback
-              showShare
-            />
-          </Box>
+                <AIExpandableSection title="Contact Information" icon="user" defaultExpanded>
+                  <List dense disablePadding>
+                    <ListItem disableGutters>
+                      <ListItemText
+                        primary="Address"
+                        secondary="980, Oak Street, San Francisco, CA"
+                        primaryTypographyProps={{ variant: 'caption', color: 'text.secondary' }}
+                        secondaryTypographyProps={{ variant: 'body2' }}
+                      />
+                    </ListItem>
+                    <ListItem disableGutters>
+                      <ListItemText
+                        primary="Phone"
+                        secondary="+1 765 123 7878"
+                        primaryTypographyProps={{ variant: 'caption', color: 'text.secondary' }}
+                        secondaryTypographyProps={{ variant: 'body2' }}
+                      />
+                    </ListItem>
+                  </List>
+                </AIExpandableSection>
+              </Box>
+            }
+            showCopy
+            showFeedback
+            showShare
+          />
+        </Box>
 
-          {/* Quick Replies */}
-          <Box sx={{ px: 2, py: 1 }}>
-            <AIQuickReply
-              options={[
-                'Show recent interactions',
-                'Compare with similar HCPs',
-                'Generate engagement plan',
-              ]}
-              onSelect={() => {}}
-            />
-          </Box>
+        {/* Quick Replies */}
+        <Box sx={{ px: 2, py: 1 }}>
+          <AIQuickReply
+            options={[
+              'Show recent interactions',
+              'Compare with similar HCPs',
+              'Generate engagement plan',
+            ]}
+            onSelect={() => {}}
+          />
+        </Box>
 
-          {/* Input */}
-          <Box sx={{ p: 2, borderTop: `1px solid ${brandColors.neutral.gray100}` }}>
-            <AIChatInput
-              value={inputValue}
-              onChange={setInputValue}
-              onSubmit={() => setInputValue('')}
-              placeholder="Ask about HCPs, segments, or insights..."
-            />
-          </Box>
-        </Paper>
-      </Box>
-    );
-  },
+        {/* Input */}
+        <Box sx={{ p: 2, borderTop: `1px solid ${brandColors.neutral.gray100}` }}>
+          <AIChatInput
+            value={inputValue}
+            onChange={setInputValue}
+            onSubmit={() => setInputValue('')}
+            placeholder="Ask about HCPs, segments, or insights..."
+          />
+        </Box>
+      </Paper>
+    </Box>
+  );
+};
+
+export const CompleteChatDemo: StoryObj = {
+  render: () => <CompleteChatDemoContent />,
 };
 
 // ============================================================================
 // JOB DESCRIPTION GENERATOR DEMO
 // ============================================================================
 
-export const JobDescriptionDemo: StoryObj = {
-  render: () => {
-    const [inputValue, setInputValue] = useState('');
+const JobDescriptionDemoContent = () => {
+  const [inputValue, setInputValue] = useState('');
 
-    return (
-      <Box sx={{ p: 3 }}>
-        <Typography variant="h4" gutterBottom>AI-Assisted Form</Typography>
-        <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
-          Form with AI assistance for generating content.
-        </Typography>
+  return (
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h4" gutterBottom>AI-Assisted Form</Typography>
+      <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
+        Form with AI assistance for generating content.
+      </Typography>
 
-        <Grid container spacing={3}>
-          {/* Form Side */}
-          <Grid size={{ xs: 12, md: 5 }}>
-            <Paper sx={{ p: 3 }}>
-              <Typography variant="h6" gutterBottom>Job Specifications</Typography>
-              <Divider sx={{ mb: 3 }} />
+      <Grid container spacing={3}>
+        {/* Form Side */}
+        <Grid size={{ xs: 12, md: 5 }}>
+          <Paper sx={{ p: 3 }}>
+            <Typography variant="h6" gutterBottom>Job Specifications</Typography>
+            <Divider sx={{ mb: 3 }} />
+            
+            <Stack spacing={2}>
+              <Grid container spacing={2}>
+                <Grid size={{ xs: 6 }}>
+                  <TextField
+                    select
+                    fullWidth
+                    label="Job Family Group"
+                    size="small"
+                    SelectProps={{ native: true }}
+                  >
+                    <option value="">Select...</option>
+                  </TextField>
+                </Grid>
+                <Grid size={{ xs: 6 }}>
+                  <TextField
+                    select
+                    fullWidth
+                    label="Job Family Group"
+                    size="small"
+                    SelectProps={{ native: true }}
+                  >
+                    <option value="">Select...</option>
+                  </TextField>
+                </Grid>
+              </Grid>
               
-              <Stack spacing={2}>
-                <Grid container spacing={2}>
-                  <Grid size={{ xs: 6 }}>
-                    <TextField
-                      select
-                      fullWidth
-                      label="Job Family Group"
-                      size="small"
-                      SelectProps={{ native: true }}
-                    >
-                      <option value="">Select...</option>
-                    </TextField>
-                  </Grid>
-                  <Grid size={{ xs: 6 }}>
-                    <TextField
-                      select
-                      fullWidth
-                      label="Job Family Group"
-                      size="small"
-                      SelectProps={{ native: true }}
-                    >
-                      <option value="">Select...</option>
-                    </TextField>
-                  </Grid>
+              <TextField fullWidth label="Job Title*" size="small" />
+              
+              <Grid container spacing={2}>
+                <Grid size={{ xs: 6 }}>
+                  <TextField
+                    select
+                    fullWidth
+                    label="Experience*"
+                    size="small"
+                    SelectProps={{ native: true }}
+                  >
+                    <option value="">Select...</option>
+                  </TextField>
                 </Grid>
-                
-                <TextField fullWidth label="Job Title*" size="small" />
-                
-                <Grid container spacing={2}>
-                  <Grid size={{ xs: 6 }}>
-                    <TextField
-                      select
-                      fullWidth
-                      label="Experience*"
-                      size="small"
-                      SelectProps={{ native: true }}
-                    >
-                      <option value="">Select...</option>
-                    </TextField>
-                  </Grid>
-                  <Grid size={{ xs: 6 }}>
-                    <TextField
-                      select
-                      fullWidth
-                      label="Education Level*"
-                      size="small"
-                      SelectProps={{ native: true }}
-                    >
-                      <option value="">Select...</option>
-                    </TextField>
-                  </Grid>
+                <Grid size={{ xs: 6 }}>
+                  <TextField
+                    select
+                    fullWidth
+                    label="Education Level*"
+                    size="small"
+                    SelectProps={{ native: true }}
+                  >
+                    <option value="">Select...</option>
+                  </TextField>
                 </Grid>
+              </Grid>
 
-                <TextField fullWidth label="Key Skills*" size="small" />
-                
-                <TextField
-                  fullWidth
-                  label="Additional Requirements"
-                  multiline
-                  rows={3}
-                  size="small"
-                  placeholder="Any additional requirements or preferences..."
-                />
+              <TextField fullWidth label="Key Skills*" size="small" />
+              
+              <TextField
+                fullWidth
+                label="Additional Requirements"
+                multiline
+                rows={3}
+                size="small"
+                placeholder="Any additional requirements or preferences..."
+              />
 
-                <Stack direction="row" spacing={3} justifyContent="center" sx={{ mt: 3, pt: 2 }}>
-                  <AICircularAction label="Clear Form" icon="x" />
-                  <AICircularAction label="Find Similar JD's" icon="search" />
-                  <AICircularAction label="Generate JD" icon="sparkles" primary />
-                </Stack>
+              <Stack direction="row" spacing={3} justifyContent="center" sx={{ mt: 3, pt: 2 }}>
+                <AICircularAction label="Clear Form" icon="x" />
+                <AICircularAction label="Find Similar JD's" icon="search" />
+                <AICircularAction label="Generate JD" icon="sparkles" primary />
               </Stack>
-            </Paper>
-          </Grid>
+            </Stack>
+          </Paper>
+        </Grid>
 
-          {/* Preview Side */}
-          <Grid size={{ xs: 12, md: 7 }}>
-            <Paper
+        {/* Preview Side */}
+        <Grid size={{ xs: 12, md: 7 }}>
+          <Paper
+            sx={{
+              height: '100%',
+              minHeight: 500,
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'hidden',
+            }}
+          >
+            <Box
               sx={{
-                height: '100%',
-                minHeight: 500,
+                p: 2,
+                background: brandColors.primary.light,
+                color: '#FFFFFF',
+              }}
+            >
+              <Typography variant="subtitle1" fontWeight={600}>
+                Job Description Preview
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                flex: 1,
                 display: 'flex',
                 flexDirection: 'column',
-                overflow: 'hidden',
+                alignItems: 'center',
+                justifyContent: 'center',
+                p: 4,
+                textAlign: 'center',
               }}
             >
               <Box
                 sx={{
-                  p: 2,
-                  background: brandColors.primary.light,
-                  color: '#FFFFFF',
-                }}
-              >
-                <Typography variant="subtitle1" fontWeight={600}>
-                  Job Description Preview
-                </Typography>
-              </Box>
-
-              <Box
-                sx={{
-                  flex: 1,
+                  width: 80,
+                  height: 80,
+                  borderRadius: 2,
+                  backgroundColor: brandColors.neutral.gray100,
                   display: 'flex',
-                  flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  p: 4,
-                  textAlign: 'center',
+                  mb: 2,
                 }}
               >
-                <Box
-                  sx={{
-                    width: 80,
-                    height: 80,
-                    borderRadius: 2,
-                    backgroundColor: brandColors.neutral.gray100,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    mb: 2,
-                  }}
-                >
-                  <Icon name="document" size="xl" sx={{ color: brandColors.neutral.gray400 }} />
-                </Box>
-                <Typography variant="subtitle1" color="primary" sx={{ mb: 1 }}>
-                  No job description yet
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Fill in the job specifications and click "Generate JD"
-                  to create a job description
-                </Typography>
+                <Icon name="document" size="xl" sx={{ color: brandColors.neutral.gray400 }} />
               </Box>
+              <Typography variant="subtitle1" color="primary" sx={{ mb: 1 }}>
+                No job description yet
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Fill in the job specifications and click "Generate JD"
+                to create a job description
+              </Typography>
+            </Box>
 
-              <Box sx={{ p: 2, borderTop: `1px solid ${brandColors.neutral.gray100}` }}>
-                <AIChatInput
-                  value={inputValue}
-                  onChange={setInputValue}
-                  placeholder="Want to change anything? Start typing here."
-                />
-              </Box>
-            </Paper>
-          </Grid>
+            <Box sx={{ p: 2, borderTop: `1px solid ${brandColors.neutral.gray100}` }}>
+              <AIChatInput
+                value={inputValue}
+                onChange={setInputValue}
+                placeholder="Want to change anything? Start typing here."
+              />
+            </Box>
+          </Paper>
         </Grid>
-      </Box>
-    );
-  },
+      </Grid>
+    </Box>
+  );
+};
+
+export const JobDescriptionDemo: StoryObj = {
+  render: () => <JobDescriptionDemoContent />,
 };
 
 // ============================================================================

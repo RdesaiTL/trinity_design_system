@@ -19,6 +19,25 @@ const Transition = React.forwardRef(function Transition(
 
 const emails = ['user1@gmail.com', 'user2@gmail.com'];
 
+// Component to handle individual dialog size buttons with their own state
+const DialogSizeDemo = ({ size }: { size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <React.Fragment>
+      <Button variant="outlined" onClick={() => setIsOpen(true)}>{size}</Button>
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth={size} fullWidth>
+        <DialogTitle>Max Width: {size}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Dialog content with maxWidth="{size}" and fullWidth.</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setIsOpen(false)}>Close</Button>
+        </DialogActions>
+      </Dialog>
+    </React.Fragment>
+  );
+};
+
 export const DialogPage: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   const [formOpen, setFormOpen] = React.useState(false);
@@ -155,23 +174,9 @@ export const DialogPage: React.FC = () => {
 
       <Section title="Dialog Sizes">
         <Showcase>
-          {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map((size) => {
-            const [isOpen, setIsOpen] = React.useState(false);
-            return (
-              <React.Fragment key={size}>
-                <Button variant="outlined" onClick={() => setIsOpen(true)}>{size}</Button>
-                <Dialog open={isOpen} onClose={() => setIsOpen(false)} maxWidth={size} fullWidth>
-                  <DialogTitle>Max Width: {size}</DialogTitle>
-                  <DialogContent>
-                    <DialogContentText>Dialog content with maxWidth="{size}" and fullWidth.</DialogContentText>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={() => setIsOpen(false)}>Close</Button>
-                  </DialogActions>
-                </Dialog>
-              </React.Fragment>
-            );
-          })}
+          {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map((size) => (
+            <DialogSizeDemo key={size} size={size} />
+          ))}
         </Showcase>
       </Section>
     </ComponentPage>
