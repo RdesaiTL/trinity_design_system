@@ -478,6 +478,72 @@ const result = validateAccessibility('#050742', '#FFFFFF');
       </Section>
 
       {/* ================================================================== */}
+      {/* THEME.TS USAGE */}
+      {/* ================================================================== */}
+      <Section title="Internal Files: theme.ts" id="theme-ts" isDark={isDark}>
+        <Alert severity="warning" sx={{ mb: 3 }}>
+          <strong>⚠️ Do not import theme.ts directly.</strong> It is an internal implementation file, not part of the public API.
+        </Alert>
+
+        <Typography sx={{ color: 'text.secondary', mb: 3, lineHeight: 1.7 }}>
+          The <code style={{ backgroundColor: isDark ? '#30363d' : '#f0f0f0', padding: '2px 6px', borderRadius: 4 }}>theme.ts</code> file 
+          contains the internal MUI theme configuration that powers the design system. It exists to wire tokens into MUI's ThemeProvider. 
+          This file is subject to change without notice and direct imports bypass token governance.
+        </Typography>
+
+        <SubSection title="Public API">
+          <Typography sx={{ color: 'text.secondary', mb: 2 }}>
+            The supported public API consists of:
+          </Typography>
+          <Box component="ul" sx={{ color: 'text.secondary', pl: 3, mb: 3 }}>
+            <li><strong>Themes:</strong> <code style={{ backgroundColor: isDark ? '#30363d' : '#f0f0f0', padding: '2px 6px', borderRadius: 4 }}>lightTheme</code>, <code style={{ backgroundColor: isDark ? '#30363d' : '#f0f0f0', padding: '2px 6px', borderRadius: 4 }}>darkTheme</code> – for ThemeProvider</li>
+            <li><strong>Tokens:</strong> <code style={{ backgroundColor: isDark ? '#30363d' : '#f0f0f0', padding: '2px 6px', borderRadius: 4 }}>baseTokens</code>, <code style={{ backgroundColor: isDark ? '#30363d' : '#f0f0f0', padding: '2px 6px', borderRadius: 4 }}>semanticTokens</code> – for styling</li>
+            <li><strong>Utilities:</strong> <code style={{ backgroundColor: isDark ? '#30363d' : '#f0f0f0', padding: '2px 6px', borderRadius: 4 }}>accessibleCombinations</code>, <code style={{ backgroundColor: isDark ? '#30363d' : '#f0f0f0', padding: '2px 6px', borderRadius: 4 }}>getContrastRatio</code>, <code style={{ backgroundColor: isDark ? '#30363d' : '#f0f0f0', padding: '2px 6px', borderRadius: 4 }}>brandColors</code></li>
+            <li><strong>Components:</strong> StatusIndicator, Modal, FileUpload, TopNavHeader, etc.</li>
+          </Box>
+        </SubSection>
+
+        <SubSection title="Correct Usage">
+          <CodeBlock isDark={isDark}>{`// ✅ Correct: Import from the package root
+import { 
+  lightTheme, 
+  darkTheme, 
+  baseTokens, 
+  semanticTokens,
+  accessibleCombinations,
+} from '@trinity/design-system';
+
+// Use tokens for styling
+const styles = {
+  color: semanticTokens.colors.text.primary,
+  backgroundColor: baseTokens.colors.navy[900],
+  padding: baseTokens.spacing[4],
+};`}</CodeBlock>
+        </SubSection>
+
+        <SubSection title="Incorrect Usage">
+          <CodeBlock isDark={isDark}>{`// ❌ Incorrect: Direct import from theme.ts
+import { lightTheme } from '@trinity/design-system/theme';
+import { brandColors } from '@trinity/design-system/src/theme';
+
+// ❌ Incorrect: Accessing internal theme structure
+import { createTrinityTheme } from '@trinity/design-system/theme';
+const customTheme = createTrinityTheme('light');
+
+// ❌ Incorrect: Hardcoding values that exist in tokens
+const styles = {
+  color: '#050742',  // Use semanticTokens.colors.brand.primary
+  padding: 16,       // Use baseTokens.spacing[4]
+};`}</CodeBlock>
+        </SubSection>
+
+        <Alert severity="info" sx={{ mt: 3 }}>
+          <strong>ESLint Enforcement:</strong> Direct imports from <code>theme.ts</code> will trigger lint warnings. 
+          CI pipelines may block merges that bypass token governance. Components will render, but this usage pattern is unsupported.
+        </Alert>
+      </Section>
+
+      {/* ================================================================== */}
       {/* TYPESCRIPT */}
       {/* ================================================================== */}
       <Section title="TypeScript" id="typescript" isDark={isDark}>
