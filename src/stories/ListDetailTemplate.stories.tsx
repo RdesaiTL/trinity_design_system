@@ -6,6 +6,7 @@ import {
   Archive as ArchiveIcon,
   Reply as ReplyIcon,
   Forward as ForwardIcon,
+  Delete as DeleteIcon,
 } from '@mui/icons-material';
 import { ListDetailTemplate, type ListDetailItem } from '../components/templates/ListDetail';
 
