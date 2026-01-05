@@ -4,6 +4,7 @@ import { Box, Typography, Avatar, Chip } from '@mui/material';
 import {
   Label as TagIcon,
   LocalOffer as OfferIcon,
+  Star as StarIcon,
 } from '@mui/icons-material';
 import React from 'react';
 
