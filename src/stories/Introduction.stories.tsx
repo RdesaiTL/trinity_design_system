@@ -245,6 +245,12 @@ function MyForm() {
   CommandPalette,
   SplitPane,
   DockLayout,
+  TopNavHeader,
+  
+  // Templates (v1.1.0)
+  LandingPage,
+  FeatureCard,
+  Footer,
   
   // Data Display
   DataCard,
@@ -254,6 +260,7 @@ function MyForm() {
   
   // Inputs & Feedback
   SearchInput,
+  Combobox,
   FilterBar,
   Modal,
   StatusIndicator,
@@ -272,21 +279,23 @@ function MyForm() {
               <TableBody>
                 {[
                   ['AppLayout', 'Full application shell with sidebar, header, and AI integration'],
+                  ['Combobox', 'Enhanced autocomplete with multi-select, groups, and create option'],
                   ['CommandPalette', 'Keyboard-driven command interface (⌘K) with search'],
                   ['DataCard', 'Metric cards with trends, sparklines, and comparison indicators'],
                   ['DataTable', 'Enhanced table with sorting, pagination, and selection'],
                   ['DiffViewer', 'Side-by-side and unified code/text diff viewer'],
                   ['DockLayout', 'VS Code-style dockable panel layout system'],
+                  ['FeatureCard', 'Feature cards with gradient icons for landing pages'],
                   ['FileUpload', 'Drag-and-drop file upload with progress tracking'],
                   ['FilterBar', 'Composable filter bar with presets and quick filters'],
+                  ['Footer', 'Responsive footer with multi-column links and social icons'],
+                  ['LandingPage', 'Hero + feature grid template with background options'],
                   ['Modal', 'Accessible dialog with confirmation, danger, and custom variants'],
                   ['SearchInput', 'Search with suggestions, recent searches, and ⌘K shortcut'],
                   ['SplitPane', 'Resizable split layouts with collapsible panels'],
-                  ['StatusIndicator', 'Status badges with dot, badge, and pill variants'],
+                  ['StatusIndicator', 'Unified status with icon, shape, chip, badge variants'],
                   ['Timeline', 'Activity feeds, audit logs, and historical data display'],
                   ['TopNavHeader', 'Navigation header with client selector, search, apps menu'],
-                  ['TreeView', 'Hierarchical tree navigation with expand/collapse'],
-                  ['TransferList', 'Dual-list selection for permission assignment'],
                 ].map(([name, desc]) => (
                   <TableRow key={name}>
                     <TableCell>
@@ -383,9 +392,88 @@ semanticTokens.colors.status.warning.text       // '#D97706'
 semanticTokens.colors.status.info.text          // Azure`}</CodeBlock>
         </SubSection>
 
+        <SubSection title="Semantic Effects (v1.1.0)">
+          <Typography sx={{ color: 'text.secondary', mb: 2 }}>
+            New intent-based effect tokens for overlays, shadows, and on-dark text:
+          </Typography>
+          <CodeBlock isDark={isDark}>{`import { semanticTokens } from '@trinity/design-system';
+
+// Overlay effects for interaction states
+semanticTokens.effects.overlay.scrim      // Modal backdrop (50% black)
+semanticTokens.effects.overlay.hover      // Standard hover (8% black)
+semanticTokens.effects.overlay.pressed    // Pressed state (12% black)
+
+// White text on dark backgrounds
+semanticTokens.effects.onDark.primary     // 87% white (high emphasis)
+semanticTokens.effects.onDark.secondary   // 70% white (medium emphasis)
+semanticTokens.effects.onDark.tertiary    // 50% white (low emphasis)
+
+// Shadow effects
+semanticTokens.effects.shadow.surface     // Resting card elevation
+semanticTokens.effects.shadow.floating    // Dropdown/popover
+semanticTokens.effects.shadow.dialog      // Modal dialogs
+
+// Dense typography for compact UI
+semanticTokens.typography.dense.badge     // 10px - badge counts
+semanticTokens.typography.dense.text      // 12px - metadata`}</CodeBlock>
+        </SubSection>
+
         <Alert severity="warning" sx={{ mt: 3 }}>
           <strong>Governance Rule:</strong> Use semantic tokens for UI elements. Base tokens are for reference or when no semantic token exists. 
           Do not hardcode hex values outside of token definitions.
+        </Alert>
+      </Section>
+
+      {/* ================================================================== */}
+      {/* ASSET LIBRARY (v1.1.0) */}
+      {/* ================================================================== */}
+      <Section title="Asset Library" id="assets" isDark={isDark}>
+        <Typography sx={{ color: 'text.secondary', mb: 3, lineHeight: 1.7 }}>
+          v1.1.0 includes a curated asset library for marketing pages and branded content:
+        </Typography>
+
+        <SubSection title="Gradient Icons (38 SVGs)">
+          <Typography sx={{ color: 'text.secondary', mb: 2 }}>
+            Brand-aligned gradient icons for feature cards and landing pages:
+          </Typography>
+          <CodeBlock isDark={isDark}>{`import { gradientIcons } from '@trinity/design-system';
+
+// Available icons: ai, insights, strategy, launch, growth, etc.
+<img src={gradientIcons.iconAi} alt="AI" width={64} />
+<img src={gradientIcons.iconInsights} alt="Insights" width={64} />`}</CodeBlock>
+        </SubSection>
+
+        <SubSection title="Brand Gradients (18 images)">
+          <Typography sx={{ color: 'text.secondary', mb: 2 }}>
+            Light and dark brand gradient backgrounds:
+          </Typography>
+          <CodeBlock isDark={isDark}>{`import { brandGradients } from '@trinity/design-system';
+
+// Light variants (10)
+brandGradients.light.gradient1  // through gradient10
+
+// Dark variants (8)
+brandGradients.dark.gradient1   // through gradient8
+
+// Usage as hero background
+<Box sx={{ backgroundImage: \`url(\${brandGradients.light.gradient1})\` }} />`}</CodeBlock>
+        </SubSection>
+
+        <SubSection title="Background Images (27 images)">
+          <Typography sx={{ color: 'text.secondary', mb: 2 }}>
+            Smooth abstract and technology/human themed backgrounds:
+          </Typography>
+          <CodeBlock isDark={isDark}>{`import { backgroundImages } from '@trinity/design-system';
+
+// Smooth abstract (14)
+backgroundImages.smoothAbstract.abstract1  // through abstract14
+
+// Technology & Human (13)
+backgroundImages.techHuman.th1  // through th13`}</CodeBlock>
+        </SubSection>
+
+        <Alert severity="info" sx={{ mt: 3 }}>
+          <strong>Storybook:</strong> Browse all assets visually in the Assets category in the sidebar.
         </Alert>
       </Section>
 
@@ -457,6 +545,7 @@ const result = validateAccessibility('#050742', '#FFFFFF');
             <li>Never hardcode hex values in component files</li>
             <li>All text/background combinations must pass WCAG 2.1 AA (4.5:1 contrast)</li>
             <li>Use accessibleCombinations for guaranteed compliance</li>
+            <li><strong>Exceptions:</strong> If hardcoded colors are required, add <code>@intentional-color</code> annotation with approved category (see INTENTIONAL_EXCEPTIONS.md)</li>
           </Box>
         </Paper>
 

@@ -103,10 +103,10 @@ const WelcomePage = () => {
       {/* Stats */}
       <Grid container spacing={3} sx={{ mb: 5 }}>
         {[
-          { value: '50+', label: 'Components', color: baseTokens.colors.navy[900] },
-          { value: '120+', label: 'Design Tokens', color: baseTokens.colors.purple[700] },
+          { value: '60+', label: 'Components', color: baseTokens.colors.navy[900] },
+          { value: '200+', label: 'Design Tokens', color: baseTokens.colors.purple[700] },
           { value: 'AA', label: 'WCAG Compliant', color: baseTokens.colors.coral[800] },
-          { value: '74', label: 'Story Variants', color: semanticTokens.colors.status.success.text },
+          { value: '83', label: 'Asset Files', color: semanticTokens.colors.status.success.text },
         ].map((stat) => (
           <Grid size={{ xs: 6, md: 3 }} key={stat.label}>
             <Box sx={{ textAlign: 'center', py: 2 }}>
@@ -209,12 +209,12 @@ const WelcomePage = () => {
       </Typography>
       <Grid container spacing={2} sx={{ mb: 5 }}>
         {[
-          { title: 'Inputs', desc: 'Button, TextField, SearchInput, FilterBar, Select', icon: '📝' },
+          { title: 'Inputs', desc: 'Button, Combobox, SearchInput, FilterBar, Select', icon: '📝' },
           { title: 'Data Display', desc: 'DataCard, Timeline, DataTable, Charts, Chip', icon: '📊' },
           { title: 'Feedback', desc: 'Alert, Progress, Modal, Toast, StatusIndicator', icon: '💬' },
           { title: 'Navigation', desc: 'CommandPalette, Tabs, Menu, Breadcrumbs', icon: '🧭' },
-          { title: 'Layout', desc: 'SplitPane, DockLayout, AppLayout, Grid', icon: '📐' },
-          { title: 'Utilities', desc: 'DiffViewer, FileUpload, TreeView, TransferList', icon: '🛠️' },
+          { title: 'Templates', desc: 'LandingPage, AppLayout, Footer, FeatureCard', icon: '📐' },
+          { title: 'Assets', desc: '38 Gradient Icons, 18 Brand Gradients, 27 Backgrounds', icon: '🎨' },
         ].map((item) => (
           <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.title}>
             <Paper
