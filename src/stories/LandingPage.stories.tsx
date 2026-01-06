@@ -479,6 +479,10 @@ export const IconReference: StoryObj = {
  * Click any thumbnail to see its import path.
  */
 export const BackgroundGallery: StoryObj = {
+  parameters: {
+    // Skip Chromatic snapshot - too many images cause timeout
+    chromatic: { disableSnapshot: true },
+  },
   render: () => {
     const [selectedBg, setSelectedBg] = React.useState<string | null>(null);
     const [selectedName, setSelectedName] = React.useState<string>('');
