@@ -30,7 +30,7 @@ import {
   TrendingUp as TrendingIcon,
   ArrowForward as ArrowIcon,
 } from '@mui/icons-material';
-import { semanticTokens, baseTokens } from '../../tokens';
+import { semanticTokens } from '../../tokens';
 
 export interface SearchSuggestion {
   /** Unique identifier */
@@ -87,20 +87,20 @@ export interface SearchInputProps {
 const sizeStyles = {
   small: {
     height: 36,
-    fontSize: baseTokens.fontSize.sm,
-    padding: `${baseTokens.spacing[1]}px ${baseTokens.spacing[3]}px`,
+    fontSize: semanticTokens.typography.body.small.fontSize,
+    padding: `${semanticTokens.inline.tight}px ${semanticTokens.inline.compact}px`,
     iconSize: 18,
   },
   medium: {
     height: 44,
-    fontSize: baseTokens.fontSize.base,
-    padding: `${baseTokens.spacing[2]}px ${baseTokens.spacing[4]}px`,
+    fontSize: semanticTokens.typography.body.medium.fontSize,
+    padding: `${semanticTokens.inline.compact}px ${semanticTokens.inline.comfortable}px`,
     iconSize: 20,
   },
   large: {
     height: 52,
-    fontSize: baseTokens.fontSize.lg,
-    padding: `${baseTokens.spacing[3]}px ${baseTokens.spacing[5]}px`,
+    fontSize: semanticTokens.typography.body.large.fontSize,
+    padding: `${semanticTokens.inline.compact}px ${semanticTokens.inline.spacious}px`,
     iconSize: 24,
   },
 };
@@ -354,7 +354,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
               sx={{
                 mr: 1,
                 height: 22,
-                fontSize: baseTokens.fontSize.xs,
+                fontSize: semanticTokens.typography.label.small.fontSize,
                 backgroundColor: theme.palette.action.hover,
                 color: theme.palette.text.secondary,
                 '& .MuiChip-label': {
@@ -365,7 +365,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           )}
         </Paper>
 
-        {/* eslint-disable react-hooks/refs -- Valid MUI Popper pattern for anchor positioning and width calculation */}
+        { }
         <Popper
           open={showDropdown}
           anchorEl={anchorRef.current}
@@ -373,7 +373,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           transition
           style={{ width: anchorRef.current?.offsetWidth, zIndex: 1000 }}
         >
-          {/* eslint-enable react-hooks/refs */}
+          { }
           {({ TransitionProps }) => (
             <Fade {...TransitionProps} timeout={200}>
               <Paper
@@ -418,7 +418,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                               sx={{
                                 ml: 1,
                                 height: 20,
-                                fontSize: baseTokens.fontSize.xs,
+                                fontSize: semanticTokens.typography.label.small.fontSize,
                               }}
                             />
                           )}
@@ -428,7 +428,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                               ml: 1,
                               color: theme.palette.text.secondary,
                               opacity: highlightedIndex === index ? 1 : 0,
-                              transition: `opacity ${baseTokens.duration.fast}`,
+                              transition: `opacity ${semanticTokens.motion.duration.fast}`,
                             }}
                           />
                         </ListItemButton>

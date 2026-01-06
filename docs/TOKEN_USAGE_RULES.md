@@ -92,19 +92,26 @@ When a hardcoded color is intentionally required, document it with a comment:
 ### Exception Comment Format
 
 ```typescript
-// @intentional-color: <reason>
-const errorRed = '#EF4444'; // @intentional-color: Tailwind red-500 for universal error recognition
+// eslint-disable-next-line no-restricted-syntax -- @intentional-color: [category] - reason
+const errorRed = '#EF4444';
 ```
 
-### Valid Exception Reasons
+> ⚠️ **Hard Rule**: No new `eslint-disable no-restricted-syntax` without:
+> 1. `@intentional-color` annotation with category ID
+> 2. Category must exist in [INTENTIONAL_EXCEPTIONS.md](./INTENTIONAL_EXCEPTIONS.md)
 
-| Reason | Use Case |
-|--------|----------|
-| `illustration semantic` | SVG illustrations using standard icon colors |
-| `external standard` | Third-party library requirements |
-| `accessibility contrast` | WCAG-mandated specific contrast ratios |
-| `animation interpolation` | CSS keyframes requiring static values |
-| `print stylesheet` | Print-specific colors |
+### Valid Exception Categories
+
+See **[INTENTIONAL_EXCEPTIONS.md](./INTENTIONAL_EXCEPTIONS.md)** for the full registry of approved exception categories:
+
+| Category ID | Use Case |
+|-------------|----------|
+| `ai-gradient-overlay` | White text/icons on AI gradient backgrounds |
+| `chart-data-encoding` | Chart contrast colors for data visualization |
+| `white-on-primary` | White text/icons on primary/accent backgrounds |
+| `illustration-semantic` | SVG illustrations using standard icon colors |
+| `external-standard` | Third-party library requirements |
+| `accessibility-contrast` | WCAG-mandated specific contrast ratios |
 
 ### Exception Examples
 

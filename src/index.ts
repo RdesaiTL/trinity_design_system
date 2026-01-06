@@ -37,6 +37,28 @@ export type {
   TrinitySemanticMotion,
   TrinityComponentTokens,
   TrinityDarkModeTokens,
+  // Phase A: New semantic effect types
+  TrinityOverlayEffects,
+  TrinityOnDarkEffects,
+  TrinityShadowEffects,
+  TrinityFocusEffects,
+  TrinityStateEffects,
+  TrinitySemanticEffects,
+  // Phase A: Icon size scale
+  TrinityIconSize,
+  // Phase A: Micro/data typography
+  TrinityMicroTypography,
+  TrinityDataTypography,
+  // Phase A: Intent-based spacing
+  TrinityInlineSpacing,
+  TrinityStackSpacing,
+  TrinityDensityContext,
+  TrinityDensity,
+  // Phase A: Extended radius
+  TrinitySemanticRadiusExtended,
+  // Phase A: Domain classification
+  TokenDomain,
+  DomainTokenMeta,
 } from './tokens';
 
 // Export hierarchy system and utilities (includes AttentionLevel)
@@ -65,3 +87,19 @@ export {
 
 // Export hook types
 export type { UseTrinityTokensResult } from './theme';
+
+// Export brand assets
+export {
+  gradientIcons,
+  gradientIconMeta,
+  backgroundImages,
+  backgroundImageMeta,
+  brandGradients,
+  brandGradientMeta,
+  getAllAssetUrls,
+} from './assets';
+export type {
+  GradientIconName,
+  BackgroundCategory,
+  GradientTheme,
+} from './assets';

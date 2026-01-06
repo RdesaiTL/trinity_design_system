@@ -28,7 +28,7 @@ import {
   ChevronRight as ChevronIcon,
   Save as SaveIcon,
 } from '@mui/icons-material';
-import { semanticTokens, baseTokens } from '../../../tokens';
+import { semanticTokens } from '../../../tokens';
 
 export interface SettingsNavItem {
   /** Unique identifier */
@@ -117,7 +117,7 @@ const SettingsNavItemComponent: React.FC<{
             pl: 2 + depth * 2,
             pr: 2,
             py: 1.25,
-            borderRadius: 1,
+            borderRadius: `${semanticTokens.borders.radius.input}px`,
             mx: 1,
             '&.Mui-selected': {
               backgroundColor: alpha(theme.palette.primary.main, 0.08),
@@ -153,10 +153,10 @@ const SettingsNavItemComponent: React.FC<{
               sx={{
                 px: 1,
                 py: 0.25,
-                borderRadius: 100,
+                borderRadius: `${semanticTokens.borders.radius.pill}px`,
                 backgroundColor: theme.palette.error.main,
                 color: theme.palette.error.contrastText,
-                fontSize: baseTokens.fontSize.xs,
+                fontSize: semanticTokens.typography.label.small.fontSize,
                 fontWeight: 600,
                 minWidth: 20,
                 textAlign: 'center',
@@ -170,7 +170,7 @@ const SettingsNavItemComponent: React.FC<{
               fontSize="small"
               sx={{
                 transform: expanded ? 'rotate(90deg)' : 'rotate(0deg)',
-                transition: `transform ${baseTokens.duration.fast}`,
+                transition: `transform ${semanticTokens.motion.duration.fast}`,
                 color: theme.palette.text.secondary,
               }}
             />
@@ -321,11 +321,11 @@ export const SettingsTemplate: React.FC<SettingsTemplateProps> = ({
             sx={{
               width: sidebarWidth,
               flexShrink: 0,
-              borderRadius: semanticTokens.borders.radius.card,
+              borderRadius: `${semanticTokens.borders.radius.card}px`,
               border: `1px solid ${theme.palette.divider}`,
               alignSelf: 'flex-start',
               position: stickySidebar ? 'sticky' : 'relative',
-              top: stickySidebar ? baseTokens.spacing[4] : undefined,
+              top: stickySidebar ? semanticTokens.spacing.component.paddingMd : undefined, // 16px
             }}
           >
             {sidebarContent}
@@ -363,7 +363,7 @@ export const SettingsTemplate: React.FC<SettingsTemplateProps> = ({
               elevation={0}
               sx={{
                 p: 4,
-                borderRadius: semanticTokens.borders.radius.card,
+                borderRadius: `${semanticTokens.borders.radius.card}px`,
                 border: `1px solid ${theme.palette.divider}`,
               }}
             >
@@ -383,7 +383,7 @@ export const SettingsTemplate: React.FC<SettingsTemplateProps> = ({
               elevation={0}
               sx={{
                 p: 6,
-                borderRadius: semanticTokens.borders.radius.card,
+                borderRadius: `${semanticTokens.borders.radius.card}px`,
                 border: `1px solid ${theme.palette.divider}`,
                 textAlign: 'center',
               }}

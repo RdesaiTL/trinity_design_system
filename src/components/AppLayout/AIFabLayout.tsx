@@ -40,7 +40,7 @@ import { InsightEnginePanel, InsightEnginePanelProps, ChatMessage } from './Insi
 import { ResizablePanel } from './ResizablePanel';
 import TopNavWithSidebar from '../TopNavWithSidebar';
 import TopNavHeader from '../TopNavHeader';
-import { brandColors } from '../../tokens';
+// brandColors removed - use MUI theme tokens
 
 // ============================================================================
 // Types
@@ -201,7 +201,7 @@ export const AIFabLayout: React.FC<AIFabLayoutProps> = ({
   maxPanelWidth = 700,
 }) => {
   const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
+  const _isDark = theme.palette.mode === 'dark';
 
   // Internal state
   const [internalSelectedNav, setInternalSelectedNav] = useState(navItems[0]?.id || '');
@@ -282,7 +282,7 @@ export const AIFabLayout: React.FC<AIFabLayoutProps> = ({
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
-            backgroundColor: isDark ? brandColors.neutral.darkBg : brandColors.neutral.white,
+            backgroundColor: 'background.default', // Use MUI theme (responds to dark mode)
             overflow: 'hidden',
             height: '100%',
             minHeight: 0,

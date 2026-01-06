@@ -29,7 +29,7 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import { brandColors } from '../../tokens';
+import { semanticTokens } from '../../tokens';
 import { Icon } from '../Icon';
 import { aiTokens, aiSpacing, aiRadiusPx } from './tokens';
 import { AIAvatar } from './AIAvatar';
@@ -99,12 +99,12 @@ export const AIChatMessage: React.FC<AIChatMessageProps> = ({
       {/* Avatar */}
       {isUser ? (
         typeof userAvatar === 'string' ? (
-          <Avatar sx={{ width: 36, height: 36, bgcolor: brandColors.primary.main }}>
+          <Avatar sx={{ width: 36, height: 36, bgcolor: 'primary.main' }}> {/* Use MUI theme */}
             {userAvatar}
           </Avatar>
         ) : (
           userAvatar || (
-            <Avatar sx={{ width: 36, height: 36, bgcolor: brandColors.primary.main }}>
+            <Avatar sx={{ width: 36, height: 36, bgcolor: 'primary.main' }}> {/* Use MUI theme */}
               <Icon name="user" size="small" />
             </Avatar>
           )
@@ -121,10 +121,10 @@ export const AIChatMessage: React.FC<AIChatMessageProps> = ({
             p: aiSpacing.base,
             borderRadius: aiRadiusPx.lg,
             backgroundColor: isUser
-              ? brandColors.primary.main
-              : aiTokens.colors.aiBackground,
-            color: isUser ? 'brandColors.neutral.white' : 'text.primary',
-            border: isUser ? 'none' : `1px solid ${aiTokens.colors.aiBorder}`,
+              ? 'primary.main' // Use MUI theme
+              : aiTokens.colors.aiBackground, // @intentional-color: AI domain color
+            color: isUser ? 'common.white' : 'text.primary',
+            border: isUser ? 'none' : `1px solid ${aiTokens.colors.aiBorder}`, // @intentional-color: AI domain color
             ...(isLoading && {
               background: `linear-gradient(90deg, ${aiTokens.colors.aiBackground} 0%, rgba(120, 65, 201, 0.08) 50%, ${aiTokens.colors.aiBackground} 100%)`,
               backgroundSize: '200% 100%',
@@ -274,12 +274,13 @@ export const AIChatInput: React.FC<AIChatInputProps> = ({
         p: 1,
         pl: 2,
         borderRadius: aiRadiusPx.full,
-        border: `1px solid ${brandColors.neutral.gray100}`,
-        backgroundColor: 'brandColors.neutral.white',
-        transition: 'border-color 0.2s, box-shadow 0.2s',
+        border: '1px solid',
+        borderColor: 'divider', // Use MUI theme
+        backgroundColor: 'background.paper', // Use MUI theme
+        transition: `border-color ${semanticTokens.motion.duration.fast}, box-shadow ${semanticTokens.motion.duration.fast}`,
         '&:focus-within': {
-          borderColor: aiTokens.colors.aiPrimary,
-          boxShadow: `0 0 0 3px ${aiTokens.colors.aiHover}`,
+          borderColor: aiTokens.colors.aiPrimary, // @intentional-color: AI domain focus color
+          boxShadow: `0 0 0 3px ${aiTokens.colors.aiHover}`, // @intentional-color: AI domain hover color
         },
         ...sx,
       }}
@@ -320,7 +321,7 @@ export const AIChatInput: React.FC<AIChatInputProps> = ({
           size="small"
           onClick={onVoiceInput}
           disabled={disabled || isGenerating}
-          sx={{ color: brandColors.neutral.gray500 }}
+          sx={{ color: 'text.secondary' }} // Use MUI theme
         >
           <Icon name="volume" size="small" />
         </IconButton>
@@ -331,10 +332,10 @@ export const AIChatInput: React.FC<AIChatInputProps> = ({
         <IconButton
           onClick={onStopGeneration}
           sx={{
-            backgroundColor: brandColors.secondary.main,
-            color: 'brandColors.neutral.white',
+            backgroundColor: 'secondary.main', // Use MUI theme
+            color: 'common.white', // Use MUI theme
             '&:hover': {
-              backgroundColor: brandColors.secondary.dark,
+              backgroundColor: 'secondary.dark', // Use MUI theme
             },
           }}
         >
@@ -345,14 +346,14 @@ export const AIChatInput: React.FC<AIChatInputProps> = ({
           onClick={handleSubmit}
           disabled={disabled || !value.trim()}
           sx={{
-            backgroundColor: value.trim() ? aiTokens.colors.aiPrimary : brandColors.neutral.gray100,
-            color: value.trim() ? 'brandColors.neutral.white' : brandColors.neutral.gray400,
+            backgroundColor: value.trim() ? aiTokens.colors.aiPrimary : 'action.hover', // @intentional-color: AI primary when active
+            color: value.trim() ? 'common.white' : 'text.disabled', // Use MUI theme
             '&:hover': {
-              backgroundColor: value.trim() ? brandColors.primary.dark : brandColors.neutral.gray100,
+              backgroundColor: value.trim() ? aiTokens.colors.aiHover : 'action.selected', // @intentional-color: AI hover when active
             },
             '&:disabled': {
-              backgroundColor: brandColors.neutral.gray100,
-              color: brandColors.neutral.gray400,
+              backgroundColor: 'action.disabledBackground', // Use MUI theme
+              color: 'text.disabled', // Use MUI theme
             },
           }}
         >

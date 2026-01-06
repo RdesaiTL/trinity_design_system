@@ -14,13 +14,12 @@ import {
   Button,
   Skeleton,
   useTheme,
-  alpha,
 } from '@mui/material';
 import {
   ExpandMore as ExpandIcon,
   ExpandLess as CollapseIcon,
 } from '@mui/icons-material';
-import { baseTokens } from '../../tokens';
+import { semanticTokens } from '../../tokens';
 
 export type TimelineVariant = 'default' | 'compact' | 'detailed';
 export type TimelineItemType = 'default' | 'success' | 'warning' | 'error' | 'info';
@@ -181,11 +180,11 @@ export const TimelineItemComponent: React.FC<{
             sx={{
               width: isCompact ? 28 : 36,
               height: isCompact ? 28 : 36,
-              borderRadius: '50%',
+              borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: alpha(typeColor, 0.1),
+              backgroundColor: semanticTokens.effects.overlay.pressed, // 12% - subtle icon background
               color: typeColor,
             }}
           >
@@ -194,7 +193,7 @@ export const TimelineItemComponent: React.FC<{
                 sx={{
                   width: isCompact ? 8 : 10,
                   height: isCompact ? 8 : 10,
-                  borderRadius: '50%',
+                  borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
                   backgroundColor: typeColor,
                 }}
               />
@@ -217,9 +216,9 @@ export const TimelineItemComponent: React.FC<{
             elevation={0}
             sx={{
               p: 2,
-              borderRadius: `${baseTokens.borderRadius.sm}px`,
+              borderRadius: semanticTokens.borders.radiusPx.sm, // 6px
               border: `1px solid ${theme.palette.divider}`,
-              transition: `all ${baseTokens.duration.fast} ${baseTokens.easing.inOut}`,
+              transition: `all ${semanticTokens.motion.duration.fast} ${semanticTokens.motion.easing.default}`,
               '&:hover': (hasExpandable || onClick) ? {
                 borderColor: theme.palette.primary.light,
                 boxShadow: theme.shadows[2],
@@ -271,7 +270,7 @@ export const TimelineItemComponent: React.FC<{
         ) : (
           <Box
             sx={{
-              transition: `all ${baseTokens.duration.fast} ${baseTokens.easing.inOut}`,
+              transition: `all ${semanticTokens.motion.duration.fast} ${semanticTokens.motion.easing.default}`,
               borderRadius: 1,
               mx: -1,
               px: 1,

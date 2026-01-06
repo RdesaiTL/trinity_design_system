@@ -355,7 +355,7 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
     return { flex: 1 };
   };
 
-  /* eslint-disable react-hooks/refs -- Valid ref access patterns for resize calculations and MUI props */
+   
   return (
     <Box
       ref={containerRef}
@@ -411,7 +411,7 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
       </Box>
     </Box>
   );
-  /* eslint-enable react-hooks/refs */
+   
 };
 
 export default SplitPane;

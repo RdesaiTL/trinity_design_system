@@ -3,7 +3,7 @@
  * Trinity-styled combined line, bar, and area chart
  */
 
-/* eslint-disable jsx-a11y/alt-text -- Recharts Area component is SVG-based, not HTML image map */
+ 
 
 import React, { useMemo } from 'react';
 import {
@@ -32,7 +32,15 @@ import {
   getChartColor,
 } from './tokens';
 import { ComposedChartProps, ComposedSeriesConfig } from './types';
-import { brandColors } from '../../tokens';
+
+/* eslint-disable no-restricted-syntax -- @intentional-color: Chart contrast colors must be hardcoded for cross-theme visual consistency */
+const CHART_CONTRAST = {
+  light: '#FFFFFF',
+  dark: '#1F2937', // gray-800
+  refLine: '#9CA3AF', // gray-400
+  refLineLabel: '#6B7280', // gray-500
+};
+/* eslint-enable no-restricted-syntax */
 
 /**
  * ComposedChart - Combines line, bar, and area charts
@@ -110,8 +118,8 @@ export const ComposedChart: React.FC<ComposedChartProps> = ({
             dot={
               config.showDots !== false
                 ? {
-                    // eslint-disable-next-line no-restricted-syntax
-                    fill: isDarkMode ? brandColors.neutral.gray800 : '#FFFFFF', // @intentional-color: white/dark fill for mode contrast
+                     
+                    fill: isDarkMode ? CHART_CONTRAST.dark : CHART_CONTRAST.light, // @intentional-color: white/dark fill for mode contrast
                     stroke: seriesColor,
                     strokeWidth: 2,
                     r: 4,
@@ -121,8 +129,8 @@ export const ComposedChart: React.FC<ComposedChartProps> = ({
             activeDot={{
               r: 6,
               fill: seriesColor,
-              // eslint-disable-next-line no-restricted-syntax
-              stroke: isDarkMode ? brandColors.neutral.gray800 : '#FFFFFF', // @intentional-color: white/dark stroke for mode contrast
+               
+              stroke: isDarkMode ? CHART_CONTRAST.dark : CHART_CONTRAST.light, // @intentional-color: white/dark stroke for mode contrast
               strokeWidth: 2,
             }}
             strokeDasharray={config.strokeDasharray}
@@ -329,7 +337,7 @@ export const ComposedChart: React.FC<ComposedChartProps> = ({
               key={index}
               y={line.y}
               x={line.x}
-              stroke={line.color || brandColors.neutral.gray400}
+              stroke={line.color || CHART_CONTRAST.refLine} // @intentional-color: reference line default
               strokeDasharray={line.strokeDasharray || '4 4'}
               strokeWidth={line.strokeWidth || 1}
               yAxisId={line.yAxisId || 'left'}
@@ -338,7 +346,7 @@ export const ComposedChart: React.FC<ComposedChartProps> = ({
                   ? {
                       value: line.label,
                       position: line.labelPosition || 'right',
-                      fill: line.color || brandColors.neutral.gray500,
+                      fill: line.color || CHART_CONTRAST.refLineLabel, // @intentional-color: reference line label
                       fontSize: 11,
                       fontFamily: chartTypography.fontFamily,
                     }

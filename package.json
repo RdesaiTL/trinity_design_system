@@ -119,6 +119,7 @@
     "eslint-plugin-react-refresh": "^0.4.26",
     "globals": "^16.0.0",
     "jsdom": "^27.3.0",
+    "jszip": "^3.10.1",
     "playwright": "^1.57.0",
     "storybook": "^10.1.10",
     "typescript": "latest",

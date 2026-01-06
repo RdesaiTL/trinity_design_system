@@ -9,6 +9,7 @@ import { Icon } from '../Icon';
 import { StatusType, StatusSize, statusConfigs, sizeConfigs } from './types';
 import { ShapeComponents } from './Shapes';
 import { StatusDot } from './Indicators';
+import { semanticTokens } from '../../tokens';
 
 // ============================================================================
 // STATUS LEGEND TYPES
@@ -71,7 +72,7 @@ export const StatusLegend: React.FC<StatusLegendProps> = ({
                   justifyContent: 'center',
                   width: sizeConfig.icon + 4,
                   height: sizeConfig.icon + 4,
-                  borderRadius: '50%',
+                  borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
                   backgroundColor: config.backgroundColor,
                   color: config.color,
                 }}

@@ -372,6 +372,8 @@ Brief description of the changes.
 - [ ] Storybook stories added/updated
 - [ ] CHANGELOG.md updated
 - [ ] Accessibility requirements met
+- [ ] Token compliance verified (`npm run lint:tokens`)
+- [ ] Any `eslint-disable` for colors references [INTENTIONAL_EXCEPTIONS.md](docs/INTENTIONAL_EXCEPTIONS.md)
 
 ## Screenshots (if applicable)
 ```

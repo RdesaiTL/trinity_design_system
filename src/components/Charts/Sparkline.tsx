@@ -3,7 +3,7 @@
  * Small, inline charts for dashboards and tables
  */
 
-/* eslint-disable jsx-a11y/alt-text -- Recharts Area component is SVG-based, not HTML image map */
+ 
 
 import React, { useMemo } from 'react';
 import {

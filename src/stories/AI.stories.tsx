@@ -14,6 +14,7 @@ import {
   CardContent,
   Button,
   ThemeProvider,
+  MenuItem,
 } from '@mui/material';
 import { useState } from 'react';
 import {
@@ -869,6 +870,10 @@ export const CompleteChatDemo: StoryObj = {
 
 const JobDescriptionDemoContent = () => {
   const [inputValue, setInputValue] = useState('');
+  const [jobFamily, setJobFamily] = useState('');
+  const [jobGroup, setJobGroup] = useState('');
+  const [experience, setExperience] = useState('');
+  const [education, setEducation] = useState('');
 
   return (
     <Box sx={{ p: 3 }}>
@@ -892,20 +897,29 @@ const JobDescriptionDemoContent = () => {
                     fullWidth
                     label="Job Family Group"
                     size="small"
-                    SelectProps={{ native: true }}
+                    value={jobFamily}
+                    onChange={(e) => setJobFamily(e.target.value)}
                   >
-                    <option value="">Select...</option>
+                    <MenuItem value="">Select...</MenuItem>
+                    <MenuItem value="engineering">Engineering</MenuItem>
+                    <MenuItem value="design">Design</MenuItem>
+                    <MenuItem value="product">Product</MenuItem>
+                    <MenuItem value="marketing">Marketing</MenuItem>
                   </TextField>
                 </Grid>
                 <Grid size={{ xs: 6 }}>
                   <TextField
                     select
                     fullWidth
-                    label="Job Family Group"
+                    label="Job Group"
                     size="small"
-                    SelectProps={{ native: true }}
+                    value={jobGroup}
+                    onChange={(e) => setJobGroup(e.target.value)}
                   >
-                    <option value="">Select...</option>
+                    <MenuItem value="">Select...</MenuItem>
+                    <MenuItem value="software">Software</MenuItem>
+                    <MenuItem value="data">Data</MenuItem>
+                    <MenuItem value="infrastructure">Infrastructure</MenuItem>
                   </TextField>
                 </Grid>
               </Grid>
@@ -919,9 +933,14 @@ const JobDescriptionDemoContent = () => {
                     fullWidth
                     label="Experience*"
                     size="small"
-                    SelectProps={{ native: true }}
+                    value={experience}
+                    onChange={(e) => setExperience(e.target.value)}
                   >
-                    <option value="">Select...</option>
+                    <MenuItem value="">Select...</MenuItem>
+                    <MenuItem value="0-2">0-2 years</MenuItem>
+                    <MenuItem value="3-5">3-5 years</MenuItem>
+                    <MenuItem value="5-8">5-8 years</MenuItem>
+                    <MenuItem value="8+">8+ years</MenuItem>
                   </TextField>
                 </Grid>
                 <Grid size={{ xs: 6 }}>
@@ -930,9 +949,13 @@ const JobDescriptionDemoContent = () => {
                     fullWidth
                     label="Education Level*"
                     size="small"
-                    SelectProps={{ native: true }}
+                    value={education}
+                    onChange={(e) => setEducation(e.target.value)}
                   >
-                    <option value="">Select...</option>
+                    <MenuItem value="">Select...</MenuItem>
+                    <MenuItem value="bachelors">Bachelor's Degree</MenuItem>
+                    <MenuItem value="masters">Master's Degree</MenuItem>
+                    <MenuItem value="phd">PhD</MenuItem>
                   </TextField>
                 </Grid>
               </Grid>

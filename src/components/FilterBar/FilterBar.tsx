@@ -149,7 +149,7 @@ const FilterChip: React.FC<{
       deleteIcon={<CloseIcon sx={{ fontSize: 16 }} />}
       sx={{
         height: 28,
-        borderRadius: semanticTokens.borders.radius.badge,
+        borderRadius: `${semanticTokens.borders.radius.badge}px`,
         '& .MuiChip-label': {
           px: 1,
         },

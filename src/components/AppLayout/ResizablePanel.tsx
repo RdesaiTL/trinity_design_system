@@ -5,7 +5,7 @@
 
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { Box, IconButton, Tooltip, SxProps, Theme } from '@mui/material';
-import { brandColors } from '../../tokens';
+import { semanticTokens } from '../../tokens';
 
 export interface ResizablePanelProps {
   /** Whether the panel is open */
@@ -106,9 +106,10 @@ export const ResizablePanel: React.FC<ResizablePanelProps> = ({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: brandColors.neutral.white,
-        borderLeft: side === 'right' ? `1px solid ${brandColors.neutral.gray100}` : 'none',
-        borderRight: side === 'left' ? `1px solid ${brandColors.neutral.gray100}` : 'none',
+        backgroundColor: 'background.paper', // Use MUI theme
+        borderLeft: side === 'right' ? `1px solid` : 'none',
+        borderRight: side === 'left' ? `1px solid` : 'none',
+        borderColor: 'divider', // Use MUI theme
         transition: isResizing ? 'none' : 'width 0.1s ease-out',
         overflow: 'hidden',
         flexShrink: 0,
@@ -131,13 +132,13 @@ export const ResizablePanel: React.FC<ResizablePanelProps> = ({
           justifyContent: 'center',
           '&:hover': {
             '& .resize-indicator': {
-              backgroundColor: brandColors.primary.light,
+              backgroundColor: 'primary.light', // Use MUI theme
               opacity: 1,
             },
           },
           ...(isResizing && {
             '& .resize-indicator': {
-              backgroundColor: brandColors.primary.light,
+              backgroundColor: 'primary.light', // Use MUI theme
               opacity: 1,
             },
           }),
@@ -149,9 +150,9 @@ export const ResizablePanel: React.FC<ResizablePanelProps> = ({
             width: 3,
             height: 40,
             borderRadius: 2,
-            backgroundColor: brandColors.neutral.gray100,
+            backgroundColor: 'action.hover', // Use MUI theme
             opacity: 0.5,
-            transition: 'all 0.2s',
+            transition: `all ${semanticTokens.motion.duration.fast}`,
           }}
         />
       </Box>
@@ -164,7 +165,8 @@ export const ResizablePanel: React.FC<ResizablePanelProps> = ({
             alignItems: 'center',
             justifyContent: 'space-between',
             p: 2,
-            borderBottom: `1px solid ${brandColors.neutral.gray100}`,
+            borderBottom: `1px solid`,
+            borderColor: 'divider', // Use MUI theme
             flexShrink: 0,
           }}
         >
@@ -175,9 +177,9 @@ export const ResizablePanel: React.FC<ResizablePanelProps> = ({
                 size="small"
                 onClick={onClose}
                 sx={{
-                  color: brandColors.neutral.gray500,
+                  color: 'text.secondary', // Use MUI theme
                   '&:hover': {
-                    backgroundColor: brandColors.neutral.gray100,
+                    backgroundColor: semanticTokens.effects.overlay.hover, // 8%
                   },
                 }}
               >

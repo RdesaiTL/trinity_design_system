@@ -30,7 +30,7 @@ import {
   ArrowBack as BackIcon,
   FilterList as FilterIcon,
 } from '@mui/icons-material';
-import { semanticTokens, baseTokens } from '../../../tokens';
+import { semanticTokens } from '../../../tokens';
 
 export interface ListItem {
   /** Unique identifier */
@@ -177,7 +177,7 @@ const DefaultListItem: React.FC<{
                 size="small"
                 sx={{
                   height: 18,
-                  fontSize: baseTokens.fontSize.xs,
+                  fontSize: semanticTokens.typography.label.small.fontSize,
                   backgroundColor: getStatusColor(),
                   color: theme.palette.getContrastText(getStatusColor()),
                 }}
@@ -284,7 +284,7 @@ export const ListDetailTemplate: React.FC<ListDetailTemplateProps> = ({
         minWidth: isMobile ? '100%' : minListWidth,
         maxWidth: isMobile ? '100%' : maxListWidth,
         flexShrink: 0,
-        borderRadius: isMobile ? 0 : semanticTokens.borders.radius.card,
+        borderRadius: isMobile ? 0 : `${semanticTokens.borders.radius.card}px`,
         border: isMobile ? 'none' : `1px solid ${theme.palette.divider}`,
         display: 'flex',
         flexDirection: 'column',
@@ -311,7 +311,7 @@ export const ListDetailTemplate: React.FC<ListDetailTemplateProps> = ({
                   alignItems: 'center',
                   flex: 1,
                   backgroundColor: theme.palette.action.hover,
-                  borderRadius: semanticTokens.borders.radius.input,
+                  borderRadius: `${semanticTokens.borders.radius.input}px`,
                   px: 1.5,
                   py: 0.5,
                 }}
@@ -322,7 +322,7 @@ export const ListDetailTemplate: React.FC<ListDetailTemplateProps> = ({
                   onChange={(e) => onSearchChange?.(e.target.value)}
                   placeholder={searchPlaceholder}
                   fullWidth
-                  sx={{ fontSize: baseTokens.fontSize.sm }}
+                  sx={{ fontSize: semanticTokens.typography.body.small.fontSize }}
                 />
                 {searchValue && (
                   <IconButton size="small" onClick={() => onSearchChange?.('')}>
@@ -381,7 +381,7 @@ export const ListDetailTemplate: React.FC<ListDetailTemplateProps> = ({
       sx={{
         flex: 1,
         minWidth: 0,
-        borderRadius: isMobile ? 0 : semanticTokens.borders.radius.card,
+        borderRadius: isMobile ? 0 : `${semanticTokens.borders.radius.card}px`,
         border: isMobile ? 'none' : `1px solid ${theme.palette.divider}`,
         display: 'flex',
         flexDirection: 'column',

@@ -23,9 +23,9 @@ const withThemeProvider = (Story: React.ComponentType, context: StoryContext) =>
           sx={{
             backgroundColor: isDark ? '#18181B' : '#FAFAFA',
             color: isDark ? '#FAFAFA' : '#18181B',
-            height: '100vh',
+            minHeight: '100vh',
             width: '100vw',
-            overflow: 'hidden',
+            overflow: 'auto',
           }}
         >
           <Story />
@@ -68,6 +68,11 @@ const preview: Preview = {
           'Tokens',
           'Components',
           'Patterns',
+          'Assets',
+          ['Icons', 'Illustrations'],
+          'AI',
+          'Templates',
+          'Data Visualization',
           '*',
         ],
       },

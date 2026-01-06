@@ -75,7 +75,6 @@ import {
   densityTokens,
   tableAnimation,
 } from './tokens';
-import { brandColors } from '../../tokens';
 
 // Map Trinity density to MUI density
 const densityMap: Record<TableDensity, GridDensity> = {
@@ -242,6 +241,7 @@ function DataTableToolbar<R extends GridValidRowModel>({
   showDensitySelector = true,
   colors,
 }: ToolbarProps<R>) {
+  const muiTheme = useTheme();
   const [exportAnchor, setExportAnchor] = useState<null | HTMLElement>(null);
 
   const handleExportClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -266,7 +266,7 @@ function DataTableToolbar<R extends GridValidRowModel>({
         pr: 1.5,
         py: 1.5,
         borderBottom: `1px solid ${colors.borderColor}`,
-        backgroundColor: hasSelection ? alpha(brandColors.primary.light, 0.06) : colors.background,
+        backgroundColor: hasSelection ? alpha(muiTheme.palette.primary.main, 0.06) : colors.background,
         minHeight: 'auto !important',
         flexWrap: 'wrap',
         gap: 1,
@@ -283,13 +283,13 @@ function DataTableToolbar<R extends GridValidRowModel>({
               onDelete={onClearSelection}
               deleteIcon={<CloseIcon fontSize="small" />}
               sx={{
-                backgroundColor: alpha(brandColors.primary.light, 0.12),
-                color: brandColors.primary.light,
+                backgroundColor: alpha(muiTheme.palette.primary.main, 0.12),
+                color: 'primary.main',
                 fontWeight: 600,
                 '& .MuiChip-deleteIcon': {
-                  color: brandColors.primary.light,
+                  color: 'primary.main',
                   '&:hover': {
-                    color: brandColors.primary.main,
+                    color: 'primary.dark',
                   },
                 },
               }}
@@ -305,7 +305,7 @@ function DataTableToolbar<R extends GridValidRowModel>({
                       sx={{ 
                         borderRadius: '8px',
                         '&:hover': { 
-                          backgroundColor: alpha(brandColors.primary.light, 0.1),
+                          backgroundColor: alpha(muiTheme.palette.primary.main, 0.1),
                         },
                       }}
                     >
@@ -1105,7 +1105,7 @@ export const DataTable = <R extends GridValidRowModel>({
               '&.Mui-selected': {
                 backgroundColor: colors.selected,
                 '&:hover': {
-                  backgroundColor: alpha(brandColors.primary.light, 0.12),
+                  backgroundColor: alpha(theme.palette.primary.main, 0.12),
                 },
               },
             },
@@ -1135,7 +1135,7 @@ export const DataTable = <R extends GridValidRowModel>({
               color: colors.textSecondary,
               padding: '6px',
               '&.Mui-checked': {
-                color: brandColors.primary.light,
+                color: 'primary.main',
               },
             },
 

@@ -8,6 +8,7 @@ import { Box, Typography, Stack, SxProps, Theme } from '@mui/material';
 import { Icon } from '../Icon';
 import { StatusType, StatusSize, StatusShape, statusConfigs, sizeConfigs } from './types';
 import { ShapeComponents } from './Shapes';
+import { semanticTokens } from '../../tokens';
 
 // ============================================================================
 // ICON INDICATOR
@@ -70,7 +71,7 @@ export const IconIndicator: React.FC<IconIndicatorProps> = ({
           justifyContent: 'center',
           width: sizeConfig.icon + 8,
           height: sizeConfig.icon + 8,
-          borderRadius: '50%',
+          borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
           backgroundColor: config.backgroundColor,
           color: config.color,
         }}
@@ -174,7 +175,7 @@ export const StatusDot: React.FC<StatusDotProps> = ({
       sx={{
         width: sizeConfig.dotSize,
         height: sizeConfig.dotSize,
-        borderRadius: '50%',
+        borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
         backgroundColor: config.backgroundColor,
         ...(pulse && {
           animation: 'pulse 2s infinite',

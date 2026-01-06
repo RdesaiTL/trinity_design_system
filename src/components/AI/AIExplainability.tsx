@@ -6,6 +6,7 @@
 import React from 'react';
 import { Box, Typography, Stack, Divider, Button, SxProps, Theme } from '@mui/material';
 import { AILabel } from './AILabel';
+import { semanticTokens } from '../../tokens';
 
 // ============================================================================
 // TYPES
@@ -109,7 +110,7 @@ export const AIExplainability: React.FC<AIExplainabilityProps> = ({
                   size="small"
                   variant="text"
                   onClick={action.onClick}
-                  sx={{ fontSize: '0.75rem' }}
+                  sx={{ fontSize: semanticTokens.typography.dense.text }} // 12px dense text
                 >
                   {action.label}
                 </Button>

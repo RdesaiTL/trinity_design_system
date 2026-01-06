@@ -303,7 +303,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
   };
 
   // Custom Paper component to include create option
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- Intentional memoization pattern for MUI PaperComponent prop
+   
   const CustomPaper = React.useCallback(
     (props: React.HTMLAttributes<HTMLElement>) => {
       return (

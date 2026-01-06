@@ -18,6 +18,7 @@ import {
   MenuItem,
   ListItemIcon,
   ListItemText,
+  useTheme,
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -27,7 +28,6 @@ import InfoIcon from '@mui/icons-material/Info';
 import { GridValidRowModel } from '@mui/x-data-grid';
 import { RowAction } from './types';
 import { statusBadgeTokens, tableTypography } from './tokens';
-import { brandColors } from '../../tokens';
 
 // ============================================================================
 // STATUS CELL
@@ -117,8 +117,8 @@ export const AvatarCell: React.FC<AvatarCellProps> = ({
           height: size,
           fontSize: fontSize,
           fontWeight: 600,
-          backgroundColor: brandColors.neutral.gray200,
-          color: brandColors.neutral.gray600,
+          backgroundColor: 'action.selected',
+          color: 'text.secondary',
           fontFamily: tableTypography.fontFamily,
           flexShrink: 0,
         }}
@@ -145,7 +145,7 @@ export const AvatarCell: React.FC<AvatarCellProps> = ({
             variant="caption"
             sx={{
               fontFamily: tableTypography.fontFamily,
-              color: brandColors.neutral.gray500,
+              color: 'text.secondary',
               fontSize: Math.max(10, fontSize - 2),
               lineHeight: 1.2,
               whiteSpace: 'nowrap',
@@ -190,7 +190,7 @@ export const ProgressCell: React.FC<ProgressCellProps> = ({
           sx={{
             height: 6,
             borderRadius: 3,
-            backgroundColor: brandColors.neutral.gray100,
+            backgroundColor: 'action.hover',
           }}
         />
       </Box>
@@ -200,7 +200,7 @@ export const ProgressCell: React.FC<ProgressCellProps> = ({
           sx={{
             fontFamily: tableTypography.fontFamily,
             fontWeight: 500,
-            color: brandColors.neutral.gray600,
+            color: 'text.secondary',
             minWidth: 35,
           }}
         >
@@ -415,6 +415,7 @@ export const EditableCell: React.FC<EditableCellProps> = ({
 }) => {
   const [isEditing, setIsEditing] = React.useState(false);
   const [editValue, setEditValue] = React.useState(value);
+  const theme = useTheme();
 
   const handleDoubleClick = () => {
     setIsEditing(true);
@@ -450,7 +451,7 @@ export const EditableCell: React.FC<EditableCellProps> = ({
         style={{
           width: '100%',
           padding: '4px 8px',
-          border: `2px solid ${brandColors.primary.light}`,
+          border: `2px solid ${theme.palette.primary.main}`,
           borderRadius: 4,
           fontFamily: tableTypography.fontFamily,
           fontSize: 14,
@@ -466,7 +467,7 @@ export const EditableCell: React.FC<EditableCellProps> = ({
       sx={{
         cursor: 'text',
         '&:hover': {
-          backgroundColor: brandColors.neutral.gray100,
+          backgroundColor: 'action.hover',
           borderRadius: 1,
         },
         px: 1,
@@ -527,7 +528,7 @@ export const HoverActionsCell = <R extends GridValidRowModel>({
               sx={{
                 p: 0.5,
                 '&:hover': {
-                  backgroundColor: brandColors.neutral.gray100,
+                  backgroundColor: 'action.hover',
                 },
               }}
             >
@@ -558,16 +559,16 @@ export const DragHandleCell: React.FC<DragHandleCellProps> = ({ isDragging = fal
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'grab',
-        color: brandColors.neutral.gray400,
+        color: 'text.disabled',
         '&:hover': {
-          color: brandColors.neutral.gray600,
+          color: 'text.secondary',
         },
         '&:active': {
           cursor: 'grabbing',
         },
         ...(isDragging && {
           cursor: 'grabbing',
-          color: brandColors.primary.light,
+          color: 'primary.main',
         }),
       }}
     >
@@ -606,7 +607,7 @@ export const TextCell: React.FC<TextCellProps> = ({ primary, secondary }) => {
           variant="caption"
           sx={{
             fontFamily: tableTypography.fontFamily,
-            color: brandColors.neutral.gray500,
+            color: 'text.secondary',
             lineHeight: 1.2,
             whiteSpace: 'nowrap',
             overflow: 'hidden',

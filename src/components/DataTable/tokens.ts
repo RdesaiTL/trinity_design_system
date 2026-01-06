@@ -3,7 +3,7 @@
  * Consistent styling for Trinity DataTable
  */
 
-import { brandColors } from '../../tokens';
+import { brandColors, semanticTokens } from '../../tokens';
 
 // ============================================================================
 // TYPE DEFINITIONS
@@ -98,9 +98,9 @@ export const tableColors = {
     headerBorder: '#52525B',
     background: brandColors.neutral.darkBg,
     alternateRow: brandColors.neutral.darkPaper,
-    hover: 'rgba(255, 255, 255, 0.05)',
+    hover: semanticTokens.effects.onDark.tint, // 4% white - subtle hover
     selected: `${brandColors.primary.light}24`,
-    borderColor: 'rgba(255, 255, 255, 0.12)',
+    borderColor: semanticTokens.effects.onDark.divider, // 12% white - divider lines
     text: brandColors.neutral.white,
     textSecondary: brandColors.neutral.gray400,
   },
@@ -237,9 +237,9 @@ export const tableTheme = {
     headerBg: brandColors.neutral.darkPaper,
     rowBackground: brandColors.neutral.darkBg,
     rowBackgroundAlt: brandColors.neutral.darkPaper,
-    rowHover: 'rgba(255, 255, 255, 0.05)',
+    rowHover: semanticTokens.effects.onDark.tint, // 4% white - subtle hover
     rowSelected: `${brandColors.primary.light}24`,
-    border: 'rgba(255, 255, 255, 0.12)',
+    border: semanticTokens.effects.onDark.divider, // 12% white - divider lines
     text: brandColors.neutral.white,
     textSecondary: brandColors.neutral.gray400,
   },

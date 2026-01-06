@@ -2,6 +2,7 @@
 export { Layout } from './Layout';
 export { default as TopNavHeader } from './TopNavHeader';
 export { default as TopNavWithSidebar } from './TopNavWithSidebar';
+export { default as Footer } from './Footer';
 
 // App Layout Template
 export {
@@ -18,6 +19,10 @@ export type {
   ChatMessage,
   SourceOption,
 } from './AppLayout';
+
+// Landing Page Template
+export { LandingPage, FeatureCard } from './LandingPage';
+export type { LandingPageProps, LandingPageFeature, FeatureCardProps } from './LandingPage';
 
 // Shared Components
 export { ComponentPage, Section, Showcase } from './shared';

@@ -252,11 +252,21 @@ export interface TrinityHeadingScale {
   h6: TrinityTypographyStyle;
 }
 
+/** Dense typography for compact UI elements */
+export interface TrinityDenseTypography {
+  /** Badge counts, status dots - 10px */
+  badge: string;
+  /** Metadata, timestamps, dense tables - 12px */
+  text: string;
+}
+
 export interface TrinitySemanticTypography {
   display: TrinityTypographyScale;
   heading: TrinityHeadingScale;
   body: TrinityTypographyScale;
   label: TrinityTypographyScale;
+  /** Dense typography for compact UI */
+  dense: TrinityDenseTypography;
 }
 
 export interface TrinityComponentSpacing {
@@ -329,6 +339,265 @@ export interface TrinitySemanticMotion {
   easing: TrinitySemanticMotionEasing;
 }
 
+// ============================================
+// SEMANTIC EFFECTS INTERFACES (Phase A Addition)
+// ============================================
+
+/** Overlay effects for interaction states and backdrops */
+export interface TrinityOverlayEffects {
+  /** Modal/drawer backdrop dimming */
+  scrim: string;
+  /** Standard interactive hover */
+  hover: string;
+  /** Subtle hover for dense UI (charts, tables) */
+  hoverSubtle: string;
+  /** Pressed/active state */
+  pressed: string;
+  /** Persistent selection background */
+  selected: string;
+  /** Disabled/inactive state overlay */
+  disabled: string;
+}
+
+/** Text/icon colors for placement on dark backgrounds */
+export interface TrinityOnDarkEffects {
+  /** Maximum contrast white text (0.87 opacity) */
+  primary: string;
+  /** Reduced emphasis white text (0.7 opacity) */
+  secondary: string;
+  /** De-emphasized white text (0.5 opacity) */
+  tertiary: string;
+  /** Decorative/divider elements (0.12 opacity) */
+  subtle: string;
+  /** Background overlays on dark surfaces (0.1 opacity) */
+  tint: string;
+  /** Visible dividers on dark backgrounds (0.24 opacity) */
+  divider: string;
+  /** High-visibility text/icons on dark (0.8 opacity) */
+  emphasis: string;
+  /** Maximum contrast - avoids pure white (0.95 opacity) */
+  contrast: string;
+}
+
+/** Shadow effects for elevation hierarchy */
+export interface TrinityShadowEffects {
+  /** Resting card/surface elevation */
+  surface: string;
+  /** Hovered/focused elevation increase */
+  raised: string;
+  /** Dropdown/popover floating */
+  floating: string;
+  /** Modal-level prominence */
+  dialog: string;
+  /** Recessed/pressed appearance */
+  inset: string;
+}
+
+/** Focus ring effects for keyboard accessibility */
+export interface TrinityFocusEffects {
+  /** Standard keyboard focus ring */
+  ring: string;
+  /** Focus ring on dark backgrounds */
+  ringOnDark: string;
+  /** Emphasized focus for primary actions */
+  glow: string;
+}
+
+/** State indicator effects (subtle backgrounds and emphasis borders) */
+export interface TrinityStateEffects {
+  /** Error subtle background */
+  errorSubtle: string;
+  /** Error border/ring emphasis */
+  errorEmphasis: string;
+  /** Warning subtle background */
+  warningSubtle: string;
+  /** Warning border emphasis */
+  warningEmphasis: string;
+  /** Success subtle background */
+  successSubtle: string;
+  /** Success border emphasis */
+  successEmphasis: string;
+  /** Info subtle background */
+  infoSubtle: string;
+  /** Info border emphasis */
+  infoEmphasis: string;
+}
+
+/** Complete semantic effects layer */
+export interface TrinitySemanticEffects {
+  overlay: TrinityOverlayEffects;
+  onDark: TrinityOnDarkEffects;
+  shadow: TrinityShadowEffects;
+  focus: TrinityFocusEffects;
+  state: TrinityStateEffects;
+}
+
+// ============================================
+// SEMANTIC ICON SIZE INTERFACE (Phase A Addition)
+// ============================================
+
+/** Intent-based icon sizing scale */
+export interface TrinityIconSize {
+  /** Within text flow - 14px */
+  inline: number;
+  /** Standard controls - 16px */
+  control: number;
+  /** Navigation clarity - 20px */
+  navigation: number;
+  /** Visual anchor - 24px */
+  prominent: number;
+  /** Large impact - 28px */
+  hero: number;
+  /** Maximum impact - 36px */
+  display: number;
+}
+
+// ============================================
+// SEMANTIC MICRO-TYPOGRAPHY INTERFACE (Phase A Addition)
+// ============================================
+
+/** Micro-typography for dense UI (charts, badges, metadata) */
+export interface TrinityMicroTypography {
+  /** Smallest legible - 10px */
+  xs: TrinityTypographyStyle;
+  /** Dense but scannable - 11px */
+  sm: TrinityTypographyStyle;
+}
+
+/** Data-optimized typography */
+export interface TrinityDataTypography {
+  /** Optimized for numbers - tabular nums */
+  numeric: TrinityTypographyStyle;
+  /** Monospace for technical content */
+  code: TrinityTypographyStyle;
+}
+
+// ============================================
+// ENHANCED SPACING INTERFACES (Phase A Addition)
+// ============================================
+
+/** Intent-based inline (horizontal) spacing */
+export interface TrinityInlineSpacing {
+  /** Minimum internal space - 4px */
+  tight: number;
+  /** Dense but readable - 8px */
+  compact: number;
+  /** Balanced density - 12px (replaces compact + 4) */
+  snug: number;
+  /** Standard breathing room - 16px */
+  comfortable: number;
+  /** Generous without excess - 20px (replaces comfortable + 4) */
+  relaxed: number;
+  /** Maximum breathing room - 24px */
+  spacious: number;
+}
+
+/** Intent-based stack (vertical) spacing */
+export interface TrinityStackSpacing {
+  /** Minimum vertical space - 4px */
+  tight: number;
+  /** Dense but readable - 8px */
+  compact: number;
+  /** Balanced density - 12px (replaces compact + 4) */
+  snug: number;
+  /** Standard vertical space - 16px */
+  comfortable: number;
+  /** Generous without excess - 20px (replaces comfortable + 4) */
+  relaxed: number;
+  /** Maximum vertical space - 24px */
+  spacious: number;
+  // Legacy aliases for backwards compatibility
+  /** @deprecated Use tight instead */
+  related: number;
+  /** @deprecated Use compact instead */
+  grouped: number;
+  /** @deprecated Use comfortable instead */
+  separated: number;
+  /** @deprecated Use spacious instead - note: was 32px, now 24px */
+  distinct: number;
+}
+
+/** Density context for data-heavy UIs */
+export interface TrinityDensityContext {
+  rowHeight: number;
+  cellPadding: number;
+  gap: number;
+}
+
+/** Density scale for adaptive layouts */
+export interface TrinityDensity {
+  /** Maximum info density */
+  compact: TrinityDensityContext;
+  /** Balanced readability */
+  standard: TrinityDensityContext;
+  /** Prioritize readability */
+  comfortable: TrinityDensityContext;
+}
+
+// ============================================
+// ENHANCED RADIUS INTERFACE (Phase A Addition)
+// ============================================
+
+/** Extended semantic radius with intent-based tokens */
+export interface TrinitySemanticRadiusExtended {
+  // Existing component-specific (backwards compatible)
+  button: number;
+  input: number;
+  card: number;
+  modal: number;
+  badge: number;
+  avatar: number;
+  
+  // Intent-based shape vocabulary (NEW)
+  /** Sharp edges - 0px */
+  none: number;
+  /** Minimal softening - 4px */
+  subtle: number;
+  /** Noticeable curves - 6px */
+  soft: number;
+  /** Prominent curves - 8px */
+  rounded: number;
+  /** Maximum curvature - 9999px */
+  pill: number;
+  /** Perfect circle - 50% */
+  circle: string;
+  
+  // Additional component contexts (NEW)
+  /** Chips/tags - 6px */
+  chip: number;
+  /** Menu items - 6px */
+  menuItem: number;
+  /** Dropdown/popover menus - 12px */
+  menu: number;
+  /** Tooltips - 8px */
+  tooltip: number;
+  /** Small icon containers - 4px */
+  iconContainer: number;
+  /** Skeleton loaders - 4px */
+  skeleton: number;
+  /** Table cells - 0px */
+  tableCell: number;
+}
+
+// ============================================
+// DOMAIN TOKEN CLASSIFICATION (Phase A Addition)
+// ============================================
+
+/** Token domain classification for governance */
+export type TokenDomain = 
+  | 'ui'              // Standard UI - strict semantic compliance
+  | 'status'          // Semantic status - accessibility required
+  | 'data-viz'        // Charts/graphs - categorical distinction allowed
+  | 'ai-feature'      // AI components - brand-aligned domain tokens
+  | 'illustration';   // Decorative - curated palettes allowed
+
+/** Metadata for domain token governance */
+export interface DomainTokenMeta {
+  domain: TokenDomain;
+  governance: 'strict' | 'moderate' | 'flexible';
+  a11yRequired: boolean;
+}
+
 export interface TrinitySemanticTokens {
   colors: TrinitySemanticColors;
   typography: TrinitySemanticTypography;
@@ -336,6 +605,16 @@ export interface TrinitySemanticTokens {
   borders: TrinitySemanticBorders;
   shadows: TrinitySemanticShadows;
   motion: TrinitySemanticMotion;
+  /** Phase A: Semantic effects for overlays, shadows, and states */
+  effects: TrinitySemanticEffects;
+  /** Phase A: Intent-based icon sizing scale */
+  iconSize: TrinityIconSize;
+  /** Phase A: Inline spacing (horizontal relationships) */
+  inline: TrinityInlineSpacing;
+  /** Phase A: Stack spacing (vertical relationships) */
+  stack: TrinityStackSpacing;
+  /** Phase A: Density contexts for data-dense UIs */
+  density: TrinityDensity;
 }
 
 // ============================================
@@ -1127,6 +1406,49 @@ export const semanticTokens = {
         lineHeight: baseTokens.lineHeight.tight,
       },
     },
+    // === Micro Typography (Phase A Addition) ===
+    // For inline UI elements, badges, status indicators where xs is too large
+    micro: {
+      /** 10px - Absolute minimum for brief status text */
+      xs: {
+        fontSize: '0.625rem', // 10px - smallest readable
+        fontWeight: baseTokens.fontWeight.medium,
+        lineHeight: baseTokens.lineHeight.tight,
+        letterSpacing: baseTokens.letterSpacing.wide, // Improve readability at small sizes
+      },
+      /** 11px - Primary micro size for badges, counters */
+      sm: {
+        fontSize: '0.6875rem', // 11px
+        fontWeight: baseTokens.fontWeight.medium,
+        lineHeight: baseTokens.lineHeight.tight,
+        letterSpacing: baseTokens.letterSpacing.normal,
+      },
+    },
+    // === Dense Typography (Phase D.1 Addition) ===
+    // Intent-based tokens for compact UI elements
+    dense: {
+      /** Badge counts, status dots - 10px */
+      badge: '0.625rem',
+      /** Metadata, timestamps, dense tables - 12px */
+      text: '0.75rem',
+    },
+    // === Data Typography (Phase A Addition) ===
+    // For tabular data, code snippets, and numeric displays
+    data: {
+      /** Monospace styling for numeric values in tables */
+      numeric: {
+        fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace',
+        fontWeight: baseTokens.fontWeight.regular,
+        fontFeatureSettings: '"tnum" 1', // Tabular numbers for alignment
+      },
+      /** Code/technical content styling */
+      code: {
+        fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace',
+        fontSize: baseTokens.fontSize.sm,
+        fontWeight: baseTokens.fontWeight.regular,
+        lineHeight: baseTokens.lineHeight.relaxed,
+      },
+    },
   },
 
   spacing: {
@@ -1157,6 +1479,7 @@ export const semanticTokens = {
      * - Outer radius = Inner radius + Padding
      */
     radius: {
+      // === Component-specific tokens (backwards compatible) ===
       /** Buttons use full pill shape */
       button: baseTokens.borderRadius.full,
       /** Inputs use sm (6px) for 32-40px height elements */
@@ -1175,12 +1498,32 @@ export const semanticTokens = {
       chip: baseTokens.borderRadius.sm,
       /** Menu items use sm (6px) */
       menuItem: baseTokens.borderRadius.sm,
-      /** Dropdown/popover menus use md (8px) */
-      menu: baseTokens.borderRadius.md,
+      /** Dropdown/popover menus use lg (12px) - corrected to match actual usage */
+      menu: baseTokens.borderRadius.lg,
       /** Tooltips use md (8px) */
       tooltip: baseTokens.borderRadius.md,
       /** Small icon containers use xs (4px) */
       iconContainer: baseTokens.borderRadius.xs,
+      
+      // === Intent-based shape vocabulary (Phase A Addition) ===
+      /** Sharp edges - 0px */
+      none: 0,
+      /** Minimal softening - 4px */
+      subtle: baseTokens.borderRadius.xs,
+      /** Noticeable curves - 6px */
+      soft: baseTokens.borderRadius.sm,
+      /** Prominent curves - 8px */
+      rounded: baseTokens.borderRadius.md,
+      /** Maximum curvature - 9999px */
+      pill: baseTokens.borderRadius.full,
+      /** Perfect circle - 50% */
+      circle: '50%',
+      
+      // === Additional component contexts (Phase A Addition) ===
+      /** Skeleton loaders - 4px */
+      skeleton: baseTokens.borderRadius.xs,
+      /** Table cells - 0px for data density */
+      tableCell: 0,
     },
     /**
      * Pre-formatted px strings for MUI sx prop
@@ -1224,6 +1567,182 @@ export const semanticTokens = {
       default: baseTokens.easing.inOut,
       enter: baseTokens.easing.out,
       exit: baseTokens.easing.in,
+    },
+  },
+
+  // ============================================
+  // SEMANTIC EFFECTS (Phase A Addition)
+  // Intent-based opacity, shadow, and state effects
+  // ============================================
+  effects: {
+    /**
+     * Overlay effects for interaction states and backdrops
+     */
+    overlay: {
+      /** Modal/drawer backdrop - 50% black */
+      scrim: 'rgba(0, 0, 0, 0.5)',
+      /** Standard hover - 8% black */
+      hover: 'rgba(0, 0, 0, 0.08)',
+      /** Subtle hover for dense UI - 4% black */
+      hoverSubtle: 'rgba(0, 0, 0, 0.04)',
+      /** Pressed/active - 12% black */
+      pressed: 'rgba(0, 0, 0, 0.12)',
+      /** Selected row/item - 8% black */
+      selected: 'rgba(0, 0, 0, 0.08)',
+      /** Disabled overlay - 38% black */
+      disabled: 'rgba(0, 0, 0, 0.38)',
+    },
+    /**
+     * White text/icon opacity for dark backgrounds
+     * Based on Material Design text emphasis levels
+     */
+    onDark: {
+      /** High emphasis - 87% white */
+      primary: 'rgba(255, 255, 255, 0.87)',
+      /** Medium emphasis - 70% white */
+      secondary: 'rgba(255, 255, 255, 0.7)',
+      /** Low emphasis - 50% white */
+      tertiary: 'rgba(255, 255, 255, 0.5)',
+      /** Borders/dividers - 12% white */
+      subtle: 'rgba(255, 255, 255, 0.12)',
+      /** Background overlays on dark surfaces - 10% white */
+      tint: 'rgba(255, 255, 255, 0.1)',
+      /** Visible dividers on dark backgrounds - 24% white */
+      divider: 'rgba(255, 255, 255, 0.24)',
+      /** High-visibility text/icons on dark - 80% white */
+      emphasis: 'rgba(255, 255, 255, 0.8)',
+      /** Maximum contrast - avoids pure white - 95% white */
+      contrast: 'rgba(255, 255, 255, 0.95)',
+    },
+    /**
+     * Shadow effects for elevation hierarchy
+     * Replaces hardcoded rgba shadows
+     */
+    shadow: {
+      /** Resting card elevation */
+      surface: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
+      /** Hovered/focused elevation */
+      raised: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
+      /** Dropdown/popover/nav menus */
+      floating: '0 4px 20px rgba(0, 0, 0, 0.15)',
+      /** Modal dialogs */
+      dialog: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+      /** Pressed/inset appearance */
+      inset: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)',
+    },
+    /**
+     * Focus ring effects for accessibility
+     */
+    focus: {
+      /** Standard focus ring - purple brand */
+      ring: '0 0 0 3px rgba(120, 65, 201, 0.25)',
+      /** Focus on dark backgrounds */
+      ringOnDark: '0 0 0 3px rgba(255, 255, 255, 0.3)',
+      /** Emphasized focus for primary actions */
+      glow: '0 0 0 3px rgba(120, 65, 201, 0.4)',
+    },
+    /**
+     * State indicator effects (subtle fills and emphasis borders)
+     */
+    state: {
+      /** Error background - 5% red */
+      errorSubtle: 'rgba(218, 30, 40, 0.05)',
+      /** Error border - 30% red */
+      errorEmphasis: 'rgba(218, 30, 40, 0.3)',
+      /** Warning background - 10% yellow */
+      warningSubtle: 'rgba(241, 194, 27, 0.1)',
+      /** Warning border - 40% yellow */
+      warningEmphasis: 'rgba(241, 194, 27, 0.4)',
+      /** Success background - 5% green */
+      successSubtle: 'rgba(36, 161, 72, 0.05)',
+      /** Success border - 30% green */
+      successEmphasis: 'rgba(36, 161, 72, 0.3)',
+      /** Info background - 5% blue */
+      infoSubtle: 'rgba(0, 67, 206, 0.05)',
+      /** Info border - 30% blue */
+      infoEmphasis: 'rgba(0, 67, 206, 0.3)',
+    },
+  },
+
+  // ============================================
+  // ICON SIZE SCALE (Phase A Addition)
+  // Intent-based icon sizing
+  // ============================================
+  iconSize: {
+    /** Within text flow - 14px */
+    inline: 14,
+    /** Standard controls (buttons, inputs) - 16px */
+    control: 16,
+    /** Navigation and toolbar - 20px */
+    navigation: 20,
+    /** Visual anchor (empty states) - 24px */
+    prominent: 24,
+    /** Hero sections - 28px */
+    hero: 28,
+    /** Maximum impact - 36px */
+    display: 36,
+  },
+
+  // ============================================
+  // INTENT-BASED SPACING (Phase A Addition)
+  // ============================================
+  inline: {
+    /** Minimum internal space - 4px */
+    tight: baseTokens.spacing[1],
+    /** Dense but readable - 8px */
+    compact: baseTokens.spacing[2],
+    /** Balanced density - 12px */
+    snug: baseTokens.spacing[3],
+    /** Standard breathing room - 16px */
+    comfortable: baseTokens.spacing[4],
+    /** Generous without excess - 20px */
+    relaxed: baseTokens.spacing[5],
+    /** Maximum breathing room - 24px */
+    spacious: baseTokens.spacing[6],
+  },
+
+  stack: {
+    /** Minimum vertical space - 4px */
+    tight: baseTokens.spacing[1],
+    /** Dense but readable - 8px */
+    compact: baseTokens.spacing[2],
+    /** Balanced density - 12px */
+    snug: baseTokens.spacing[3],
+    /** Standard vertical space - 16px */
+    comfortable: baseTokens.spacing[4],
+    /** Generous without excess - 20px */
+    relaxed: baseTokens.spacing[5],
+    /** Maximum vertical space - 24px */
+    spacious: baseTokens.spacing[6],
+    // Legacy aliases for backwards compatibility
+    /** @deprecated Use tight instead */
+    related: baseTokens.spacing[1],
+    /** @deprecated Use compact instead */
+    grouped: baseTokens.spacing[2],
+    /** @deprecated Use comfortable instead */
+    separated: baseTokens.spacing[4],
+    /** @deprecated Use spacious instead */
+    distinct: baseTokens.spacing[8],
+  },
+
+  density: {
+    /** Maximum info density */
+    compact: {
+      rowHeight: 36,
+      cellPadding: 6,
+      gap: 4,
+    },
+    /** Balanced readability/density */
+    standard: {
+      rowHeight: 48,
+      cellPadding: 12,
+      gap: 8,
+    },
+    /** Prioritize readability */
+    comfortable: {
+      rowHeight: 64,
+      cellPadding: 16,
+      gap: 12,
     },
   },
 };

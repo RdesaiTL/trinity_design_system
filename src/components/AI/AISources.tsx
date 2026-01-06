@@ -16,9 +16,10 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import { brandColors } from '../../tokens';
+// brandColors removed - use MUI theme tokens
 import { Icon } from '../Icon';
 import { aiTokens, aiSpacing, aiRadiusPx } from './tokens';
+import { semanticTokens } from '../../tokens';
 
 // ============================================================================
 // AI SOURCE
@@ -76,8 +77,9 @@ export const AISource: React.FC<AISourceProps> = ({
       sx={{
         p: aiSpacing.sm,
         borderRadius: aiRadiusPx.sm,
-        border: `1px solid ${brandColors.neutral.gray100}`,
-        backgroundColor: 'brandColors.neutral.white',
+        border: '1px solid',
+        borderColor: 'divider', // Use MUI theme
+        backgroundColor: 'background.paper', // Use MUI theme
         cursor: onClick ? 'pointer' : 'default',
         transition: 'all 0.2s ease',
         '&:hover': onClick
@@ -102,7 +104,7 @@ export const AISource: React.FC<AISourceProps> = ({
             alignItems: 'center',
             justifyContent: 'center',
             flexShrink: 0,
-            fontSize: '0.75rem',
+            fontSize: semanticTokens.typography.dense.text, // 12px dense text
             fontWeight: 600,
           }}
         >

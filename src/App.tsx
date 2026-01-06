@@ -46,7 +46,7 @@ const navCategories: NavCategory[] = [
     label: 'Inputs',
     icon: <InputIcon />,
     items: [
-      { id: 'autocomplete', label: 'Autocomplete' },
+      { id: 'combobox', label: 'Combobox' },
       { id: 'button', label: 'Button' },
       { id: 'button-group', label: 'Button Group' },
       { id: 'checkbox', label: 'Checkbox' },
@@ -142,7 +142,7 @@ const pageMap: Record<string, React.FC> = {
   'color-accessibility': Pages.ColorAccessibilityPage,
   icons: Pages.IconsPage,
   // Inputs
-  autocomplete: Pages.AutocompletePage,
+  combobox: Pages.ComboboxPage,
   button: Pages.ButtonPage,
   'button-group': Pages.ButtonGroupPage,
   checkbox: Pages.CheckboxPage,

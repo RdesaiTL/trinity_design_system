@@ -3,7 +3,7 @@
  * Consistent styling for all Trinity chart components
  */
 
-import { brandColors, baseTokens } from '../../tokens';
+import { brandColors, baseTokens, semanticTokens } from '../../tokens';
 
 // Convenience alias for gray scale access
 const gray = baseTokens.colors.gray;
@@ -303,11 +303,11 @@ export const chartTheme = {
     background: brandColors.neutral.darkPaper,
     text: brandColors.neutral.white,
     textSecondary: brandColors.neutral.gray400,
-    grid: 'rgba(255, 255, 255, 0.1)',
-    axis: 'rgba(255, 255, 255, 0.2)',
+    grid: semanticTokens.effects.onDark.emphasis, // 8% white - grid lines
+    axis: semanticTokens.effects.onDark.divider, // 12% white - axis (slightly stronger)
     tooltip: {
       background: brandColors.neutral.darkPaper,
-      border: 'rgba(255, 255, 255, 0.1)',
+      border: semanticTokens.effects.onDark.emphasis, // 8% white - tooltip border
       text: gray[300],
     },
   },

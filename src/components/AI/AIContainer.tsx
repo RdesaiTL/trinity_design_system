@@ -27,7 +27,7 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import { brandColors } from '../../tokens';
+// brandColors removed - use MUI theme tokens
 import { Icon } from '../Icon';
 import { aiTokens, aiSpacing, aiRadiusPx } from './tokens';
 import { AIAvatar } from './AIAvatar';
@@ -204,7 +204,7 @@ export const AIExpandableSection: React.FC<AIExpandableSectionProps> = ({
           <Icon
             name={expanded ? 'chevron-up' : 'chevron-down'}
             size="small"
-            color={brandColors.neutral.gray500}
+            color="text.secondary" // Use MUI theme
           />
         </IconButton>
       </Box>
@@ -267,8 +267,9 @@ export const AIPersonaCard: React.FC<AIPersonaCardProps> = ({
       sx={{
         p: aiSpacing.base,
         borderRadius: aiRadiusPx.lg,
-        border: `2px solid ${selected ? aiTokens.colors.aiPrimary : brandColors.neutral.gray100}`,
-        backgroundColor: selected ? aiTokens.colors.aiHover : 'brandColors.neutral.white',
+        border: selected ? `2px solid ${aiTokens.colors.aiPrimary}` : '2px solid', // @intentional-color: AI primary when selected
+        borderColor: selected ? undefined : 'divider',
+        backgroundColor: selected ? aiTokens.colors.aiHover : 'background.paper', // @intentional-color: AI hover when selected
         cursor: onClick ? 'pointer' : 'default',
         transition: 'all 0.2s ease',
         '&:hover': onClick
@@ -345,7 +346,8 @@ export const AIPersonaCard: React.FC<AIPersonaCardProps> = ({
               flexShrink: 0,
             }}
           >
-            <Icon name="check" size="small" color="brandColors.neutral.white" />
+            {/* eslint-disable-next-line no-restricted-syntax -- @intentional-color: white on AI primary */}
+            <Icon name="check" size="small" color="#FFFFFF" />
           </Box>
         )}
       </Stack>

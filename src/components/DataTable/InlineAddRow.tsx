@@ -14,6 +14,7 @@ import {
   MenuItem,
   FormControl,
   InputAdornment,
+  useTheme,
 } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
@@ -21,7 +22,6 @@ import AddIcon from '@mui/icons-material/Add';
 import { GridColDef, GridValidRowModel } from '@mui/x-data-grid';
 import { InlineAddConfig, TableDensity } from './types';
 import { tableTypography, tableColors, densityTokens } from './tokens';
-import { brandColors } from '../../tokens';
 
 interface InlineAddRowProps<R extends GridValidRowModel> {
   columns: GridColDef[];
@@ -48,6 +48,7 @@ export const InlineAddRow = <R extends GridValidRowModel>({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const tokens = densityTokens[density];
   const colors = tableColors[mode];
+  const muiTheme = useTheme();
 
   const editableColumns = columns.filter((col) => {
     if (config.excludeFields?.includes(col.field)) return false;
@@ -136,12 +137,12 @@ export const InlineAddRow = <R extends GridValidRowModel>({
         }}
       >
         <Stack direction="row" spacing={1} alignItems="center">
-          <AddIcon sx={{ fontSize: 18, color: brandColors.primary.light }} />
+          <AddIcon sx={{ fontSize: 18, color: 'primary.main' }} />
           <Box
             sx={{
               fontFamily: tableTypography.fontFamily,
               fontSize: tokens.fontSize,
-              color: brandColors.primary.light,
+              color: 'primary.main',
               fontWeight: 500,
             }}
           >
@@ -161,7 +162,7 @@ export const InlineAddRow = <R extends GridValidRowModel>({
         alignItems: 'center',
         px: 2,
         py: 1,
-        borderBottom: `2px solid ${brandColors.primary.light}`,
+        borderBottom: `2px solid ${muiTheme.palette.primary.main}`,
         backgroundColor: colors.background,
         gap: 1,
       }}
@@ -255,10 +256,10 @@ export const InlineAddRow = <R extends GridValidRowModel>({
             color="primary"
             onClick={handleSubmit}
             sx={{
-              backgroundColor: brandColors.primary.light,
-              color: 'white',
+              backgroundColor: 'primary.main',
+              color: 'common.white',
               '&:hover': {
-                backgroundColor: brandColors.primary.main,
+                backgroundColor: 'primary.dark',
               },
             }}
           >

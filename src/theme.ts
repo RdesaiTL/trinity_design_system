@@ -240,24 +240,24 @@ function getSharedComponentOverrides(tokenSet: TrinityTokens = tokens, mode: 'li
           color: mode === 'dark' ? tokenSet.base.colors.gray[100] : tokenSet.base.colors.navy[900],
           '&:hover': {
             backgroundColor: mode === 'dark' 
-              ? 'rgba(255, 255, 255, 0.08)' 
-              : 'rgba(5, 7, 66, 0.08)',
+              ? tokenSet.semantic.effects.onDark.subtle // 12% white - using semantic token
+              : tokenSet.semantic.effects.overlay.hover, // 8% black - using semantic token
           },
         },
         textPrimary: {
           color: mode === 'dark' ? tokenSet.base.colors.coral[400] : tokenSet.base.colors.navy[900],
           '&:hover': {
             backgroundColor: mode === 'dark' 
-              ? 'rgba(255, 97, 80, 0.12)' 
-              : 'rgba(5, 7, 66, 0.08)',
+              ? 'rgba(255, 97, 80, 0.12)' // @intentional-color: coral brand tint
+              : tokenSet.semantic.effects.overlay.hover, // 8%
           },
         },
         textSecondary: {
           color: mode === 'dark' ? tokenSet.base.colors.purple[400] : tokenSet.base.colors.coral[800],
           '&:hover': {
             backgroundColor: mode === 'dark' 
-              ? 'rgba(120, 65, 201, 0.12)' 
-              : 'rgba(255, 97, 80, 0.08)',
+              ? 'rgba(120, 65, 201, 0.12)' // @intentional-color: purple brand tint
+              : tokenSet.semantic.effects.overlay.hover, // 8%
           },
         },
         // Contained buttons
@@ -377,8 +377,8 @@ function getSharedComponentOverrides(tokenSet: TrinityTokens = tokens, mode: 'li
           color: mode === 'dark' ? tokenSet.base.colors.gray[300] : tokenSet.base.colors.gray[600],
           '&:hover': {
             backgroundColor: mode === 'dark' 
-              ? 'rgba(255, 255, 255, 0.08)' 
-              : 'rgba(0, 0, 0, 0.04)',
+              ? tokenSet.semantic.effects.onDark.subtle // 12% white
+              : tokenSet.semantic.effects.overlay.hoverSubtle, // 4% black
           },
         },
         colorPrimary: {
@@ -445,6 +445,9 @@ function getSharedComponentOverrides(tokenSet: TrinityTokens = tokens, mode: 'li
     MuiTextField: {
       styleOverrides: {
         root: {
+          '& .MuiInputBase-root': {
+            borderRadius: tokenSet.base.borderRadius.sm, // 6px for all inputs
+          },
           '& .MuiInputBase-sizeSmall': {
             borderRadius: tokenSet.base.borderRadius.sm, // 6px for small inputs
           },
@@ -461,14 +464,15 @@ function getSharedComponentOverrides(tokenSet: TrinityTokens = tokens, mode: 'li
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
+          borderRadius: tokenSet.base.borderRadius.sm, // 6px for all inputs
           '&.MuiInputBase-sizeSmall': {
             borderRadius: tokenSet.base.borderRadius.sm, // 6px for small inputs
           },
           '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: mode === 'dark' ? 'rgba(255, 255, 255, 0.23)' : tokenSet.base.colors.gray[300],
+            borderColor: mode === 'dark' ? 'rgba(255, 255, 255, 0.23)' : tokenSet.base.colors.gray[300], // @intentional-color: MUI standard border
           },
           '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: mode === 'dark' ? 'rgba(255, 255, 255, 0.5)' : tokenSet.base.colors.gray[400],
+            borderColor: mode === 'dark' ? tokenSet.semantic.effects.onDark.tertiary : tokenSet.base.colors.gray[400], // 50% white
           },
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: mode === 'dark' ? tokenSet.base.colors.coral[400] : tokenSet.base.colors.navy[900],
@@ -482,12 +486,18 @@ function getSharedComponentOverrides(tokenSet: TrinityTokens = tokens, mode: 'li
     MuiFilledInput: {
       styleOverrides: {
         root: {
-          backgroundColor: mode === 'dark' ? 'rgba(255, 255, 255, 0.09)' : 'rgba(0, 0, 0, 0.06)',
+          backgroundColor: mode === 'dark' 
+            ? 'rgba(255, 255, 255, 0.09)' // @intentional-color: MUI filled input
+            : tokenSet.semantic.effects.overlay.hover, // 8%
           '&:hover': {
-            backgroundColor: mode === 'dark' ? 'rgba(255, 255, 255, 0.13)' : 'rgba(0, 0, 0, 0.09)',
+            backgroundColor: mode === 'dark' 
+              ? 'rgba(255, 255, 255, 0.13)' // @intentional-color: MUI filled input hover
+              : tokenSet.semantic.effects.overlay.pressed, // 12%
           },
           '&.Mui-focused': {
-            backgroundColor: mode === 'dark' ? 'rgba(255, 255, 255, 0.09)' : 'rgba(0, 0, 0, 0.06)',
+            backgroundColor: mode === 'dark' 
+              ? 'rgba(255, 255, 255, 0.09)' // @intentional-color: MUI filled input
+              : tokenSet.semantic.effects.overlay.hover, // 8%
           },
         },
         input: {
@@ -505,6 +515,9 @@ function getSharedComponentOverrides(tokenSet: TrinityTokens = tokens, mode: 'li
     MuiAutocomplete: {
       styleOverrides: {
         root: {
+          '& .MuiInputBase-root': {
+            borderRadius: tokenSet.base.borderRadius.sm, // 6px for all inputs
+          },
           '& .MuiInputBase-sizeSmall': {
             borderRadius: tokenSet.base.borderRadius.sm, // 6px for small inputs
           },
@@ -514,9 +527,83 @@ function getSharedComponentOverrides(tokenSet: TrinityTokens = tokens, mode: 'li
     MuiSelect: {
       styleOverrides: {
         root: {
+          borderRadius: tokenSet.base.borderRadius.sm, // 6px for all selects
           '&.MuiInputBase-sizeSmall': {
             borderRadius: tokenSet.base.borderRadius.sm, // 6px for small inputs
           },
+        },
+      },
+    },
+    // ============================================
+    // MUI X DATE/TIME PICKERS
+    // ============================================
+    MuiPickersInputBase: {
+      styleOverrides: {
+        root: {
+          borderRadius: tokenSet.base.borderRadius.sm, // 6px for picker inputs
+        },
+      },
+    },
+    MuiPickersOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: tokenSet.base.borderRadius.sm, // 6px for picker inputs
+        },
+      },
+    },
+    MuiPickersLayout: {
+      styleOverrides: {
+        root: {
+          borderRadius: tokenSet.base.borderRadius.lg, // 12px for picker popup
+        },
+      },
+    },
+    MuiDateCalendar: {
+      styleOverrides: {
+        root: {
+          borderRadius: tokenSet.base.borderRadius.lg, // 12px for calendar
+        },
+      },
+    },
+    MuiPickersDay: {
+      styleOverrides: {
+        root: {
+          borderRadius: tokenSet.semantic.borders.radius.badge, // 12px for day cells
+          '&.Mui-selected': {
+            backgroundColor: mode === 'dark' 
+              ? tokenSet.base.colors.coral[400] 
+              : tokenSet.base.colors.navy[900],
+          },
+        },
+      },
+    },
+    MuiPickersCalendarHeader: {
+      styleOverrides: {
+        root: {
+          paddingLeft: tokenSet.base.spacing[4], // 16px
+          paddingRight: tokenSet.base.spacing[4],
+        },
+      },
+    },
+    MuiMultiSectionDigitalClock: {
+      styleOverrides: {
+        root: {
+          borderRadius: tokenSet.base.borderRadius.lg, // 12px for time picker
+        },
+      },
+    },
+    MuiTimeClock: {
+      styleOverrides: {
+        root: {
+          borderRadius: tokenSet.base.borderRadius.lg, // 12px for analog clock
+        },
+      },
+    },
+    MuiPickersPopper: {
+      styleOverrides: {
+        paper: {
+          borderRadius: tokenSet.base.borderRadius.lg, // 12px for popup
+          boxShadow: tokenSet.base.shadows.lg,
         },
       },
     },
@@ -528,6 +615,107 @@ function getSharedComponentOverrides(tokenSet: TrinityTokens = tokens, mode: 'li
               borderRadius: tokenSet.base.borderRadius.full, // Circular thumbs
             },
           },
+        },
+      },
+    },
+    // ============================================
+    // M3-STYLE SWITCH
+    // ============================================
+    MuiSwitch: {
+      styleOverrides: {
+        // Medium size (default) - 52x32 track
+        root: {
+          width: 52,
+          height: 32,
+          padding: 0,
+          '& .MuiSwitch-switchBase': {
+            padding: 0,
+            margin: 4,
+            transitionDuration: '300ms',
+            '&.Mui-checked': {
+              transform: 'translateX(20px)',
+              color: '#fff',
+              '& + .MuiSwitch-track': {
+                backgroundColor: mode === 'dark' 
+                  ? tokenSet.base.colors.coral[400] 
+                  : tokenSet.base.colors.navy[900],
+                opacity: 1,
+                border: 0,
+              },
+              '& .MuiSwitch-thumb': {
+                width: 24,
+                height: 24,
+                margin: 0,
+              },
+              '&.Mui-disabled + .MuiSwitch-track': {
+                opacity: 0.5,
+              },
+            },
+            '&.Mui-focusVisible .MuiSwitch-thumb': {
+              color: mode === 'dark' 
+                ? tokenSet.base.colors.coral[400] 
+                : tokenSet.base.colors.navy[900],
+              border: '6px solid #fff',
+            },
+            '&.Mui-disabled .MuiSwitch-thumb': {
+              color: mode === 'dark' 
+                ? tokenSet.base.colors.gray[600] 
+                : tokenSet.base.colors.gray[300],
+            },
+            '&.Mui-disabled + .MuiSwitch-track': {
+              opacity: mode === 'dark' ? 0.3 : 0.5,
+            },
+          },
+          '& .MuiSwitch-thumb': {
+            boxSizing: 'border-box',
+            width: 16,
+            height: 16,
+            margin: 4,
+            boxShadow: tokenSet.base.shadows.sm,
+            transition: 'all 200ms ease-in-out',
+          },
+          '& .MuiSwitch-track': {
+            borderRadius: 32 / 2,
+            backgroundColor: mode === 'dark' 
+              ? tokenSet.base.colors.gray[700] 
+              : tokenSet.base.colors.gray[300],
+            border: `2px solid ${mode === 'dark' ? tokenSet.base.colors.gray[500] : tokenSet.base.colors.gray[400]}`,
+            opacity: 1,
+            transition: 'background-color 300ms, border-color 300ms',
+            boxSizing: 'border-box',
+          },
+        },
+        // Small size - 40x24 track (proportionally smaller)
+        sizeSmall: {
+          width: 40,
+          height: 24,
+          '& .MuiSwitch-switchBase': {
+            margin: 3,
+            '&.Mui-checked': {
+              transform: 'translateX(16px)',
+              '& .MuiSwitch-thumb': {
+                width: 18,
+                height: 18,
+                margin: 0,
+              },
+            },
+          },
+          '& .MuiSwitch-thumb': {
+            width: 12,
+            height: 12,
+            margin: 3,
+          },
+          '& .MuiSwitch-track': {
+            borderRadius: 24 / 2,
+          },
+        },
+      },
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          marginLeft: 0,
+          gap: tokenSet.base.spacing[2], // 8px gap between control and label
         },
       },
     },
@@ -586,7 +774,7 @@ function getSharedComponentOverrides(tokenSet: TrinityTokens = tokens, mode: 'li
       styleOverrides: {
         root: {
           backgroundColor: mode === 'dark' 
-            ? 'rgba(255, 255, 255, 0.05)' 
+            ? 'rgba(255, 255, 255, 0.05)' // @intentional-color: subtle table header
             : tokenSet.base.colors.gray[50],
         },
       },
@@ -599,20 +787,20 @@ function getSharedComponentOverrides(tokenSet: TrinityTokens = tokens, mode: 'li
           },
           '&.Mui-selected': {
             backgroundColor: mode === 'dark' 
-              ? 'rgba(255, 97, 80, 0.08)' 
-              : 'rgba(5, 7, 66, 0.04)',
+              ? 'rgba(255, 97, 80, 0.08)' // @intentional-color: coral brand selection
+              : tokenSet.semantic.effects.overlay.hoverSubtle, // 4%
           },
           '&.Mui-selected:hover': {
             backgroundColor: mode === 'dark' 
-              ? 'rgba(255, 97, 80, 0.12)' 
-              : 'rgba(5, 7, 66, 0.08)',
+              ? 'rgba(255, 97, 80, 0.12)' // @intentional-color: coral brand selection hover
+              : tokenSet.semantic.effects.overlay.hover, // 8%
           },
         },
         hover: {
           '&:hover': {
             backgroundColor: mode === 'dark' 
-              ? 'rgba(255, 255, 255, 0.04)' 
-              : 'rgba(0, 0, 0, 0.02)',
+              ? tokenSet.semantic.effects.overlay.hoverSubtle // 4%
+              : 'rgba(0, 0, 0, 0.02)', // @intentional-color: subtle table row hover
           },
         },
       },
@@ -849,12 +1037,14 @@ function getSharedComponentOverrides(tokenSet: TrinityTokens = tokens, mode: 'li
           fontSize: tokenSet.base.fontSize.sm,
         },
         colorDefault: {
+          // Use navy background in light mode, gray in dark mode
+          // Always ensure accessible text contrast
           backgroundColor: mode === 'dark' 
             ? tokenSet.base.colors.gray[600] 
-            : tokenSet.base.colors.gray[300],
+            : tokenSet.base.colors.navy[900],
           color: mode === 'dark' 
-            ? tokenSet.base.colors.gray[200] 
-            : tokenSet.base.colors.gray[700],
+            ? tokenSet.base.colors.gray[100] 
+            : tokenSet.base.colors.gray[0], // White text on navy for accessibility
         },
       },
     },
@@ -1216,7 +1406,7 @@ export function createTrinityTheme(mode: 'light' | 'dark', overrides?: Partial<T
     palette,
     typography: typographyConfig,
     shape: {
-      borderRadius: mode === 'dark' ? mergedTokens.base.borderRadius.md : mergedTokens.base.borderRadius['2xl'],
+      borderRadius: mergedTokens.base.borderRadius.md, // 8px base - components override as needed
     },
     components: getSharedComponentOverrides(mergedTokens, mode),
   });

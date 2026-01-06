@@ -6,7 +6,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { chartTooltipStyles, chartTypography } from './tokens';
-import { brandColors } from '../../tokens';
+import { brandColors, semanticTokens } from '../../tokens';
 
 export interface CustomTooltipProps {
   /** Whether the tooltip is active */
@@ -95,7 +95,7 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
                 sx={{
                   width: 10,
                   height: 10,
-                  borderRadius: '50%',
+                  borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
                   backgroundColor: entry.color,
                   flexShrink: 0,
                 }}
@@ -195,7 +195,7 @@ export const SimpleTooltip: React.FC<{
         sx={{
           width: 8,
           height: 8,
-          borderRadius: '50%',
+          borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
           backgroundColor: entry.color,
         }}
       />

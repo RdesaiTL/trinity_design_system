@@ -21,6 +21,7 @@ import {
   OpenInNew as PopOutIcon,
   PushPin as PinIcon,
 } from '@mui/icons-material';
+import { semanticTokens } from '../../tokens';
 
 // ============================================
 // Types
@@ -343,7 +344,7 @@ const TabbedZone: React.FC<TabbedZoneProps> = ({
               px: 1.5,
               py: 0.5,
               textTransform: 'none',
-              fontSize: compact ? '0.75rem' : '0.875rem',
+              fontSize: compact ? semanticTokens.typography.dense.text : '0.875rem', // 12px dense, 14px normal
             },
             '& .MuiTabs-indicator': {
               height: 2,

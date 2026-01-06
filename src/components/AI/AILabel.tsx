@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 import { Box, Popover, SxProps, Theme } from '@mui/material';
 import { aiTokens, aiRadiusPx } from './tokens';
+import { semanticTokens } from '../../tokens';
 
 // ============================================================================
 // TYPES
@@ -38,11 +39,11 @@ export interface AILabelProps {
 // ============================================================================
 
 const aiLabelSizes: Record<AILabelSize, { size: number; fontSize: string; padding: string }> = {
-  mini: { size: 16, fontSize: '0.625rem', padding: '2px 4px' },
-  '2xs': { size: 20, fontSize: '0.6875rem', padding: '2px 6px' },
-  xs: { size: 24, fontSize: '0.75rem', padding: '3px 8px' },
-  sm: { size: 32, fontSize: '0.8125rem', padding: '4px 10px' },
-  md: { size: 40, fontSize: '0.875rem', padding: '6px 12px' },
+  mini: { size: 16, fontSize: semanticTokens.typography.dense.badge, padding: '2px 4px' }, // 10px
+  '2xs': { size: 20, fontSize: '0.6875rem', padding: '2px 6px' }, // 11px - no exact token, retained
+  xs: { size: 24, fontSize: semanticTokens.typography.dense.text, padding: '3px 8px' }, // 12px
+  sm: { size: 32, fontSize: '0.8125rem', padding: '4px 10px' }, // 13px - no exact token, retained
+  md: { size: 40, fontSize: '0.875rem', padding: '6px 12px' }, // 14px - body.small available but different intent
   lg: { size: 48, fontSize: '1rem', padding: '8px 14px' },
   xl: { size: 64, fontSize: '1.125rem', padding: '10px 16px' },
 };
@@ -103,7 +104,7 @@ export const AILabel: React.FC<AILabelProps> = ({
         padding: variant === 'inline' ? '1px 6px' : sizeConfig.padding,
         borderRadius: variant === 'inline' ? '10px' : '100px',
         background: aiTokens.gradient.primary,
-        color: 'brandColors.neutral.white',
+        color: 'common.white', // Use MUI theme
         fontSize: sizeConfig.fontSize,
         fontWeight: 600,
         fontFamily: '"Montserrat", sans-serif',
@@ -164,7 +165,7 @@ export const AILabel: React.FC<AILabelProps> = ({
                 borderRadius: aiRadiusPx.md,
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
                 border: `1px solid ${aiTokens.colors.aiBorder}`,
-                background: `linear-gradient(180deg, ${aiTokens.colors.aiBackground} 0%, brandColors.neutral.white 100%)`,
+                background: `linear-gradient(180deg, ${aiTokens.colors.aiBackground} 0%, #FFFFFF 100%)`, // @intentional-color: gradient to white
                 maxWidth: 360,
                 minWidth: 280,
               },

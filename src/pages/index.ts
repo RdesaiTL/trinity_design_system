@@ -1,5 +1,5 @@
 // Input components
-export { AutocompletePage } from './inputs/AutocompletePage';
+export { ComboboxPage } from './inputs/ComboboxPage';
 export { ButtonPage } from './inputs/ButtonPage';
 export { ButtonGroupPage } from './inputs/ButtonGroupPage';
 export { CheckboxPage } from './inputs/CheckboxPage';

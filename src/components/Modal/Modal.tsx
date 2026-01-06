@@ -17,7 +17,7 @@ import ErrorIcon from '@mui/icons-material/Error';
 import WarningIcon from '@mui/icons-material/Warning';
 import InfoIcon from '@mui/icons-material/Info';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import { brandColors, semanticTokens } from '../../tokens';
+import { semanticTokens } from '../../tokens';
 
 export type ModalVariant = 'default' | 'info' | 'success' | 'warning' | 'danger' | 'confirm';
 
@@ -64,7 +64,7 @@ export interface ModalProps {
   sx?: object;
 }
 
-// Variant configuration
+// Variant configuration using semantic tokens
 const variantConfig: Record<ModalVariant, {
   icon: React.ReactNode;
   color: string;
@@ -72,7 +72,7 @@ const variantConfig: Record<ModalVariant, {
 }> = {
   default: {
     icon: null,
-    color: brandColors.primary.main,
+    color: semanticTokens.colors.interactive.default, // Navy primary
     primaryColor: 'primary',
   },
   info: {
@@ -97,7 +97,7 @@ const variantConfig: Record<ModalVariant, {
   },
   confirm: {
     icon: <HelpOutlineIcon />,
-    color: brandColors.primary.main,
+    color: semanticTokens.colors.interactive.default, // Navy primary
     primaryColor: 'primary',
   },
 };
@@ -199,7 +199,7 @@ export const Modal: React.FC<ModalProps> = ({
       aria-describedby={children ? descriptionId : undefined}
       sx={{
         '& .MuiDialog-paper': {
-          borderRadius: '12px',
+          borderRadius: semanticTokens.borders.radiusPx.lg, // 12px
           ...sx,
         },
       }}
@@ -218,16 +218,16 @@ export const Modal: React.FC<ModalProps> = ({
           {config.icon && (
             <Box
               sx={{
-                width: 40,
-                height: 40,
-                borderRadius: '50%',
-                bgcolor: `${config.color}15`,
+                width: semanticTokens.iconSize.display + 4, // 40px - prominent icon with frame
+                height: semanticTokens.iconSize.display + 4,
+                borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
+                bgcolor: semanticTokens.effects.overlay.pressed, // 12% opacity background
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 '& .MuiSvgIcon-root': {
                   color: config.color,
-                  fontSize: 24,
+                  fontSize: semanticTokens.iconSize.prominent, // 24px
                 },
               }}
             >

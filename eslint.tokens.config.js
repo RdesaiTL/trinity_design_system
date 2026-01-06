@@ -5,6 +5,21 @@
  * Run with: npx eslint --config eslint.tokens.config.js src/components/**\/*.tsx
  * 
  * @see docs/TOKEN_USAGE_RULES.md
+ * @see docs/INTENTIONAL_EXCEPTIONS.md - Approved exception categories
+ * 
+ * EXCEPTION POLICY:
+ * -----------------
+ * When a hardcoded color is required, add:
+ * 
+ *   // eslint-disable-next-line no-restricted-syntax -- @intentional-color: [category] - reason
+ * 
+ * Valid categories are defined in docs/INTENTIONAL_EXCEPTIONS.md:
+ *   - ai-gradient-overlay
+ *   - chart-data-encoding  
+ *   - white-on-primary
+ *   - illustration-semantic
+ *   - external-standard
+ *   - accessibility-contrast
  */
 
 import tseslint from 'typescript-eslint';

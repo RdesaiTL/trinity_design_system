@@ -6,7 +6,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { chartTypography, chartLegendStyles } from './tokens';
-import { brandColors } from '../../tokens';
+import { semanticTokens } from '../../tokens';
 
 export interface CustomLegendProps {
   /** Payload from Recharts */
@@ -76,7 +76,7 @@ export const CustomLegend: React.FC<CustomLegendProps> = ({
               sx={{
                 width: chartLegendStyles.iconSize,
                 height: chartLegendStyles.iconSize,
-                borderRadius: chartLegendStyles.iconType === 'circle' ? '50%' : 2,
+                borderRadius: chartLegendStyles.iconType === 'circle' ? semanticTokens.borders.radius.circle : 2,
                 backgroundColor: entry.color,
                 flexShrink: 0,
               }}
@@ -136,12 +136,12 @@ export const InteractiveLegend: React.FC<
               gap: 1,
               cursor: 'pointer',
               opacity: isHidden ? 0.4 : 1,
-              transition: 'all 0.2s ease',
+              transition: `all ${semanticTokens.motion.duration.fast}`,
               px: 1.5,
               py: 0.5,
               borderRadius: 1,
               '&:hover': {
-                backgroundColor: brandColors.neutral.gray100,
+                backgroundColor: semanticTokens.effects.overlay.hover, // 8%
               },
             }}
           >
@@ -149,10 +149,10 @@ export const InteractiveLegend: React.FC<
               sx={{
                 width: chartLegendStyles.iconSize,
                 height: chartLegendStyles.iconSize,
-                borderRadius: chartLegendStyles.iconType === 'circle' ? '50%' : 2,
-                backgroundColor: isHidden ? brandColors.neutral.gray300 : entry.color,
+                borderRadius: chartLegendStyles.iconType === 'circle' ? semanticTokens.borders.radius.circle : 2,
+                backgroundColor: isHidden ? 'action.disabled' : entry.color, // @intentional-color: chart series color
                 flexShrink: 0,
-                transition: 'background-color 0.2s ease',
+                transition: `background-color ${semanticTokens.motion.duration.fast}`,
               }}
             />
             <Typography
@@ -160,7 +160,7 @@ export const InteractiveLegend: React.FC<
                 ...chartTypography.legend,
                 fontFamily: chartTypography.fontFamily,
                 textDecoration: isHidden ? 'line-through' : 'none',
-                color: isHidden ? brandColors.neutral.gray400 : chartTypography.legend.fill,
+                color: isHidden ? 'text.disabled' : chartTypography.legend.fill, // @intentional-color: chart text
               }}
             >
               {displayValue}
@@ -229,7 +229,7 @@ export const PieLegend: React.FC<{
               sx={{
                 width: chartLegendStyles.iconSize,
                 height: chartLegendStyles.iconSize,
-                borderRadius: '50%',
+                borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
                 backgroundColor: entry.color,
                 flexShrink: 0,
               }}
@@ -247,7 +247,7 @@ export const PieLegend: React.FC<{
                 <Typography
                   sx={{
                     fontSize: 11,
-                    color: brandColors.neutral.gray500,
+                    color: 'text.secondary', // Use MUI theme
                     fontFamily: chartTypography.fontFamily,
                   }}
                 >

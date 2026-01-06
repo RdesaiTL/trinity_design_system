@@ -33,8 +33,12 @@ import {
   Button,
   ListItemIcon,
   ListItemText,
+  Drawer,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
+import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import AppsIcon from '@mui/icons-material/Apps';
@@ -43,16 +47,16 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import LogoutIcon from '@mui/icons-material/Logout';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { brandColors } from '../tokens';
+import { brandColors, semanticTokens, componentTokens } from '../tokens';
 import trinityLogoWhite from '../assets/trinity-logo-white.svg';
 
 // Styled search component - matches the design with white bg when focused
 const Search = styled('div')<{ focused?: string }>(({ theme, focused }) => ({
   position: 'relative',
-  borderRadius: 12,
-  backgroundColor: focused === 'true' ? theme.palette.common.white : alpha(theme.palette.common.white, 0.1),
+  borderRadius: `${semanticTokens.borders.radius.menu}px`, // 12px
+  backgroundColor: focused === 'true' ? theme.palette.common.white : semanticTokens.effects.onDark.subtle, // 12% white
   '&:hover': {
-    backgroundColor: focused === 'true' ? theme.palette.common.white : alpha(theme.palette.common.white, 0.15),
+    backgroundColor: focused === 'true' ? theme.palette.common.white : 'rgba(255, 255, 255, 0.15)', // @intentional-color: hover state slightly stronger
   },
   marginRight: theme.spacing(2),
   marginLeft: theme.spacing(2),
@@ -85,7 +89,7 @@ const StyledInputBase = styled(InputBase)<{ focused?: string }>(({ theme, focuse
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    fontSize: 14,
+    fontSize: semanticTokens.typography.body.small.fontSize, // 14px
     '&::placeholder': {
       color: focused === 'true' ? brandColors.neutral.gray500 : alpha(theme.palette.common.white, 0.5),
       opacity: 1,
@@ -95,30 +99,30 @@ const StyledInputBase = styled(InputBase)<{ focused?: string }>(({ theme, focuse
 
 const ClearButton = styled(IconButton)<{ show?: string }>(({ show }) => ({
   position: 'absolute',
-  right: 4,
+  right: semanticTokens.inline.tight, // 4px
   top: '50%',
   transform: 'translateY(-50%)',
-  padding: 4,
+  padding: semanticTokens.inline.tight, // 4px
   opacity: show === 'true' ? 1 : 0,
   pointerEvents: show === 'true' ? 'auto' : 'none',
   color: brandColors.neutral.gray500,
   '&:hover': {
-    backgroundColor: alpha(brandColors.neutral.gray500, 0.1),
+    backgroundColor: semanticTokens.effects.overlay.hover, // 8%
   },
 }));
 
 const ClientSelector = styled(Button)(({ theme }) => ({
-  backgroundColor: alpha(theme.palette.common.white, 0.1),
+  backgroundColor: semanticTokens.effects.onDark.subtle, // 12% white
   color: theme.palette.common.white,
-  borderRadius: 12,
-  padding: '6px 12px',
+  borderRadius: `${semanticTokens.borders.radius.menu}px`, // 12px
+  padding: `${semanticTokens.inline.tight}px ${semanticTokens.inline.compact}px`, // 6px 12px
   textTransform: 'none',
-  fontSize: 14,
-  fontWeight: 400,
+  fontSize: semanticTokens.typography.body.small.fontSize, // 14px
+  fontWeight: semanticTokens.typography.body.small.fontWeight, // 400
   minWidth: 180,
   justifyContent: 'space-between',
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: 'rgba(255, 255, 255, 0.15)', // @intentional-color: hover state
   },
 }));
 
@@ -147,6 +151,8 @@ interface TopNavHeaderProps {
   onAppsClick?: (appId: string) => void;
   onUserMenuClick?: (action: string) => void;
   apps?: App[];
+  /** Hide app name on mobile to save space */
+  hideAppNameOnMobile?: boolean;
 }
 
 export default function TopNavHeader({
@@ -172,13 +178,19 @@ export default function TopNavHeader({
     { id: 'terra', name: 'Terra', url: '#' },
     { id: 'market-intelligence', name: 'Market Intelligence Dashboard', url: '#' },
   ],
+  hideAppNameOnMobile = true,
 }: TopNavHeaderProps) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isSmallMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  
   const [clientAnchorEl, setClientAnchorEl] = React.useState<null | HTMLElement>(null);
   const [userAnchorEl, setUserAnchorEl] = React.useState<null | HTMLElement>(null);
   const [appsAnchorEl, setAppsAnchorEl] = React.useState<null | HTMLElement>(null);
   const [selectedClient, setSelectedClient] = React.useState(clientName);
   const [searchValue, setSearchValue] = React.useState('');
   const [searchFocused, setSearchFocused] = React.useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = React.useState(false);
 
   // Client handlers
   const handleClientClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -238,6 +250,24 @@ export default function TopNavHeader({
     setSearchValue('');
   };
 
+  // Mobile search handlers
+  const handleMobileSearchOpen = () => {
+    setMobileSearchOpen(true);
+  };
+
+  const handleMobileSearchClose = () => {
+    setMobileSearchOpen(false);
+    setSearchValue('');
+    setSearchFocused(false);
+  };
+
+  const handleMobileSearchSubmit = () => {
+    if (searchValue.trim()) {
+      onSearch?.(searchValue);
+      handleMobileSearchClose();
+    }
+  };
+
   return (
     <AppBar
       position="fixed"
@@ -255,32 +285,44 @@ export default function TopNavHeader({
         sx={{ minHeight: 56, px: { xs: 2, sm: 3 } }}
       >
         {/* Left Section - Logo and App Name */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 2 }, minWidth: 0 }}>
           <TrinityLogo />
-          <Divider
-            orientation="vertical"
-            flexItem
-            sx={{
-              backgroundColor: alpha(brandColors.neutral.white, 0.3),
-              height: 24,
-              alignSelf: 'center',
-            }}
-          />
-          <Typography
-            variant="subtitle1"
-            sx={{
-              color: 'white',
-              fontWeight: 500,
-              fontSize: 14,
-            }}
-          >
-            {appName}
-          </Typography>
+          {/* Hide divider and app name on small mobile if hideAppNameOnMobile is true */}
+          {!(isSmallMobile && hideAppNameOnMobile) && (
+            <>
+              <Divider
+                orientation="vertical"
+                flexItem
+                sx={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.3)', // @intentional-color: decorative divider
+                  height: semanticTokens.iconSize.prominent, // 24px
+                  alignSelf: 'center',
+                  display: { xs: 'none', sm: 'block' },
+                }}
+              />
+              <Typography
+                variant="subtitle1"
+                noWrap
+                sx={{
+                  color: 'white',
+                  fontWeight: semanticTokens.typography.label.large.fontWeight, // 500
+                  fontSize: semanticTokens.typography.body.small.fontSize, // 14px
+                  display: { xs: 'none', sm: 'block' },
+                }}
+              >
+                {appName}
+              </Typography>
+            </>
+          )}
         </Box>
 
-        {/* Center Section - Search */}
+        {/* Center Section - Search (hidden on mobile, shown as icon) */}
         <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
-          <Search focused={searchFocused.toString()}>
+          {/* Desktop Search Bar */}
+          <Search 
+            focused={searchFocused.toString()}
+            sx={{ display: { xs: 'none', md: 'flex' } }}
+          >
             <SearchIconWrapper focused={searchFocused.toString()}>
               <SearchIcon />
             </SearchIconWrapper>
@@ -305,17 +347,42 @@ export default function TopNavHeader({
           </Search>
         </Box>
 
+        {/* Mobile Search Icon */}
+        <IconButton
+          onClick={handleMobileSearchOpen}
+          aria-label="Open search"
+          sx={{
+            display: { xs: 'flex', md: 'none' },
+            color: semanticTokens.effects.onDark.secondary,
+            '&:hover': {
+              backgroundColor: semanticTokens.effects.onDark.subtle,
+              color: brandColors.neutral.white,
+            },
+          }}
+        >
+          <SearchIcon />
+        </IconButton>
+
         {/* Right Section - Client Selector, Apps, User */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          {/* Client Selector Dropdown */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0.5, sm: 1.5 } }}>
+          {/* Client Selector Dropdown - truncated on mobile */}
           <ClientSelector
             onClick={handleClientClick}
             endIcon={<KeyboardArrowDownIcon />}
             aria-label={`Current client: ${selectedClient}. Click to switch clients`}
             aria-haspopup="listbox"
             aria-expanded={Boolean(clientAnchorEl)}
+            sx={{
+              minWidth: { xs: 100, sm: 180 },
+              maxWidth: { xs: 120, sm: 'none' },
+              '& .MuiButton-endIcon': {
+                ml: { xs: 0, sm: 1 },
+              },
+            }}
           >
-            {selectedClient}
+            <Typography noWrap sx={{ maxWidth: { xs: 80, sm: 'none' } }}>
+              {selectedClient}
+            </Typography>
           </ClientSelector>
           <Menu
             id="client-menu"
@@ -338,8 +405,8 @@ export default function TopNavHeader({
               sx: {
                 mt: 1,
                 minWidth: 220,
-                borderRadius: '12px',
-                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.15)',
+                borderRadius: semanticTokens.borders.radiusPx.lg, // 12px
+                boxShadow: semanticTokens.effects.shadow.floating,
               },
             }}
           >
@@ -371,9 +438,9 @@ export default function TopNavHeader({
             aria-haspopup="menu"
             aria-expanded={Boolean(appsAnchorEl)}
             sx={{
-              color: alpha(brandColors.neutral.white, 0.7),
+              color: semanticTokens.effects.onDark.secondary, // 70% white
               '&:hover': {
-                backgroundColor: alpha(brandColors.neutral.white, 0.1),
+                backgroundColor: semanticTokens.effects.onDark.subtle, // 12% white
                 color: brandColors.neutral.white,
               },
             }}
@@ -396,8 +463,8 @@ export default function TopNavHeader({
               sx: {
                 mt: 1,
                 minWidth: 240,
-                borderRadius: '12px',
-                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.15)',
+                borderRadius: semanticTokens.borders.radiusPx.lg, // 12px
+                boxShadow: semanticTokens.effects.shadow.floating,
               },
             }}
           >
@@ -438,19 +505,19 @@ export default function TopNavHeader({
             sx={{
               display: 'flex',
               alignItems: 'center',
-              borderRadius: '12px',
-              padding: '4px 8px',
+              borderRadius: semanticTokens.borders.radiusPx.lg, // 12px
+              padding: `${semanticTokens.inline.tight}px ${semanticTokens.inline.compact}px`, // 4px 8px
               '&:hover': {
-                backgroundColor: alpha(brandColors.neutral.white, 0.1),
+                backgroundColor: semanticTokens.effects.onDark.subtle, // 12% white
               },
             }}
           >
             <Avatar
               sx={{
-                width: 32,
-                height: 32,
-                fontSize: 12,
-                fontWeight: 600,
+                width: componentTokens.avatar.size.sm,
+                height: componentTokens.avatar.size.sm,
+                fontSize: semanticTokens.typography.label.small.fontSize, // 12px
+                fontWeight: semanticTokens.typography.heading.h6.fontWeight, // 600
                 backgroundColor: brandColors.primary.light,
                 color: 'white',
               }}
@@ -459,8 +526,8 @@ export default function TopNavHeader({
             </Avatar>
             <KeyboardArrowDownIcon
               sx={{
-                color: alpha(brandColors.neutral.white, 0.7),
-                fontSize: 20,
+                color: semanticTokens.effects.onDark.secondary, // 70% white
+                fontSize: semanticTokens.iconSize.navigation, // 20px
                 ml: 0.5,
               }}
             />
@@ -481,8 +548,8 @@ export default function TopNavHeader({
               sx: {
                 mt: 1,
                 minWidth: 240,
-                borderRadius: '12px',
-                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.15)',
+                borderRadius: semanticTokens.borders.radiusPx.lg, // 12px
+                boxShadow: semanticTokens.effects.shadow.floating,
               },
             }}
           >
@@ -490,10 +557,10 @@ export default function TopNavHeader({
             <Box sx={{ px: 2, py: 1.5, display: 'flex', alignItems: 'center', gap: 1.5 }}>
               <Avatar
                 sx={{
-                  width: 40,
-                  height: 40,
-                  fontSize: 14,
-                  fontWeight: 600,
+                  width: componentTokens.avatar.size.md,
+                  height: componentTokens.avatar.size.md,
+                  fontSize: semanticTokens.typography.body.small.fontSize, // 14px
+                  fontWeight: semanticTokens.typography.heading.h6.fontWeight, // 600
                   backgroundColor: brandColors.primary.light,
                   color: 'white',
                 }}
@@ -532,6 +599,63 @@ export default function TopNavHeader({
           </Menu>
         </Box>
       </Toolbar>
+
+      {/* Mobile Search Drawer */}
+      <Drawer
+        anchor="top"
+        open={mobileSearchOpen}
+        onClose={handleMobileSearchClose}
+        sx={{
+          display: { xs: 'block', md: 'none' },
+          '& .MuiDrawer-paper': {
+            backgroundColor: brandColors.primary.main,
+            pt: 1,
+            pb: 2,
+          },
+        }}
+      >
+        <Box sx={{ px: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+            <IconButton
+              onClick={handleMobileSearchClose}
+              aria-label="Close search"
+              sx={{ color: 'white' }}
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography variant="subtitle1" sx={{ color: 'white', fontWeight: 500 }}>
+              Search
+            </Typography>
+          </Box>
+          <Search focused="true" sx={{ maxWidth: 'none', mx: 0 }}>
+            <SearchIconWrapper focused="true">
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search..."
+              inputProps={{ 'aria-label': 'search' }}
+              value={searchValue}
+              onChange={handleSearchChange}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  handleMobileSearchSubmit();
+                }
+              }}
+              // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: focus search when drawer opens for mobile UX
+              autoFocus
+              focused="true"
+            />
+            <ClearButton
+              show={(searchValue.length > 0).toString()}
+              onClick={handleClearSearch}
+              size="small"
+              aria-label="Clear search"
+            >
+              <ClearIcon fontSize="small" />
+            </ClearButton>
+          </Search>
+        </Box>
+      </Drawer>
     </AppBar>
   );
 }

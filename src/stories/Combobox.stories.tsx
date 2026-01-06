@@ -8,6 +8,46 @@ import {
 } from '@mui/icons-material';
 import React from 'react';
 
+/**
+ * # Combobox
+ *
+ * An enhanced autocomplete/multi-select component with create option, grouping,
+ * and custom rendering. Built on MUI Autocomplete with Trinity-specific features.
+ *
+ * ## When to Use
+ * - Single or multi-select from a list of options
+ * - Tag/label selection interfaces
+ * - User/assignee pickers
+ * - Filterable dropdowns with search
+ * - When users need to create new options on the fly
+ *
+ * ## Trinity Design Specs
+ * - **Border Radius**: 6px for input, 8px for dropdown
+ * - **Checkbox style**: Trinity checkbox in multi-select mode
+ * - **Chip style**: Uses Trinity Chip component for tags
+ *
+ * ## Accessibility
+ *
+ * ### Keyboard Navigation
+ * - **Tab**: Moves focus to/from the combobox
+ * - **Arrow Down/Up**: Navigate through options
+ * - **Enter**: Select highlighted option
+ * - **Escape**: Close dropdown and clear input
+ * - **Backspace**: Remove last selected item (multi-select)
+ *
+ * ### Screen Reader Support
+ * - Uses `role="combobox"` with proper ARIA attributes
+ * - `aria-expanded` indicates dropdown state
+ * - `aria-activedescendant` tracks highlighted option
+ * - Selected items announced with count in multi-select
+ * - Options use `role="option"` with `aria-selected`
+ *
+ * ### WCAG Compliance
+ * - ✅ 4.5:1 contrast ratio for text and labels
+ * - ✅ 3:1 contrast ratio for input borders
+ * - ✅ Focus indicators clearly visible
+ * - ✅ Error states use both color and text
+ */
 const meta: Meta<typeof Combobox> = {
   title: 'Components/Combobox',
   component: Combobox,
@@ -19,33 +59,81 @@ const meta: Meta<typeof Combobox> = {
         component: 'An enhanced multi-select component with create option, grouping, and custom rendering. Built on MUI Autocomplete with additional features.',
       },
     },
+    a11y: {
+      config: {
+        rules: [
+          { id: 'color-contrast', enabled: true },
+          { id: 'label', enabled: true },
+        ],
+      },
+    },
   },
   argTypes: {
     multiple: {
       control: 'boolean',
       description: 'Enable multi-select mode',
+      table: { category: 'Behavior' },
     },
     creatable: {
       control: 'boolean',
       description: 'Allow creating new options',
+      table: { category: 'Behavior' },
     },
     showCheckbox: {
       control: 'boolean',
       description: 'Show checkboxes in dropdown',
+      table: { category: 'Appearance' },
     },
     groupBy: {
       control: 'boolean',
       description: 'Group options by group property',
+      table: { category: 'Behavior' },
     },
     size: {
       control: 'select',
       options: ['small', 'medium'],
+      description: 'The size of the input',
+      table: { defaultValue: { summary: 'medium' }, category: 'Appearance' },
     },
     disabled: {
       control: 'boolean',
+      description: 'If true, the component is disabled',
+      table: { category: 'State' },
     },
     fullWidth: {
       control: 'boolean',
+      description: 'If true, the component takes full container width',
+      table: { category: 'Layout' },
+    },
+    label: {
+      control: 'text',
+      description: 'The label for the input field',
+      table: { category: 'Content' },
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Placeholder text when no value selected',
+      table: { category: 'Content' },
+    },
+    helperText: {
+      control: 'text',
+      description: 'Helper text displayed below the input',
+      table: { category: 'Content' },
+    },
+    error: {
+      control: 'boolean',
+      description: 'If true, displays error state',
+      table: { category: 'State' },
+    },
+    errorMessage: {
+      control: 'text',
+      description: 'Error message displayed when error is true',
+      table: { category: 'Validation' },
+    },
+    limitTags: {
+      control: 'number',
+      description: 'Maximum number of tags visible (multi-select)',
+      table: { category: 'Behavior' },
     },
   },
 };
@@ -274,11 +362,12 @@ export const CustomRenderOption: Story = {
 
 export const CustomRenderTag: Story = {
   render: () => {
+    // @intentional-color: Priority level colors for demo - Tailwind red/orange/yellow/green
     const priorities: ComboboxOption[] = [
-      { id: 'critical', label: 'Critical', data: { color: '#dc2626' } },
-      { id: 'high', label: 'High', data: { color: '#f97316' } },
-      { id: 'medium', label: 'Medium', data: { color: '#eab308' } },
-      { id: 'low', label: 'Low', data: { color: '#22c55e' } },
+      { id: 'critical', label: 'Critical', data: { color: '#dc2626' } }, // @intentional-color: Tailwind red-600 for critical
+      { id: 'high', label: 'High', data: { color: '#f97316' } }, // @intentional-color: Tailwind orange-500 for high
+      { id: 'medium', label: 'Medium', data: { color: '#eab308' } }, // @intentional-color: Tailwind yellow-500 for medium
+      { id: 'low', label: 'Low', data: { color: '#22c55e' } }, // @intentional-color: Tailwind green-500 for low
     ];
 
     return (

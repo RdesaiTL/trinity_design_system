@@ -3,7 +3,7 @@
  * Trinity-styled line chart with support for multiple series
  */
 
-/* eslint-disable jsx-a11y/alt-text -- Recharts Area component is SVG-based, not HTML image map */
+ 
 
 import React, { useMemo, useId } from 'react';
 import {

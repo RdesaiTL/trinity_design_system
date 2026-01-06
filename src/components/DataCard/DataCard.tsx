@@ -13,7 +13,6 @@ import {
   IconButton,
   Tooltip,
   useTheme,
-  alpha,
 } from '@mui/material';
 import {
   TrendingUp as TrendUpIcon,
@@ -22,7 +21,7 @@ import {
   MoreVert as MoreIcon,
   InfoOutlined as InfoIcon,
 } from '@mui/icons-material';
-import { semanticTokens, baseTokens } from '../../tokens';
+import { semanticTokens } from '../../tokens';
 
 export type TrendDirection = 'up' | 'down' | 'flat';
 
@@ -113,21 +112,28 @@ export interface DataCardProps {
   fullHeight?: boolean;
 }
 
+/**
+ * Size variant styles using semantic density tokens
+ * Maps component sizes to Trinity's density scale:
+ * - small: compact for dense dashboards
+ * - medium: standard for balanced layouts
+ * - large: comfortable for focal content
+ */
 const sizeStyles = {
   small: {
-    padding: baseTokens.spacing[3],
+    padding: semanticTokens.density.standard.cellPadding,
     titleSize: 'caption' as const,
     valueSize: 'h5' as const,
     iconSize: 32,
   },
   medium: {
-    padding: baseTokens.spacing[4],
+    padding: semanticTokens.density.comfortable.cellPadding,
     titleSize: 'body2' as const,
     valueSize: 'h4' as const,
     iconSize: 40,
   },
   large: {
-    padding: baseTokens.spacing[5],
+    padding: semanticTokens.inline.relaxed, // 20px - relaxed breathing room
     titleSize: 'body1' as const,
     valueSize: 'h3' as const,
     iconSize: 48,
@@ -181,8 +187,17 @@ export const DataCard: React.FC<DataCardProps> = ({
   };
 
   const getIconBgColor = () => {
-    const palette = theme.palette[iconColor];
-    return alpha(palette.main, 0.1);
+    // Use semantic effect tokens for icon background opacity
+    // Maps palette colors to subtle state backgrounds
+    const stateMap: Record<string, string> = {
+      primary: semanticTokens.effects.overlay.pressed, // 12% - close to 10%
+      secondary: semanticTokens.effects.overlay.pressed,
+      success: semanticTokens.effects.state.successSubtle,
+      warning: semanticTokens.effects.state.warningSubtle,
+      error: semanticTokens.effects.state.errorSubtle,
+      info: semanticTokens.effects.state.infoSubtle,
+    };
+    return stateMap[iconColor] || semanticTokens.effects.overlay.pressed;
   };
 
   const cardStyles = {
@@ -192,7 +207,7 @@ export const DataCard: React.FC<DataCardProps> = ({
       boxShadow: 'none',
     },
     filled: {
-      backgroundColor: alpha(theme.palette.primary.main, 0.04),
+      backgroundColor: semanticTokens.effects.overlay.hoverSubtle, // 4% black
       boxShadow: 'none',
     },
   };
@@ -202,7 +217,7 @@ export const DataCard: React.FC<DataCardProps> = ({
       elevation={variant === 'default' ? 1 : 0}
       onClick={onClick}
       sx={{
-        borderRadius: semanticTokens.borders.radiusPx.sm,
+        borderRadius: semanticTokens.borders.radiusPx.lg, // 12px to match AI StatCard
         height: fullHeight ? '100%' : 'auto',
         cursor: onClick ? 'pointer' : 'default',
         transition: `all ${semanticTokens.motion.duration.fast} ${semanticTokens.motion.easing.default}`,
@@ -234,7 +249,7 @@ export const DataCard: React.FC<DataCardProps> = ({
                   justifyContent: 'center',
                   width: styles.iconSize,
                   height: styles.iconSize,
-                  borderRadius: semanticTokens.borders.radius.iconContainer,
+                  borderRadius: `${semanticTokens.borders.radius.iconContainer}px`,
                   backgroundColor: getIconBgColor(),
                   color: theme.palette[iconColor].main,
                 }}

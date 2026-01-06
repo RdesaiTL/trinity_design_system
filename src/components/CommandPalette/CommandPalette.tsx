@@ -18,7 +18,6 @@ import {
   Chip,
   Divider,
   useTheme,
-  alpha,
   Fade,
 } from '@mui/material';
 import {
@@ -27,7 +26,7 @@ import {
   ArrowUpward as ArrowUpIcon,
   ArrowDownward as ArrowDownIcon,
 } from '@mui/icons-material';
-import { semanticTokens, baseTokens } from '../../tokens';
+import { semanticTokens } from '../../tokens';
 
 export interface CommandItem {
   /** Unique identifier */
@@ -272,7 +271,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       slotProps={{
         backdrop: {
           sx: {
-            backgroundColor: alpha(theme.palette.common.black, 0.5),
+            backgroundColor: semanticTokens.effects.overlay.scrim, // 50% black
             backdropFilter: 'blur(4px)',
           },
         },
@@ -307,7 +306,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           placeholder={placeholder}
           fullWidth
           sx={{
-            fontSize: baseTokens.fontSize.lg,
+            fontSize: semanticTokens.typography.body.large.fontSize,
             '& .MuiInputBase-input': {
               p: 0,
             },
@@ -318,7 +317,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
             label="ESC"
             size="small"
             onClick={() => setQuery('')}
-            sx={{ height: 22, fontSize: baseTokens.fontSize.xs }}
+            sx={{ height: 22, fontSize: semanticTokens.typography.label.small.fontSize }}
           />
         )}
       </Box>
@@ -366,10 +365,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                           py: 1.5,
                           px: 2,
                           '&.Mui-selected': {
-                            backgroundColor: alpha(theme.palette.primary.main, 0.08),
+                            backgroundColor: semanticTokens.effects.overlay.hover, // 8%
                           },
                           '&.Mui-selected:hover': {
-                            backgroundColor: alpha(theme.palette.primary.main, 0.12),
+                            backgroundColor: semanticTokens.effects.overlay.pressed, // 12%
                           },
                         }}
                       >
@@ -382,7 +381,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                           primary={command.label}
                           secondary={command.description}
                           primaryTypographyProps={{
-                            fontWeight: isSelected ? 600 : 400,
+                            fontWeight: isSelected ? semanticTokens.typography.heading.h6.fontWeight : semanticTokens.typography.body.medium.fontWeight,
                           }}
                           secondaryTypographyProps={{
                             variant: 'caption',
@@ -423,14 +422,14 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-            <ArrowUpIcon sx={{ fontSize: 14, color: theme.palette.text.secondary }} />
-            <ArrowDownIcon sx={{ fontSize: 14, color: theme.palette.text.secondary }} />
+            <ArrowUpIcon sx={{ fontSize: semanticTokens.iconSize.inline, color: theme.palette.text.secondary }} />
+            <ArrowDownIcon sx={{ fontSize: semanticTokens.iconSize.inline, color: theme.palette.text.secondary }} />
             <Typography variant="caption" color="text.secondary">
               Navigate
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-            <EnterIcon sx={{ fontSize: 14, color: theme.palette.text.secondary }} />
+            <EnterIcon sx={{ fontSize: semanticTokens.iconSize.inline, color: theme.palette.text.secondary }} />
             <Typography variant="caption" color="text.secondary">
               Select
             </Typography>

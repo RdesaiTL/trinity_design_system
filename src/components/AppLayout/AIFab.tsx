@@ -6,7 +6,7 @@
 import React from 'react';
 import { Fab, Tooltip, Badge, Box, useTheme } from '@mui/material';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import { brandColors } from '../../tokens';
+// brandColors removed - use MUI theme tokens
 import { aiTokens } from '../AI';
 
 export interface AIFabProps {
@@ -51,7 +51,7 @@ export const AIFab: React.FC<AIFabProps> = ({
   zIndex = 1000,
 }) => {
   const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
+  const _isDark = theme.palette.mode === 'dark';
 
   // Calculate position styles
   const positionStyles: React.CSSProperties = {
@@ -97,12 +97,12 @@ export const AIFab: React.FC<AIFabProps> = ({
           transform: 'scale(0.95)',
         },
         '&.Mui-disabled': {
-          background: isDark ? brandColors.neutral.gray600 : brandColors.neutral.gray400,
+          background: 'action.disabledBackground', // Use MUI theme
           boxShadow: 'none',
         },
       }}
     >
-      <AutoAwesomeIcon sx={{ color: brandColors.neutral.white }} />
+      <AutoAwesomeIcon sx={{ color: 'common.white' }} /> {/* Use MUI theme */}
     </Fab>
   );
 
@@ -115,8 +115,8 @@ export const AIFab: React.FC<AIFabProps> = ({
           overlap="circular"
           sx={{
             '& .MuiBadge-badge': {
-              backgroundColor: brandColors.secondary.main,
-              color: brandColors.neutral.white,
+              backgroundColor: 'secondary.main', // Use MUI theme
+              color: 'common.white', // Use MUI theme
             },
           }}
         >

@@ -12,7 +12,7 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import { brandColors } from '../../tokens';
+// brandColors removed - use MUI theme tokens
 import { Icon } from '../Icon';
 import { aiTokens, aiRadiusPx } from './tokens';
 
@@ -122,18 +122,20 @@ export const StatCard: React.FC<StatCardProps> = ({
       case 'gradient':
         return {
           background: `linear-gradient(135deg, ${aiTokens.colors.aiPrimary} 0%, ${aiTokens.colors.aiSecondary} 100%)`,
-          color: 'brandColors.neutral.white',
+          color: 'common.white', // Use MUI theme
           border: 'none',
         };
       case 'outlined':
         return {
           backgroundColor: 'transparent',
-          border: `1px solid ${brandColors.neutral.gray100}`,
+          border: '1px solid', // Uses MUI theme divider
+          borderColor: 'divider',
         };
       default:
         return {
-          backgroundColor: 'brandColors.neutral.white',
-          border: `1px solid ${brandColors.neutral.gray100}`,
+          backgroundColor: 'background.paper', // Use MUI theme
+          border: '1px solid',
+          borderColor: 'divider',
         };
     }
   };
@@ -178,7 +180,8 @@ export const StatCard: React.FC<StatCardProps> = ({
               <Icon
                 name={icon}
                 size="small"
-                color={variant === 'gradient' ? 'brandColors.neutral.white' : aiTokens.colors.aiPrimary}
+                // eslint-disable-next-line no-restricted-syntax -- @intentional-color: white on gradient
+                color={variant === 'gradient' ? '#FFFFFF' : aiTokens.colors.aiPrimary}
               />
             </Box>
           )}
@@ -189,7 +192,7 @@ export const StatCard: React.FC<StatCardProps> = ({
           variant={styles.valueSize as 'h4' | 'h5' | 'h6'}
           sx={{
             fontWeight: 700,
-            color: variant === 'gradient' ? 'brandColors.neutral.white' : 'text.primary',
+            color: variant === 'gradient' ? 'common.white' : 'text.primary', // Use MUI theme
           }}
         >
           {value}
@@ -203,7 +206,8 @@ export const StatCard: React.FC<StatCardProps> = ({
               size="small"
               color={
                 variant === 'gradient'
-                  ? 'brandColors.neutral.white'
+                  // eslint-disable-next-line no-restricted-syntax -- @intentional-color: white on gradient variant
+                  ? '#FFFFFF'
                   : trend >= 0
                   ? statusColors.success
                   : statusColors.error
@@ -214,7 +218,7 @@ export const StatCard: React.FC<StatCardProps> = ({
               sx={{
                 color:
                   variant === 'gradient'
-                    ? 'rgba(255, 255, 255, 0.9)'
+                    ? 'common.white'
                     : trend >= 0
                     ? statusColors.success
                     : statusColors.error,
@@ -293,7 +297,8 @@ export const GradientIconBadge: React.FC<GradientIconBadgeProps> = ({
           boxShadow: `0 4px 12px ${startColor}33`,
         }}
       >
-        <Icon name={icon} size={styles.icon} color="brandColors.neutral.white" />
+        {/* eslint-disable-next-line no-restricted-syntax -- @intentional-color: white on gradient */}
+        <Icon name={icon} size={styles.icon} color="#FFFFFF" />
       </Box>
       {label && (
         <Typography variant="body2" sx={{ fontWeight: 500 }}>

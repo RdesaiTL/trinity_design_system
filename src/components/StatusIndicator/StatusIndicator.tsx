@@ -22,6 +22,7 @@ import {
 import { Icon } from '../Icon';
 import { StatusType, StatusSize, StatusShape, statusConfigs, sizeConfigs } from './types';
 import { ShapeComponents } from './Shapes';
+import { semanticTokens } from '../../tokens';
 
 // ============================================================================
 // VARIANT TYPES
@@ -226,7 +227,7 @@ const renderIcon = (
           justifyContent: 'center',
           width: sizeConfig.icon + 8,
           height: sizeConfig.icon + 8,
-          borderRadius: '50%',
+          borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
           backgroundColor: config.backgroundColor,
           color: config.color,
         }}
@@ -291,7 +292,7 @@ const renderDot = (
       sx={{
         width: sizeConfig.dotSize,
         height: sizeConfig.dotSize,
-        borderRadius: '50%',
+        borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
         backgroundColor: config.backgroundColor,
         flexShrink: 0,
         ...(pulse && {
@@ -366,7 +367,7 @@ const renderInline = (
           sx={{
             width: sizeConfig.dotSize,
             height: sizeConfig.dotSize,
-            borderRadius: '50%',
+            borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
             backgroundColor: config.backgroundColor,
             flexShrink: 0,
           }}

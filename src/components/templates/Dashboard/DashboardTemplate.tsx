@@ -20,7 +20,7 @@ import {
   Divider,
 } from '@mui/material';
 import { Refresh as RefreshIcon } from '@mui/icons-material';
-import { semanticTokens, baseTokens } from '../../../tokens';
+import { semanticTokens } from '../../../tokens';
 
 export interface KpiItem {
   id: string;
@@ -92,7 +92,7 @@ const DefaultKpiCard: React.FC<{ kpi: KpiItem; loading?: boolean }> = ({ kpi, lo
       sx={{
         p: 3,
         height: '100%',
-        borderRadius: semanticTokens.borders.radius.card,
+        borderRadius: `${semanticTokens.borders.radius.card}px`,
         border: `1px solid ${theme.palette.divider}`,
       }}
     >
@@ -264,12 +264,12 @@ export const DashboardTemplate: React.FC<DashboardTemplateProps> = ({
               sx={{
                 p: 3,
                 mb: 3,
-                borderRadius: semanticTokens.borders.radius.card,
+                borderRadius: `${semanticTokens.borders.radius.card}px`,
                 border: `1px solid ${theme.palette.divider}`,
               }}
             >
               {loading ? (
-                <Skeleton variant="rectangular" height={300} sx={{ borderRadius: 1 }} />
+                <Skeleton variant="rectangular" height={300} sx={{ borderRadius: `${semanticTokens.borders.radius.input}px` }} />
               ) : (
                 mainChart
               )}
@@ -286,12 +286,12 @@ export const DashboardTemplate: React.FC<DashboardTemplateProps> = ({
                     sx={{
                       p: 3,
                       height: '100%',
-                      borderRadius: semanticTokens.borders.radius.card,
+                      borderRadius: `${semanticTokens.borders.radius.card}px`,
                       border: `1px solid ${theme.palette.divider}`,
                     }}
                   >
                     {loading ? (
-                      <Skeleton variant="rectangular" height={200} sx={{ borderRadius: 1 }} />
+                      <Skeleton variant="rectangular" height={200} sx={{ borderRadius: `${semanticTokens.borders.radius.input}px` }} />
                     ) : (
                       chart
                     )}
@@ -309,10 +309,10 @@ export const DashboardTemplate: React.FC<DashboardTemplateProps> = ({
               elevation={0}
               sx={{
                 p: 3,
-                borderRadius: semanticTokens.borders.radius.card,
+                borderRadius: `${semanticTokens.borders.radius.card}px`,
                 border: `1px solid ${theme.palette.divider}`,
                 position: 'sticky',
-                top: baseTokens.spacing[4],
+                top: semanticTokens.spacing.component.paddingMd, // 16px
               }}
             >
               <Typography variant="subtitle1" fontWeight={600} gutterBottom>

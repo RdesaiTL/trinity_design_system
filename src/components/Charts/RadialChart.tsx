@@ -19,7 +19,7 @@ import {
   getChartColor,
 } from './tokens';
 import { RadialBarChartProps, GaugeChartProps } from './types';
-import { brandColors } from '../../tokens';
+import { brandColors, semanticTokens } from '../../tokens';
 
 /**
  * RadialBarChart - Trinity-styled radial/circular bar chart
@@ -90,7 +90,7 @@ export const RadialBarChart: React.FC<RadialBarChartProps> = ({
               sx={{
                 width: 12,
                 height: 12,
-                borderRadius: '50%',
+                borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
                 backgroundColor: item.fill,
                 flexShrink: 0,
               }}

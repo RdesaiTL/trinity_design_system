@@ -11,7 +11,7 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import { brandColors, semanticTokens } from '../../tokens';
+import { semanticTokens } from '../../tokens';
 import { chartTypography, chartSpacing } from './tokens';
 
 export interface ChartWrapperProps {
@@ -55,15 +55,16 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
   const containerStyles: SxProps<Theme> = {
     width: '100%',
     ...(variant === 'outlined' && {
-      border: `1px solid ${brandColors.neutral.gray200}`,
-      borderRadius: 2,
+      border: '1px solid',
+      borderColor: 'divider', // Use MUI theme
+      borderRadius: `${semanticTokens.borders.radius.card}px`,
       p: 2,
     }),
     ...(variant === 'elevated' && {
-      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
-      borderRadius: 2,
+      boxShadow: semanticTokens.effects.shadow.surface,
+      borderRadius: `${semanticTokens.borders.radius.card}px`,
       p: 2,
-      backgroundColor: brandColors.neutral.white,
+      backgroundColor: 'background.paper', // Use MUI theme
     }),
     ...sx,
   };
@@ -137,7 +138,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
             </Typography>
             <Typography
               variant="body2"
-              sx={{ color: brandColors.neutral.gray500 }}
+              sx={{ color: 'text.secondary' }} // Use MUI theme
             >
               {error}
             </Typography>
@@ -180,9 +181,10 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: brandColors.neutral.gray50,
-            borderRadius: 1,
-            border: `1px dashed ${brandColors.neutral.gray300}`,
+            backgroundColor: 'action.hover', // Use MUI theme for subtle bg
+            borderRadius: `${semanticTokens.borders.radius.card}px`,
+            border: '1px dashed',
+            borderColor: 'divider', // Use MUI theme
           }}
         >
           <Box sx={{ textAlign: 'center', p: 3 }}>
@@ -191,7 +193,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
               sx={{
                 width: 48,
                 height: 48,
-                color: brandColors.neutral.gray400,
+                color: 'text.disabled', // Use MUI theme
                 mb: 1,
               }}
               viewBox="0 0 24 24"
@@ -204,7 +206,7 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
             </Box>
             <Typography
               sx={{
-                color: brandColors.neutral.gray500,
+                color: 'text.secondary', // Use MUI theme
                 fontWeight: 500,
               }}
             >

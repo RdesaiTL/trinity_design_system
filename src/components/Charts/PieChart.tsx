@@ -23,7 +23,7 @@ import {
   getChartColor,
 } from './tokens';
 import { PieChartProps, PieDataPoint, PieActiveShapeProps, ChartTooltipRenderProps, PieLabelRenderProps } from './types';
-import { brandColors } from '../../tokens';
+import { semanticTokens } from '../../tokens';
 
 /**
  * Custom active shape for pie hover state
@@ -91,7 +91,7 @@ const PieTooltipContent: React.FC<PieTooltipContentProps> = ({
           sx={{
             width: 10,
             height: 10,
-            borderRadius: '50%',
+            borderRadius: `${semanticTokens.borders.radius.circle}px`, // Perfect circle
             backgroundColor: (item.payload?.fill as string) || item.color,
           }}
         />
@@ -263,7 +263,8 @@ export const PieChart: React.FC<PieChartProps> = ({
                 nameKey="name"
                 // @ts-expect-error - recharts label/activeShape prop types mismatch
                 label={showLabels ? renderLabel : false}
-                labelLine={showLabels ? { stroke: brandColors.neutral.gray400 } : false}
+                // eslint-disable-next-line no-restricted-syntax -- @intentional-color: pie chart label line stroke (gray-400)
+                labelLine={showLabels ? { stroke: '#9CA3AF' } : false}
                 activeIndex={activeIndex ?? undefined}
                 // @ts-expect-error - recharts activeShape prop type mismatch
                 activeShape={renderActiveShape}

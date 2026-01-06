@@ -18,6 +18,7 @@ import {
   ExpandLess as CollapseIcon,
   ContentCopy as CopyIcon,
 } from '@mui/icons-material';
+import { semanticTokens } from '../../tokens';
 
 // ============================================
 // Types
@@ -242,7 +243,7 @@ const Gutter: React.FC<GutterProps> = ({ lineNumber, type }) => {
         py: 0.25,
         textAlign: 'right',
         fontFamily: 'monospace',
-        fontSize: '0.75rem',
+        fontSize: semanticTokens.typography.dense.text, // 12px dense monospace
         color: theme.palette.text.secondary,
         backgroundColor: getBgColor(),
         borderRight: `1px solid ${theme.palette.divider}`,
@@ -458,7 +459,7 @@ const SideBySideView: React.FC<SideBySideViewProps> = ({ hunks, showLineNumbers 
                 px: 1,
                 py: 0.5,
                 fontFamily: 'monospace',
-                fontSize: '0.75rem',
+                fontSize: semanticTokens.typography.dense.text, // 12px dense monospace
                 color: theme.palette.info.main,
               }}
             >

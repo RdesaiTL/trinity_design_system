@@ -14,9 +14,10 @@ import {
   SxProps,
   Theme,
 } from '@mui/material';
-import { brandColors } from '../../tokens';
+// brandColors removed - use MUI theme tokens
 import { Icon } from '../Icon';
 import { aiTokens, aiSpacing, aiRadiusPx } from './tokens';
+import { semanticTokens } from '../../tokens';
 
 // ============================================================================
 // AI SUGGESTED ACTION
@@ -55,30 +56,31 @@ export const AISuggestedAction: React.FC<AISuggestedActionProps> = ({
     switch (variant) {
       case 'primary':
         return {
-          backgroundColor: aiTokens.colors.aiPrimary,
-          color: 'brandColors.neutral.white',
+          backgroundColor: aiTokens.colors.aiPrimary, // @intentional-color: AI domain color
+          color: 'common.white', // Use MUI theme
           border: 'none',
           '&:hover': {
-            backgroundColor: brandColors.primary.dark,
+            backgroundColor: aiTokens.colors.aiHover, // @intentional-color: AI domain hover
           },
         };
       case 'outlined':
         return {
           backgroundColor: 'transparent',
-          color: aiTokens.colors.aiPrimary,
-          border: `1px solid ${aiTokens.colors.aiPrimary}`,
+          color: aiTokens.colors.aiPrimary, // @intentional-color: AI domain color
+          border: `1px solid ${aiTokens.colors.aiPrimary}`, // @intentional-color: AI domain border
           '&:hover': {
-            backgroundColor: aiTokens.colors.aiHover,
+            backgroundColor: aiTokens.colors.aiHover, // @intentional-color: AI domain hover
           },
         };
       default:
         return {
-          backgroundColor: 'brandColors.neutral.white',
+          backgroundColor: 'background.paper', // Use MUI theme
           color: 'text.primary',
-          border: `1px solid ${brandColors.neutral.gray100}`,
+          border: '1px solid',
+          borderColor: 'divider', // Use MUI theme
           '&:hover': {
-            borderColor: aiTokens.colors.aiPrimary,
-            backgroundColor: aiTokens.colors.aiHover,
+            borderColor: aiTokens.colors.aiPrimary, // @intentional-color: AI domain color
+            backgroundColor: aiTokens.colors.aiHover, // @intentional-color: AI domain hover
           },
         };
     }
@@ -117,7 +119,8 @@ export const AISuggestedAction: React.FC<AISuggestedActionProps> = ({
           <Icon
             name={icon}
             size="small"
-            color={variant === 'primary' ? 'brandColors.neutral.white' : aiTokens.colors.aiPrimary}
+            // eslint-disable-next-line no-restricted-syntax -- @intentional-color: white on primary variant
+            color={variant === 'primary' ? '#FFFFFF' : aiTokens.colors.aiPrimary}
           />
         </Box>
         <Box sx={{ flex: 1, minWidth: 0 }}>
@@ -125,7 +128,7 @@ export const AISuggestedAction: React.FC<AISuggestedActionProps> = ({
             variant="body2"
             sx={{
               fontWeight: 500,
-              color: variant === 'primary' ? 'brandColors.neutral.white' : 'inherit',
+              color: variant === 'primary' ? 'common.white' : 'inherit', // Use MUI theme
             }}
           >
             {label}
@@ -147,9 +150,8 @@ export const AISuggestedAction: React.FC<AISuggestedActionProps> = ({
         <Icon
           name="chevron-right"
           size="small"
-          color={
-            variant === 'primary' ? 'brandColors.neutral.white' : brandColors.neutral.gray400
-          }
+          // eslint-disable-next-line no-restricted-syntax -- @intentional-color: white on primary variant
+          color={variant === 'primary' ? '#FFFFFF' : 'text.disabled'}
         />
       </Stack>
     </Paper>
@@ -211,28 +213,29 @@ export const AICircularAction: React.FC<AICircularActionProps> = ({
     switch (variant) {
       case 'primary':
         return {
-          backgroundColor: aiTokens.colors.aiPrimary,
-          color: 'brandColors.neutral.white',
+          backgroundColor: aiTokens.colors.aiPrimary, // @intentional-color: AI domain color
+          color: 'common.white', // Use MUI theme
           '&:hover': {
-            backgroundColor: brandColors.primary.dark,
+            backgroundColor: aiTokens.colors.aiHover, // @intentional-color: AI domain hover
           },
         };
       case 'gradient':
         return {
-          background: `linear-gradient(135deg, ${aiTokens.colors.aiPrimary} 0%, ${aiTokens.colors.aiSecondary} 100%)`,
-          color: 'brandColors.neutral.white',
+          background: `linear-gradient(135deg, ${aiTokens.colors.aiPrimary} 0%, ${aiTokens.colors.aiSecondary} 100%)`, // @intentional-color: AI gradient
+          color: 'common.white', // Use MUI theme
           '&:hover': {
-            background: `linear-gradient(135deg, ${brandColors.primary.dark} 0%, ${aiTokens.colors.aiSecondary} 100%)`,
+            background: `linear-gradient(135deg, ${aiTokens.colors.aiHover} 0%, ${aiTokens.colors.aiSecondary} 100%)`, // @intentional-color: AI gradient hover
           },
         };
       default:
         return {
-          backgroundColor: 'brandColors.neutral.white',
-          color: aiTokens.colors.aiPrimary,
-          border: `1px solid ${brandColors.neutral.gray100}`,
+          backgroundColor: 'background.paper', // Use MUI theme
+          color: aiTokens.colors.aiPrimary, // @intentional-color: AI domain color
+          border: '1px solid',
+          borderColor: 'divider', // Use MUI theme
           '&:hover': {
-            borderColor: aiTokens.colors.aiPrimary,
-            backgroundColor: aiTokens.colors.aiHover,
+            borderColor: aiTokens.colors.aiPrimary, // @intentional-color: AI domain color
+            backgroundColor: aiTokens.colors.aiHover, // @intentional-color: AI domain hover
           },
         };
     }
@@ -262,9 +265,9 @@ export const AICircularAction: React.FC<AICircularActionProps> = ({
             minWidth: 18,
             height: 18,
             borderRadius: aiRadiusPx.circle,
-            backgroundColor: brandColors.secondary.main,
-            color: 'brandColors.neutral.white',
-            fontSize: '0.625rem',
+            backgroundColor: 'secondary.main', // Use MUI theme
+            color: 'common.white', // Use MUI theme
+            fontSize: semanticTokens.typography.dense.badge, // 10px badge text
             fontWeight: 600,
             display: 'flex',
             alignItems: 'center',

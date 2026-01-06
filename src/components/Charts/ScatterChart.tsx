@@ -30,7 +30,6 @@ import {
   getChartColor,
 } from './tokens';
 import { ScatterChartProps, ScatterDataPoint, ChartTooltipRenderProps } from './types';
-import { brandColors } from '../../tokens';
 
 /**
  * ScatterTooltip - Hoisted tooltip component for scatter charts
@@ -83,7 +82,7 @@ const ScatterTooltipContent: React.FC<ScatterTooltipContentProps> = ({
             sx={{
               ...chartTypography.tooltip,
               fontFamily: chartTypography.fontFamily,
-              color: brandColors.neutral.gray600,
+              color: 'text.secondary', // @intentional: Use MUI theme for tooltip labels
             }}
           >
             {xAxisLabel}
@@ -103,7 +102,7 @@ const ScatterTooltipContent: React.FC<ScatterTooltipContentProps> = ({
             sx={{
               ...chartTypography.tooltip,
               fontFamily: chartTypography.fontFamily,
-              color: brandColors.neutral.gray600,
+              color: 'text.secondary', // @intentional: Use MUI theme for tooltip labels
             }}
           >
             {yAxisLabel}
@@ -124,7 +123,7 @@ const ScatterTooltipContent: React.FC<ScatterTooltipContentProps> = ({
               sx={{
                 ...chartTypography.tooltip,
                 fontFamily: chartTypography.fontFamily,
-                color: brandColors.neutral.gray600,
+                color: 'text.secondary', // @intentional: Use MUI theme for tooltip labels
               }}
             >
               Size
