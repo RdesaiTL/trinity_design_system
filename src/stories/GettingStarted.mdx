@@ -1,0 +1,120 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Welcome / Getting Started" />
+
+# Trinity Design System
+
+**Version:** v1.0.0  
+**Status:** Stable, supported, governed
+
+---
+
+## What This Is
+
+The Trinity Design System is a **production-ready React component system**
+built on **MUI**, with **semantic tokens** and **strict governance**.
+
+It is designed to:
+- Scale across teams
+- Prevent UI drift
+- Enforce accessibility
+- Eliminate styling guesswork
+
+---
+
+## What This Is NOT
+
+❌ A theme-only system  
+❌ A grab-bag of components  
+❌ A CSS utility library  
+❌ Something you customize by editing `theme.ts` directly  
+
+---
+
+## How to Get Started (Correct Way)
+
+### 1. Install the package
+```bash
+npm install @trinity/design-system
+```
+
+### 2. Wrap your app with the provider
+```tsx
+import { TrinityProvider } from '@trinity/design-system';
+
+<TrinityProvider>
+  <App />
+</TrinityProvider>
+```
+
+### 3. Use components
+```tsx
+import { Button, Card, TextField } from '@trinity/design-system';
+```
+
+---
+
+## 🚫 Critical Rule: Do NOT Use `theme.ts` Directly
+
+**Do not import or manipulate `theme.ts` in application code.**
+
+**Why:**
+- `theme.ts` is an implementation detail
+- Direct usage bypasses semantic intent
+- It breaks consistency and upgrade safety
+
+❌ **Wrong**
+```tsx
+import { theme } from '@trinity/design-system/theme';
+```
+
+✅ **Correct**
+```tsx
+import { Button } from '@trinity/design-system';
+```
+
+or
+
+```tsx
+sx={{ color: semanticTokens.colors.text.primary }}
+```
+
+---
+
+## Design Tokens (How to Think About Them)
+
+| Layer | Purpose |
+|-------|---------|
+| **Base tokens** | Raw values (internal only) |
+| **Semantic tokens** | Intent-based (what you use) |
+| **Component tokens** | Encapsulated styling |
+
+**You should almost always use semantic tokens.**
+
+---
+
+## Do / Don't Summary
+
+### ✅ DO
+- Use provided components
+- Use semantic tokens
+- Follow documented patterns
+- Trust CI failures
+
+### ❌ DON'T
+- Use `baseTokens` in app code
+- Add hardcoded colors
+- Modify theme internals
+- Silence lint rules
+
+---
+
+## Source of Truth
+
+All authoritative rules live in `/docs`:
+- **Alignment Contract**
+- **Token Usage Rules**
+- **Intentional Exceptions**
+- **Engineering Handoff**
+
+> Storybook demonstrates usage — it does not define rules.
