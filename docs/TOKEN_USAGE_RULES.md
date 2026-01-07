@@ -149,7 +149,6 @@ const headerBg = '#F3F4F6';
 | Pattern | Strictness |
 |---------|------------|
 | `src/components/**/*.tsx` | STRICT |
-| `src/pages/**/*.tsx` | STRICT |
 | `src/hooks/**/*.ts` | STRICT |
 
 ---

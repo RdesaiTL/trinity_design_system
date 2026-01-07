@@ -55,7 +55,7 @@ npm install @mui/material @emotion/react @emotion/styled react react-dom
 ### 1. Wrap Your App with ThemeProvider
 
 ```tsx
-// App.tsx
+// Your application entry point
 import React from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { lightTheme } from '@trinity/design-system';

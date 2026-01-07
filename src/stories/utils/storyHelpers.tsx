@@ -118,6 +118,7 @@ interface CodeBlockProps {
  */
 export const CodeBlock: React.FC<CodeBlockProps> = ({
   children,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _language = 'tsx',
   title,
 }) => (

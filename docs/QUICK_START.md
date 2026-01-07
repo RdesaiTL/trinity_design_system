@@ -13,7 +13,7 @@ npm install @trinity/design-system @mui/material @emotion/react @emotion/styled
 ## 2. Setup Theme
 
 ```tsx
-// App.tsx
+// Your application entry point
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { lightTheme } from '@trinity/design-system';
 

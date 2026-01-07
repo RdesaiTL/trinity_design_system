@@ -669,7 +669,7 @@ const CodeReviewPattern = () => {
   const { showToast } = useToast();
 
   const files = [
-    { path: 'src/App.tsx', additions: 12, deletions: 5 },
+    { path: 'src/index.tsx', additions: 12, deletions: 5 },
     { path: 'src/utils/helpers.ts', additions: 45, deletions: 20 },
     { path: 'src/components/Button.tsx', additions: 8, deletions: 2 },
   ];

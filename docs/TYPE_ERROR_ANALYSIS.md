@@ -377,31 +377,6 @@ import Grid2 from '@mui/material/Unstable_Grid2';
 
 ---
 
-### J. AppLayoutDemoPage Props (1 error)
-
-**File:** `src/pages/AppLayoutDemoPage.tsx:91`
-
-```typescript
-// CURRENT
-notificationCount={5}
-
-// ERROR: Property 'notificationCount' does not exist on type 'AppLayoutProps'
-```
-
-**Fix:**
-```typescript
-// Option A: Add to AppLayoutProps interface
-interface AppLayoutProps {
-  // ... existing
-  notificationCount?: number;
-}
-
-// Option B: Remove from usage if not needed
-// Delete the line: notificationCount={5}
-```
-
----
-
 ## 🟢 LOW (29 errors) — Test Utilities & Non-Production
 
 ### A. test-utils.tsx Missing expect (6 errors)

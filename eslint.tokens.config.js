@@ -49,7 +49,7 @@ export default tseslint.config(
     ],
   },
   {
-    files: ['src/components/**/*.{ts,tsx}', 'src/pages/**/*.{ts,tsx}'],
+    files: ['src/components/**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
       parserOptions: {

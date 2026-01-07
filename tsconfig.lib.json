@@ -34,10 +34,6 @@
   "exclude": [
     "src/**/*.test.*",
     "src/**/*.stories.*",
-    "src/pages/**/*",
-    "src/main.tsx",
-    "src/App.tsx",
-    "src/App.simple.tsx",
     "src/__tests__/**/*"
   ]
 }

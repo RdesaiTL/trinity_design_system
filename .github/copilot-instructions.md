@@ -8,7 +8,6 @@ MUI v6/7-based design system library with Trinity branding, WCAG 2.1 AA accessib
 ### Key Directories
 - `src/theme.ts` - **Central theme config**: brand colors, accessible combinations, light/dark MUI themes with component overrides
 - `src/components/` - Reusable Trinity components (`TopNavHeader`, `TopNavWithSidebar`, `Layout`, `shared`)
-- `src/pages/` - Component demo pages organized by MUI category (inputs, data-display, feedback, surfaces, navigation, layout)
 - `src/stories/` - Storybook stories with interactive documentation
 - `.storybook/` - Storybook config with theme decorator in `preview.tsx`
 
@@ -19,20 +18,6 @@ import { brandColors, accessibleCombinations, lightTheme, darkTheme } from './th
 ```
 
 ## Critical Patterns
-
-### Component Page Structure
-Demo pages use shared components from [src/components/shared.tsx](src/components/shared.tsx):
-```tsx
-import { ComponentPage, Section, Showcase } from '../components/shared';
-
-export const MyPage: React.FC = () => (
-  <ComponentPage title="Component Name" description="Description text">
-    <Section title="Variant Name">
-      <Showcase>{/* Components here */}</Showcase>
-    </Section>
-  </ComponentPage>
-);
-```
 
 ### Storybook Stories
 Stories follow CSF3 format with `Meta` and `StoryObj` types. See [src/stories/Button.stories.tsx](src/stories/Button.stories.tsx):
@@ -51,10 +36,10 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = { args: { /* props */ } };
 ```
 
-### Adding New Pages
-1. Create page in appropriate `src/pages/{category}/` folder
-2. Export from [src/pages/index.ts](src/pages/index.ts)
-3. Add navigation entry in [src/App.tsx](src/App.tsx) `navCategories` array
+### Adding New Stories
+1. Create story in `src/stories/` folder following CSF3 format
+2. Use proper `title` hierarchy (e.g., `Components/Button`)
+3. Include `tags: ['autodocs']` for automatic documentation
 
 ## Style Guidelines
 

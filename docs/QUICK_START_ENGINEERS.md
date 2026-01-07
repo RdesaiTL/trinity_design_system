@@ -39,7 +39,7 @@ npm install @mui/icons-material
 ### Minimal Setup (Copy-Paste Ready)
 
 ```tsx
-// src/App.tsx
+// Your application entry point
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { lightTheme } from '@trinity/design-system';
 
@@ -56,7 +56,7 @@ export default function App() {
 ### With Dark Mode Toggle
 
 ```tsx
-// src/App.tsx
+// Your application entry point
 import { useState } from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { lightTheme, darkTheme } from '@trinity/design-system';
@@ -359,7 +359,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 ```
 
 ```tsx
-// src/App.tsx
+// Your application component
 import { 
   Container, 
   Card, 
