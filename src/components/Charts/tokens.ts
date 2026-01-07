@@ -330,10 +330,3 @@ export const getChartColor = (index: number): string => {
 export const getChartColors = (count: number): string[] => {
   return Array.from({ length: count }, (_, i) => getChartColor(i));
 };
-
-/**
- * Generate gradient ID for unique gradients
- */
-export const generateGradientId = (prefix: string = 'gradient'): string => {
-  return `${prefix}-${Math.random().toString(36).substr(2, 9)}`;
-};

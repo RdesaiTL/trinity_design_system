@@ -183,28 +183,35 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [size, setSize] = React.useState<number | null>(null);
   const [isDragging, setIsDragging] = React.useState(false);
+  const [containerSize, setContainerSize] = React.useState<number>(1000);
   const initialSizeRef = React.useRef<number>(0);
   const startPosRef = React.useRef<number>(0);
 
   const isHorizontal = direction === 'horizontal';
   const [firstPane, secondPane] = children;
 
-  // Parse initial size
+  // Track container size to avoid ref access during render
+  React.useLayoutEffect(() => {
+    if (containerRef.current) {
+      const newSize = isHorizontal
+        ? containerRef.current.offsetWidth
+        : containerRef.current.offsetHeight;
+      setContainerSize(newSize);
+    }
+  }, [isHorizontal, size, isDragging]);
+
+  // Parse initial size (uses containerSize state, not ref)
   const parseInitialSize = React.useCallback((): number => {
     if (typeof defaultSize === 'number') {
       return defaultSize;
     }
     if (typeof defaultSize === 'string' && defaultSize.endsWith('%')) {
-      const container = containerRef.current;
-      if (container) {
-        const containerSize = isHorizontal
-          ? container.offsetWidth
-          : container.offsetHeight;
+      if (containerSize > 0) {
         return (parseFloat(defaultSize) / 100) * (containerSize - resizerSize);
       }
     }
     return 200; // Fallback
-  }, [defaultSize, isHorizontal, resizerSize]);
+  }, [defaultSize, containerSize, resizerSize]);
 
   // Initialize size on mount
   React.useEffect(() => {
@@ -336,8 +343,8 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
     [size, parseInitialSize, clampSize, minSize, maxSize, isHorizontal, resizerSize, onResize, handleDoubleClick]
   );
 
-  // Calculate pane sizes
-  const getFirstPaneStyle = (): React.CSSProperties => {
+  // Calculate pane sizes (memoized to avoid recalculation during render)
+  const firstPaneStyle = React.useMemo((): React.CSSProperties => {
     if (collapsedFirst) {
       return isHorizontal ? { width: 0 } : { height: 0 };
     }
@@ -346,14 +353,17 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
     }
     const paneSize = size ?? parseInitialSize();
     return isHorizontal ? { width: paneSize } : { height: paneSize };
-  };
+  }, [collapsedFirst, collapsedSecond, isHorizontal, size, parseInitialSize]);
 
-  const getSecondPaneStyle = (): React.CSSProperties => {
+  const secondPaneStyle = React.useMemo((): React.CSSProperties => {
     if (collapsedSecond) {
       return isHorizontal ? { width: 0 } : { height: 0 };
     }
     return { flex: 1 };
-  };
+  }, [collapsedSecond, isHorizontal]);
+
+  // Memoize valueNow for Resizer to avoid calling parseInitialSize during render
+  const valueNow = React.useMemo(() => size ?? parseInitialSize(), [size, parseInitialSize]);
 
    
   return (
@@ -375,7 +385,7 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
           overflow: 'hidden',
           flexShrink: 0,
           transition: isDragging ? 'none' : 'width 200ms ease, height 200ms ease',
-          ...getFirstPaneStyle(),
+          ...firstPaneStyle,
         }}
       >
         {!collapsedFirst && firstPane}
@@ -391,11 +401,9 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
           onMouseDown={handleMouseDown}
           onDoubleClick={doubleClickReset ? handleDoubleClick : undefined}
           onKeyDown={handleKeyDown}
-          valueNow={size ?? parseInitialSize()}
+          valueNow={valueNow}
           valueMin={minSize}
-          valueMax={maxSize || (containerRef.current
-            ? (isHorizontal ? containerRef.current.offsetWidth : containerRef.current.offsetHeight) - resizerSize - minSize
-            : 1000)}
+          valueMax={maxSize || containerSize - resizerSize - minSize}
         />
       )}
 
@@ -404,7 +412,7 @@ export const SplitPane: React.FC<SplitPaneProps> = ({
         sx={{
           overflow: 'hidden',
           transition: isDragging ? 'none' : 'width 200ms ease, height 200ms ease',
-          ...getSecondPaneStyle(),
+          ...secondPaneStyle,
         }}
       >
         {!collapsedSecond && secondPane}

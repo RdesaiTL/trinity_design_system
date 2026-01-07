@@ -181,7 +181,7 @@ export default function TopNavHeader({
   hideAppNameOnMobile = true,
 }: TopNavHeaderProps) {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const _isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const isSmallMobile = useMediaQuery(theme.breakpoints.down('sm'));
   
   const [clientAnchorEl, setClientAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -641,7 +641,7 @@ export default function TopNavHeader({
                   handleMobileSearchSubmit();
                 }
               }}
-              // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: focus search when drawer opens for mobile UX
+              // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: Focus search input when mobile search overlay opens for immediate typing
               autoFocus
               focused="true"
             />

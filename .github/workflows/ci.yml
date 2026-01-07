@@ -36,6 +36,9 @@ jobs:
       - name: Enforce token usage
         run: npm run lint:tokens
 
+      - name: Validate docs freshness
+        run: node scripts/check-docs-freshness.js
+
       - name: TypeScript type check
         run: npx tsc --noEmit
 

@@ -49,7 +49,7 @@ const meta: Meta<typeof Footer> = {
     },
   },
   decorators: [
-    (Story, context) => (
+    (Story, _context) => (
       <Box sx={{ minHeight: 200, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
         <Story />
       </Box>

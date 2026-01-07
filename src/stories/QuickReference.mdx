@@ -1,0 +1,127 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Welcome / Quick Reference" />
+
+# Welcome to Trinity Design System
+
+**Version:** {process.env.STORYBOOK_VERSION}  
+**Commit:** {process.env.STORYBOOK_COMMIT}
+
+---
+
+## Quick Links
+
+- 📖 [Full Release Notes](../?path=/docs/docs-release-notes--docs)
+- 🛠 [Engineering Handoff](../?path=/docs/docs-engineering-handoff--docs)
+- 🎨 [Component Library](../?path=/docs/components-button--docs)
+- 🧭 [Token Reference](../?path=/docs/foundations-tokens--docs)
+
+---
+
+## v1.1.1 Highlights
+
+### Fixes
+- **React Runtime Correctness**: Fixed ref access during render in `SearchInput` and `SplitPane`
+- **Accessibility Compliance**: Scoped eslint-disable comments for intentional autoFocus usages
+- **TypeScript Errors**: Fixed type errors in `ComposedChart` and `Sparkline` aria-labels
+- **Token Lint**: Resolved all jsx-a11y violations in production components
+
+---
+
+## Installation
+
+```bash
+npm install @trinity/design-system
+```
+
+## Basic Usage
+
+```tsx
+import { ThemeProvider } from '@mui/material/styles';
+import { lightTheme, Button } from '@trinity/design-system';
+
+function App() {
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <Button variant="contained">Get Started</Button>
+    </ThemeProvider>
+  );
+}
+```
+
+---
+
+## Architecture
+
+### Token Hierarchy
+
+```
+┌─────────────────────────────────────────────────────┐
+│                  MUI Theme                          │  ← Single source of truth
+├─────────────────────────────────────────────────────┤
+│              Semantic Tokens                        │  ← Purpose-based aliases
+├─────────────────────────────────────────────────────┤
+│              Brand Colors                           │  ← Trinity palette
+├─────────────────────────────────────────────────────┤
+│              Base Tokens                            │  ← Raw values (internal)
+└─────────────────────────────────────────────────────┘
+```
+
+### What You Should Import
+
+```tsx
+// ✅ ALLOWED
+import { brandColors, semanticTokens } from '@trinity/design-system';
+import { lightTheme, darkTheme } from '@trinity/design-system';
+
+// ❌ PROHIBITED  
+import { baseTokens } from '@trinity/design-system'; // Internal only
+```
+
+---
+
+## Styling Guidelines
+
+### Colors
+
+```tsx
+// ✅ Use tokens
+<Box sx={{ color: brandColors.primary.navy }} />
+<Box sx={{ backgroundColor: semanticTokens.colors.background.primary }} />
+
+// ❌ Never hardcode
+<Box sx={{ color: '#0A2540' }} />  // VIOLATION
+```
+
+### Spacing & Radius
+
+```tsx
+// ✅ Use theme spacing
+<Box sx={{ p: 2, gap: 1, borderRadius: 1 }} />
+
+// ❌ Never hardcode
+<Box sx={{ padding: '16px', borderRadius: '8px' }} />  // VIOLATION
+```
+
+---
+
+## CI Status
+
+| Check | Status |
+|-------|--------|
+| `npm run lint` | ✅ 0 errors |
+| `npm run lint:tokens` | ✅ 0 errors |
+| `npm test` | ✅ 492 passed |
+| `npm run build` | ✅ Passing |
+
+---
+
+## Documentation
+
+| Document | Purpose |
+|----------|---------|
+| [RELEASE.md](https://github.com/RdesaiTL/trinity_design_system/blob/main/docs/RELEASE.md) | Version history & highlights |
+| [ENGINEERING_HANDOFF.md](https://github.com/RdesaiTL/trinity_design_system/blob/main/docs/ENGINEERING_HANDOFF.md) | Developer usage guide |
+| [TOKEN_USAGE_RULES.md](https://github.com/RdesaiTL/trinity_design_system/blob/main/docs/TOKEN_USAGE_RULES.md) | Token compliance rules |
+| [ALIGNMENT_CONTRACT.md](https://github.com/RdesaiTL/trinity_design_system/blob/main/docs/ALIGNMENT_CONTRACT.md) | Architectural governance |
+| [INTENTIONAL_EXCEPTIONS.md](https://github.com/RdesaiTL/trinity_design_system/blob/main/docs/INTENTIONAL_EXCEPTIONS.md) | Approved exceptions |

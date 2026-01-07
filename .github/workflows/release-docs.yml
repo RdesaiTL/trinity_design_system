@@ -1,0 +1,51 @@
+name: Release Docs
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release-docs:
+    name: 📝 Update Release Notes
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for changelog generation
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Generate changelog
+        run: |
+          npx conventional-changelog -p angular -i docs/RELEASE.md -s -r 0
+          
+      - name: Update version in RELEASE.md header
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          DATE=$(date +%Y-%m-%d)
+          sed -i "1s/.*/# Trinity Design System — Release Notes\n\n> **Current Version**: ${VERSION}  \n> **Release Date**: ${DATE}  \n> **Status**: Stable\n/" docs/RELEASE.md
+
+      - name: Commit and push
+        run: |
+          git add docs/RELEASE.md
+          git commit -m "docs: update release notes for ${GITHUB_REF_NAME}" || echo "No changes to commit"
+          git push origin HEAD:main

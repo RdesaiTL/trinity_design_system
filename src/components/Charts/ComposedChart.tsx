@@ -151,6 +151,7 @@ export const ComposedChart: React.FC<ComposedChartProps> = ({
         return (
           <Area
             {...commonProps}
+            aria-label={`${config.name || config.key} area series`}
             type={config.curve || 'monotone'}
             fill={`url(#${gradientId})`}
             stroke={seriesColor}

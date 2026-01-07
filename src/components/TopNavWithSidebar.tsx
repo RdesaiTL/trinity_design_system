@@ -197,7 +197,7 @@ export default function TopNavWithSidebar({
 }: TopNavWithSidebarProps) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const isSmallMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const _isSmallMobile = useMediaQuery(theme.breakpoints.down('sm'));
   
   const [clientAnchorEl, setClientAnchorEl] = React.useState<null | HTMLElement>(null);
   const [userAnchorEl, setUserAnchorEl] = React.useState<null | HTMLElement>(null);

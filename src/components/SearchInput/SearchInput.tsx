@@ -129,12 +129,22 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   const [internalValue, setInternalValue] = React.useState('');
   const [isOpen, setIsOpen] = React.useState(false);
   const [highlightedIndex, setHighlightedIndex] = React.useState(-1);
+  const [anchorWidth, setAnchorWidth] = React.useState<number | undefined>(undefined);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const anchorRef = React.useRef<HTMLDivElement>(null);
   const debounceRef = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const value = controlledValue !== undefined ? controlledValue : internalValue;
   const styles = sizeStyles[size];
+
+  // Track anchor element and width for Popper (avoids ref access during render)
+  React.useLayoutEffect(() => {
+    if (anchorRef.current) {
+      setAnchorEl(anchorRef.current);
+      setAnchorWidth(anchorRef.current.offsetWidth);
+    }
+  }, [isOpen]);
 
   // Filter recent searches based on current input
   const filteredRecent = React.useMemo(() => {
@@ -316,7 +326,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
             onKeyDown={handleKeyDown}
             placeholder={placeholder}
             disabled={disabled}
-            // eslint-disable-next-line jsx-a11y/no-autofocus -- Controlled via prop, intentional for search focus UX
+            // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: Controlled via prop for consumer-defined focus behavior (e.g., search overlays)
             autoFocus={autoFocus}
             sx={{
               flex: 1,
@@ -368,10 +378,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         { }
         <Popper
           open={showDropdown}
-          anchorEl={anchorRef.current}
+          anchorEl={anchorEl}
           placement="bottom-start"
           transition
-          style={{ width: anchorRef.current?.offsetWidth, zIndex: 1000 }}
+          style={{ width: anchorWidth, zIndex: 1000 }}
         >
           { }
           {({ TransitionProps }) => (

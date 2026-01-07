@@ -325,7 +325,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               placeholder={activeFilter.placeholder}
               value={currentValue || ''}
               onChange={(e) => handleChange(e.target.value)}
-              // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional UX: focus filter input when opened
+              // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: Focus input immediately when filter popover opens for efficient keyboard entry
               autoFocus
             />
           )}
@@ -338,7 +338,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               placeholder={activeFilter.placeholder}
               value={currentValue || ''}
               onChange={(e) => handleChange(e.target.value ? Number(e.target.value) : null)}
-              // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional UX: focus filter input when opened
+              // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: Focus input immediately when filter popover opens for efficient keyboard entry
               autoFocus
             />
           )}

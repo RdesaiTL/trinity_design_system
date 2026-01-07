@@ -242,6 +242,7 @@ export const AreaChart: React.FC<AreaChartProps> = ({
                 type={curveType}
                 dataKey={s.dataKey}
                 name={s.name || s.dataKey}
+                aria-label={`${s.name || s.dataKey} data series`}
                 stroke={color}
                 strokeWidth={chartSizing.strokeWidth.default}
                 fill={gradient ? `url(#${gradientIds[index]})` : color}

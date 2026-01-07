@@ -54,7 +54,7 @@ const WelcomePage = () => {
 
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <Chip
-            label="v1.1.0"
+            label="v1.1.1"
             size="small"
             sx={{
               bgcolor: baseTokens.colors.coral[800],

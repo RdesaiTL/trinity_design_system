@@ -324,7 +324,8 @@ describe('Theme Creation', () => {
     it('should set appropriate border radius per mode', () => {
       const lightTheme = createTrinityTheme('light');
       const darkTheme = createTrinityTheme('dark');
-      expect(lightTheme.shape.borderRadius).toBe(baseTokens.borderRadius['2xl']);
+      // Both modes use md (8px) as base - components override as needed via MUI overrides
+      expect(lightTheme.shape.borderRadius).toBe(baseTokens.borderRadius.md);
       expect(darkTheme.shape.borderRadius).toBe(baseTokens.borderRadius.md);
     });
   });

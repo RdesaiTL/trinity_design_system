@@ -237,6 +237,7 @@ export const LineChart: React.FC<LineChartProps> = ({
                   key={`area-${s.dataKey}`}
                   type={curveType}
                   dataKey={s.dataKey}
+                  aria-label={`${s.name || s.dataKey} area fill`}
                   fill={`url(#${gradientIds[index]})`}
                   stroke="none"
                   fillOpacity={1}

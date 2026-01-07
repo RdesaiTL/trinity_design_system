@@ -64,7 +64,7 @@ export const DialogPage: React.FC = () => {
             </DialogContent>
             <DialogActions>
               <Button onClick={() => setOpen(false)}>Cancel</Button>
-              {/* eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: focus primary action in dialog */}
+              {/* eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: Focus primary action button per dialog accessibility best practices */}
               <Button onClick={() => setOpen(false)} autoFocus>Agree</Button>
             </DialogActions>
           </Dialog>
@@ -85,7 +85,7 @@ export const DialogPage: React.FC = () => {
             </DialogContent>
             <DialogActions>
               <Button onClick={() => setAlertOpen(false)}>Cancel</Button>
-              {/* eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: focus destructive action for confirmation */}
+              {/* eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: Focus primary action button per dialog accessibility best practices */}
               <Button onClick={() => setAlertOpen(false)} color="error" autoFocus>Delete</Button>
             </DialogActions>
           </Dialog>
@@ -104,7 +104,7 @@ export const DialogPage: React.FC = () => {
                 Enter your email address to subscribe to our newsletter.
               </DialogContentText>
               <TextField
-                // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: focus first form field in dialog
+                // eslint-disable-next-line jsx-a11y/no-autofocus -- Intentional: Focus first input field when form dialog opens for efficient data entry
                 autoFocus
                 margin="dense"
                 label="Email Address"

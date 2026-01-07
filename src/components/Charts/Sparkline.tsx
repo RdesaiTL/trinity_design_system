@@ -250,6 +250,7 @@ export const Sparkline: React.FC<SparklineProps> = ({
           <Area
             type="monotone"
             dataKey="value"
+            aria-label="Sparkline area data visualization"
             stroke={color}
             strokeWidth={1.5}
             fill="url(#sparkline-gradient)"

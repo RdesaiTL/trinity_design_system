@@ -243,7 +243,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
   };
 
   // Handle create option
-  const handleCreate = async () => {
+  const handleCreate = React.useCallback(async () => {
     if (!canCreate || !onCreate) return;
 
     const newOption = await onCreate(inputValue);
@@ -251,7 +251,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
     setInternalValue(newValue);
     onChange?.(newValue);
     setInputValue('');
-  };
+  }, [canCreate, onCreate, inputValue, multiple, value, onChange]);
 
   // Render input
   const renderInput = (params: AutocompleteRenderInputParams) => (
@@ -335,7 +335,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
         </Paper>
       );
     },
-    [canCreate, createText, inputValue, theme.palette.primary.main]
+    [canCreate, createText, inputValue, theme.palette.primary.main, handleCreate]
   );
 
   // Build options with proper typing

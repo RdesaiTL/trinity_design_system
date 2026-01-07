@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, Typography, Grid, Container } from '@mui/material';
 import { LandingPage, FeatureCard, LandingPageFeature } from '../components/LandingPage';
 import TopNavHeader from '../components/TopNavHeader';
+import Footer from '../components/Footer';
 import { gradientIcons, brandGradients, backgroundImages } from '../assets';
 import { brandColors } from '../tokens';
 
@@ -248,6 +249,96 @@ export const WithNavigation: Story = {
             boxShadow: 'none',
           },
         }}
+      />
+    ),
+  },
+};
+
+/**
+ * Complete page template with navigation header AND footer.
+ * This is the recommended pattern for production landing pages.
+ */
+export const CompleteTemplate: Story = {
+  args: {
+    heroTitle: 'AI for Life Sciences',
+    heroSubtitle:
+      'Unlock the power of AI in transforming research, operations, and recruitment with our innovative tools.',
+    backgroundImage: brandGradients.light[0],
+    features: sampleFeatures,
+    columns: 3,
+    heroHeight: 400,
+    heroExtendsUnderNav: true,
+    navHeight: 64,
+    header: (
+      <TopNavHeader
+        appTitle="AI Innovation Hub"
+        clients={[
+          { id: '1', name: 'Acme Pharma' },
+          { id: '2', name: 'BioTech Inc' },
+        ]}
+        selectedClientId="1"
+        onClientChange={() => {}}
+        user={{ name: 'Rahul Desai', email: 'rahul@trinity.com' }}
+        onLogout={() => {}}
+        sx={{
+          position: 'relative',
+          zIndex: 10,
+          backgroundColor: 'transparent',
+          '& .MuiAppBar-root': {
+            backgroundColor: 'transparent',
+            boxShadow: 'none',
+          },
+        }}
+      />
+    ),
+    footer: <Footer />,
+  },
+};
+
+/**
+ * Complete template with custom footer links for specific applications.
+ */
+export const WithCustomFooter: Story = {
+  args: {
+    heroTitle: 'Research Platform',
+    heroSubtitle:
+      'Accelerate your research with AI-powered tools and comprehensive data analytics.',
+    backgroundImage: brandGradients.light[2],
+    features: sampleFeatures,
+    columns: 3,
+    heroHeight: 350,
+    heroExtendsUnderNav: true,
+    navHeight: 64,
+    header: (
+      <TopNavHeader
+        appTitle="Research Platform"
+        clients={[
+          { id: '1', name: 'Acme Pharma' },
+        ]}
+        selectedClientId="1"
+        onClientChange={() => {}}
+        user={{ name: 'Jane Smith', email: 'jane@company.com' }}
+        onLogout={() => {}}
+        sx={{
+          position: 'relative',
+          zIndex: 10,
+          backgroundColor: 'transparent',
+          '& .MuiAppBar-root': {
+            backgroundColor: 'transparent',
+            boxShadow: 'none',
+          },
+        }}
+      />
+    ),
+    footer: (
+      <Footer
+        companyName="Acme Pharma"
+        links={[
+          { label: 'Terms of Service', href: '/terms' },
+          { label: 'Privacy Policy', href: '/privacy' },
+          { label: 'Support', href: 'mailto:support@acme.com', external: false },
+          { label: 'Documentation', href: '/docs' },
+        ]}
       />
     ),
   },
