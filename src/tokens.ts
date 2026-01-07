@@ -1,0 +1,2685 @@
+// ============================================
+// TRINITY DESIGN TOKENS
+// A comprehensive token system for consistent design
+// ============================================
+
+
+/**
+ * Trinity Design System Token Types
+ * These interfaces describe the structure of the design tokens for type safety and DX.
+ */
+
+// ============================================
+// BASE TOKEN INTERFACES
+// ============================================
+
+export interface TrinityColorShades {
+  [key: string]: string;
+}
+
+export interface TrinityBaseColors {
+  navy: TrinityColorShades;
+  purple: TrinityColorShades;
+  indigo: TrinityColorShades;
+  coral: TrinityColorShades;
+  azure: TrinityColorShades;
+  gray: TrinityColorShades;
+}
+
+export interface TrinitySpacing {
+  0: number; 0.5: number; 1: number; 1.5: number; 2: number; 2.5: number; 3: number; 4: number;
+  5: number; 6: number; 7: number; 8: number; 9: number;
+  10: number; 12: number; 14: number; 16: number;
+  20: number; 24: number; 32: number;
+}
+
+export interface TrinityFontSize {
+  xs: string; sm: string; base: string; lg: string; xl: string;
+  '2xl': string; '3xl': string; '4xl': string; '5xl': string; '6xl': string;
+}
+
+export interface TrinityFontWeight {
+  light: number; regular: number; medium: number;
+  semibold: number; bold: number; extrabold: number;
+}
+
+export interface TrinityLineHeight {
+  none: number; tight: number; snug: number;
+  normal: number; relaxed: number; loose: number;
+}
+
+export interface TrinityLetterSpacing {
+  tighter: string; tight: string; normal: string;
+  wide: string; wider: string; widest: string;
+}
+
+/**
+ * Border Radius Token System
+ * 
+ * Based on size-based grouping with nesting formula:
+ * Outer radius = Inner radius + Padding
+ * 
+ * Size groups (by shortest side):
+ * - xs: 16-24px elements (small chips, badges)
+ * - sm: 24-32px elements (buttons, inputs, small cards)
+ * - md: 32-48px elements (cards, list items)
+ * - lg: 48-64px elements (larger cards, dialogs)
+ * - xl: 64px+ elements (modals, large containers)
+ */
+export interface TrinityBorderRadius {
+  /** No radius - 0px */
+  none: number;
+  /** Extra small - 4px - For 16-24px elements (badges, small chips, icons) */
+  xs: number;
+  /** Small - 6px - For 24-32px elements (buttons, tags, inputs) */
+  sm: number;
+  /** Medium - 8px - For 32-48px elements (cards, list items, small containers) */
+  md: number;
+  /** Large - 12px - For 48-64px elements (larger cards, dialogs, panels) */
+  lg: number;
+  /** Extra large - 16px - For 64px+ elements (modals, popovers, large containers) */
+  xl: number;
+  /** 2X large - 20px - For very large containers with nested lg elements */
+  '2xl': number;
+  /** 3X large - 24px - For maximum container nesting scenarios */
+  '3xl': number;
+  /** Full/Max - 9999px - For pill shapes (buttons, badges, avatars) */
+  full: number;
+}
+
+export interface TrinityBorderWidth {
+  0: number; 1: number; 2: number; 4: number; 8: number;
+}
+
+export interface TrinityShadows {
+  none: string; sm: string; base: string; md: string;
+  lg: string; xl: string; '2xl': string; inner: string;
+}
+
+export interface TrinityZIndex {
+  auto: string | number; 0: number; 10: number; 20: number;
+  30: number; 40: number; 50: number;
+  dropdown: number; sticky: number; fixed: number;
+  modalBackdrop: number; modal: number; popover: number; tooltip: number;
+}
+
+export interface TrinityDuration {
+  fastest: string; faster: string; fast: string;
+  normal: string; slow: string; slower: string; slowest: string;
+}
+
+export interface TrinityEasing {
+  linear: string;
+  in: string;
+  out: string;
+  inOut: string;
+  smooth: string;
+  bounce: string;
+  elastic: string;
+}
+
+export interface TrinityOpacity {
+  0: number; 5: number; 10: number; 20: number; 25: number;
+  30: number; 40: number; 50: number; 60: number; 70: number;
+  75: number; 80: number; 90: number; 95: number; 100: number;
+}
+
+export interface TrinityBreakpoints {
+  xs: number; sm: number; md: number; lg: number; xl: number;
+}
+
+export interface TrinityBaseTokens {
+  colors: TrinityBaseColors;
+  spacing: TrinitySpacing;
+  fontSize: TrinityFontSize;
+  fontWeight: TrinityFontWeight;
+  lineHeight: TrinityLineHeight;
+  letterSpacing: TrinityLetterSpacing;
+  borderRadius: TrinityBorderRadius;
+  borderWidth: TrinityBorderWidth;
+  shadows: TrinityShadows;
+  zIndex: TrinityZIndex;
+  duration: TrinityDuration;
+  easing: TrinityEasing;
+  opacity: TrinityOpacity;
+  breakpoints: TrinityBreakpoints;
+}
+
+// ============================================
+// SEMANTIC TOKEN INTERFACES
+// ============================================
+
+export interface TrinityBrandColors {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+  accent: string;
+}
+
+export interface TrinityTextColors {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+  disabled: string;
+  inverse: string;
+  brand: string;
+  link: string;
+  linkHover: string;
+  error: string;
+  success: string;
+  warning: string;
+}
+
+export interface TrinityBackgroundColors {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+  inverse: string;
+  brand: string;
+  brandSubtle: string;
+  accent: string;
+  accentSubtle: string;
+}
+
+export interface TrinitySurfaceColors {
+  elevated: string;
+  sunken: string;
+  overlay: string;
+  success: string;
+  error: string;
+  warning: string;
+  info: string;
+}
+
+export interface TrinityBorderColors {
+  default: string;
+  subtle: string;
+  strong: string;
+  focus: string;
+  error: string;
+  success: string;
+}
+
+export interface TrinityInteractiveColors {
+  default: string;
+  hover: string;
+  active: string;
+  disabled: string;
+  focus: string;
+}
+
+export interface TrinityStatusColors {
+  text: string;
+  background: string;
+  border: string;
+}
+
+export interface TrinityStatusSet {
+  error: TrinityStatusColors;
+  warning: TrinityStatusColors;
+  success: TrinityStatusColors;
+  info: TrinityStatusColors;
+}
+
+export interface TrinitySemanticColors {
+  brand: TrinityBrandColors;
+  text: TrinityTextColors;
+  background: TrinityBackgroundColors;
+  border: TrinityBorderColors;
+  interactive: TrinityInteractiveColors;
+  status: TrinityStatusSet;
+}
+
+export interface TrinityTypographyStyle {
+  fontSize: string;
+  fontWeight: number;
+  lineHeight: number;
+  letterSpacing?: string;
+}
+
+export interface TrinityTypographyScale {
+  large: TrinityTypographyStyle;
+  medium: TrinityTypographyStyle;
+  small: TrinityTypographyStyle;
+}
+
+export interface TrinityHeadingScale {
+  h1: TrinityTypographyStyle;
+  h2: TrinityTypographyStyle;
+  h3: TrinityTypographyStyle;
+  h4: TrinityTypographyStyle;
+  h5: TrinityTypographyStyle;
+  h6: TrinityTypographyStyle;
+}
+
+/** Dense typography for compact UI elements */
+export interface TrinityDenseTypography {
+  /** Badge counts, status dots - 10px */
+  badge: string;
+  /** Metadata, timestamps, dense tables - 12px */
+  text: string;
+}
+
+export interface TrinitySemanticTypography {
+  display: TrinityTypographyScale;
+  heading: TrinityHeadingScale;
+  body: TrinityTypographyScale;
+  label: TrinityTypographyScale;
+  /** Dense typography for compact UI */
+  dense: TrinityDenseTypography;
+}
+
+export interface TrinityComponentSpacing {
+  paddingXs: number;
+  paddingSm: number;
+  paddingMd: number;
+  paddingLg: number;
+  paddingXl: number;
+  gapXs: number;
+  gapSm: number;
+  gapMd: number;
+  gapLg: number;
+}
+
+export interface TrinityLayoutSpacing {
+  pagePadding: number;
+  sectionGap: number;
+  containerMaxWidth: number;
+}
+
+export interface TrinitySemanticSpacing {
+  component: TrinityComponentSpacing;
+  layout: TrinityLayoutSpacing;
+}
+
+export interface TrinitySemanticRadius {
+  button: number;
+  input: number;
+  card: number;
+  modal: number;
+  badge: number;
+  avatar: number;
+}
+
+export interface TrinitySemanticBorderWidth {
+  default: number;
+  focus: number;
+  thick: number;
+}
+
+export interface TrinitySemanticBorders {
+  radius: TrinitySemanticRadius;
+  width: TrinitySemanticBorderWidth;
+}
+
+export interface TrinitySemanticShadows {
+  card: string;
+  dropdown: string;
+  modal: string;
+  button: string;
+  input: string;
+  inputFocus: string;
+}
+
+export interface TrinitySemanticMotionDuration {
+  instant: string;
+  fast: string;
+  normal: string;
+  slow: string;
+}
+
+export interface TrinitySemanticMotionEasing {
+  default: string;
+  enter: string;
+  exit: string;
+}
+
+export interface TrinitySemanticMotion {
+  duration: TrinitySemanticMotionDuration;
+  easing: TrinitySemanticMotionEasing;
+}
+
+// ============================================
+// SEMANTIC EFFECTS INTERFACES (Phase A Addition)
+// ============================================
+
+/** Overlay effects for interaction states and backdrops */
+export interface TrinityOverlayEffects {
+  /** Modal/drawer backdrop dimming */
+  scrim: string;
+  /** Standard interactive hover */
+  hover: string;
+  /** Subtle hover for dense UI (charts, tables) */
+  hoverSubtle: string;
+  /** Pressed/active state */
+  pressed: string;
+  /** Persistent selection background */
+  selected: string;
+  /** Disabled/inactive state overlay */
+  disabled: string;
+}
+
+/** Text/icon colors for placement on dark backgrounds */
+export interface TrinityOnDarkEffects {
+  /** Maximum contrast white text (0.87 opacity) */
+  primary: string;
+  /** Reduced emphasis white text (0.7 opacity) */
+  secondary: string;
+  /** De-emphasized white text (0.5 opacity) */
+  tertiary: string;
+  /** Decorative/divider elements (0.12 opacity) */
+  subtle: string;
+  /** Background overlays on dark surfaces (0.1 opacity) */
+  tint: string;
+  /** Visible dividers on dark backgrounds (0.24 opacity) */
+  divider: string;
+  /** High-visibility text/icons on dark (0.8 opacity) */
+  emphasis: string;
+  /** Maximum contrast - avoids pure white (0.95 opacity) */
+  contrast: string;
+}
+
+/** Shadow effects for elevation hierarchy */
+export interface TrinityShadowEffects {
+  /** Resting card/surface elevation */
+  surface: string;
+  /** Hovered/focused elevation increase */
+  raised: string;
+  /** Dropdown/popover floating */
+  floating: string;
+  /** Modal-level prominence */
+  dialog: string;
+  /** Recessed/pressed appearance */
+  inset: string;
+}
+
+/** Focus ring effects for keyboard accessibility */
+export interface TrinityFocusEffects {
+  /** Standard keyboard focus ring */
+  ring: string;
+  /** Focus ring on dark backgrounds */
+  ringOnDark: string;
+  /** Emphasized focus for primary actions */
+  glow: string;
+}
+
+/** State indicator effects (subtle backgrounds and emphasis borders) */
+export interface TrinityStateEffects {
+  /** Error subtle background */
+  errorSubtle: string;
+  /** Error border/ring emphasis */
+  errorEmphasis: string;
+  /** Warning subtle background */
+  warningSubtle: string;
+  /** Warning border emphasis */
+  warningEmphasis: string;
+  /** Success subtle background */
+  successSubtle: string;
+  /** Success border emphasis */
+  successEmphasis: string;
+  /** Info subtle background */
+  infoSubtle: string;
+  /** Info border emphasis */
+  infoEmphasis: string;
+}
+
+/** Complete semantic effects layer */
+export interface TrinitySemanticEffects {
+  overlay: TrinityOverlayEffects;
+  onDark: TrinityOnDarkEffects;
+  shadow: TrinityShadowEffects;
+  focus: TrinityFocusEffects;
+  state: TrinityStateEffects;
+}
+
+// ============================================
+// SEMANTIC ICON SIZE INTERFACE (Phase A Addition)
+// ============================================
+
+/** Intent-based icon sizing scale */
+export interface TrinityIconSize {
+  /** Within text flow - 14px */
+  inline: number;
+  /** Standard controls - 16px */
+  control: number;
+  /** Navigation clarity - 20px */
+  navigation: number;
+  /** Visual anchor - 24px */
+  prominent: number;
+  /** Large impact - 28px */
+  hero: number;
+  /** Maximum impact - 36px */
+  display: number;
+}
+
+// ============================================
+// SEMANTIC MICRO-TYPOGRAPHY INTERFACE (Phase A Addition)
+// ============================================
+
+/** Micro-typography for dense UI (charts, badges, metadata) */
+export interface TrinityMicroTypography {
+  /** Smallest legible - 10px */
+  xs: TrinityTypographyStyle;
+  /** Dense but scannable - 11px */
+  sm: TrinityTypographyStyle;
+}
+
+/** Data-optimized typography */
+export interface TrinityDataTypography {
+  /** Optimized for numbers - tabular nums */
+  numeric: TrinityTypographyStyle;
+  /** Monospace for technical content */
+  code: TrinityTypographyStyle;
+}
+
+// ============================================
+// ENHANCED SPACING INTERFACES (Phase A Addition)
+// ============================================
+
+/** Intent-based inline (horizontal) spacing */
+export interface TrinityInlineSpacing {
+  /** Minimum internal space - 4px */
+  tight: number;
+  /** Dense but readable - 8px */
+  compact: number;
+  /** Balanced density - 12px (replaces compact + 4) */
+  snug: number;
+  /** Standard breathing room - 16px */
+  comfortable: number;
+  /** Generous without excess - 20px (replaces comfortable + 4) */
+  relaxed: number;
+  /** Maximum breathing room - 24px */
+  spacious: number;
+}
+
+/** Intent-based stack (vertical) spacing */
+export interface TrinityStackSpacing {
+  /** Minimum vertical space - 4px */
+  tight: number;
+  /** Dense but readable - 8px */
+  compact: number;
+  /** Balanced density - 12px (replaces compact + 4) */
+  snug: number;
+  /** Standard vertical space - 16px */
+  comfortable: number;
+  /** Generous without excess - 20px (replaces comfortable + 4) */
+  relaxed: number;
+  /** Maximum vertical space - 24px */
+  spacious: number;
+  // Legacy aliases for backwards compatibility
+  /** @deprecated Use tight instead */
+  related: number;
+  /** @deprecated Use compact instead */
+  grouped: number;
+  /** @deprecated Use comfortable instead */
+  separated: number;
+  /** @deprecated Use spacious instead - note: was 32px, now 24px */
+  distinct: number;
+}
+
+/** Density context for data-heavy UIs */
+export interface TrinityDensityContext {
+  rowHeight: number;
+  cellPadding: number;
+  gap: number;
+}
+
+/** Density scale for adaptive layouts */
+export interface TrinityDensity {
+  /** Maximum info density */
+  compact: TrinityDensityContext;
+  /** Balanced readability */
+  standard: TrinityDensityContext;
+  /** Prioritize readability */
+  comfortable: TrinityDensityContext;
+}
+
+// ============================================
+// ENHANCED RADIUS INTERFACE (Phase A Addition)
+// ============================================
+
+/** Extended semantic radius with intent-based tokens */
+export interface TrinitySemanticRadiusExtended {
+  // Existing component-specific (backwards compatible)
+  button: number;
+  input: number;
+  card: number;
+  modal: number;
+  badge: number;
+  avatar: number;
+  
+  // Intent-based shape vocabulary (NEW)
+  /** Sharp edges - 0px */
+  none: number;
+  /** Minimal softening - 4px */
+  subtle: number;
+  /** Noticeable curves - 6px */
+  soft: number;
+  /** Prominent curves - 8px */
+  rounded: number;
+  /** Maximum curvature - 9999px */
+  pill: number;
+  /** Perfect circle - 50% */
+  circle: string;
+  
+  // Additional component contexts (NEW)
+  /** Chips/tags - 6px */
+  chip: number;
+  /** Menu items - 6px */
+  menuItem: number;
+  /** Dropdown/popover menus - 12px */
+  menu: number;
+  /** Tooltips - 8px */
+  tooltip: number;
+  /** Small icon containers - 4px */
+  iconContainer: number;
+  /** Skeleton loaders - 4px */
+  skeleton: number;
+  /** Table cells - 0px */
+  tableCell: number;
+}
+
+// ============================================
+// DOMAIN TOKEN CLASSIFICATION (Phase A Addition)
+// ============================================
+
+/** Token domain classification for governance */
+export type TokenDomain = 
+  | 'ui'              // Standard UI - strict semantic compliance
+  | 'status'          // Semantic status - accessibility required
+  | 'data-viz'        // Charts/graphs - categorical distinction allowed
+  | 'ai-feature'      // AI components - brand-aligned domain tokens
+  | 'illustration';   // Decorative - curated palettes allowed
+
+/** Metadata for domain token governance */
+export interface DomainTokenMeta {
+  domain: TokenDomain;
+  governance: 'strict' | 'moderate' | 'flexible';
+  a11yRequired: boolean;
+}
+
+export interface TrinitySemanticTokens {
+  colors: TrinitySemanticColors;
+  typography: TrinitySemanticTypography;
+  spacing: TrinitySemanticSpacing;
+  borders: TrinitySemanticBorders;
+  shadows: TrinitySemanticShadows;
+  motion: TrinitySemanticMotion;
+  /** Phase A: Semantic effects for overlays, shadows, and states */
+  effects: TrinitySemanticEffects;
+  /** Phase A: Intent-based icon sizing scale */
+  iconSize: TrinityIconSize;
+  /** Phase A: Inline spacing (horizontal relationships) */
+  inline: TrinityInlineSpacing;
+  /** Phase A: Stack spacing (vertical relationships) */
+  stack: TrinityStackSpacing;
+  /** Phase A: Density contexts for data-dense UIs */
+  density: TrinityDensity;
+}
+
+// ============================================
+// COMPONENT TOKEN INTERFACES
+// ============================================
+
+export interface TrinityComponentSize<T> {
+  small: T;
+  medium: T;
+  large: T;
+}
+
+export interface TrinityPadding {
+  x: number;
+  y: number;
+}
+
+export interface TrinityButtonColors {
+  background: string;
+  backgroundHover: string;
+  text: string;
+  border?: string;
+  textHover?: string;
+}
+
+export interface TrinityButtonTokens {
+  height: TrinityComponentSize<number>;
+  padding: TrinityComponentSize<TrinityPadding>;
+  fontSize: TrinityComponentSize<string>;
+  borderRadius: number;
+  primary: TrinityButtonColors;
+  secondary: TrinityButtonColors;
+  outlined: TrinityButtonColors;
+}
+
+export interface TrinityInputBorderColors {
+  default: string;
+  hover: string;
+  focus: string;
+  error: string;
+}
+
+export interface TrinityInputBackgroundColors {
+  default: string;
+  disabled: string;
+}
+
+export interface TrinityInputTokens {
+  height: TrinityComponentSize<number>;
+  padding: TrinityComponentSize<TrinityPadding>;
+  fontSize: TrinityComponentSize<string>;
+  borderRadius: number;
+  borderColor: TrinityInputBorderColors;
+  background: TrinityInputBackgroundColors;
+}
+
+export interface TrinityCardTokens {
+  padding: TrinityComponentSize<number>;
+  borderRadius: number;
+  shadow: string;
+  background: string;
+  border: string;
+}
+
+export interface TrinityAvatarSize {
+  xs: number; sm: number; md: number;
+  lg: number; xl: number; '2xl': number;
+}
+
+export interface TrinityAvatarFontSize {
+  xs: string; sm: string; md: string;
+  lg: string; xl: string; '2xl': string;
+}
+
+export interface TrinityAvatarTokens {
+  size: TrinityAvatarSize;
+  borderRadius: number;
+  fontSize: TrinityAvatarFontSize;
+}
+
+export interface TrinityBadgeTokens {
+  padding: TrinityPadding;
+  borderRadius: number;
+  fontSize: string;
+  fontWeight: number;
+}
+
+export interface TrinityChipSize {
+  small: number;
+  medium: number;
+}
+
+export interface TrinityChipFontSize {
+  small: string;
+  medium: string;
+}
+
+export interface TrinityChipTokens {
+  height: TrinityChipSize;
+  padding: { small: TrinityPadding; medium: TrinityPadding };
+  borderRadius: number;
+  fontSize: TrinityChipFontSize;
+}
+
+export interface TrinityTooltipTokens {
+  padding: TrinityPadding;
+  borderRadius: number;
+  fontSize: string;
+  background: string;
+  text: string;
+}
+
+export interface TrinityModalWidth {
+  small: number;
+  medium: number;
+  large: number;
+  fullWidth: string;
+}
+
+export interface TrinityModalTokens {
+  padding: number;
+  borderRadius: number;
+  shadow: string;
+  backdropOpacity: number;
+  width: TrinityModalWidth;
+}
+
+export interface TrinitySwitchSize {
+  small: number;
+  medium: number;
+}
+
+export interface TrinitySwitchTrack {
+  off: string;
+  on: string;
+}
+
+export interface TrinitySwitchTokens {
+  width: TrinitySwitchSize;
+  height: TrinitySwitchSize;
+  thumb: TrinitySwitchSize;
+  track: TrinitySwitchTrack;
+}
+
+export interface TrinityNavigationHeader {
+  height: number;
+  background: string;
+  text: string;
+}
+
+export interface TrinityNavigationSidebar {
+  width: number;
+  collapsedWidth: number;
+  background: string;
+}
+
+export interface TrinityNavigationItem {
+  height: number;
+  padding: TrinityPadding;
+  borderRadius: number;
+}
+
+export interface TrinityNavigationTokens {
+  header: TrinityNavigationHeader;
+  sidebar: TrinityNavigationSidebar;
+  item: TrinityNavigationItem;
+}
+
+export interface TrinityComponentTokens {
+  button: TrinityButtonTokens;
+  input: TrinityInputTokens;
+  card: TrinityCardTokens;
+  avatar: TrinityAvatarTokens;
+  badge: TrinityBadgeTokens;
+  chip: TrinityChipTokens;
+  tooltip: TrinityTooltipTokens;
+  modal: TrinityModalTokens;
+  switch: TrinitySwitchTokens;
+  navigation: TrinityNavigationTokens;
+}
+
+// ============================================
+// DARK MODE TOKEN INTERFACES
+// ============================================
+
+export interface TrinityDarkModeTextColors {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+  disabled: string;
+}
+
+export interface TrinityDarkModeBackgroundColors {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+}
+
+export interface TrinityDarkModeBorderColors {
+  default: string;
+  subtle: string;
+  strong: string;
+}
+
+export interface TrinityDarkModeColors {
+  text: TrinityDarkModeTextColors;
+  background: TrinityDarkModeBackgroundColors;
+  border: TrinityDarkModeBorderColors;
+  // Interactive state overrides for dark mode
+  interactive?: {
+    default: string;
+    hover: string;
+    active: string;
+    disabled: string;
+    focus: string;
+  };
+  // Status color overrides for dark mode
+  status?: {
+    error: TrinityStatusColors;
+    warning: TrinityStatusColors;
+    success: TrinityStatusColors;
+    info: TrinityStatusColors;
+  };
+}
+
+export interface TrinityDarkModeTokens {
+  colors: TrinityDarkModeColors;
+}
+
+// ============================================
+// COMBINED TOKEN INTERFACE
+// ============================================
+
+export interface TrinityTokens {
+  base: TrinityBaseTokens;
+  semantic: TrinitySemanticTokens;
+  component: TrinityComponentTokens;
+  darkMode: TrinityDarkModeTokens;
+}
+
+// ============================================
+// BASE TOKENS - Primitive values
+// These are the foundational values that don't change
+// ============================================
+
+export const baseTokens = {
+  // Color Primitives
+  colors: {
+    // Blues & Purples
+    navy: {
+      50: '#E8E8F0',
+      100: '#C5C6D9',
+      200: '#9FA1C0',
+      300: '#7879A7',
+      400: '#5B5C94',
+      500: '#3E3F81',
+      600: '#383979',
+      700: '#30316E',
+      800: '#282964',
+      900: '#050742', // Primary Navy
+    },
+    purple: {
+      50: '#F3EAFA',
+      100: '#E1CBF2',
+      200: '#CDA8EA',
+      300: '#B985E1',
+      400: '#A96ADA',
+      500: '#9950D3',
+      600: '#8D49CE',
+      700: '#7841C9', // Primary Purple
+      800: '#6939B5',
+      900: '#4E2A97',
+    },
+    indigo: {
+      50: '#EDE7FD',
+      100: '#D2C3FA',
+      200: '#B49CF6',
+      300: '#9574F2',
+      400: '#7E57F0',
+      500: '#6739ED',
+      600: '#5F33EB',
+      700: '#542CE8',
+      800: '#4A24E5',
+      900: '#3816A0', // Deep Indigo
+      electric: '#6B12ED', // Electric Indigo - vibrant accent
+    },
+    // Warm Colors
+    coral: {
+      50: '#FFEFEE',
+      100: '#FFD7D4',
+      200: '#FFBCB7',
+      300: '#FFA19A',
+      400: '#FF8D85',
+      500: '#FF796F',
+      600: '#FF7167',
+      700: '#FF665C',
+      800: '#FF6150', // Primary Coral
+      900: '#FF5241',
+    },
+    // Cool Colors
+    azure: {
+      50: '#E5F5FC',
+      100: '#BEE5F7',
+      200: '#93D4F2',
+      300: '#67C3ED',
+      400: '#47B6E9',
+      500: '#27AAE1', // Primary Azure
+      600: '#239DDD',
+      700: '#1D8DD8',
+      800: '#177ED3',
+      900: '#0E62CA',
+    },
+    // Neutrals
+    gray: {
+      0: '#FFFFFF',
+      50: '#FAFAFA',
+      100: '#F4F4F5',
+      200: '#E5E7EB',
+      300: '#D4D4D8',
+      400: '#9CA3AF',
+      500: '#6B7280',
+      600: '#374151',
+      700: '#27272A',
+      800: '#18181B',
+      900: '#09090B',
+    },
+  },
+
+  // Spacing Scale (in pixels, use for padding, margin, gaps)
+  spacing: {
+    0: 0,
+    0.5: 2,   // Half step for fine-grained control
+    1: 4,
+    1.5: 6,   // Half step for fine-grained control
+    2: 8,
+    2.5: 10,  // Half step for fine-grained control
+    3: 12,
+    4: 16,
+    5: 20,
+    6: 24,
+    7: 28,
+    8: 32,
+    9: 36,
+    10: 40,
+    12: 48,
+    14: 56,
+    16: 64,
+    20: 80,
+    24: 96,
+    32: 128,
+  },
+
+  // Typography Scale
+  fontSize: {
+    xs: '0.75rem',     // 12px
+    sm: '0.875rem',    // 14px
+    base: '1rem',      // 16px
+    lg: '1.125rem',    // 18px
+    xl: '1.25rem',     // 20px
+    '2xl': '1.5rem',   // 24px
+    '3xl': '1.875rem', // 30px
+    '4xl': '2.25rem',  // 36px
+    '5xl': '3rem',     // 48px
+    '6xl': '3.75rem',  // 60px
+  },
+
+  fontWeight: {
+    light: 300,
+    regular: 400,
+    medium: 500,
+    semibold: 600,
+    bold: 700,
+    extrabold: 800,
+  },
+
+  lineHeight: {
+    none: 1,
+    tight: 1.25,
+    snug: 1.375,
+    normal: 1.5,
+    relaxed: 1.625,
+    loose: 2,
+  },
+
+  letterSpacing: {
+    tighter: '-0.05em',
+    tight: '-0.025em',
+    normal: '0em',
+    wide: '0.025em',
+    wider: '0.05em',
+    widest: '0.1em',
+  },
+
+  /**
+   * Border Radius Scale
+   * 
+   * Designed for consistent nesting using: Outer = Inner + Padding
+   * 
+   * Common nesting patterns:
+   * - Button (sm:6px) inside Card (md:8px) with 8px padding: 6 + 8 = 12 (use lg for container) 
+   * - Card (md:8px) inside Modal (lg:12px) with 16px padding: 8 + 16 = 24 (use 3xl for modal)
+   * - Input (sm:6px) inside Panel (md:8px) with 8px padding: 6 + 8 = 12 (use lg for panel)
+   * 
+   * Usage by element type:
+   * - xs (4px): Small badges, icon containers, status dots with corners
+   * - sm (6px): Buttons, inputs, chips, tags, small interactive elements
+   * - md (8px): Cards, list items, small panels, menu items
+   * - lg (12px): Large cards, dialogs, dropdown menus, panels
+   * - xl (16px): Modals, popovers, large containers
+   * - 2xl (20px): Very large modals with nested content
+   * - 3xl (24px): Maximum nesting scenarios
+   * - full (9999px): Pills, avatars, fully rounded elements
+   */
+  borderRadius: {
+    none: 0,
+    xs: 4,
+    sm: 6,
+    md: 8,
+    lg: 12,
+    xl: 16,
+    '2xl': 20,
+    '3xl': 24,
+    full: 9999,
+  },
+
+  // Border Width
+  borderWidth: {
+    0: 0,
+    1: 1,
+    2: 2,
+    4: 4,
+    8: 8,
+  },
+
+  // Shadows
+  shadows: {
+    none: 'none',
+    sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+    base: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+    md: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+    lg: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+    xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
+    '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
+    inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
+  },
+
+  // Z-Index Scale
+  zIndex: {
+    auto: 'auto',
+    0: 0,
+    10: 10,
+    20: 20,
+    30: 30,
+    40: 40,
+    50: 50,
+    dropdown: 1000,
+    sticky: 1020,
+    fixed: 1030,
+    modalBackdrop: 1040,
+    modal: 1050,
+    popover: 1060,
+    tooltip: 1070,
+  },
+
+  // Transitions
+  duration: {
+    fastest: '50ms',
+    faster: '100ms',
+    fast: '150ms',
+    normal: '200ms',
+    slow: '300ms',
+    slower: '400ms',
+    slowest: '500ms',
+  },
+
+  easing: {
+    linear: 'linear',
+    in: 'cubic-bezier(0.4, 0, 1, 1)',
+    out: 'cubic-bezier(0, 0, 0.2, 1)',
+    inOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    smooth: 'cubic-bezier(0.45, 0, 0.55, 1)',      // Smooth, natural feel
+    bounce: 'cubic-bezier(0.34, 1.56, 0.64, 1)',   // Slight overshoot
+    elastic: 'cubic-bezier(0.68, -0.55, 0.27, 1.55)', // Elastic spring
+  },
+
+  // Opacity
+  opacity: {
+    0: 0,
+    5: 0.05,
+    10: 0.1,
+    20: 0.2,
+    25: 0.25,
+    30: 0.3,
+    40: 0.4,
+    50: 0.5,
+    60: 0.6,
+    70: 0.7,
+    75: 0.75,
+    80: 0.8,
+    90: 0.9,
+    95: 0.95,
+    100: 1,
+  },
+
+  // Breakpoints
+  breakpoints: {
+    xs: 0,
+    sm: 600,
+    md: 900,
+    lg: 1200,
+    xl: 1536,
+  },
+};
+
+// ============================================
+// SEMANTIC TOKENS - Meaningful, contextual names
+// These map base tokens to specific use cases
+// ============================================
+
+export const semanticTokens = {
+  colors: {
+    // Brand
+    brand: {
+      primary: baseTokens.colors.navy[900],
+      secondary: baseTokens.colors.purple[700],
+      tertiary: baseTokens.colors.indigo[900],
+      accent: baseTokens.colors.coral[800],
+    },
+
+    // Text
+    text: {
+      primary: baseTokens.colors.gray[900],
+      secondary: baseTokens.colors.gray[500],
+      tertiary: baseTokens.colors.gray[400],
+      disabled: baseTokens.colors.gray[300],
+      inverse: baseTokens.colors.gray[0],
+      brand: baseTokens.colors.navy[900],
+      link: baseTokens.colors.azure[500],
+      linkHover: baseTokens.colors.azure[700],
+      error: '#DC2626',
+      success: '#16A34A',
+      warning: '#D97706',
+    },
+
+    // Backgrounds
+    background: {
+      primary: baseTokens.colors.gray[0],
+      secondary: baseTokens.colors.gray[50],
+      tertiary: baseTokens.colors.gray[100],
+      inverse: baseTokens.colors.gray[800],
+      brand: baseTokens.colors.navy[900],
+      brandSubtle: baseTokens.colors.navy[50],
+      accent: baseTokens.colors.coral[800],
+      accentSubtle: baseTokens.colors.coral[50],
+    },
+
+    // Surface colors for elevated/sunken elements
+    surface: {
+      elevated: baseTokens.colors.gray[0],    // Cards, modals, popovers
+      sunken: baseTokens.colors.gray[100],    // Inputs, code blocks, wells
+      overlay: 'rgba(0, 0, 0, 0.5)',          // Modal/dialog backdrops
+      // Status surface colors (subtle backgrounds)
+      success: '#F0FDF4',                     // Success state backgrounds
+      error: '#FEF2F2',                       // Error state backgrounds
+      warning: '#FFFBEB',                     // Warning state backgrounds
+      info: baseTokens.colors.azure[50],      // Info state backgrounds
+    },
+
+    // Borders
+    border: {
+      default: baseTokens.colors.gray[200],
+      subtle: baseTokens.colors.gray[100],
+      strong: baseTokens.colors.gray[400],
+      focus: baseTokens.colors.purple[700],
+      error: '#DC2626',
+      success: '#16A34A',
+    },
+
+    // Interactive States
+    interactive: {
+      default: baseTokens.colors.navy[900],
+      hover: baseTokens.colors.coral[800],
+      active: baseTokens.colors.indigo[900],
+      disabled: baseTokens.colors.gray[300],
+      focus: baseTokens.colors.purple[700],
+    },
+
+    // Focus ring styles (accessibility)
+    focus: {
+      ring: baseTokens.colors.navy[900],      // Focus outline color
+      ringOffset: baseTokens.colors.gray[0],  // Gap color between element and ring
+    },
+
+    // Selection styles
+    selection: {
+      background: baseTokens.colors.azure[100],
+      text: baseTokens.colors.gray[900],
+    },
+
+    // Status/Feedback - Used for alerts, toasts, form validation
+    status: {
+      error: {
+        text: '#DC2626',
+        background: '#FEF2F2',
+        border: '#FECACA',
+      },
+      warning: {
+        text: '#D97706',
+        background: '#FFFBEB',
+        border: '#FDE68A',
+      },
+      success: {
+        text: '#16A34A',
+        background: '#F0FDF4',
+        border: '#BBF7D0',
+      },
+      info: {
+        text: baseTokens.colors.azure[500],
+        background: baseTokens.colors.azure[50],
+        border: baseTokens.colors.azure[200],
+      },
+    },
+
+    /**
+     * Status Indicator Colors
+     * Semantic colors for StatusIndicator components (dots, badges, chips)
+     * These are intentionally distinct from status.* which are for alerts/toasts
+     * @intentional-color - Status indicators require specific colors for visual distinction
+     */
+    indicator: {
+      // High severity - Red/Critical
+      error: { fg: '#FFFFFF', bg: baseTokens.colors.coral[800] },
+      critical: { fg: '#FFFFFF', bg: '#DA1E28' },
+      failed: { fg: '#FFFFFF', bg: baseTokens.colors.coral[800] },
+      rejected: { fg: '#FFFFFF', bg: baseTokens.colors.coral[800] },
+      // Medium severity - Orange/Yellow  
+      warning: { fg: '#000000', bg: '#F1C21B', outline: '#8E6A00' },
+      caution: { fg: '#000000', bg: '#FF832B', outline: '#BA4E00' },
+      pending: { fg: '#000000', bg: '#F1C21B', outline: '#8E6A00' },
+      inProgress: { fg: '#FFFFFF', bg: baseTokens.colors.navy[900] },
+      running: { fg: '#FFFFFF', bg: baseTokens.colors.navy[900] },
+      // Low severity - Green/Success
+      success: { fg: '#FFFFFF', bg: '#24A148' },
+      complete: { fg: '#FFFFFF', bg: '#24A148' },
+      approved: { fg: '#FFFFFF', bg: '#24A148' },
+      active: { fg: '#FFFFFF', bg: '#24A148' },
+      enabled: { fg: '#FFFFFF', bg: '#24A148' },
+      // Informational - Blue
+      info: { fg: '#FFFFFF', bg: '#0043CE' },
+      new: { fg: '#FFFFFF', bg: '#0043CE' },
+      updated: { fg: '#FFFFFF', bg: '#0043CE' },
+      // Neutral - Gray
+      neutral: { fg: '#FFFFFF', bg: '#6F6F6F' },
+      draft: { fg: '#FFFFFF', bg: '#6F6F6F' },
+      inactive: { fg: '#FFFFFF', bg: '#6F6F6F' },
+      disabled: { fg: '#FFFFFF', bg: '#6F6F6F' },
+      cancelled: { fg: '#FFFFFF', bg: '#6F6F6F' },
+      unknown: { fg: '#FFFFFF', bg: '#6F6F6F' },
+      // Special
+      beta: { fg: '#FFFFFF', bg: '#8A3FFC' },
+      experimental: { fg: '#FFFFFF', bg: '#8A3FFC' },
+    },
+
+    // Avatar color palette - Used for avatar backgrounds and badges
+    avatar: {
+      // Solid background colors (accessible with white text)
+      backgrounds: [
+        baseTokens.colors.indigo[600],   // Deep indigo
+        baseTokens.colors.purple[600],    // Purple
+        baseTokens.colors.coral[600],     // Coral/red-orange
+        baseTokens.colors.azure[600],     // Azure/teal
+        baseTokens.colors.navy[700],      // Navy
+        baseTokens.colors.indigo[500],    // Medium indigo
+        baseTokens.colors.purple[500],    // Medium purple
+        baseTokens.colors.coral[500],     // Medium coral
+      ],
+      // Online/activity indicator
+      online: '#44b700',
+      offline: baseTokens.colors.gray[400],
+      busy: baseTokens.colors.coral[600],
+      away: '#FFA726',
+    },
+
+    // Gradient definitions - Reusable across components
+    gradients: {
+      // Brand gradients
+      primary: `linear-gradient(135deg, ${baseTokens.colors.indigo[600]} 0%, ${baseTokens.colors.purple[600]} 100%)`,
+      secondary: `linear-gradient(135deg, ${baseTokens.colors.coral[500]} 0%, ${baseTokens.colors.coral[700]} 100%)`,
+      accent: `linear-gradient(135deg, ${baseTokens.colors.azure[400]} 0%, ${baseTokens.colors.azure[600]} 100%)`,
+      
+      // Avatar-specific gradients
+      avatarPrimary: `linear-gradient(135deg, ${baseTokens.colors.indigo[500]} 0%, ${baseTokens.colors.purple[600]} 100%)`,
+      avatarWarm: `linear-gradient(135deg, ${baseTokens.colors.coral[400]} 0%, ${baseTokens.colors.coral[600]} 100%)`,
+      avatarCool: `linear-gradient(135deg, ${baseTokens.colors.azure[400]} 0%, ${baseTokens.colors.indigo[500]} 100%)`,
+      
+      // Dark overlay for text readability
+      darkOverlay: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%)',
+    },
+  },
+
+  typography: {
+    // Display styles
+    display: {
+      large: {
+        fontSize: baseTokens.fontSize['5xl'],
+        fontWeight: baseTokens.fontWeight.bold,
+        lineHeight: baseTokens.lineHeight.tight,
+        letterSpacing: baseTokens.letterSpacing.tight,
+      },
+      medium: {
+        fontSize: baseTokens.fontSize['4xl'],
+        fontWeight: baseTokens.fontWeight.bold,
+        lineHeight: baseTokens.lineHeight.tight,
+        letterSpacing: baseTokens.letterSpacing.tight,
+      },
+      small: {
+        fontSize: baseTokens.fontSize['3xl'],
+        fontWeight: baseTokens.fontWeight.semibold,
+        lineHeight: baseTokens.lineHeight.snug,
+        letterSpacing: baseTokens.letterSpacing.normal,
+      },
+    },
+    // Heading styles
+    heading: {
+      h1: {
+        fontSize: baseTokens.fontSize['3xl'],
+        fontWeight: baseTokens.fontWeight.bold,
+        lineHeight: baseTokens.lineHeight.tight,
+      },
+      h2: {
+        fontSize: baseTokens.fontSize['2xl'],
+        fontWeight: baseTokens.fontWeight.semibold,
+        lineHeight: baseTokens.lineHeight.snug,
+      },
+      h3: {
+        fontSize: baseTokens.fontSize.xl,
+        fontWeight: baseTokens.fontWeight.semibold,
+        lineHeight: baseTokens.lineHeight.snug,
+      },
+      h4: {
+        fontSize: baseTokens.fontSize.lg,
+        fontWeight: baseTokens.fontWeight.semibold,
+        lineHeight: baseTokens.lineHeight.normal,
+      },
+      h5: {
+        fontSize: baseTokens.fontSize.base,
+        fontWeight: baseTokens.fontWeight.semibold,
+        lineHeight: baseTokens.lineHeight.normal,
+      },
+      h6: {
+        fontSize: baseTokens.fontSize.sm,
+        fontWeight: baseTokens.fontWeight.semibold,
+        lineHeight: baseTokens.lineHeight.normal,
+      },
+    },
+    // Body styles
+    body: {
+      large: {
+        fontSize: baseTokens.fontSize.lg,
+        fontWeight: baseTokens.fontWeight.regular,
+        lineHeight: baseTokens.lineHeight.relaxed,
+      },
+      medium: {
+        fontSize: baseTokens.fontSize.base,
+        fontWeight: baseTokens.fontWeight.regular,
+        lineHeight: baseTokens.lineHeight.normal,
+      },
+      small: {
+        fontSize: baseTokens.fontSize.sm,
+        fontWeight: baseTokens.fontWeight.regular,
+        lineHeight: baseTokens.lineHeight.normal,
+      },
+    },
+    // Label styles
+    label: {
+      large: {
+        fontSize: baseTokens.fontSize.base,
+        fontWeight: baseTokens.fontWeight.medium,
+        lineHeight: baseTokens.lineHeight.tight,
+      },
+      medium: {
+        fontSize: baseTokens.fontSize.sm,
+        fontWeight: baseTokens.fontWeight.medium,
+        lineHeight: baseTokens.lineHeight.tight,
+      },
+      small: {
+        fontSize: baseTokens.fontSize.xs,
+        fontWeight: baseTokens.fontWeight.medium,
+        lineHeight: baseTokens.lineHeight.tight,
+      },
+    },
+    // === Micro Typography (Phase A Addition) ===
+    // For inline UI elements, badges, status indicators where xs is too large
+    micro: {
+      /** 10px - Absolute minimum for brief status text */
+      xs: {
+        fontSize: '0.625rem', // 10px - smallest readable
+        fontWeight: baseTokens.fontWeight.medium,
+        lineHeight: baseTokens.lineHeight.tight,
+        letterSpacing: baseTokens.letterSpacing.wide, // Improve readability at small sizes
+      },
+      /** 11px - Primary micro size for badges, counters */
+      sm: {
+        fontSize: '0.6875rem', // 11px
+        fontWeight: baseTokens.fontWeight.medium,
+        lineHeight: baseTokens.lineHeight.tight,
+        letterSpacing: baseTokens.letterSpacing.normal,
+      },
+    },
+    // === Dense Typography (Phase D.1 Addition) ===
+    // Intent-based tokens for compact UI elements
+    dense: {
+      /** Badge counts, status dots - 10px */
+      badge: '0.625rem',
+      /** Metadata, timestamps, dense tables - 12px */
+      text: '0.75rem',
+    },
+    // === Data Typography (Phase A Addition) ===
+    // For tabular data, code snippets, and numeric displays
+    data: {
+      /** Monospace styling for numeric values in tables */
+      numeric: {
+        fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace',
+        fontWeight: baseTokens.fontWeight.regular,
+        fontFeatureSettings: '"tnum" 1', // Tabular numbers for alignment
+      },
+      /** Code/technical content styling */
+      code: {
+        fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace',
+        fontSize: baseTokens.fontSize.sm,
+        fontWeight: baseTokens.fontWeight.regular,
+        lineHeight: baseTokens.lineHeight.relaxed,
+      },
+    },
+  },
+
+  spacing: {
+    // Component-specific spacing
+    component: {
+      paddingXs: baseTokens.spacing[1],
+      paddingSm: baseTokens.spacing[2],
+      paddingMd: baseTokens.spacing[4],
+      paddingLg: baseTokens.spacing[6],
+      paddingXl: baseTokens.spacing[8],
+      gapXs: baseTokens.spacing[1],
+      gapSm: baseTokens.spacing[2],
+      gapMd: baseTokens.spacing[4],
+      gapLg: baseTokens.spacing[6],
+    },
+    // Layout spacing
+    layout: {
+      pagePadding: baseTokens.spacing[6],
+      sectionGap: baseTokens.spacing[12],
+      containerMaxWidth: 1280,
+    },
+  },
+
+  borders: {
+    /**
+     * Semantic border radius assignments
+     * Based on component size and nesting requirements:
+     * - Outer radius = Inner radius + Padding
+     */
+    radius: {
+      // === Component-specific tokens (backwards compatible) ===
+      /** Buttons use full pill shape */
+      button: baseTokens.borderRadius.full,
+      /** Inputs use sm (6px) for 32-40px height elements */
+      input: baseTokens.borderRadius.sm,
+      /** Cards use md (8px) for subtle rounding */
+      card: baseTokens.borderRadius.md,
+      /** Modals use lg (12px) - allows nested cards with md */
+      modal: baseTokens.borderRadius.lg,
+      /** Large modals use xl (16px) for complex nested content */
+      modalLarge: baseTokens.borderRadius.xl,
+      /** Badges use sm (6px) for subtle pill */
+      badge: baseTokens.borderRadius.sm,
+      /** Avatars use full for circular shape */
+      avatar: baseTokens.borderRadius.full,
+      /** Chips/tags use sm (6px) */
+      chip: baseTokens.borderRadius.sm,
+      /** Menu items use sm (6px) */
+      menuItem: baseTokens.borderRadius.sm,
+      /** Dropdown/popover menus use lg (12px) - corrected to match actual usage */
+      menu: baseTokens.borderRadius.lg,
+      /** Tooltips use md (8px) */
+      tooltip: baseTokens.borderRadius.md,
+      /** Small icon containers use xs (4px) */
+      iconContainer: baseTokens.borderRadius.xs,
+      
+      // === Intent-based shape vocabulary (Phase A Addition) ===
+      /** Sharp edges - 0px */
+      none: 0,
+      /** Minimal softening - 4px */
+      subtle: baseTokens.borderRadius.xs,
+      /** Noticeable curves - 6px */
+      soft: baseTokens.borderRadius.sm,
+      /** Prominent curves - 8px */
+      rounded: baseTokens.borderRadius.md,
+      /** Maximum curvature - 9999px */
+      pill: baseTokens.borderRadius.full,
+      /** Perfect circle - 50% */
+      circle: '50%',
+      
+      // === Additional component contexts (Phase A Addition) ===
+      /** Skeleton loaders - 4px */
+      skeleton: baseTokens.borderRadius.xs,
+      /** Table cells - 0px for data density */
+      tableCell: 0,
+    },
+    /**
+     * Pre-formatted px strings for MUI sx prop
+     * Use these when MUI would interpret numbers as spacing multipliers
+     */
+    radiusPx: {
+      none: '0px',
+      xs: `${baseTokens.borderRadius.xs}px`,
+      sm: `${baseTokens.borderRadius.sm}px`,
+      md: `${baseTokens.borderRadius.md}px`,
+      lg: `${baseTokens.borderRadius.lg}px`,
+      xl: `${baseTokens.borderRadius.xl}px`,
+      '2xl': `${baseTokens.borderRadius['2xl']}px`,
+      '3xl': `${baseTokens.borderRadius['3xl']}px`,
+      full: `${baseTokens.borderRadius.full}px`,
+    },
+    width: {
+      default: baseTokens.borderWidth[1],
+      focus: baseTokens.borderWidth[2],
+      thick: baseTokens.borderWidth[4],
+    },
+  },
+
+  shadows: {
+    card: baseTokens.shadows.md,
+    dropdown: baseTokens.shadows.lg,
+    modal: baseTokens.shadows['2xl'],
+    button: baseTokens.shadows.sm,
+    input: baseTokens.shadows.none,
+    inputFocus: baseTokens.shadows.base,
+  },
+
+  motion: {
+    duration: {
+      instant: baseTokens.duration.fastest,
+      fast: baseTokens.duration.fast,
+      normal: baseTokens.duration.normal,
+      slow: baseTokens.duration.slow,
+    },
+    easing: {
+      default: baseTokens.easing.inOut,
+      enter: baseTokens.easing.out,
+      exit: baseTokens.easing.in,
+    },
+  },
+
+  // ============================================
+  // SEMANTIC EFFECTS (Phase A Addition)
+  // Intent-based opacity, shadow, and state effects
+  // ============================================
+  effects: {
+    /**
+     * Overlay effects for interaction states and backdrops
+     */
+    overlay: {
+      /** Modal/drawer backdrop - 50% black */
+      scrim: 'rgba(0, 0, 0, 0.5)',
+      /** Standard hover - 8% black */
+      hover: 'rgba(0, 0, 0, 0.08)',
+      /** Subtle hover for dense UI - 4% black */
+      hoverSubtle: 'rgba(0, 0, 0, 0.04)',
+      /** Pressed/active - 12% black */
+      pressed: 'rgba(0, 0, 0, 0.12)',
+      /** Selected row/item - 8% black */
+      selected: 'rgba(0, 0, 0, 0.08)',
+      /** Disabled overlay - 38% black */
+      disabled: 'rgba(0, 0, 0, 0.38)',
+    },
+    /**
+     * White text/icon opacity for dark backgrounds
+     * Based on Material Design text emphasis levels
+     */
+    onDark: {
+      /** High emphasis - 87% white */
+      primary: 'rgba(255, 255, 255, 0.87)',
+      /** Medium emphasis - 70% white */
+      secondary: 'rgba(255, 255, 255, 0.7)',
+      /** Low emphasis - 50% white */
+      tertiary: 'rgba(255, 255, 255, 0.5)',
+      /** Borders/dividers - 12% white */
+      subtle: 'rgba(255, 255, 255, 0.12)',
+      /** Background overlays on dark surfaces - 10% white */
+      tint: 'rgba(255, 255, 255, 0.1)',
+      /** Visible dividers on dark backgrounds - 24% white */
+      divider: 'rgba(255, 255, 255, 0.24)',
+      /** High-visibility text/icons on dark - 80% white */
+      emphasis: 'rgba(255, 255, 255, 0.8)',
+      /** Maximum contrast - avoids pure white - 95% white */
+      contrast: 'rgba(255, 255, 255, 0.95)',
+    },
+    /**
+     * Shadow effects for elevation hierarchy
+     * Replaces hardcoded rgba shadows
+     */
+    shadow: {
+      /** Resting card elevation */
+      surface: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
+      /** Hovered/focused elevation */
+      raised: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
+      /** Dropdown/popover/nav menus */
+      floating: '0 4px 20px rgba(0, 0, 0, 0.15)',
+      /** Modal dialogs */
+      dialog: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+      /** Pressed/inset appearance */
+      inset: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)',
+    },
+    /**
+     * Focus ring effects for accessibility
+     */
+    focus: {
+      /** Standard focus ring - purple brand */
+      ring: '0 0 0 3px rgba(120, 65, 201, 0.25)',
+      /** Focus on dark backgrounds */
+      ringOnDark: '0 0 0 3px rgba(255, 255, 255, 0.3)',
+      /** Emphasized focus for primary actions */
+      glow: '0 0 0 3px rgba(120, 65, 201, 0.4)',
+    },
+    /**
+     * State indicator effects (subtle fills and emphasis borders)
+     */
+    state: {
+      /** Error background - 5% red */
+      errorSubtle: 'rgba(218, 30, 40, 0.05)',
+      /** Error border - 30% red */
+      errorEmphasis: 'rgba(218, 30, 40, 0.3)',
+      /** Warning background - 10% yellow */
+      warningSubtle: 'rgba(241, 194, 27, 0.1)',
+      /** Warning border - 40% yellow */
+      warningEmphasis: 'rgba(241, 194, 27, 0.4)',
+      /** Success background - 5% green */
+      successSubtle: 'rgba(36, 161, 72, 0.05)',
+      /** Success border - 30% green */
+      successEmphasis: 'rgba(36, 161, 72, 0.3)',
+      /** Info background - 5% blue */
+      infoSubtle: 'rgba(0, 67, 206, 0.05)',
+      /** Info border - 30% blue */
+      infoEmphasis: 'rgba(0, 67, 206, 0.3)',
+    },
+  },
+
+  // ============================================
+  // ICON SIZE SCALE (Phase A Addition)
+  // Intent-based icon sizing
+  // ============================================
+  iconSize: {
+    /** Within text flow - 14px */
+    inline: 14,
+    /** Standard controls (buttons, inputs) - 16px */
+    control: 16,
+    /** Navigation and toolbar - 20px */
+    navigation: 20,
+    /** Visual anchor (empty states) - 24px */
+    prominent: 24,
+    /** Hero sections - 28px */
+    hero: 28,
+    /** Maximum impact - 36px */
+    display: 36,
+  },
+
+  // ============================================
+  // INTENT-BASED SPACING (Phase A Addition)
+  // ============================================
+  inline: {
+    /** Minimum internal space - 4px */
+    tight: baseTokens.spacing[1],
+    /** Dense but readable - 8px */
+    compact: baseTokens.spacing[2],
+    /** Balanced density - 12px */
+    snug: baseTokens.spacing[3],
+    /** Standard breathing room - 16px */
+    comfortable: baseTokens.spacing[4],
+    /** Generous without excess - 20px */
+    relaxed: baseTokens.spacing[5],
+    /** Maximum breathing room - 24px */
+    spacious: baseTokens.spacing[6],
+  },
+
+  stack: {
+    /** Minimum vertical space - 4px */
+    tight: baseTokens.spacing[1],
+    /** Dense but readable - 8px */
+    compact: baseTokens.spacing[2],
+    /** Balanced density - 12px */
+    snug: baseTokens.spacing[3],
+    /** Standard vertical space - 16px */
+    comfortable: baseTokens.spacing[4],
+    /** Generous without excess - 20px */
+    relaxed: baseTokens.spacing[5],
+    /** Maximum vertical space - 24px */
+    spacious: baseTokens.spacing[6],
+    // Legacy aliases for backwards compatibility
+    /** @deprecated Use tight instead */
+    related: baseTokens.spacing[1],
+    /** @deprecated Use compact instead */
+    grouped: baseTokens.spacing[2],
+    /** @deprecated Use comfortable instead */
+    separated: baseTokens.spacing[4],
+    /** @deprecated Use spacious instead */
+    distinct: baseTokens.spacing[8],
+  },
+
+  density: {
+    /** Maximum info density */
+    compact: {
+      rowHeight: 36,
+      cellPadding: 6,
+      gap: 4,
+    },
+    /** Balanced readability/density */
+    standard: {
+      rowHeight: 48,
+      cellPadding: 12,
+      gap: 8,
+    },
+    /** Prioritize readability */
+    comfortable: {
+      rowHeight: 64,
+      cellPadding: 16,
+      gap: 12,
+    },
+  },
+};
+
+// ============================================
+// BRAND COLORS COMPATIBILITY LAYER
+// ============================================
+/**
+ * Canonical brand colors derived from baseTokens.
+ * 
+ * This provides API compatibility with the legacy `brandColors` export from theme.ts.
+ * Components should migrate from `import { brandColors } from '../theme'`
+ * to `import { brandColors } from '../tokens'`.
+ * 
+ * MAPPING TABLE:
+ * ┌─────────────────────────┬───────────┬──────────────────────────────┐
+ * │ brandColors path        │ Hex Value │ baseTokens path              │
+ * ├─────────────────────────┼───────────┼──────────────────────────────┤
+ * │ primary.main            │ #050742   │ colors.navy[900]             │
+ * │ primary.light           │ #7841C9   │ colors.purple[700]           │
+ * │ primary.dark            │ #3816A0   │ colors.indigo[900]           │
+ * │ secondary.main          │ #FF6150   │ colors.coral[800]            │
+ * │ secondary.light         │ #27AAE1   │ colors.azure[500]            │
+ * │ secondary.dark          │ #6B12ED   │ colors.indigo.electric       │
+ * │ neutral.white           │ #FFFFFF   │ colors.gray[0]               │
+ * │ neutral.lightGray       │ #FAFAFA   │ colors.gray[50]              │
+ * │ neutral.gray100         │ #E5E7EB   │ colors.gray[200]             │
+ * │ neutral.gray400         │ #9CA3AF   │ colors.gray[400]             │
+ * │ neutral.gray500         │ #6B7280   │ colors.gray[500]             │
+ * │ neutral.gray600         │ #374151   │ colors.gray[600]             │
+ * │ neutral.darkBg          │ #18181B   │ colors.gray[800]             │
+ * │ neutral.darkPaper       │ #27272A   │ colors.gray[700]             │
+ * └─────────────────────────┴───────────┴──────────────────────────────┘
+ * 
+ * NOTE: neutral.gray100 naming is misleading - it's actually gray[200] (#E5E7EB).
+ * This is preserved for backwards compatibility with theme.ts.
+ */
+export const brandColors = {
+  primary: {
+    main: baseTokens.colors.navy[900],      // #050742 - Deep Navy
+    light: baseTokens.colors.purple[700],   // #7841C9 - Light Violet/Purple
+    dark: baseTokens.colors.indigo[900],    // #3816A0 - Deep Indigo
+  },
+  secondary: {
+    main: baseTokens.colors.coral[800],     // #FF6150 - Coral
+    light: baseTokens.colors.azure[500],    // #27AAE1 - Azure
+    dark: baseTokens.colors.indigo.electric, // #6B12ED - Electric Indigo
+  },
+  neutral: {
+    white: baseTokens.colors.gray[0],       // #FFFFFF
+    lightGray: baseTokens.colors.gray[50],  // #FAFAFA - alias: gray50
+    gray50: baseTokens.colors.gray[50],     // #FAFAFA
+    gray100: baseTokens.colors.gray[200],   // #E5E7EB - NOTE: Misnamed, actually gray200
+    gray200: baseTokens.colors.gray[200],   // #E5E7EB
+    gray300: baseTokens.colors.gray[300],   // #D1D5DB
+    gray400: baseTokens.colors.gray[400],   // #9CA3AF
+    gray500: baseTokens.colors.gray[500],   // #6B7280
+    gray600: baseTokens.colors.gray[600],   // #374151
+    gray700: baseTokens.colors.gray[700],   // #27272A
+    gray800: baseTokens.colors.gray[800],   // #18181B
+    gray900: baseTokens.colors.gray[900],   // #0F0F12
+    darkBg: baseTokens.colors.gray[800],    // #18181B - alias
+    darkPaper: baseTokens.colors.gray[700], // #27272A - alias
+  },
+} as const;
+
+/**
+ * Type for brandColors structure
+ */
+export type TrinityBrandColorsLegacy = typeof brandColors;
+
+// ============================================
+// COMPONENT TOKENS - Specific to UI components
+// These provide precise control for individual components
+// ============================================
+
+export const componentTokens = {
+  button: {
+    // Sizing
+    height: {
+      small: 32,
+      medium: 40,
+      large: 48,
+    },
+    padding: {
+      small: { x: 16, y: 8 },
+      medium: { x: 20, y: 10 },
+      large: { x: 24, y: 12 },
+    },
+    fontSize: {
+      small: baseTokens.fontSize.sm,
+      medium: baseTokens.fontSize.base,
+      large: baseTokens.fontSize.lg,
+    },
+    borderRadius: baseTokens.borderRadius.full,
+    // Colors by variant
+    primary: {
+      background: semanticTokens.colors.brand.primary,
+      backgroundHover: semanticTokens.colors.brand.accent,
+      text: semanticTokens.colors.text.inverse,
+    },
+    secondary: {
+      background: semanticTokens.colors.brand.tertiary,
+      backgroundHover: semanticTokens.colors.brand.accent,
+      text: semanticTokens.colors.text.inverse,
+    },
+    outlined: {
+      background: 'transparent',
+      backgroundHover: semanticTokens.colors.brand.accent,
+      border: semanticTokens.colors.brand.primary,
+      text: semanticTokens.colors.brand.primary,
+      textHover: semanticTokens.colors.text.inverse,
+    },
+  },
+
+  input: {
+    height: {
+      small: 36,
+      medium: 44,
+      large: 52,
+    },
+    padding: {
+      small: { x: 12, y: 8 },
+      medium: { x: 14, y: 10 },
+      large: { x: 16, y: 12 },
+    },
+    fontSize: {
+      small: baseTokens.fontSize.sm,
+      medium: baseTokens.fontSize.base,
+      large: baseTokens.fontSize.lg,
+    },
+    borderRadius: baseTokens.borderRadius.sm, // 6px for 36-52px height inputs
+    borderColor: {
+      default: semanticTokens.colors.border.default,
+      hover: semanticTokens.colors.border.strong,
+      focus: semanticTokens.colors.border.focus,
+      error: semanticTokens.colors.border.error,
+    },
+    background: {
+      default: semanticTokens.colors.background.primary,
+      disabled: semanticTokens.colors.background.tertiary,
+    },
+  },
+
+  card: {
+    padding: {
+      small: baseTokens.spacing[4],
+      medium: baseTokens.spacing[6],
+      large: baseTokens.spacing[8],
+    },
+    borderRadius: baseTokens.borderRadius.lg, // 12px for cards - inner elements use sm:6px or md:8px
+    shadow: semanticTokens.shadows.card,
+    background: semanticTokens.colors.background.primary,
+    border: semanticTokens.colors.border.subtle,
+  },
+
+  avatar: {
+    size: {
+      xs: 24,
+      sm: 32,
+      md: 40,
+      lg: 48,
+      xl: 64,
+      '2xl': 96,
+    },
+    borderRadius: baseTokens.borderRadius.full,
+    fontSize: {
+      xs: baseTokens.fontSize.xs,
+      sm: baseTokens.fontSize.xs,
+      md: baseTokens.fontSize.sm,
+      lg: baseTokens.fontSize.base,
+      xl: baseTokens.fontSize.xl,
+      '2xl': baseTokens.fontSize['2xl'],
+    },
+  },
+
+  badge: {
+    padding: { x: 8, y: 2 },
+    borderRadius: baseTokens.borderRadius.full,
+    fontSize: baseTokens.fontSize.xs,
+    fontWeight: baseTokens.fontWeight.medium,
+  },
+
+  chip: {
+    height: {
+      small: 24,
+      medium: 32,
+    },
+    padding: {
+      small: { x: 8, y: 4 },
+      medium: { x: 12, y: 6 },
+    },
+    borderRadius: baseTokens.borderRadius.sm, // 6px for 24-32px height chips
+    fontSize: {
+      small: baseTokens.fontSize.xs,
+      medium: baseTokens.fontSize.sm,
+    },
+  },
+
+  tooltip: {
+    padding: { x: 12, y: 8 },
+    borderRadius: baseTokens.borderRadius.sm, // 6px for small tooltip elements
+    fontSize: baseTokens.fontSize.sm,
+    background: semanticTokens.colors.background.inverse,
+    text: semanticTokens.colors.text.inverse,
+  },
+
+  modal: {
+    padding: baseTokens.spacing[6],
+    borderRadius: baseTokens.borderRadius.xl, // 16px - allows nested cards with lg:12px
+    shadow: semanticTokens.shadows.modal,
+    backdropOpacity: baseTokens.opacity[50],
+    width: {
+      small: 400,
+      medium: 560,
+      large: 720,
+      fullWidth: '90vw',
+    },
+  },
+
+  switch: {
+    width: {
+      small: 36,
+      medium: 48,
+    },
+    height: {
+      small: 20,
+      medium: 28,
+    },
+    thumb: {
+      small: 16,
+      medium: 24,
+    },
+    track: {
+      off: baseTokens.colors.gray[200],
+      on: semanticTokens.colors.brand.primary,
+    },
+  },
+
+  navigation: {
+    header: {
+      height: 64,
+      background: semanticTokens.colors.brand.primary,
+      text: semanticTokens.colors.text.inverse,
+    },
+    sidebar: {
+      width: 240,
+      collapsedWidth: 64,
+      background: semanticTokens.colors.brand.primary,
+    },
+    item: {
+      height: 44,
+      padding: { x: 16, y: 12 },
+      borderRadius: baseTokens.borderRadius.md, // 8px for 44px height nav items
+    },
+  },
+};
+
+// ============================================
+// HIERARCHY SYSTEM - Design System Architecture
+// Modern design systems (2026 standard) organize 
+// assets in layered tiers from foundations to products
+// ============================================
+
+/**
+ * DESIGN SYSTEM ARCHITECTURE HIERARCHY
+ * 
+ * 1. FOUNDATIONS (Base Layer)
+ *    └── Color palettes, typography, spacing scales, iconography
+ *    └── These are the raw, primitive values
+ * 
+ * 2. DESIGN TOKENS (Semantic Layer)
+ *    └── Smallest units mapping foundations to semantic roles
+ *    └── E.g., color-primary-600, spacing-md, font-heading
+ * 
+ * 3. CORE COMPONENTS (Component Layer)
+ *    └── Reusable UI building blocks (buttons, inputs, cards)
+ *    └── Agnostic of specific product logic
+ * 
+ * 4. PATTERNS & RECIPES (Composition Layer)
+ *    └── Composed groups solving specific user tasks
+ *    └── E.g., Contact Form, Navigation Header, Data Table
+ * 
+ * 5. PRODUCT ECOSYSTEM (Application Layer)
+ *    └── Final implementations in actual products
+ *    └── Product-specific customizations and overrides
+ */
+
+// Hierarchy Level Types
+export type HierarchyLevel = 'foundation' | 'token' | 'component' | 'pattern' | 'product';
+
+export interface HierarchyMeta {
+  level: HierarchyLevel;
+  layer: number;  // 1-5 from foundation to product
+  description: string;
+}
+
+// ============================================
+// VISUAL HIERARCHY SYSTEM
+// Governs how users perceive importance
+// ============================================
+
+/**
+ * ATTENTION HIERARCHY
+ * Controls signal-to-noise ratio across the interface
+ * Primary > Secondary > Tertiary > Muted > Disabled
+ */
+export interface AttentionLevel {
+  /** Prominence score 1-5 (5 being most prominent) */
+  prominence: number;
+  /** Typical use cases */
+  usage: string[];
+  /** Recommended contrast ratio */
+  minContrast: number;
+}
+
+export const attentionHierarchy = {
+  /** Most important actions/content - demands immediate attention */
+  primary: {
+    prominence: 5,
+    usage: ['Primary CTAs', 'Critical alerts', 'Page titles', 'Current navigation'],
+    minContrast: 7, // WCAG AAA for normal text
+  },
+  /** Important but not critical - strong visual presence */
+  secondary: {
+    prominence: 4,
+    usage: ['Secondary buttons', 'Section headings', 'Key information', 'Active states'],
+    minContrast: 4.5, // WCAG AA for normal text
+  },
+  /** Supportive content - visible but not competing */
+  tertiary: {
+    prominence: 3,
+    usage: ['Body text', 'Form labels', 'Navigation items', 'Card content'],
+    minContrast: 4.5, // WCAG AA
+  },
+  /** Background/supporting information */
+  muted: {
+    prominence: 2,
+    usage: ['Helper text', 'Timestamps', 'Metadata', 'Placeholders'],
+    minContrast: 3, // Acceptable for large text
+  },
+  /** Non-interactive or unavailable */
+  disabled: {
+    prominence: 1,
+    usage: ['Disabled controls', 'Inactive states', 'Read-only fields'],
+    minContrast: 2.5, // Minimum perceivable
+  },
+} as const;
+
+/**
+ * TYPOGRAPHIC HIERARCHY
+ * Distinct font treatments to differentiate content types
+ */
+export const typographicHierarchy = {
+  // Display - Hero content, marketing headlines
+  display: {
+    level: 1,
+    scale: {
+      large: { size: '3rem', weight: 700, lineHeight: 1.1, tracking: '-0.02em' },
+      medium: { size: '2.25rem', weight: 700, lineHeight: 1.15, tracking: '-0.01em' },
+      small: { size: '1.875rem', weight: 600, lineHeight: 1.2, tracking: '0' },
+    },
+  },
+  // Headings - Page and section structure
+  heading: {
+    level: 2,
+    scale: {
+      h1: { size: '1.875rem', weight: 700, lineHeight: 1.25 },
+      h2: { size: '1.5rem', weight: 600, lineHeight: 1.3 },
+      h3: { size: '1.25rem', weight: 600, lineHeight: 1.35 },
+      h4: { size: '1.125rem', weight: 600, lineHeight: 1.4 },
+      h5: { size: '1rem', weight: 600, lineHeight: 1.45 },
+      h6: { size: '0.875rem', weight: 600, lineHeight: 1.5 },
+    },
+  },
+  // Body - Main content
+  body: {
+    level: 3,
+    scale: {
+      large: { size: '1.125rem', weight: 400, lineHeight: 1.6 },
+      medium: { size: '1rem', weight: 400, lineHeight: 1.5 },
+      small: { size: '0.875rem', weight: 400, lineHeight: 1.5 },
+    },
+  },
+  // Labels - Form and UI labels
+  label: {
+    level: 4,
+    scale: {
+      large: { size: '1rem', weight: 500, lineHeight: 1.25 },
+      medium: { size: '0.875rem', weight: 500, lineHeight: 1.25 },
+      small: { size: '0.75rem', weight: 500, lineHeight: 1.25 },
+    },
+  },
+  // Caption - Supporting/metadata
+  caption: {
+    level: 5,
+    scale: {
+      default: { size: '0.75rem', weight: 400, lineHeight: 1.4 },
+      emphasis: { size: '0.75rem', weight: 500, lineHeight: 1.4 },
+    },
+  },
+  // Overline - Category/type indicators
+  overline: {
+    level: 6,
+    scale: {
+      default: { size: '0.625rem', weight: 600, lineHeight: 1.5, tracking: '0.1em', transform: 'uppercase' },
+    },
+  },
+} as const;
+
+/**
+ * ELEVATION HIERARCHY (Z-Axis)
+ * Creates depth through shadows and layering
+ * Higher elevation = more prominent, closer to user
+ */
+export const elevationHierarchy = {
+  /** Ground level - page background, sunken areas */
+  ground: {
+    level: 0,
+    zIndex: 0,
+    shadow: 'none',
+    description: 'Page backgrounds, wells, sunken inputs',
+  },
+  /** Resting - default content surfaces */
+  resting: {
+    level: 1,
+    zIndex: 1,
+    shadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+    description: 'Cards, panels at rest',
+  },
+  /** Raised - interactive/hover states */
+  raised: {
+    level: 2,
+    zIndex: 10,
+    shadow: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+    description: 'Hovered cards, active buttons',
+  },
+  /** Floating - dropdowns, menus */
+  floating: {
+    level: 3,
+    zIndex: 1000,
+    shadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+    description: 'Dropdown menus, popovers',
+  },
+  /** Sticky - headers, navigation */
+  sticky: {
+    level: 4,
+    zIndex: 1020,
+    shadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+    description: 'Sticky headers, fixed navigation',
+  },
+  /** Overlay - backdrop for modals */
+  overlay: {
+    level: 5,
+    zIndex: 1040,
+    shadow: 'none',
+    description: 'Modal/dialog backdrops',
+  },
+  /** Dialog - modals, alerts */
+  dialog: {
+    level: 6,
+    zIndex: 1050,
+    shadow: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
+    description: 'Modal dialogs, alerts',
+  },
+  /** Popover - tooltips, notifications */
+  popover: {
+    level: 7,
+    zIndex: 1060,
+    shadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+    description: 'Popovers, floating panels',
+  },
+  /** Tooltip - highest priority overlays */
+  tooltip: {
+    level: 8,
+    zIndex: 1070,
+    shadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+    description: 'Tooltips, critical notifications',
+  },
+} as const;
+
+/**
+ * SCALE HIERARCHY
+ * Size-based importance through consistent ratios
+ */
+export const scaleHierarchy = {
+  /** Scale ratio for size progression */
+  ratio: 1.25, // Major third
+  
+  /** Size scale multipliers */
+  sizes: {
+    '3xs': 0.512,  // ratio^-3
+    '2xs': 0.64,   // ratio^-2
+    xs: 0.8,       // ratio^-1
+    sm: 1,         // base
+    md: 1.25,      // ratio^1
+    lg: 1.563,     // ratio^2
+    xl: 1.953,     // ratio^3
+    '2xl': 2.441,  // ratio^4
+    '3xl': 3.052,  // ratio^5
+  },
+  
+  /** Icon sizes following the scale */
+  icons: {
+    xs: 12,
+    sm: 16,
+    md: 20,
+    lg: 24,
+    xl: 32,
+    '2xl': 40,
+  },
+  
+  /** Touch target minimums (accessibility) */
+  touchTargets: {
+    minimum: 44, // WCAG 2.5.5 minimum
+    comfortable: 48,
+    spacious: 56,
+  },
+} as const;
+
+/**
+ * CONTRAST HIERARCHY
+ * Color contrast for attention management
+ */
+export const contrastHierarchy = {
+  /** High contrast - primary actions, critical info */
+  high: {
+    foreground: baseTokens.colors.navy[900],
+    background: baseTokens.colors.gray[0],
+    ratio: 12.5, // Well above AAA
+  },
+  /** Medium contrast - body content */
+  medium: {
+    foreground: baseTokens.colors.gray[700],
+    background: baseTokens.colors.gray[0],
+    ratio: 7.5, // Above AAA
+  },
+  /** Low contrast - secondary/muted content */
+  low: {
+    foreground: baseTokens.colors.gray[500],
+    background: baseTokens.colors.gray[0],
+    ratio: 4.5, // AA compliant
+  },
+  /** Subtle - disabled/decorative */
+  subtle: {
+    foreground: baseTokens.colors.gray[400],
+    background: baseTokens.colors.gray[0],
+    ratio: 3, // Minimum perceivable
+  },
+} as const;
+
+/**
+ * INTERACTIVE HIERARCHY
+ * Visual states for user feedback
+ */
+export const interactiveHierarchy = {
+  /** Default resting state */
+  default: {
+    opacity: 1,
+    transform: 'none',
+    transition: 'all 150ms ease-out',
+  },
+  /** Mouse hovering over element */
+  hover: {
+    opacity: 1,
+    transform: 'translateY(-1px)',
+    transition: 'all 150ms ease-out',
+  },
+  /** Element being pressed */
+  active: {
+    opacity: 0.9,
+    transform: 'translateY(0) scale(0.98)',
+    transition: 'all 50ms ease-out',
+  },
+  /** Keyboard focused */
+  focus: {
+    outline: `2px solid ${baseTokens.colors.navy[900]}`,
+    outlineOffset: '2px',
+    transition: 'outline-offset 100ms ease-out',
+  },
+  /** Element is disabled */
+  disabled: {
+    opacity: 0.5,
+    cursor: 'not-allowed',
+    pointerEvents: 'none',
+  },
+} as const;
+
+/**
+ * SPACING HIERARCHY
+ * Consistent spacing scale for layout rhythm
+ */
+export const spacingHierarchy = {
+  /** Micro spacing - between related elements */
+  micro: {
+    1: 4,   // Tightest
+    2: 8,   // Very tight
+  },
+  /** Component spacing - within components */
+  component: {
+    3: 12,  // Compact
+    4: 16,  // Default
+    5: 20,  // Comfortable
+  },
+  /** Section spacing - between sections */
+  section: {
+    6: 24,  // Tight sections
+    8: 32,  // Default sections
+    10: 40, // Spacious sections
+  },
+  /** Layout spacing - page-level */
+  layout: {
+    12: 48,  // Section gaps
+    16: 64,  // Major sections
+    24: 96,  // Page sections
+    32: 128, // Hero/major breaks
+  },
+} as const;
+
+/**
+ * HIERARCHY UTILITIES
+ * Helper functions for applying hierarchy
+ */
+
+/** Get elevation styles for a given level */
+export function getElevation(level: keyof typeof elevationHierarchy) {
+  const elevation = elevationHierarchy[level];
+  return {
+    zIndex: elevation.zIndex,
+    boxShadow: elevation.shadow,
+  };
+}
+
+/** Get typography styles for a given hierarchy */
+export function getTypography(
+  category: keyof typeof typographicHierarchy,
+  variant: string
+) {
+  const cat = typographicHierarchy[category];
+  const scale = (cat.scale as Record<string, unknown>)[variant];
+  if (!scale) return null;
+  return scale;
+}
+
+/** Get attention-based color treatment */
+export function getAttentionColor(level: keyof typeof attentionHierarchy, mode: 'light' | 'dark' = 'light') {
+  const colors = mode === 'light' ? {
+    primary: baseTokens.colors.navy[900],
+    secondary: baseTokens.colors.gray[700],
+    tertiary: baseTokens.colors.gray[600],
+    muted: baseTokens.colors.gray[500],
+    disabled: baseTokens.colors.gray[400],
+  } : {
+    primary: baseTokens.colors.gray[50],
+    secondary: baseTokens.colors.gray[200],
+    tertiary: baseTokens.colors.gray[300],
+    muted: baseTokens.colors.gray[400],
+    disabled: baseTokens.colors.gray[500],
+  };
+  return colors[level];
+}
+
+/** Calculate spacing from hierarchy */
+export function getHierarchySpacing(
+  category: 'micro' | 'component' | 'section' | 'layout',
+  size: number
+) {
+  const cat = spacingHierarchy[category] as Record<number, number>;
+  return cat[size] ?? null;
+}
+
+// ============================================
+// DARK MODE TOKENS - Overrides for dark theme
+// ============================================
+
+export const darkModeTokens: TrinityDarkModeTokens = {
+  colors: {
+    text: {
+      // Improved contrast ratios for dark mode (WCAG AA+ compliant)
+      primary: '#F9FAFB',      // Gray 50 - 15.8:1 contrast on gray[800]
+      secondary: '#D1D5DB',    // Gray 300 - 10.2:1 contrast
+      tertiary: '#9CA3AF',     // Gray 400 - 6.1:1 contrast
+      disabled: '#6B7280',     // Gray 500 - 3.9:1 contrast (meets large text AA)
+    },
+    background: {
+      // Refined dark backgrounds with better elevation differentiation
+      primary: '#121214',      // Darker base for better contrast
+      secondary: '#1C1C1F',    // Slightly elevated
+      tertiary: '#262629',     // More elevated surfaces
+    },
+    border: {
+      // Improved border visibility in dark mode
+      default: '#3F3F46',      // Gray 600 - visible but subtle
+      subtle: '#27272A',       // Gray 700 - very subtle dividers
+      strong: '#52525B',       // Gray 500 - emphasis borders
+    },
+    // Interactive state overrides for dark mode
+    interactive: {
+      default: baseTokens.colors.purple[400],
+      hover: baseTokens.colors.coral[400],    // Lighter coral for dark mode
+      active: baseTokens.colors.indigo[400],
+      disabled: baseTokens.colors.gray[600],
+      focus: baseTokens.colors.purple[400],
+    },
+    // Status color overrides for dark mode (improved contrast)
+    status: {
+      error: {
+        text: '#FCA5A5',       // Red 300 - good contrast
+        background: '#1F1315', // Very dark red - elevated feel
+        border: '#991B1B',     // Red 800 - visible border
+      },
+      warning: {
+        text: '#FDE68A',       // Amber 200 - excellent contrast
+        background: '#1A1607', // Very dark amber
+        border: '#92400E',     // Amber 800
+      },
+      success: {
+        text: '#86EFAC',       // Green 300
+        background: '#0A1A10', // Very dark green
+        border: '#166534',     // Green 800
+      },
+      info: {
+        text: '#7DD3FC',       // Sky 300
+        background: '#0C1929', // Very dark blue
+        border: '#075985',     // Sky 800
+      },
+    },
+  },
+};
+
+// ============================================
+// DARK MODE ELEVATION SHADOWS
+// Enhanced shadows for dark mode depth perception
+// ============================================
+
+export const darkModeShadows = {
+  none: 'none',
+  sm: '0 1px 2px 0 rgb(0 0 0 / 0.3), 0 0 0 1px rgb(255 255 255 / 0.05)',
+  base: '0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.3), 0 0 0 1px rgb(255 255 255 / 0.05)',
+  md: '0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3), 0 0 0 1px rgb(255 255 255 / 0.05)',
+  lg: '0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4), 0 0 0 1px rgb(255 255 255 / 0.05)',
+  xl: '0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.4), 0 0 0 1px rgb(255 255 255 / 0.07)',
+  '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.6), 0 0 0 1px rgb(255 255 255 / 0.1)',
+  // Glow shadows for dark mode (subtle light source effect)
+  glow: {
+    primary: `0 0 20px ${baseTokens.colors.purple[500]}40`,
+    accent: `0 0 20px ${baseTokens.colors.coral[500]}40`,
+    info: `0 0 20px ${baseTokens.colors.azure[500]}40`,
+  },
+};
+
+// ============================================
+// BRAND VARIANTS SYSTEM
+// Support for multiple brand color schemes
+// ============================================
+
+export interface BrandVariant {
+  name: string;
+  primary: {
+    main: string;
+    light: string;
+    dark: string;
+    contrast: string;
+  };
+  secondary: {
+    main: string;
+    light: string;
+    dark: string;
+    contrast: string;
+  };
+  accent: string;
+}
+
+/**
+ * Brand Variants - Pre-configured color schemes
+ * Each variant provides a complete color palette that can be swapped at runtime
+ */
+export const brandVariants: Record<string, BrandVariant> = {
+  // Default Trinity brand
+  trinity: {
+    name: 'Trinity',
+    primary: {
+      main: baseTokens.colors.navy[900],
+      light: baseTokens.colors.purple[700],
+      dark: baseTokens.colors.indigo[900],
+      contrast: '#FFFFFF',
+    },
+    secondary: {
+      main: baseTokens.colors.coral[800],
+      light: baseTokens.colors.coral[500],
+      dark: baseTokens.colors.coral[900],
+      contrast: '#FFFFFF',
+    },
+    accent: baseTokens.colors.azure[500],
+  },
+  
+  // Professional/Corporate variant
+  corporate: {
+    name: 'Corporate',
+    primary: {
+      main: '#1E3A5F',      // Deep blue
+      light: '#2E5A8F',
+      dark: '#0F1D30',
+      contrast: '#FFFFFF',
+    },
+    secondary: {
+      main: '#0891B2',      // Cyan
+      light: '#22D3EE',
+      dark: '#0E7490',
+      contrast: '#FFFFFF',
+    },
+    accent: '#F59E0B',      // Amber
+  },
+  
+  // Modern/Tech variant
+  tech: {
+    name: 'Tech',
+    primary: {
+      main: '#6366F1',      // Indigo
+      light: '#818CF8',
+      dark: '#4338CA',
+      contrast: '#FFFFFF',
+    },
+    secondary: {
+      main: '#EC4899',      // Pink
+      light: '#F472B6',
+      dark: '#DB2777',
+      contrast: '#FFFFFF',
+    },
+    accent: '#10B981',      // Emerald
+  },
+  
+  // Nature/Organic variant
+  nature: {
+    name: 'Nature',
+    primary: {
+      main: '#059669',      // Emerald
+      light: '#34D399',
+      dark: '#047857',
+      contrast: '#FFFFFF',
+    },
+    secondary: {
+      main: '#D97706',      // Amber
+      light: '#FBBF24',
+      dark: '#B45309',
+      contrast: '#FFFFFF',
+    },
+    accent: '#0EA5E9',      // Sky
+  },
+  
+  // Dark/Sleek variant
+  midnight: {
+    name: 'Midnight',
+    primary: {
+      main: '#1F2937',      // Gray 800
+      light: '#4B5563',
+      dark: '#111827',
+      contrast: '#FFFFFF',
+    },
+    secondary: {
+      main: '#8B5CF6',      // Violet
+      light: '#A78BFA',
+      dark: '#7C3AED',
+      contrast: '#FFFFFF',
+    },
+    accent: '#F43F5E',      // Rose
+  },
+};
+
+/**
+ * Get semantic tokens for a specific brand variant
+ * @param variant - The brand variant name
+ * @returns Modified semantic tokens with the brand colors applied
+ */
+export function getBrandSemanticTokens(variant: keyof typeof brandVariants) {
+  const brand = brandVariants[variant];
+  if (!brand) return semanticTokens;
+  
+  return {
+    ...semanticTokens,
+    colors: {
+      ...semanticTokens.colors,
+      brand: {
+        primary: brand.primary.main,
+        secondary: brand.secondary.main,
+        tertiary: brand.primary.dark,
+        accent: brand.accent,
+      },
+      interactive: {
+        ...semanticTokens.colors.interactive,
+        default: brand.primary.main,
+        hover: brand.secondary.main,
+        active: brand.primary.dark,
+        focus: brand.primary.light,
+      },
+    },
+  };
+}
+
+// ============================================
+// HIERARCHY COMBINED EXPORT
+// ============================================
+
+/**
+ * Complete hierarchy system combining all hierarchy aspects
+ * Use this as the single source of truth for design hierarchy
+ */
+export const hierarchy = {
+  /** Attention/importance levels */
+  attention: attentionHierarchy,
+  /** Typography scale and weights */
+  typography: typographicHierarchy,
+  /** Z-axis elevation system */
+  elevation: elevationHierarchy,
+  /** Size scaling system */
+  scale: scaleHierarchy,
+  /** Contrast levels */
+  contrast: contrastHierarchy,
+  /** Interactive states */
+  interactive: interactiveHierarchy,
+  /** Spacing rhythm */
+  spacing: spacingHierarchy,
+} as const;
+
+export type TrinityHierarchy = typeof hierarchy;
+
+// ============================================
+// UTILITY EXPORTS
+// ============================================
+
+// All tokens combined for easy access
+export const tokens = {
+  base: baseTokens,
+  semantic: semanticTokens,
+  component: componentTokens,
+  darkMode: darkModeTokens,
+  hierarchy: hierarchy,
+};
+
+export default tokens;

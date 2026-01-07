@@ -1,0 +1,142 @@
+{
+  "name": "@trinity/design-system",
+  "private": false,
+  "version": "1.1.0",
+  "type": "module",
+  "description": "Trinity Design System - A customizable MUI-based component library",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": [
+    "**/*.css",
+    "*.css"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./theme": {
+      "import": "./dist/theme.js",
+      "types": "./dist/theme.d.ts"
+    },
+    "./tokens": {
+      "import": "./dist/tokens.js",
+      "types": "./dist/tokens.d.ts"
+    },
+    "./components": {
+      "import": "./dist/components/index.js",
+      "types": "./dist/components/index.d.ts"
+    },
+    "./components/AI": {
+      "import": "./dist/components/AI/index.js",
+      "types": "./dist/components/AI/index.d.ts"
+    },
+    "./components/StatusIndicator": {
+      "import": "./dist/components/StatusIndicator/index.js",
+      "types": "./dist/components/StatusIndicator/index.d.ts"
+    },
+    "./components/Icon": {
+      "import": "./dist/components/Icon.js",
+      "types": "./dist/components/Icon.d.ts"
+    },
+    "./navigation": {
+      "import": "./dist/components/navigation/index.js",
+      "types": "./dist/components/navigation/index.d.ts"
+    },
+    "./accessibility": {
+      "import": "./dist/accessibility.js",
+      "types": "./dist/accessibility.d.ts"
+    },
+    "./form": {
+      "import": "./dist/form.js",
+      "types": "./dist/form.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "MIGRATION.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --project tsconfig.lib.json && vite build",
+    "build:lib": "tsc --project tsconfig.lib.json",
+    "build:full": "tsc -b && vite build",
+    "lint": "eslint .",
+    "lint:tokens": "eslint --config eslint.tokens.config.js 'src/components/**/*.tsx' 'src/pages/**/*.tsx'",
+    "lint:tokens:fix": "eslint --config eslint.tokens.config.js 'src/components/**/*.tsx' 'src/pages/**/*.tsx' --fix",
+    "lint:ci": "npm run lint && npm run lint:tokens",
+    "preview": "vite preview",
+    "test": "vitest run --config vitest.config.ts",
+    "test:watch": "vitest --config vitest.config.ts",
+    "test:coverage": "vitest run --config vitest.config.ts --coverage",
+    "test:a11y": "vitest run --config vitest.config.ts --testNamePattern='Accessibility'",
+    "test:storybook": "vitest run --workspace vitest.workspace.ts",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_08f8baa5788465c"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@mui/material": "^6.0.0 || ^7.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@fontsource/montserrat": "^5.2.8",
+    "@mui/icons-material": "^7.3.6",
+    "@mui/x-data-grid": "^8.23.0",
+    "@mui/x-date-pickers": "^8.22.0",
+    "@mui/x-date-pickers-pro": "^8.22.0",
+    "@tailwindcss/vite": "latest",
+    "dayjs": "^1.11.19",
+    "react-feather": "^2.0.10",
+    "recharts": "^3.6.0",
+    "tailwindcss": "latest"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@storybook/addon-a11y": "^10.1.10",
+    "@storybook/addon-docs": "^10.1.10",
+    "@storybook/addon-vitest": "^10.1.10",
+    "@storybook/react": "^10.1.10",
+    "@storybook/react-vite": "^10.1.10",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@types/node": "^25.0.3",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
+    "@vitest/browser-playwright": "^4.0.16",
+    "@vitest/coverage-v8": "^4.0.16",
+    "chromatic": "^13.3.4",
+    "conventional-changelog-cli": "^5.0.0",
+    "eslint-plugin-jsx-a11y": "^6.10.0",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.26",
+    "globals": "^16.0.0",
+    "jsdom": "^27.3.0",
+    "jszip": "^3.10.1",
+    "playwright": "^1.57.0",
+    "storybook": "^10.1.10",
+    "typescript": "latest",
+    "typescript-eslint": "^8.0.0",
+    "vite": "latest",
+    "vitest": "^4.0.16",
+    "vitest-axe": "^0.1.0"
+  },
+  "keywords": [
+    "design-system",
+    "mui",
+    "material-ui",
+    "react",
+    "theme",
+    "components"
+  ],
+  "author": "Trinity Design",
+  "license": "MIT"
+}

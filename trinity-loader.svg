@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <defs>
+    <linearGradient id="trinity-gradient" x1="44" y1="5.2" x2="117.8" y2="154.5" gradientTransform="translate(0 162) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff6150"/>
+      <stop offset="1" stop-color="#6b12ed"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#trinity-gradient)" d="M49.3,75.5c3-.9,5.9.4,7.4,3,.6,1.3,1.1,2.8,1.3,4.3v66.4c0,4.7-2.7,7.7-7,7.7-4.2,0-7-3-7-7.7v-66.6c-.2-3.2,2.1-6.2,5.3-7Z"/>
+  <path fill="url(#trinity-gradient)" d="M76.1,30.4c2.7-2.6,7.2-2.3,9.7.4.8.9,1.3,1.9,1.7,3,.2,1.1.4,2.1.4,3.2v89.2c0,5.1-2.3,8.1-6.6,8.3-4.4.2-7.4-3-7.4-8.1v-37.4l-.2-7.7v-44.6c-.2-2.3.6-4.7,2.3-6.4Z"/>
+  <path fill="url(#trinity-gradient)" d="M109.1,7.8c3-.9,5.9.4,7.4,3,.6,1.3,1.1,2.8,1.3,4.3v66.4c0,4.7-2.7,7.7-7,7.7s-7-3-7-7.7V14.8c-.2-3.2,2.1-6.2,5.3-7Z"/>
+</svg>
