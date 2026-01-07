@@ -9,6 +9,7 @@ import { baseTokens, semanticTokens } from '../tokens';
 const WelcomePage = () => {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
+  const version = import.meta.env.STORYBOOK_VERSION || '1.1.1';
 
   return (
     <Box sx={{ maxWidth: 960, mx: 'auto', fontFamily: 'Montserrat, sans-serif' }}>
@@ -54,7 +55,7 @@ const WelcomePage = () => {
 
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <Chip
-            label="v1.1.1"
+            label={`v${version}`}
             size="small"
             sx={{
               bgcolor: baseTokens.colors.coral[800],
@@ -147,7 +148,7 @@ const WelcomePage = () => {
               📖 Getting Started
             </Typography>
             <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary' }}>
-              Installation, setup, and v1.1.0 component guide
+              Installation, setup, and component guide
             </Typography>
           </Paper>
         </Grid>
